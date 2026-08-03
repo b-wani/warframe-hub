@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "로드맵 — 워프레임 허브",
-  description: "입문부터 세컨드 드림까지의 진행 로드맵",
+  description: "한국 워프레임 뉴비를 위한 진행 로드맵",
 };
 
 const kindLabels: Record<NodeKind, string> = {
@@ -53,12 +53,13 @@ export default function RoadmapPage() {
               <p className={styles.meta}>
                 기준 패치: {node.basedOnPatch} · 출처:{" "}
                 {node.sourceIds.map((sourceId, index) => {
-                  const source = sourcesById.get(sourceId);
+                  // 출처 참조 무결성은 loadRoadmap이 보장한다
+                  const source = sourcesById.get(sourceId)!;
                   return (
                     <span key={sourceId}>
                       {index > 0 && ", "}
-                      <a href={source?.url} rel="noreferrer noopener">
-                        {source?.title ?? sourceId}
+                      <a href={source.url} rel="noreferrer noopener">
+                        {source.title}
                       </a>
                     </span>
                   );
