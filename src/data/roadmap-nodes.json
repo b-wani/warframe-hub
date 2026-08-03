@@ -1,0 +1,79 @@
+[
+  {
+    "id": "vors-prize",
+    "kind": "quest",
+    "title": "보의 전리품 (Vor's Prize)",
+    "summary": "튜토리얼 퀘스트. 오비터의 각 시스템을 복구하며 기본 조작과 제작을 배운다. 완료하면 태양계 항행이 열린다.",
+    "prerequisites": [],
+    "preparations": [],
+    "cautions": [
+      "퀘스트 중 받는 스타터 무기 제작은 자원이 거의 들지 않으니 바로 진행해도 된다"
+    ],
+    "spoiler": false,
+    "sourceIds": ["wiki-vors-prize"],
+    "basedOnPatch": "Update 39"
+  },
+  {
+    "id": "earth-venus-junction",
+    "kind": "junction",
+    "title": "지구 → 금성 정크션",
+    "summary": "금성으로 가는 관문. 성계 지도의 지구에서 정크션 과제를 완료하고 정크션 수호자를 처치하면 열린다.",
+    "prerequisites": ["vors-prize"],
+    "preparations": [],
+    "cautions": [
+      "정크션 과제 목록을 미리 확인하면 지구에서 두 번 돌 일이 없다"
+    ],
+    "spoiler": false,
+    "sourceIds": ["wiki-junction"],
+    "basedOnPatch": "Update 39"
+  },
+  {
+    "id": "once-awake",
+    "kind": "quest",
+    "title": "원스 어웨이크 (Once Awake)",
+    "summary": "지구 → 금성 정크션 보상으로 받는 퀘스트. 인페스티드의 위협을 처음 소개한다.",
+    "prerequisites": ["earth-venus-junction"],
+    "preparations": [],
+    "cautions": [],
+    "spoiler": false,
+    "sourceIds": ["wiki-once-awake"],
+    "basedOnPatch": "Update 39"
+  },
+  {
+    "id": "rhino-parts",
+    "kind": "preparation",
+    "title": "라이노 부품 파밍",
+    "summary": "초반 최고의 생존형 워프레임인 라이노의 부품 설계도를 모은다. 금성 포사(Fossa)의 잭클을 처치하면 부품 설계도가 나온다.",
+    "prerequisites": ["earth-venus-junction"],
+    "preparations": [
+      {
+        "name": "라이노 부품 설계도 (뉴로옵틱스·섀시·시스템)",
+        "source": "금성 포사(Fossa) — 잭클 처치 보상",
+        "quantity": 3
+      },
+      {
+        "name": "라이노 본체 설계도",
+        "source": "마켓에서 크레딧 구매",
+        "quantity": 1
+      }
+    ],
+    "cautions": [
+      "워프레임 제작은 부품 12시간 + 본체 72시간이 걸린다. 설계도를 얻는 즉시 제작을 걸어두자"
+    ],
+    "spoiler": false,
+    "sourceIds": ["wiki-rhino"],
+    "basedOnPatch": "Update 39"
+  },
+  {
+    "id": "venus-mercury-junction",
+    "kind": "junction",
+    "title": "금성 → 수성 정크션",
+    "summary": "수성으로 가는 관문. 금성의 정크션 과제를 완료하고 정크션 수호자를 처치하면 열린다.",
+    "prerequisites": ["earth-venus-junction"],
+    "preparations": [],
+    "cautions": [],
+    "spoiler": false,
+    "sourceIds": ["wiki-junction"],
+    "basedOnPatch": "Update 39"
+  }
+]
