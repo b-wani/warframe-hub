@@ -43,3 +43,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 소싱 원천 사본·지식 베이스 (로컬 전용 — DB 통째 이관 금지 원칙)
+knowledge/
+sources/ordis-codex-v3.5/
