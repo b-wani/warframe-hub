@@ -38,6 +38,25 @@
   color: #666;
 }
 
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nextGoals {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.checkLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
 .meta {
   margin-top: 0.75rem;
   font-size: 0.8rem;
