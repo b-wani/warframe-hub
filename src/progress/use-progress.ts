@@ -23,13 +23,13 @@ function subscribe(listener: () => void): () => void {
 function getSnapshot(): ReadonlySet<string> {
   const raw = localStorage.getItem(PROGRESS_STORAGE_KEY);
   if (cache === null || cache.raw !== raw) {
-    cache = { raw, ids: loadProgress(localStorage) };
+    cache = { raw, ids: loadProgress() };
   }
   return cache.ids;
 }
 
 function setProgress(next: ReadonlySet<string>): void {
-  saveProgress(localStorage, next);
+  saveProgress(next);
   for (const listener of listeners) {
     listener();
   }

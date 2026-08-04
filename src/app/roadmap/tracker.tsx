@@ -15,7 +15,7 @@ export function RoadmapTracker({ roadmap }: { roadmap: Roadmap }) {
   const { nodes, sources } = roadmap;
   const sourcesById = new Map(sources.map((s) => [s.id, s]));
 
-  const [completedIds, update] = useProgress();
+  const [completedIds, setCompletedIds] = useProgress();
 
   const progress = computeProgress(nodes, completedIds);
   const percent = Math.round(progress.completionRate * 100);
@@ -26,7 +26,7 @@ export function RoadmapTracker({ roadmap }: { roadmap: Roadmap }) {
         <p>
           완료율 {percent}% ({progress.completedCount}/{progress.totalCount})
         </p>
-        <button type="button" onClick={() => update(resetProgress())}>
+        <button type="button" onClick={() => setCompletedIds(resetProgress())}>
           진행 초기화
         </button>
       </section>
@@ -53,7 +53,9 @@ export function RoadmapTracker({ roadmap }: { roadmap: Roadmap }) {
               <input
                 type="checkbox"
                 checked={completedIds.has(node.id)}
-                onChange={() => update(toggleNode(completedIds, node.id))}
+                onChange={() =>
+                  setCompletedIds(toggleNode(completedIds, node.id))
+                }
                 aria-label={`${node.title} 완료`}
               />
               완료
