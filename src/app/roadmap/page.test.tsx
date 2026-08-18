@@ -8,11 +8,11 @@ test("로드맵 페이지에 입문~세컨드 드림 노드들이 목록으로 �
   const items = within(list).getAllByRole("listitem");
   expect(items.length).toBeGreaterThanOrEqual(2);
   expect(
-    within(list).getByText("보의 전리품 (Vor's Prize)"),
+    within(list).getByText("보어의 전리품 (Vor's Prize)"),
   ).toBeDefined();
-  expect(within(list).getByText("금성 정크션 (지구 → 금성)")).toBeDefined();
+  expect(within(list).getByText("금성 교차점 (지구 → 금성)")).toBeDefined();
   expect(
-    within(list).getByText("세컨드 드림 (The Second Dream)"),
+    within(list).getByText("두 번째 꿈 (The Second Dream)"),
   ).toBeDefined();
 });
 

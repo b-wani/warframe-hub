@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const kindLabels: Record<NodeKind, string> = {
   quest: "퀘스트",
-  junction: "정크션",
+  junction: "교차점",
   preparation: "준비 목표",
 };
 
