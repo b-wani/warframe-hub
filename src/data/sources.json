@@ -3,28 +3,112 @@
     "id": "wiki-vors-prize",
     "title": "공식 위키 — Vor's Prize",
     "url": "https://wiki.warframe.com/w/Vor%27s_Prize",
-    "collectedAt": "2026-08-03",
+    "collectedAt": "2026-08-04",
     "status": "alive"
   },
   {
-    "id": "wiki-junction",
-    "title": "공식 위키 — Junction",
-    "url": "https://wiki.warframe.com/w/Junction",
-    "collectedAt": "2026-08-03",
+    "id": "wiki-the-teacher",
+    "title": "공식 위키 — The Teacher",
+    "url": "https://wiki.warframe.com/w/The_Teacher",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-vox-solaris",
+    "title": "공식 위키 — Vox Solaris (Quest)",
+    "url": "https://wiki.warframe.com/w/Vox_Solaris_(Quest)",
+    "collectedAt": "2026-08-04",
     "status": "alive"
   },
   {
     "id": "wiki-once-awake",
     "title": "공식 위키 — Once Awake",
     "url": "https://wiki.warframe.com/w/Once_Awake",
-    "collectedAt": "2026-08-03",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-heart-of-deimos",
+    "title": "공식 위키 — Heart of Deimos",
+    "url": "https://wiki.warframe.com/w/Heart_of_Deimos",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-the-archwing",
+    "title": "공식 위키 — The Archwing",
+    "url": "https://wiki.warframe.com/w/The_Archwing",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-natah",
+    "title": "공식 위키 — Natah (Quest)",
+    "url": "https://wiki.warframe.com/w/Natah_(Quest)",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-the-second-dream",
+    "title": "공식 위키 — The Second Dream",
+    "url": "https://wiki.warframe.com/w/The_Second_Dream",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-venus-junction",
+    "title": "공식 위키 — Venus Junction",
+    "url": "https://wiki.warframe.com/w/Venus_Junction",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-mercury-junction",
+    "title": "공식 위키 — Mercury Junction",
+    "url": "https://wiki.warframe.com/w/Mercury_Junction",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-mars-junction",
+    "title": "공식 위키 — Mars Junction",
+    "url": "https://wiki.warframe.com/w/Mars_Junction",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-jupiter-junction",
+    "title": "공식 위키 — Jupiter Junction",
+    "url": "https://wiki.warframe.com/w/Jupiter_Junction",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-saturn-junction",
+    "title": "공식 위키 — Saturn Junction",
+    "url": "https://wiki.warframe.com/w/Saturn_Junction",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-uranus-junction",
+    "title": "공식 위키 — Uranus Junction",
+    "url": "https://wiki.warframe.com/w/Uranus_Junction",
+    "collectedAt": "2026-08-04",
+    "status": "alive"
+  },
+  {
+    "id": "wiki-neptune-junction",
+    "title": "공식 위키 — Neptune Junction",
+    "url": "https://wiki.warframe.com/w/Neptune_Junction",
+    "collectedAt": "2026-08-04",
     "status": "alive"
   },
   {
     "id": "wiki-rhino",
     "title": "공식 위키 — Rhino",
     "url": "https://wiki.warframe.com/w/Rhino",
-    "collectedAt": "2026-08-03",
+    "collectedAt": "2026-08-04",
     "status": "alive"
   }
 ]
