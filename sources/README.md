@@ -41,6 +41,7 @@
 | --- | --- | --- | --- | --- |
 | 오디스 코덱스 v3.5 (XLSX, 시트 15개) | 오디스 마이너 갤러리 공유 구글 시트 (운영자 제공 사본, 로컬 보관) | 2026-08-04 | alive | 갤러리 가이드 글 링크 색인 + 드랍·프라임·리벤 데이터. 하이퍼링크 1,141건. 파일 자체는 ADR-0001에 따라 커밋하지 않는다 (`sources/ordis-codex-v3.5/`, gitignore) |
 | 오디스 마이너 갤러리 가이드 글 (개별) | https://gall.dcinside.com/mgallery/board/lists/?id=ordis | 2026-08-04~ | alive | 위 색인이 가리키는 글들. 지식 베이스(`knowledge/`, 로컬 전용) 구축에 사용, 개별 글 URL은 인용 시 지식 문서 frontmatter에 기록 |
+| 워프레임 카테고리 정리 시트 (커뮤니티 구글 시트) | https://docs.google.com/spreadsheets/u/0/d/1RtVPsL__PUt_Q-fb4GHOmw5GI1r1BB8n-0zweqMZODs/htmlview | 2026-08-20 | alive | 오디스 코덱스가 참조하는 보조 시트. URL 등록만, 파일 미보관 |
 
 ## 수집 방법
 
