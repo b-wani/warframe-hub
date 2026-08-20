@@ -56,6 +56,9 @@
 | 워프레임 카테고리 정리 시트 (커뮤니티 구글 시트) | https://docs.google.com/spreadsheets/u/0/d/1RtVPsL__PUt_Q-fb4GHOmw5GI1r1BB8n-0zweqMZODs/htmlview | 2026-08-20 | alive | 오디스 코덱스가 참조하는 보조 시트. URL 등록만, 파일 미보관 |
 | 유튜브 — 지구평원 워프레임 빠른랭작법 (마니아갤러리) | https://youtu.be/vQHLNCUoZJo | 2026-08-20 | alive | 지평 스텔스작 시연 영상. 갤러리 가이드(398205)가 인용. 텍스트 노트로 요지 반영 |
 | 유튜브 — 마랭 9 시험 풀영상 (iexplore76) | https://www.youtube.com/watch?v=grLoj43rCNs | 2026-08-20 | alive | 갤러리 가이드(202085)가 인용한 시연 영상 |
+| 오디스 갤러리 — 금성·수성 교차점 가이드 | https://gall.dcinside.com/m/ordis/400342 | 2026-08-18 | alive | 자칼·라이노 스펙터 공략 팁 (검수 큐 B6 → 이슈 #5 이관·반영). 페이지 크레딧 등재 |
+| 오디스 갤러리 — 천왕성 교차점 가이드 | https://gall.dcinside.com/mgallery/board/view/?id=ordis&no=302721 | 2026-08-18 | alive | 사르가스 루크 공략 팁 (B6). 과제 목록은 구 성계 지도 기준이라 미사용, 공략 팁만. 페이지 크레딧 등재 |
+| 오디스 갤러리 — 해왕성 교차점 가이드 | https://gall.dcinside.com/mgallery/board/view/?id=ordis&no=302855 | 2026-08-18 | alive | 틸 레거 공략 팁 (B6). 페이지 크레딧 등재 |
 
 ## 수집 방법
 
