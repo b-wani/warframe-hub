@@ -8,12 +8,17 @@ test("로드맵 페이지에 입문~세컨드 드림 노드들이 목록으로 �
   const items = within(list).getAllByRole("listitem");
   expect(items.length).toBeGreaterThanOrEqual(2);
   expect(
-    within(list).getByText("보어의 전리품 (Vor's Prize)"),
+    within(list).getByRole("heading", { name: "보어의 전리품 (Vor's Prize)" }),
   ).toBeDefined();
-  expect(within(list).getByText("금성 교차점 (지구 → 금성)")).toBeDefined();
   expect(
-    within(list).getByText("두 번째 꿈 (The Second Dream)"),
+    within(list).getByRole("heading", { name: "금성 교차점 (지구 → 금성)" }),
   ).toBeDefined();
+  // 두 번째 꿈은 스포일러 노드라 제목이 가려진 채 표시된다
+  expect(
+    within(list).queryByRole("heading", {
+      name: "두 번째 꿈 (The Second Dream)",
+    }),
+  ).toBeNull();
 });
 
 test("노드의 준비물과 주의사항이 표시된다", () => {

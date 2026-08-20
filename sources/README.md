@@ -30,6 +30,18 @@
 | 공식 위키 — Venus~Neptune Junction (개별 7페이지) | https://wiki.warframe.com/w/Venus_Junction 외 | 2026-08-04 | alive | 과제·보상·위치는 개별 페이지 기준 |
 | 공식 위키 — Rhino | https://wiki.warframe.com/w/Rhino | 2026-08-04 | alive | 부품 획득처·제작 시간 |
 | 공식 위키 — Version/data | https://wiki.warframe.com/w/Module:Version/data | 2026-08-04 | alive | 기준 패치 확인 (Update 43.0, 핫픽스 43.0.8 / 2026-07-13) |
+| 공식 위키 — Affinity | https://wiki.warframe.com/w/Affinity | 2026-08-20 | alive | 숙련도 분배 공식·스텔스 배율 교차 확인 |
+| 공식 위키 — Sanctuary Onslaught | https://wiki.warframe.com/w/Sanctuary_Onslaught | 2026-08-20 | alive | 생맹 입장 조건·엘맹 어빌 쿨타임 교차 확인 |
+| 공식 위키 — Amp | https://wiki.warframe.com/w/Amp | 2026-08-20 | alive | 앰프 해금·판매처·도금 교차 확인 |
+| 공식 위키 — The Steel Path | https://wiki.warframe.com/w/The_Steel_Path | 2026-08-20 | alive | 해금 조건 완화·모디파이어 교차 확인 |
+| 공식 위키 — Arbitrations | https://wiki.warframe.com/w/Arbitrations | 2026-08-20 | alive | U39(2025-06) 해금 완화 확인 |
+| 공식 위키 — Specter (Tenno) | https://wiki.warframe.com/w/Specter_(Tenno) | 2026-08-20 | alive | 스펙터 등급·제작 수량 교차 확인 |
+| 공식 위키 — Captura | https://wiki.warframe.com/w/Captura | 2026-08-20 | alive | 캡쳐라 진입·씬 획득처 교차 확인 |
+| 공식 위키 — Text Icons | https://wiki.warframe.com/w/Text_Icons | 2026-08-20 | alive | 로드아웃 텍스트 아이콘 코드 교차 확인 |
+| AlecaFrame (컴패니언 앱) | https://www.alecaframe.com/ | 2026-08-20 | alive | 커뮤니티 표준 도구 — 지식 노트 tools-external-sites 기재 |
+| Mandascore (옥타비아 작곡기) | https://buff0000n.github.io/mandascore/ | 2026-08-20 | alive | 팬 제작 웹 도구 |
+| 공식 위키 — Shield | https://wiki.warframe.com/w/Shield | 2026-08-20 | alive | 실드 게이팅 수치·독성 관통 교차 확인 |
+| 공식 위키 — Damage | https://wiki.warframe.com/w/Damage | 2026-08-20 | alive | U36 팩션 상성표 교차 확인 |
 
 라이선스: wiki.warframe.com 의 텍스트 콘텐츠는 CC BY-SA 4.0. 본 프로젝트는 사실만
 추출해 자체 집필하므로 전재에 해당하지 않으나, 페이지에 출처 크레딧과 원문 링크를
@@ -42,6 +54,11 @@
 | 오디스 코덱스 v3.5 (XLSX, 시트 15개) | 오디스 마이너 갤러리 공유 구글 시트 (운영자 제공 사본, 로컬 보관) | 2026-08-04 | alive | 갤러리 가이드 글 링크 색인 + 드랍·프라임·리벤 데이터. 하이퍼링크 1,141건. 파일 자체는 ADR-0001에 따라 커밋하지 않는다 (`sources/ordis-codex-v3.5/`, gitignore) |
 | 오디스 마이너 갤러리 가이드 글 (개별) | https://gall.dcinside.com/mgallery/board/lists/?id=ordis | 2026-08-04~ | alive | 위 색인이 가리키는 글들. 지식 베이스(`knowledge/`, 로컬 전용) 구축에 사용, 개별 글 URL은 인용 시 지식 문서 frontmatter에 기록 |
 | 워프레임 카테고리 정리 시트 (커뮤니티 구글 시트) | https://docs.google.com/spreadsheets/u/0/d/1RtVPsL__PUt_Q-fb4GHOmw5GI1r1BB8n-0zweqMZODs/htmlview | 2026-08-20 | alive | 오디스 코덱스가 참조하는 보조 시트. URL 등록만, 파일 미보관 |
+| 유튜브 — 지구평원 워프레임 빠른랭작법 (마니아갤러리) | https://youtu.be/vQHLNCUoZJo | 2026-08-20 | alive | 지평 스텔스작 시연 영상. 갤러리 가이드(398205)가 인용. 텍스트 노트로 요지 반영 |
+| 유튜브 — 마랭 9 시험 풀영상 (iexplore76) | https://www.youtube.com/watch?v=grLoj43rCNs | 2026-08-20 | alive | 갤러리 가이드(202085)가 인용한 시연 영상 |
+| 오디스 갤러리 — 금성·수성 교차점 가이드 | https://gall.dcinside.com/m/ordis/400342 | 2026-08-18 | alive | 자칼·라이노 스펙터 공략 팁 (검수 큐 B6 → 이슈 #5 이관·반영). 페이지 크레딧 등재 |
+| 오디스 갤러리 — 천왕성 교차점 가이드 | https://gall.dcinside.com/mgallery/board/view/?id=ordis&no=302721 | 2026-08-18 | alive | 사르가스 루크 공략 팁 (B6). 과제 목록은 구 성계 지도 기준이라 미사용, 공략 팁만. 페이지 크레딧 등재 |
+| 오디스 갤러리 — 해왕성 교차점 가이드 | https://gall.dcinside.com/mgallery/board/view/?id=ordis&no=302855 | 2026-08-18 | alive | 틸 레거 공략 팁 (B6). 페이지 크레딧 등재 |
 
 ## 수집 방법
 

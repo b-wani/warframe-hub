@@ -83,10 +83,15 @@
     ],
     "cautions": [
       "교차점 과제는 부품 '제작 시작'까지만 요구한다 — 부품과 본체의 제작 대기 시간을 기다렸다가 진행할 필요는 없다",
-      "잭클은 부품 설계도를 한 번에 하나씩 주므로 세 부품을 모으려면 반복 처치가 필요하다"
+      "잭클은 부품 설계도를 한 번에 하나씩 주므로 세 부품을 모으려면 반복 처치가 필요하다",
+      "잭클은 몸통이 무적이다 — 다리 네 개를 부숴 그로기로 만든 뒤 파라존 마무리를 네 번 반복해야 잡힌다. 다리 파괴 후 나오는 회전 레이저는 점프나 구르기로 피하자"
     ],
     "spoiler": false,
-    "sourceIds": ["wiki-mercury-junction", "wiki-rhino"],
+    "sourceIds": [
+      "wiki-mercury-junction",
+      "wiki-rhino",
+      "gall-junction-guide-venus-mercury"
+    ],
     "basedOnPatch": "Update 43"
   },
   {
@@ -97,10 +102,11 @@
     "prerequisites": ["vox-solaris", "rhino-prep"],
     "preparations": [],
     "cautions": [
-      "보상으로 받는 볼터는 화성 교차점 과제(볼터 장착 미션)에 필요하니 팔지 말 것"
+      "보상으로 받는 볼터는 화성 교차점 과제(볼터 장착 미션)에 필요하니 팔지 말 것",
+      "스펙터(라이노)는 입장 직후 공격하면 아이언 스킨만 두꺼워진다 — 무적이 끝난 뒤에 공격을 시작하자"
     ],
     "spoiler": false,
-    "sourceIds": ["wiki-mercury-junction"],
+    "sourceIds": ["wiki-mercury-junction", "gall-junction-guide-venus-mercury"],
     "basedOnPatch": "Update 43"
   },
   {
@@ -201,10 +207,11 @@
     "preparations": [],
     "cautions": [
       "생존 20분은 한 번의 미션 안에서 채워야 한다 — 10분씩 두 번은 인정되지 않는다",
-      "사르가스 루크는 이 구간 기준 보스급 화력이니 라이노처럼 버티는 프레임을 추천"
+      "사르가스 루크는 이 구간 기준 보스급 화력이니 라이노처럼 버티는 프레임을 추천",
+      "사르가스 루크는 약점 순환식 보스다 — 어깨의 푸른 부위 → 가슴 → 등 순서로만 피해가 들어가고 그 외에는 무적이다. 화염 피해가 아프니 주의"
     ],
     "spoiler": false,
-    "sourceIds": ["wiki-uranus-junction"],
+    "sourceIds": ["wiki-uranus-junction", "gall-junction-guide-uranus"],
     "basedOnPatch": "Update 43"
   },
   {
@@ -229,10 +236,11 @@
     "prerequisites": ["natah"],
     "preparations": [],
     "cautions": [
-      "근접 전용 과제에서 엑살티드 무기·아크윙 무기·컴패니언은 실격 사유가 아니다 — 센티넬은 데려가도 된다"
+      "근접 전용 과제에서 엑살티드 무기·아크윙 무기·컴패니언은 실격 사유가 아니다 — 센티넬은 데려가도 된다",
+      "틸 레거는 체력이 1/3 깎일 때마다 무적이 되어 도주하며 매닉을 소환한다. 후반에는 1층이 물에 잠기는데, 빠지면 강제 샤크윙 상태로 전기 피해를 계속 입으니 물가를 피하자"
     ],
     "spoiler": false,
-    "sourceIds": ["wiki-neptune-junction"],
+    "sourceIds": ["wiki-neptune-junction", "gall-junction-guide-neptune"],
     "basedOnPatch": "Update 43"
   },
   {
