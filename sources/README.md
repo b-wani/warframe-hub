@@ -60,6 +60,15 @@
 | 오디스 갤러리 — 천왕성 교차점 가이드 | https://gall.dcinside.com/mgallery/board/view/?id=ordis&no=302721 | 2026-08-18 | alive | 사르가스 루크 공략 팁 (B6). 과제 목록은 구 성계 지도 기준이라 미사용, 공략 팁만. 페이지 크레딧 등재 |
 | 오디스 갤러리 — 해왕성 교차점 가이드 | https://gall.dcinside.com/mgallery/board/view/?id=ordis&no=302855 | 2026-08-18 | alive | 틸 레거 공략 팁 (B6). 페이지 크레딧 등재 |
 
+## 링크 생존 점검
+
+이 등록부와 페이지 크레딧(`src/data/sources.json`)의 URL은 `pnpm check:links`로
+점검한다 (등록부는 표의 `URL` 칸에서 URL을 뽑고, 파일만 있는 행은 대상이 아니다).
+죽은 링크가 나오면 이 표의 `상태`를 `dead`로 바꾸고, 그 출처를 참조하는 노드가
+있으면 `src/data/sources.json`도 함께 갱신한다.
+
+- 2026-08-20: 37건 점검(등록부 31 + 크레딧 전용 6) — 전부 alive.
+
 ## 수집 방법
 
 - 위키는 MediaWiki raw(`index.php?title=…&action=raw`)로 wikitext 원문을 받아

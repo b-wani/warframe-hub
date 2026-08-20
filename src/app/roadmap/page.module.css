@@ -40,6 +40,7 @@
 
 .summary {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -52,9 +53,11 @@
 
 .checkLabel {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 0.4rem;
   margin-bottom: 0.5rem;
+  cursor: pointer;
 }
 
 .detail {
@@ -62,6 +65,9 @@
 }
 
 .detail summary {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
   cursor: pointer;
   font-size: 0.9rem;
   color: #555;
@@ -147,4 +153,47 @@
 .bulkConfirm p {
   margin: 0;
   flex: 1 1 100%;
+}
+
+.patchBaseline {
+  margin: 0.25rem 0 1rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* 모바일 우선 — 뉴비는 게임 중 폰으로 본다. 손가락으로 누를 수 있는 크기(44px)를
+   기본으로 두고, 좁은 화면에서 여백만 줄인다. 색은 배경/전경을 물려받아
+   라이트·다크 어느 쪽에서도 읽힌다. */
+.main button {
+  min-height: 44px;
+  padding: 0 0.9rem;
+  border: 1px solid currentColor;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.main input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 1rem 0.75rem;
+  }
+
+  .node {
+    padding: 0.75rem 0.9rem;
+  }
+
+  .widget {
+    padding: 0.75rem;
+  }
+
+  .bulkButton {
+    margin-left: 0;
+  }
 }
