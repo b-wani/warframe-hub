@@ -36,6 +36,10 @@
 | 공식 위키 — The Steel Path | https://wiki.warframe.com/w/The_Steel_Path | 2026-08-20 | alive | 해금 조건 완화·모디파이어 교차 확인 |
 | 공식 위키 — Arbitrations | https://wiki.warframe.com/w/Arbitrations | 2026-08-20 | alive | U39(2025-06) 해금 완화 확인 |
 | 공식 위키 — Specter (Tenno) | https://wiki.warframe.com/w/Specter_(Tenno) | 2026-08-20 | alive | 스펙터 등급·제작 수량 교차 확인 |
+| 공식 위키 — Captura | https://wiki.warframe.com/w/Captura | 2026-08-20 | alive | 캡쳐라 진입·씬 획득처 교차 확인 |
+| 공식 위키 — Text Icons | https://wiki.warframe.com/w/Text_Icons | 2026-08-20 | alive | 로드아웃 텍스트 아이콘 코드 교차 확인 |
+| AlecaFrame (컴패니언 앱) | https://www.alecaframe.com/ | 2026-08-20 | alive | 커뮤니티 표준 도구 — 지식 노트 tools-external-sites 기재 |
+| Mandascore (옥타비아 작곡기) | https://buff0000n.github.io/mandascore/ | 2026-08-20 | alive | 팬 제작 웹 도구 |
 
 라이선스: wiki.warframe.com 의 텍스트 콘텐츠는 CC BY-SA 4.0. 본 프로젝트는 사실만
 추출해 자체 집필하므로 전재에 해당하지 않으나, 페이지에 출처 크레딧과 원문 링크를
