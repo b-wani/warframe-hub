@@ -92,3 +92,39 @@
   font-size: 0.8rem;
   color: #666;
 }
+
+.widget {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background: #fafafa;
+}
+
+.widget h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.widget h3 {
+  font-size: 0.95rem;
+}
+
+.widget ul {
+  margin: 0.25rem 0;
+  padding-left: 1.25rem;
+}
+
+.widgetList {
+  margin: 0 0 0.5rem;
+}
+
+.widgetList dt {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.widgetList dd {
+  margin: 0 0 0.5rem;
+  overflow-wrap: anywhere;
+}
