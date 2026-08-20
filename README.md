@@ -29,11 +29,27 @@ Playwright를 처음 실행하기 전에 브라우저를 설치한다:
 pnpm exec playwright install chromium
 ```
 
+## 링크 생존 점검 (운영 루틴)
+
+출처 등록부(`sources/README.md`)와 페이지 크레딧(`src/data/sources.json`)에 적힌
+URL이 아직 살아 있는지 점검하고 죽은 링크 목록을 만든다. 외부 사이트를 실제로
+호출하므로 CI에서는 돌리지 않고, 운영자가 주기적으로(콘텐츠 갱신 전후) 직접 돌린다.
+스크립트는 Node 24의 TypeScript 직접 실행에 기댄다 (별도 빌드 없음).
+
+```bash
+pnpm check:links                      # 리포트를 화면으로
+pnpm check:links --out=link-report.md # 리포트를 파일로
+```
+
+등록부에 `alive`로 적혀 있는데 실제로 죽은 링크가 있으면 종료 코드 1로 끝난다
+(등록부와 `src/data/sources.json`을 갱신해야 한다는 신호).
+
 ## 환경 변수
 
 | 변수 | 기본값 | 용도 |
 | --- | --- | --- |
 | `WORLDSTATE_API_BASE` | `https://api.warframestat.us/pc` | 월드스테이트 API 베이스 URL. 장애 시뮬레이션·목 서버로 바꿀 때 쓴다. |
+| `NEXT_PUBLIC_SITE_URL` | `https://warframe-hub.vercel.app` (Vercel 프리뷰는 `VERCEL_URL`) | 절대 URL의 기준. OG 이미지·사이트맵·robots.txt가 쓴다. 커스텀 도메인을 붙이면 여기에 넣는다. |
 
 ## CI
 

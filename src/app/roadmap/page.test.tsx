@@ -26,3 +26,8 @@ test("노드의 준비물과 주의사항이 표시된다", () => {
   expect(screen.getByText(/라이노 부품 설계도/)).toBeDefined();
   expect(screen.getAllByRole("heading", { name: "주의사항" }).length).toBeGreaterThan(0);
 });
+
+test("페이지에 콘텐츠 기준 패치가 표시된다", () => {
+  render(<RoadmapPage />);
+  expect(screen.getByText("콘텐츠 기준 패치: Update 43")).toBeDefined();
+});
