@@ -5,6 +5,7 @@ import { computeProgress, resetProgress, toggleNode } from "@/progress/engine";
 import { useProgress } from "@/progress/use-progress";
 import type { NodeKind, Roadmap, RoadmapNode } from "@/roadmap/schema";
 import styles from "./page.module.css";
+import { ContextWidget } from "./widget";
 
 const kindLabels: Record<NodeKind, string> = {
   quest: "퀘스트",
@@ -44,6 +45,10 @@ export function RoadmapTracker({ roadmap }: { roadmap: Roadmap }) {
           진행 초기화
         </button>
       </section>
+
+      <ContextWidget
+        nextGoals={progress.nextGoals.filter((node) => !isMasked(node))}
+      />
 
       <section aria-label="다음 목표">
         <h2>다음 목표</h2>
