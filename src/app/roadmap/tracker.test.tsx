@@ -69,3 +69,74 @@ test("다음 목표 목록에서도 스포일러 제목은 가려진다", async 
   expect(within(nextGoals).queryByText("나타 (Natah)")).toBeNull();
   expect(within(nextGoals).getByText("??? (스포일러)")).toBeDefined();
 });
+
+function bulkButtonFor(title: string) {
+  return screen.getByRole("button", { name: `${title}까지 일괄 완료` });
+}
+
+test("여기까지 완료를 누르면 확인 단계가 뜨고 아직 완료되지 않는다", async () => {
+  renderTracker();
+  const user = userEvent.setup();
+  await user.click(bulkButtonFor("수성 교차점 (금성 → 수성)"));
+
+  const confirm = screen.getByRole("region", { name: "일괄 완료 확인" });
+  expect(within(confirm).getByText(/6개/)).toBeDefined();
+  expect(screen.getByText("완료율 0% (0/16)")).toBeDefined();
+});
+
+test("확인하면 선행 노드까지 완료되고 다음 목표가 갱신된다", async () => {
+  renderTracker();
+  const user = userEvent.setup();
+  await user.click(bulkButtonFor("수성 교차점 (금성 → 수성)"));
+  const confirm = screen.getByRole("region", { name: "일괄 완료 확인" });
+  await user.click(within(confirm).getByRole("button", { name: "일괄 완료" }));
+
+  expect(screen.getByText("완료율 38% (6/16)")).toBeDefined();
+  const goals = screen.getByRole("region", { name: "다음 목표" });
+  expect(
+    within(goals).getByText("각성의 순간 (Once Awake)"),
+  ).toBeDefined();
+  expect(
+    screen.queryByRole("region", { name: "일괄 완료 확인" }),
+  ).toBeNull();
+});
+
+test("확인 단계에서 취소하면 아무것도 완료되지 않는다", async () => {
+  renderTracker();
+  const user = userEvent.setup();
+  await user.click(bulkButtonFor("수성 교차점 (금성 → 수성)"));
+  const confirm = screen.getByRole("region", { name: "일괄 완료 확인" });
+  await user.click(within(confirm).getByRole("button", { name: "취소" }));
+
+  expect(screen.getByText("완료율 0% (0/16)")).toBeDefined();
+  expect(
+    screen.queryByRole("region", { name: "일괄 완료 확인" }),
+  ).toBeNull();
+});
+
+test("자신과 선행이 모두 완료되면 일괄 완료 버튼이 사라진다", async () => {
+  renderTracker();
+  const user = userEvent.setup();
+  await user.click(bulkButtonFor("보어의 전리품 (Vor's Prize)"));
+  const confirm = screen.getByRole("region", { name: "일괄 완료 확인" });
+  await user.click(within(confirm).getByRole("button", { name: "일괄 완료" }));
+
+  expect(
+    screen.queryByRole("button", {
+      name: "보어의 전리품 (Vor's Prize)까지 일괄 완료",
+    }),
+  ).toBeNull();
+});
+
+test("확인 창을 열어둔 채 진행이 바뀌면 확인이 무효화된다", async () => {
+  renderTracker();
+  const user = userEvent.setup();
+  await user.click(bulkButtonFor("수성 교차점 (금성 → 수성)"));
+  await user.click(
+    screen.getByRole("checkbox", { name: "각성의 순간 (Once Awake) 완료" }),
+  );
+
+  expect(screen.queryByRole("region", { name: "일괄 완료 확인" })).toBeNull();
+  // 완료된 것은 직접 체크한 노드 하나뿐이다
+  expect(screen.getByText("완료율 6% (1/16)")).toBeDefined();
+});
