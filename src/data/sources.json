@@ -110,5 +110,26 @@
     "url": "https://wiki.warframe.com/w/Rhino",
     "collectedAt": "2026-08-04",
     "status": "alive"
+  },
+  {
+    "id": "gall-junction-guide-venus-mercury",
+    "title": "오디스 갤러리 — 금성·수성 교차점 가이드",
+    "url": "https://gall.dcinside.com/m/ordis/400342",
+    "collectedAt": "2026-08-18",
+    "status": "alive"
+  },
+  {
+    "id": "gall-junction-guide-uranus",
+    "title": "오디스 갤러리 — 천왕성 교차점 가이드",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ordis&no=302721",
+    "collectedAt": "2026-08-18",
+    "status": "alive"
+  },
+  {
+    "id": "gall-junction-guide-neptune",
+    "title": "오디스 갤러리 — 해왕성 교차점 가이드",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ordis&no=302855",
+    "collectedAt": "2026-08-18",
+    "status": "alive"
   }
 ]
