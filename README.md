@@ -29,6 +29,12 @@ Playwright를 처음 실행하기 전에 브라우저를 설치한다:
 pnpm exec playwright install chromium
 ```
 
+## 환경 변수
+
+| 변수 | 기본값 | 용도 |
+| --- | --- | --- |
+| `WORLDSTATE_API_BASE` | `https://api.warframestat.us/pc` | 월드스테이트 API 베이스 URL. 장애 시뮬레이션·목 서버로 바꿀 때 쓴다. |
+
 ## CI
 
 `main` 푸시와 모든 PR에서 GitHub Actions(`.github/workflows/ci.yml`)가 lint → typecheck → 단위 테스트 → E2E를 실행한다. 하나라도 실패하면 워크플로가 실패한다.
