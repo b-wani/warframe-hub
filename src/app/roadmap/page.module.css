@@ -128,3 +128,23 @@
   margin: 0 0 0.5rem;
   overflow-wrap: anywhere;
 }
+
+.bulkButton {
+  margin-left: 0.75rem;
+}
+
+.bulkConfirm {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.bulkConfirm p {
+  margin: 0;
+  flex: 1 1 100%;
+}

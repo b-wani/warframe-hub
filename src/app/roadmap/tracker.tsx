@@ -1,7 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { computeProgress, resetProgress, toggleNode } from "@/progress/engine";
+import { useEffect, useRef, useState } from "react";
+import {
+  completeThrough,
+  computeProgress,
+  resetProgress,
+  toggleNode,
+} from "@/progress/engine";
 import { useProgress } from "@/progress/use-progress";
 import type { NodeKind, Roadmap, RoadmapNode } from "@/roadmap/schema";
 import styles from "./page.module.css";
@@ -24,6 +29,17 @@ export function RoadmapTracker({ roadmap }: { roadmap: Roadmap }) {
   const [revealedIds, setRevealedIds] = useState<ReadonlySet<string>>(
     new Set(),
   );
+  // 일괄 완료는 실수 방지를 위해 확인 단계를 거친다. 확인을 띄운 시점의 진행
+  // 상태(baseline)를 함께 들고 있다가, 그 사이 진행이 바뀌면 확인을 무효화한다
+  // — 유저가 읽은 개수와 실제로 반영되는 집합이 어긋나면 안 되기 때문이다.
+  const [confirming, setConfirming] = useState<{
+    nodeId: string;
+    baseline: ReadonlySet<string>;
+  } | null>(null);
+  const confirmingId =
+    confirming !== null && confirming.baseline === completedIds
+      ? confirming.nodeId
+      : null;
 
   const isMasked = (node: RoadmapNode) =>
     node.spoiler && !revealedIds.has(node.id);
@@ -85,6 +101,23 @@ export function RoadmapTracker({ roadmap }: { roadmap: Roadmap }) {
               />
               완료
             </label>
+            <BulkComplete
+              nodes={nodes}
+              completedIds={completedIds}
+              nodeId={node.id}
+              index={index}
+              title={node.title}
+              masked={isMasked(node)}
+              confirming={confirmingId === node.id}
+              onRequest={() =>
+                setConfirming({ nodeId: node.id, baseline: completedIds })
+              }
+              onCancel={() => setConfirming(null)}
+              onConfirm={(next) => {
+                setCompletedIds(next);
+                setConfirming(null);
+              }}
+            />
             {isMasked(node) ? (
               <div className={styles.spoilerGate}>
                 <p>스포일러 방지를 위해 제목과 내용이 가려져 있다.</p>
@@ -158,5 +191,82 @@ export function RoadmapTracker({ roadmap }: { roadmap: Roadmap }) {
         ))}
       </ol>
     </>
+  );
+}
+
+/**
+ * "여기까지 완료" 버튼과 실수 방지용 확인 단계.
+ * 이 노드까지의 선행 전체가 이미 완료라면 아무것도 그리지 않는다.
+ */
+function BulkComplete({
+  nodes,
+  completedIds,
+  nodeId,
+  index,
+  title,
+  masked,
+  confirming,
+  onRequest,
+  onCancel,
+  onConfirm,
+}: {
+  nodes: RoadmapNode[];
+  completedIds: ReadonlySet<string>;
+  nodeId: string;
+  index: number;
+  title: string;
+  masked: boolean;
+  confirming: boolean;
+  onRequest: () => void;
+  onCancel: () => void;
+  onConfirm: (next: ReadonlySet<string>) => void;
+}) {
+  const confirmRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    // 확인 단계가 열리면 포커스를 옮긴다 (스크린리더가 변경을 놓치지 않도록)
+    if (confirming) confirmRef.current?.focus();
+  }, [confirming]);
+
+  const planned = completeThrough(nodes, completedIds, nodeId);
+  const pendingCount = planned.size - completedIds.size;
+  if (pendingCount === 0) {
+    return null;
+  }
+
+  // 체크박스와 같은 규칙으로 접근성 이름을 노드마다 유일하게 만든다
+  // (가림 상태에서는 제목 대신 순번을 쓴다)
+  const label = masked
+    ? `${index + 1}번째 노드 (스포일러)까지 일괄 완료`
+    : `${title}까지 일괄 완료`;
+
+  if (!confirming) {
+    return (
+      <button
+        type="button"
+        className={styles.bulkButton}
+        aria-label={label}
+        onClick={onRequest}
+      >
+        여기까지 완료
+      </button>
+    );
+  }
+
+  return (
+    <section
+      className={styles.bulkConfirm}
+      aria-label="일괄 완료 확인"
+      onKeyDown={(event) => {
+        if (event.key === "Escape") onCancel();
+      }}
+    >
+      <p>선행 노드를 포함해 {pendingCount}개 노드가 완료 처리된다. 계속할까?</p>
+      <button ref={confirmRef} type="button" onClick={() => onConfirm(planned)}>
+        일괄 완료
+      </button>
+      <button type="button" onClick={onCancel}>
+        취소
+      </button>
+    </section>
   );
 }

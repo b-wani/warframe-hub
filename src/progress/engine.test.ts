@@ -1,6 +1,11 @@
 import { describe, expect, test } from "vitest";
 import type { RoadmapNode } from "@/roadmap/schema";
-import { computeProgress, resetProgress, toggleNode } from "./engine";
+import {
+  completeThrough,
+  computeProgress,
+  resetProgress,
+  toggleNode,
+} from "./engine";
 
 function node(
   id: string,
@@ -96,5 +101,52 @@ describe("toggleNode", () => {
 describe("resetProgress", () => {
   test("빈 집합을 돌려준다", () => {
     expect(resetProgress().size).toBe(0);
+  });
+});
+
+describe("completeThrough", () => {
+  test("지정 노드와 선행 노드 전체를 완료 처리한다", () => {
+    const next = completeThrough(nodes, new Set(), "c");
+    expect([...next].sort()).toEqual(["a", "b", "c"]);
+  });
+
+  test("선행이 없는 노드는 자기만 완료된다", () => {
+    const next = completeThrough(nodes, new Set(), "a");
+    expect([...next]).toEqual(["a"]);
+  });
+
+  test("이미 완료된 노드는 유지하고, 다른 가지는 건드리지 않는다", () => {
+    const next = completeThrough(nodes, new Set(["d"]), "c");
+    expect([...next].sort()).toEqual(["a", "b", "c", "d"]);
+  });
+
+  test("일괄 체크 후 다음 목표는 지정 노드의 후속으로 갱신된다", () => {
+    const next = completeThrough(nodes, new Set(), "b");
+    expect(computeProgress(nodes, next).nextGoals.map((n) => n.id)).toEqual([
+      "c",
+      "d",
+    ]);
+  });
+
+  test("입력 집합을 변경하지 않는다", () => {
+    const original = new Set(["d"]);
+    completeThrough(nodes, original, "c");
+    expect([...original]).toEqual(["d"]);
+  });
+
+  test("로드맵에 없는 노드는 아무것도 바꾸지 않는다", () => {
+    const next = completeThrough(nodes, new Set(["a"]), "ghost");
+    expect([...next]).toEqual(["a"]);
+  });
+
+  test("선행조건 순환이 있어도 멈춘다", () => {
+    const cyclic: RoadmapNode[] = [node("x", ["y"]), node("y", ["x"])];
+    const next = completeThrough(cyclic, new Set(), "x");
+    expect([...next].sort()).toEqual(["x", "y"]);
+  });
+
+  test("로드맵에 없는 선행 id는 완료 집합에 넣지 않는다", () => {
+    const dangling: RoadmapNode[] = [node("p", ["ghost"])];
+    expect([...completeThrough(dangling, new Set(), "p")]).toEqual(["p"]);
   });
 });
