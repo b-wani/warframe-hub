@@ -1,0 +1,4867 @@
+{
+  "groups": {
+    "Mercury": {
+      "name": "수성",
+      "type": "planet"
+    },
+    "Venus": {
+      "name": "금성",
+      "type": "planet"
+    },
+    "Earth": {
+      "name": "지구",
+      "type": "planet"
+    },
+    "Mars": {
+      "name": "화성",
+      "type": "planet"
+    },
+    "Jupiter": {
+      "name": "목성",
+      "type": "planet"
+    },
+    "Saturn": {
+      "name": "토성",
+      "type": "planet"
+    },
+    "Uranus": {
+      "name": "천왕성",
+      "type": "planet"
+    },
+    "Neptune": {
+      "name": "해왕성",
+      "type": "planet"
+    },
+    "Pluto": {
+      "name": "명왕성",
+      "type": "planet"
+    },
+    "Ceres": {
+      "name": "세레스",
+      "type": "planet"
+    },
+    "Eris": {
+      "name": "에리스",
+      "type": "planet"
+    },
+    "Sedna": {
+      "name": "세드나",
+      "type": "planet"
+    },
+    "Europa": {
+      "name": "유로파",
+      "type": "planet"
+    },
+    "Void": {
+      "name": "보이드",
+      "type": "special"
+    },
+    "Phobos": {
+      "name": "포보스",
+      "type": "planet"
+    },
+    "SolarMapDeimosName": {
+      "name": "데이모스",
+      "type": "planet"
+    },
+    "Moon": {
+      "name": "루아",
+      "type": "planet"
+    },
+    "Fortress": {
+      "name": "쿠바 요새",
+      "type": "special"
+    },
+    "ZarimanRegionName": {
+      "name": "자리만",
+      "type": "special"
+    },
+    "Duviri": {
+      "name": "두비리",
+      "type": "special"
+    },
+    "1999MapName": {
+      "name": "홀바니아",
+      "type": "special"
+    },
+    "TauRegion": {
+      "name": "데이모스, 다크 리프랙토리",
+      "type": "planet"
+    },
+    "RelayStationSanctuary": {
+      "name": "미션 통제실",
+      "type": "relay"
+    },
+    "Earth_SPACE": {
+      "name": "지구 프록시마",
+      "type": "proxima"
+    },
+    "Venus_SPACE": {
+      "name": "금성 프록시마",
+      "type": "proxima"
+    },
+    "Saturn_SPACE": {
+      "name": "토성 프록시마",
+      "type": "proxima"
+    },
+    "Neptune_SPACE": {
+      "name": "해왕성 프록시마",
+      "type": "proxima"
+    },
+    "Pluto_SPACE": {
+      "name": "명왕성 프록시마",
+      "type": "proxima"
+    },
+    "DeepSpace_SPACE": {
+      "name": "베일 프록시마",
+      "type": "proxima"
+    },
+    "Uranus_SPACE": {
+      "name": "천왕성 프록시마",
+      "type": "proxima"
+    }
+  },
+  "nodes": {
+    "SolNode94": {
+      "name": "Apollodorus",
+      "group": "Mercury",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 11,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode130": {
+      "name": "Lares",
+      "group": "Mercury",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 11,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode119": {
+      "name": "Caloris",
+      "group": "Mercury",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode12"
+      ]
+    },
+    "SolNode12": {
+      "name": "Elion",
+      "group": "Mercury",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 7,
+      "maxEnemyLevel": 9,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode225"
+      ]
+    },
+    "SolNode103": {
+      "name": "M Prime",
+      "group": "Mercury",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 7,
+      "maxEnemyLevel": 9,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode223",
+        "SolNode28"
+      ]
+    },
+    "SolNode28": {
+      "name": "Terminus",
+      "group": "Mercury",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 10,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode130"
+      ]
+    },
+    "SolNode108": {
+      "name": "Tolstoj",
+      "group": "Mercury",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 10,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode223": {
+      "name": "Boethius",
+      "group": "Mercury",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 10,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode94"
+      ]
+    },
+    "SolNode224": {
+      "name": "Odin",
+      "group": "Mercury",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 11,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode225": {
+      "name": "Suisei",
+      "group": "Mercury",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 10,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode224",
+        "SolNode108"
+      ]
+    },
+    "SolNode226": {
+      "name": "Pantheon",
+      "group": "Mercury",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode119"
+      ]
+    },
+    "SolNode129": {
+      "name": "오브 협곡",
+      "group": "Venus",
+      "missionType": "MT_LANDSCAPE",
+      "missionName": "자유 탐험",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode104"
+      ]
+    },
+    "SolNode123": {
+      "name": "V Prime",
+      "group": "Venus",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode61": {
+      "name": "Ishtar",
+      "group": "Venus",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode1",
+        "SolNode902"
+      ]
+    },
+    "SolNode2": {
+      "name": "Aphrodite",
+      "group": "Venus",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 5,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode104",
+        "SolNode23"
+      ]
+    },
+    "SolNode23": {
+      "name": "Cytherean",
+      "group": "Venus",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode0",
+        "SolNode123"
+      ]
+    },
+    "SolNode128": {
+      "name": "E Gate",
+      "group": "Venus",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 3,
+      "maxEnemyLevel": 5,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode22",
+        "SolarisUnitedHub1",
+        "SolNode101"
+      ]
+    },
+    "SolNode109": {
+      "name": "Linea",
+      "group": "Venus",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 5,
+      "maxEnemyLevel": 7,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode61"
+      ]
+    },
+    "SolNode104": {
+      "name": "Fossa",
+      "group": "Venus",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": [
+        "VenusToMercuryJunction"
+      ]
+    },
+    "SolNode66": {
+      "name": "Unda",
+      "group": "Venus",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode104"
+      ]
+    },
+    "ClanNode1": {
+      "name": "Malva",
+      "group": "Venus",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 18,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode107": {
+      "name": "Venera",
+      "group": "Venus",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 5,
+      "maxEnemyLevel": 7,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode2"
+      ]
+    },
+    "SolNode22": {
+      "name": "Tessera",
+      "group": "Venus",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 3,
+      "maxEnemyLevel": 7,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode109",
+        "SolNode107"
+      ]
+    },
+    "SolNode101": {
+      "name": "Kiliken",
+      "group": "Venus",
+      "missionType": "MT_EXCAVATE",
+      "missionName": "발굴",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 3,
+      "maxEnemyLevel": 7,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode2"
+      ]
+    },
+    "ClanNode0": {
+      "name": "Romula",
+      "group": "Venus",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 18,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode239": {
+      "name": "베스퍼 릴레이",
+      "group": "Venus",
+      "missionType": "MT_PAINT_FLOOD",
+      "missionName": "폴리의 사냥",
+      "faction": "FC_TENNO",
+      "factionName": "텐노",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode902": {
+      "name": "Montes",
+      "group": "Venus",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 3,
+      "maxEnemyLevel": 8,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode63": {
+      "name": "Mantle",
+      "group": "Earth",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 2,
+      "maxEnemyLevel": 4,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CetusHub4",
+        "SolNode85"
+      ]
+    },
+    "SolNode27": {
+      "name": "E Prime",
+      "group": "Earth",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode89"
+      ]
+    },
+    "SolNode79": {
+      "name": "Cambria",
+      "group": "Earth",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 3,
+      "maxEnemyLevel": 6,
+      "masteryReq": 0,
+      "nextNodes": [
+        "EarthToVenusJunction"
+      ]
+    },
+    "SolNode39": {
+      "name": "Everest",
+      "group": "Earth",
+      "missionType": "MT_EXCAVATE",
+      "missionName": "발굴",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 6,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode75",
+        "ClanNode2"
+      ]
+    },
+    "SolNode15": {
+      "name": "Pacific",
+      "group": "Earth",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 3,
+      "maxEnemyLevel": 6,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode26": {
+      "name": "Lith",
+      "group": "Earth",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 2,
+      "maxEnemyLevel": 5,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode79"
+      ]
+    },
+    "SolNode89": {
+      "name": "Mariana",
+      "group": "Earth",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode63"
+      ]
+    },
+    "SolNode85": {
+      "name": "Gaia",
+      "group": "Earth",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 6,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode79",
+        "SolNode15"
+      ]
+    },
+    "SolNode59": {
+      "name": "Eurasia",
+      "group": "Earth",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 3,
+      "maxEnemyLevel": 6,
+      "masteryReq": 0,
+      "nextNodes": [
+        "EarthToMarsJunction"
+      ]
+    },
+    "SolNode75": {
+      "name": "Cervantes",
+      "group": "Earth",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 4,
+      "maxEnemyLevel": 6,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode903",
+        "SolNode300"
+      ]
+    },
+    "SolNode24": {
+      "name": "Oro",
+      "group": "Earth",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 25,
+      "masteryReq": 5,
+      "nextNodes": [
+        "ClanNode3"
+      ]
+    },
+    "ClanNode2": {
+      "name": "Coba",
+      "group": "Earth",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 16,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode903": {
+      "name": "Erpo",
+      "group": "Earth",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 6,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode24"
+      ]
+    },
+    "ClanNode3": {
+      "name": "Tikal",
+      "group": "Earth",
+      "missionType": "MT_EXCAVATE",
+      "missionName": "발굴",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 6,
+      "maxEnemyLevel": 16,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode228": {
+      "name": "아이돌론 평원",
+      "group": "Earth",
+      "missionType": "MT_LANDSCAPE",
+      "missionName": "자유 탐험",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode39"
+      ]
+    },
+    "SolNode451": {
+      "name": "사야의 예지몽",
+      "group": "Earth",
+      "missionType": "MT_OFFERING",
+      "missionName": "신사 방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 5,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode30": {
+      "name": "Olympus",
+      "group": "Mars",
+      "missionType": "MT_ARTIFACT",
+      "missionName": "교란",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode113": {
+      "name": "Ares",
+      "group": "Mars",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 10,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode11",
+        "SolNode16"
+      ]
+    },
+    "SolNode46": {
+      "name": "Spear",
+      "group": "Mars",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 12,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode45",
+        "SolNode450"
+      ]
+    },
+    "SolNode68": {
+      "name": "Vallis",
+      "group": "Mars",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 11,
+      "maxEnemyLevel": 13,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode58": {
+      "name": "Hellas",
+      "group": "Mars",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 12,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode65",
+        "SolNode30"
+      ]
+    },
+    "SolNode106": {
+      "name": "Alator",
+      "group": "Mars",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 13,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode14"
+      ]
+    },
+    "SolNode41": {
+      "name": "Arval",
+      "group": "Mars",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 9,
+      "maxEnemyLevel": 11,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode46",
+        "SolNode58"
+      ]
+    },
+    "SolNode14": {
+      "name": "Ultor",
+      "group": "Mars",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 11,
+      "maxEnemyLevel": 13,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode9"
+      ]
+    },
+    "SolNode16": {
+      "name": "Augustus",
+      "group": "Mars",
+      "missionType": "MT_EXCAVATE",
+      "missionName": "발굴",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 9,
+      "maxEnemyLevel": 11,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode41",
+        "SolNode99"
+      ]
+    },
+    "SolNode45": {
+      "name": "Ara",
+      "group": "Mars",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 12,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode106",
+        "SolNode904"
+      ]
+    },
+    "SolNode36": {
+      "name": "Martialis",
+      "group": "Mars",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 12,
+      "masteryReq": 0,
+      "nextNodes": [
+        "MarsToCeresJunction",
+        "SolNode68",
+        "SolNode45"
+      ]
+    },
+    "ClanNode8": {
+      "name": "Kadesh",
+      "group": "Mars",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode99": {
+      "name": "War",
+      "group": "Mars",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 11,
+      "maxEnemyLevel": 13,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode36",
+        "SolNode706"
+      ]
+    },
+    "SolNode65": {
+      "name": "Gradivus",
+      "group": "Mars",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 9,
+      "maxEnemyLevel": 12,
+      "masteryReq": 0,
+      "nextNodes": [
+        "MarsToPhobosJunction"
+      ]
+    },
+    "ClanNode9": {
+      "name": "Wahiba",
+      "group": "Mars",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode11": {
+      "name": "Tharsis",
+      "group": "Mars",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 9,
+      "maxEnemyLevel": 11,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode65",
+        "TradeHUB1"
+      ]
+    },
+    "SolNode904": {
+      "name": "Syrtis",
+      "group": "Mars",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 8,
+      "maxEnemyLevel": 13,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode450": {
+      "name": "Tyana Pass",
+      "group": "Mars",
+      "missionType": "MT_DEFENSE",
+      "missionName": "거울상 방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 3,
+      "nextNodes": []
+    },
+    "SolNode87": {
+      "name": "Ganymede",
+      "group": "Jupiter",
+      "missionType": "MT_ARTIFACT",
+      "missionName": "교란",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode740"
+      ]
+    },
+    "SolNode88": {
+      "name": "Adrastea",
+      "group": "Jupiter",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode125"
+      ]
+    },
+    "SolNode97": {
+      "name": "Amalthea",
+      "group": "Jupiter",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 17,
+      "maxEnemyLevel": 19,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode4",
+        "SolNode10"
+      ]
+    },
+    "SolNode126": {
+      "name": "Metis",
+      "group": "Jupiter",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 17,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode73",
+        "SolNode74"
+      ]
+    },
+    "SolNode125": {
+      "name": "Io",
+      "group": "Jupiter",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode53"
+      ]
+    },
+    "SolNode100": {
+      "name": "Elara",
+      "group": "Jupiter",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode88"
+      ]
+    },
+    "SolNode10": {
+      "name": "Thebe",
+      "group": "Jupiter",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode905",
+        "SolNode53"
+      ]
+    },
+    "SolNode25": {
+      "name": "Callisto",
+      "group": "Jupiter",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode5"
+      ]
+    },
+    "SolNode121": {
+      "name": "Carpo",
+      "group": "Jupiter",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 17,
+      "maxEnemyLevel": 19,
+      "masteryReq": 0,
+      "nextNodes": [
+        "JupiterToEuropaJunction",
+        "SolNode10"
+      ]
+    },
+    "SolNode53": {
+      "name": "Themisto",
+      "group": "Jupiter",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "JupiterToSaturnJunction"
+      ]
+    },
+    "SolNode74": {
+      "name": "Carme",
+      "group": "Jupiter",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 16,
+      "maxEnemyLevel": 18,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode121"
+      ]
+    },
+    "SolNode740": {
+      "name": "로팔로리스트",
+      "group": "Jupiter",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_SENTIENT",
+      "factionName": "센티언트",
+      "minEnemyLevel": 40,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ClanNode4": {
+      "name": "Sinai",
+      "group": "Jupiter",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode73": {
+      "name": "Ananke",
+      "group": "Jupiter",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 16,
+      "maxEnemyLevel": 18,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode97",
+        "SolNode25"
+      ]
+    },
+    "SolNode905": {
+      "name": "Galilea",
+      "group": "Jupiter",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ClanNode5": {
+      "name": "Cameria",
+      "group": "Jupiter",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode42": {
+      "name": "Helene",
+      "group": "Saturn",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 26,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode32"
+      ]
+    },
+    "SolNode19": {
+      "name": "Enceladus",
+      "group": "Saturn",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 23,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode42",
+        "SolNode96"
+      ]
+    },
+    "SolNode96": {
+      "name": "Titan",
+      "group": "Saturn",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 26,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode67": {
+      "name": "Dione",
+      "group": "Saturn",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode31",
+        "SolNode20"
+      ]
+    },
+    "SolNode93": {
+      "name": "Keeler",
+      "group": "Saturn",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 23,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode82"
+      ]
+    },
+    "SolNode32": {
+      "name": "Tethys",
+      "group": "Saturn",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 24,
+      "maxEnemyLevel": 26,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SaturnToUranusJunction"
+      ]
+    },
+    "SolNode18": {
+      "name": "Rhea",
+      "group": "Saturn",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 26,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode13"
+      ]
+    },
+    "SolNode20": {
+      "name": "Telesto",
+      "group": "Saturn",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 22,
+      "maxEnemyLevel": 24,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode32"
+      ]
+    },
+    "SolNode70": {
+      "name": "Cassini",
+      "group": "Saturn",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode50"
+      ]
+    },
+    "SolNode31": {
+      "name": "Anthe",
+      "group": "Saturn",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 22,
+      "maxEnemyLevel": 24,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode18"
+      ]
+    },
+    "SolNode50": {
+      "name": "Numa",
+      "group": "Saturn",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 22,
+      "maxEnemyLevel": 24,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode19",
+        "SolNode906"
+      ]
+    },
+    "SolNode82": {
+      "name": "Calypso",
+      "group": "Saturn",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 24,
+      "maxEnemyLevel": 26,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode93"
+      ]
+    },
+    "SolNode906": {
+      "name": "Pandora",
+      "group": "Saturn",
+      "missionType": "MT_PURSUIT",
+      "missionName": "추적",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode12"
+      ]
+    },
+    "ClanNode13": {
+      "name": "Piscinas",
+      "group": "Saturn",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 26,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode82"
+      ]
+    },
+    "ClanNode12": {
+      "name": "Caracol",
+      "group": "Saturn",
+      "missionType": "MT_EVACUATION",
+      "missionName": "탈주",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 26,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode33": {
+      "name": "Ariel",
+      "group": "Uranus",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 27,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode83"
+      ]
+    },
+    "SolNode105": {
+      "name": "Titania",
+      "group": "Uranus",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": [
+        "UranusToNeptuneJunction"
+      ]
+    },
+    "SolNode64": {
+      "name": "Umbriel",
+      "group": "Uranus",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 24,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode69"
+      ]
+    },
+    "SolNode69": {
+      "name": "Ophelia",
+      "group": "Uranus",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 24,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode114"
+      ]
+    },
+    "SolNode83": {
+      "name": "Cressida",
+      "group": "Uranus",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode907",
+        "SolNode105",
+        "ClanNode16"
+      ]
+    },
+    "SolNode98": {
+      "name": "Desdemona",
+      "group": "Uranus",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 26,
+      "maxEnemyLevel": 28,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode9",
+        "SolNode723"
+      ]
+    },
+    "SolNode9": {
+      "name": "Rosalind",
+      "group": "Uranus",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode105"
+      ]
+    },
+    "SolNode60": {
+      "name": "Caliban",
+      "group": "Uranus",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 27,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode122",
+        "SolNode114"
+      ]
+    },
+    "SolNode114": {
+      "name": "Puck",
+      "group": "Uranus",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode17",
+        "SolNode105"
+      ]
+    },
+    "ClanNode16": {
+      "name": "Ur",
+      "group": "Uranus",
+      "missionType": "MT_ARTIFACT",
+      "missionName": "교란",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode34": {
+      "name": "Sycorax",
+      "group": "Uranus",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 24,
+      "maxEnemyLevel": 26,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode33",
+        "SolNode60",
+        "SolNode98"
+      ]
+    },
+    "SolNode122": {
+      "name": "Stephano",
+      "group": "Uranus",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 24,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode64"
+      ]
+    },
+    "SolNode907": {
+      "name": "Caelus",
+      "group": "Uranus",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 24,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ClanNode17": {
+      "name": "Assur",
+      "group": "Uranus",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode49": {
+      "name": "Larissa",
+      "group": "Neptune",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 29,
+      "maxEnemyLevel": 31,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode406"
+      ]
+    },
+    "SolNode1": {
+      "name": "Galatea",
+      "group": "Neptune",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 29,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode6",
+        "SolNode78"
+      ]
+    },
+    "SolNode17": {
+      "name": "Proteus",
+      "group": "Neptune",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode21"
+      ]
+    },
+    "SolNode78": {
+      "name": "Triton",
+      "group": "Neptune",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 28,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode62",
+        "SolNode49"
+      ]
+    },
+    "SolNode6": {
+      "name": "Despina",
+      "group": "Neptune",
+      "missionType": "MT_EXCAVATE",
+      "missionName": "발굴",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode57"
+      ]
+    },
+    "SolNode57": {
+      "name": "Sao",
+      "group": "Neptune",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode118",
+        "SolNode17",
+        "NeptuneToPlutoJunction"
+      ]
+    },
+    "SolNode62": {
+      "name": "Neso",
+      "group": "Neptune",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 29,
+      "maxEnemyLevel": 31,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode84",
+        "SolNode908"
+      ]
+    },
+    "SolNode908": {
+      "name": "Salacia",
+      "group": "Neptune",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode20"
+      ]
+    },
+    "SolNode127": {
+      "name": "Psamathe",
+      "group": "Neptune",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "NeptuneToPlutoJunction"
+      ]
+    },
+    "SolNode118": {
+      "name": "Laomedeia",
+      "group": "Neptune",
+      "missionType": "MT_ARTIFACT",
+      "missionName": "교란",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode127"
+      ]
+    },
+    "SolNode84": {
+      "name": "Nereid",
+      "group": "Neptune",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode127",
+        "EventNode763"
+      ]
+    },
+    "ClanNode20": {
+      "name": "Yursa",
+      "group": "Neptune",
+      "missionType": "MT_EVACUATION",
+      "missionName": "탈주",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ClanNode21": {
+      "name": "Kelashin",
+      "group": "Neptune",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode4": {
+      "name": "Acheron",
+      "group": "Pluto",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": [
+        "PlutoToErisJunction"
+      ]
+    },
+    "SolNode72": {
+      "name": "Outer Terminus",
+      "group": "Pluto",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode24"
+      ]
+    },
+    "SolNode48": {
+      "name": "Regna",
+      "group": "Pluto",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode25",
+        "ErisToSednaJunction"
+      ]
+    },
+    "SolNode21": {
+      "name": "Narcissus",
+      "group": "Pluto",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode56",
+        "SolNode72"
+      ]
+    },
+    "SolNode76": {
+      "name": "Hydra",
+      "group": "Pluto",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 34,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode21"
+      ]
+    },
+    "SolNode51": {
+      "name": "Hades",
+      "group": "Pluto",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode38": {
+      "name": "Minthe",
+      "group": "Pluto",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 34,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode102"
+      ]
+    },
+    "SolNode56": {
+      "name": "Cypress",
+      "group": "Pluto",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode43"
+      ]
+    },
+    "SolNode43": {
+      "name": "Cerberus",
+      "group": "Pluto",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode81"
+      ]
+    },
+    "SolNode81": {
+      "name": "Palus",
+      "group": "Pluto",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode51"
+      ]
+    },
+    "ClanNode24": {
+      "name": "Sechura",
+      "group": "Pluto",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode102": {
+      "name": "Oceanum",
+      "group": "Pluto",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode4",
+        "SolNode48",
+        "SolNode72"
+      ]
+    },
+    "ClanNode25": {
+      "name": "Hieracon",
+      "group": "Pluto",
+      "missionType": "MT_EXCAVATE",
+      "missionName": "발굴",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode131": {
+      "name": "Pallas",
+      "group": "Ceres",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 12,
+      "maxEnemyLevel": 14,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode132",
+        "SolNode147"
+      ]
+    },
+    "SolNode135": {
+      "name": "Thon",
+      "group": "Ceres",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 17,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode132": {
+      "name": "Bode",
+      "group": "Ceres",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 12,
+      "maxEnemyLevel": 14,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode149",
+        "SolNode137"
+      ]
+    },
+    "SolNode139": {
+      "name": "Lex",
+      "group": "Ceres",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 14,
+      "maxEnemyLevel": 16,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode23",
+        "SolNode138"
+      ]
+    },
+    "SolNode141": {
+      "name": "Ker",
+      "group": "Ceres",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 14,
+      "maxEnemyLevel": 16,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode146",
+        "SolNode138"
+      ]
+    },
+    "SolNode137": {
+      "name": "Nuovo",
+      "group": "Ceres",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 13,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode144"
+      ]
+    },
+    "SolNode140": {
+      "name": "Kiste",
+      "group": "Ceres",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 13,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode141",
+        "SolNode135"
+      ]
+    },
+    "SolNode138": {
+      "name": "Ludi",
+      "group": "Ceres",
+      "missionType": "MT_RETRIEVAL",
+      "missionName": "탈취",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 17,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode144": {
+      "name": "Exta",
+      "group": "Ceres",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 14,
+      "maxEnemyLevel": 16,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode138"
+      ]
+    },
+    "SolNode149": {
+      "name": "Casta",
+      "group": "Ceres",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 12,
+      "maxEnemyLevel": 17,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode139",
+        "ClanNode22"
+      ]
+    },
+    "SolNode147": {
+      "name": "Cinxia",
+      "group": "Ceres",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 12,
+      "maxEnemyLevel": 17,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode140",
+        "SolNode137"
+      ]
+    },
+    "SolNode146": {
+      "name": "Draco",
+      "group": "Ceres",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 12,
+      "maxEnemyLevel": 17,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ClanNode23": {
+      "name": "Gabii",
+      "group": "Ceres",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ClanNode22": {
+      "name": "Seimeni",
+      "group": "Ceres",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode153": {
+      "name": "Brugia",
+      "group": "Eris",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode164",
+        "SolNode171"
+      ]
+    },
+    "SolNode164": {
+      "name": "Kala-azar",
+      "group": "Eris",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode172"
+      ]
+    },
+    "SolNode162": {
+      "name": "Isos",
+      "group": "Eris",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode167",
+        "SolNode173"
+      ]
+    },
+    "SolNode171": {
+      "name": "Saxis",
+      "group": "Eris",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode167": {
+      "name": "Oestrus",
+      "group": "Eris",
+      "missionType": "MT_PURIFY",
+      "missionName": "인페스티드 인양",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode166": {
+      "name": "Nimus",
+      "group": "Eris",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode18"
+      ]
+    },
+    "SolNode173": {
+      "name": "Solium",
+      "group": "Eris",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode166"
+      ]
+    },
+    "ClanNode18": {
+      "name": "Akkad",
+      "group": "Eris",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode172": {
+      "name": "Xini",
+      "group": "Eris",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode19"
+      ]
+    },
+    "ClanNode19": {
+      "name": "Zabala",
+      "group": "Eris",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode175": {
+      "name": "Naeglar",
+      "group": "Eris",
+      "missionType": "MT_HIVE",
+      "missionName": "하이브",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 34,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode153",
+        "SolNode162"
+      ]
+    },
+    "SolNode177": {
+      "name": "Kappa",
+      "group": "Sedna",
+      "missionType": "MT_ARTIFACT",
+      "missionName": "교란",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode184": {
+      "name": "Rusalka",
+      "group": "Sedna",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode185",
+        "SolNode195"
+      ]
+    },
+    "SolNode181": {
+      "name": "Adaro",
+      "group": "Sedna",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode187"
+      ]
+    },
+    "SolNode183": {
+      "name": "Vodyanoi",
+      "group": "Sedna",
+      "missionType": "MT_ARENA",
+      "missionName": "아레나",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 85,
+      "maxEnemyLevel": 85,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode190": {
+      "name": "Nakki",
+      "group": "Sedna",
+      "missionType": "MT_ARENA",
+      "missionName": "아레나",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 40,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode193",
+        "SolNode199"
+      ]
+    },
+    "SolNode185": {
+      "name": "Berehynia",
+      "group": "Sedna",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode15"
+      ]
+    },
+    "SolNode187": {
+      "name": "Selkie",
+      "group": "Sedna",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode196",
+        "SolNode191"
+      ]
+    },
+    "SolNode191": {
+      "name": "Marid",
+      "group": "Sedna",
+      "missionType": "MT_RETRIEVAL",
+      "missionName": "탈취",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode190"
+      ]
+    },
+    "SolNode188": {
+      "name": "Kelpie",
+      "group": "Sedna",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode410"
+      ]
+    },
+    "SolNode189": {
+      "name": "Naga",
+      "group": "Sedna",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 34,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode181",
+        "SolNode184"
+      ]
+    },
+    "SolNode199": {
+      "name": "Yam",
+      "group": "Sedna",
+      "missionType": "MT_ARENA",
+      "missionName": "아레나",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 60,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode183"
+      ]
+    },
+    "SolNode193": {
+      "name": "Merrow",
+      "group": "Sedna",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode196": {
+      "name": "Charybdis",
+      "group": "Sedna",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 34,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode188"
+      ]
+    },
+    "SolNode195": {
+      "name": "Hydron",
+      "group": "Sedna",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode14",
+        "SolNode177"
+      ]
+    },
+    "ClanNode14": {
+      "name": "Amarna",
+      "group": "Sedna",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ClanNode15": {
+      "name": "Sangeru",
+      "group": "Sedna",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode203": {
+      "name": "Abaddon",
+      "group": "Europa",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode6"
+      ]
+    },
+    "SolNode204": {
+      "name": "Armaros",
+      "group": "Europa",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode209": {
+      "name": "Morax",
+      "group": "Europa",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode217",
+        "SolNode211",
+        "SolNode216"
+      ]
+    },
+    "SolNode210": {
+      "name": "Naamah",
+      "group": "Europa",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode204"
+      ]
+    },
+    "SolNode205": {
+      "name": "Baal",
+      "group": "Europa",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": [
+        "ClanNode7",
+        "SolNode403"
+      ]
+    },
+    "SolNode216": {
+      "name": "Valefor",
+      "group": "Europa",
+      "missionType": "MT_EXCAVATE",
+      "missionName": "발굴",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode220"
+      ]
+    },
+    "SolNode214": {
+      "name": "Sorath",
+      "group": "Europa",
+      "missionType": "MT_RETRIEVAL",
+      "missionName": "탈취",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 19,
+      "maxEnemyLevel": 21,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode205",
+        "SolNode212"
+      ]
+    },
+    "SolNode211": {
+      "name": "Ose",
+      "group": "Europa",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode214"
+      ]
+    },
+    "SolNode215": {
+      "name": "Valac",
+      "group": "Europa",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode212": {
+      "name": "Paimon",
+      "group": "Europa",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 18,
+      "maxEnemyLevel": 23,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode217": {
+      "name": "Orias",
+      "group": "Europa",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 22,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode215"
+      ]
+    },
+    "ClanNode6": {
+      "name": "Larzac",
+      "group": "Europa",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 23,
+      "maxEnemyLevel": 33,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode220": {
+      "name": "Kokabiel",
+      "group": "Europa",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 22,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode203",
+        "SolNode210"
+      ]
+    },
+    "ClanNode7": {
+      "name": "Cholistan",
+      "group": "Europa",
+      "missionType": "MT_EXCAVATE",
+      "missionName": "발굴",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 23,
+      "maxEnemyLevel": 33,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode400": {
+      "name": "Teshub",
+      "group": "Void",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode401"
+      ]
+    },
+    "SolNode401": {
+      "name": "Hepit",
+      "group": "Void",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode402"
+      ]
+    },
+    "SolNode402": {
+      "name": "Taranis",
+      "group": "Void",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode403": {
+      "name": "Tiwaz",
+      "group": "Void",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode404"
+      ]
+    },
+    "SolNode404": {
+      "name": "Stribog",
+      "group": "Void",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode405"
+      ]
+    },
+    "SolNode405": {
+      "name": "Ani",
+      "group": "Void",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode406": {
+      "name": "Ukko",
+      "group": "Void",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode407"
+      ]
+    },
+    "SolNode407": {
+      "name": "Oxomoco",
+      "group": "Void",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode408"
+      ]
+    },
+    "SolNode408": {
+      "name": "Belenus",
+      "group": "Void",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode409": {
+      "name": "Mot",
+      "group": "Void",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 40,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode410": {
+      "name": "Aten",
+      "group": "Void",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 40,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode411"
+      ]
+    },
+    "SolNode411": {
+      "name": "Marduk",
+      "group": "Void",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 40,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode412"
+      ]
+    },
+    "SolNode412": {
+      "name": "Mithra",
+      "group": "Void",
+      "missionType": "MT_TERRITORY",
+      "missionName": "감청",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 40,
+      "maxEnemyLevel": 45,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode409"
+      ]
+    },
+    "SettlementNode1": {
+      "name": "Roche",
+      "group": "Phobos",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 12,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SettlementNode15",
+        "SettlementNode14"
+      ]
+    },
+    "SettlementNode3": {
+      "name": "Stickney",
+      "group": "Phobos",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode400"
+      ]
+    },
+    "SettlementNode2": {
+      "name": "Skyresh",
+      "group": "Phobos",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 12,
+      "maxEnemyLevel": 14,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SettlementNode12",
+        "SettlementNode3"
+      ]
+    },
+    "SettlementNode12": {
+      "name": "Monolith",
+      "group": "Phobos",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 13,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SettlementNode20"
+      ]
+    },
+    "SettlementNode10": {
+      "name": "Kepler",
+      "group": "Phobos",
+      "missionType": "MT_RACE",
+      "missionName": "돌진",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 12,
+      "maxEnemyLevel": 14,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SettlementNode20",
+        "ClanNode10",
+        "ClanNode11"
+      ]
+    },
+    "SettlementNode15": {
+      "name": "Sharpless",
+      "group": "Phobos",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 11,
+      "maxEnemyLevel": 13,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SettlementNode11",
+        "SettlementNode10"
+      ]
+    },
+    "SettlementNode11": {
+      "name": "Gulliver",
+      "group": "Phobos",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SettlementNode14": {
+      "name": "Shklovsky",
+      "group": "Phobos",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 11,
+      "maxEnemyLevel": 13,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SettlementNode2"
+      ]
+    },
+    "ClanNode10": {
+      "name": "Memphis",
+      "group": "Phobos",
+      "missionType": "MT_EVACUATION",
+      "missionName": "탈주",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SettlementNode20": {
+      "name": "Iliad",
+      "group": "Phobos",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 13,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ClanNode11": {
+      "name": "Zeugma",
+      "group": "Phobos",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode706": {
+      "name": "Horend",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 12,
+      "maxEnemyLevel": 14,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode708"
+      ]
+    },
+    "SolNode707": {
+      "name": "Hyf",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode712"
+      ]
+    },
+    "SolNode708": {
+      "name": "Phlegyas",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 13,
+      "maxEnemyLevel": 15,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode229",
+        "SolNode710"
+      ]
+    },
+    "SolNode709": {
+      "name": "Dirus",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 17,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode712"
+      ]
+    },
+    "SolNode710": {
+      "name": "Formido",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_SABOTAGE",
+      "missionName": "파괴공작",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 14,
+      "maxEnemyLevel": 16,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode709",
+        "SolNode707"
+      ]
+    },
+    "SolNode711": {
+      "name": "Terrorem",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode713"
+      ]
+    },
+    "SolNode712": {
+      "name": "Magnacidium",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode711"
+      ]
+    },
+    "SolNode713": {
+      "name": "Exequias",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode229": {
+      "name": "캠비온 퇴적지",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_LANDSCAPE",
+      "missionName": "자유 탐험",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "DeimosHub"
+      ]
+    },
+    "SolNode715": {
+      "name": "Effervo",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_MITW",
+      "factionName": "머머",
+      "minEnemyLevel": 55,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode716": {
+      "name": "Nex",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_MITW",
+      "factionName": "머머",
+      "minEnemyLevel": 55,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode717": {
+      "name": "Persto",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_MITW",
+      "factionName": "머머",
+      "minEnemyLevel": 55,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode718": {
+      "name": "Cambire",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_ALCHEMY",
+      "missionName": "연금술",
+      "faction": "FC_MITW",
+      "factionName": "머머",
+      "minEnemyLevel": 55,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode719": {
+      "name": "MUNIO",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_DEFENSE",
+      "missionName": "거울상 방어",
+      "faction": "FC_MITW",
+      "factionName": "머머",
+      "minEnemyLevel": 55,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode721": {
+      "name": "Armatus",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_ARTIFACT",
+      "missionName": "교란",
+      "faction": "FC_MITW",
+      "factionName": "머머",
+      "minEnemyLevel": 55,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode300": {
+      "name": "Plato",
+      "group": "Moon",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode304",
+        "SolNode307"
+      ]
+    },
+    "SolNode306": {
+      "name": "Pavlov",
+      "group": "Moon",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode308"
+      ]
+    },
+    "SolNode302": {
+      "name": "Tycho",
+      "group": "Moon",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode306"
+      ]
+    },
+    "SolNode305": {
+      "name": "Stöfler",
+      "group": "Moon",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode308"
+      ]
+    },
+    "SolNode304": {
+      "name": "Copernicus",
+      "group": "Moon",
+      "missionType": "MT_CAPTURE",
+      "missionName": "생포",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode301"
+      ]
+    },
+    "SolNode301": {
+      "name": "Grimaldi",
+      "group": "Moon",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode305",
+        "SolNode309"
+      ]
+    },
+    "SolNode307": {
+      "name": "Zeipel",
+      "group": "Moon",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode302"
+      ]
+    },
+    "SolNode308": {
+      "name": "Apollo",
+      "group": "Moon",
+      "missionType": "MT_ARTIFACT",
+      "missionName": "교란",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode309": {
+      "name": "유바리움",
+      "group": "Moon",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "회합 생존",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode310"
+      ]
+    },
+    "SolNode310": {
+      "name": "서큘러스",
+      "group": "Moon",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "회합 생존",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 80,
+      "maxEnemyLevel": 100,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode741": {
+      "name": "Koro",
+      "group": "Fortress",
+      "missionType": "MT_ASSAULT",
+      "missionName": "맹공",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 29,
+      "maxEnemyLevel": 31,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode743",
+        "SolNode742"
+      ]
+    },
+    "SolNode742": {
+      "name": "Nabuk",
+      "group": "Fortress",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode747"
+      ]
+    },
+    "SolNode743": {
+      "name": "Rotuma",
+      "group": "Fortress",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode748"
+      ]
+    },
+    "SolNode744": {
+      "name": "Taveuni",
+      "group": "Fortress",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 37,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode745": {
+      "name": "Tamu",
+      "group": "Fortress",
+      "missionType": "MT_ARTIFACT",
+      "missionName": "교란",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode746": {
+      "name": "Dakata",
+      "group": "Fortress",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 28,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode741"
+      ]
+    },
+    "SolNode747": {
+      "name": "Pago",
+      "group": "Fortress",
+      "missionType": "MT_INTEL",
+      "missionName": "첩보활동",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 31,
+      "maxEnemyLevel": 33,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode744"
+      ]
+    },
+    "SolNode748": {
+      "name": "Garus",
+      "group": "Fortress",
+      "missionType": "MT_RESCUE",
+      "missionName": "구출",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 31,
+      "maxEnemyLevel": 33,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode745"
+      ]
+    },
+    "SolNode230": {
+      "name": "에버뷰 반원로",
+      "group": "ZarimanRegionName",
+      "missionType": "MT_CORRUPTION",
+      "missionName": "보이드 홍수",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 50,
+      "maxEnemyLevel": 55,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode231": {
+      "name": "할라코 외곽",
+      "group": "ZarimanRegionName",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 50,
+      "maxEnemyLevel": 55,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode232": {
+      "name": "투불 광장",
+      "group": "ZarimanRegionName",
+      "missionType": "MT_VOID_CASCADE",
+      "missionName": "보이드 범람",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 50,
+      "maxEnemyLevel": 55,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode233": {
+      "name": "오로 작업장",
+      "group": "ZarimanRegionName",
+      "missionType": "MT_ARMAGEDDON",
+      "missionName": "보이드 대격전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 50,
+      "maxEnemyLevel": 55,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode235": {
+      "name": "녹색 산책로",
+      "group": "ZarimanRegionName",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "missionName": "이동 방어",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 50,
+      "maxEnemyLevel": 55,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode236": {
+      "name": "두비리에서의 경험",
+      "group": "Duviri",
+      "missionType": "MT_LANDSCAPE",
+      "missionName": "자유 탐험",
+      "faction": "FC_DUVIRI",
+      "factionName": "두비리",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode237": {
+      "name": "홀로 흐르는 이야기",
+      "group": "Duviri",
+      "missionType": "MT_LANDSCAPE",
+      "missionName": "자유 탐험",
+      "faction": "FC_DUVIRI",
+      "factionName": "두비리",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode238": {
+      "name": "순환로",
+      "group": "Duviri",
+      "missionType": "MT_ENDLESS_DUVIRI",
+      "missionName": "순환로",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 55,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode850": {
+      "name": "레가사이트 수확",
+      "group": "1999MapName",
+      "missionType": "MT_ENDLESS_CAPTURE",
+      "missionName": "레가사이트 수확",
+      "faction": "FC_TECHROT",
+      "factionName": "테크롯",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode851": {
+      "name": "헬스크럽: 스칼드라",
+      "group": "1999MapName",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_SCALDRA",
+      "factionName": "스칼드라",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode852": {
+      "name": "헬스크럽: 테크병",
+      "group": "1999MapName",
+      "missionType": "MT_SURVIVAL",
+      "missionName": "생존",
+      "faction": "FC_TECHROT",
+      "factionName": "테크롯",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode853": {
+      "name": "섬멸: 스칼드라",
+      "group": "1999MapName",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_SCALDRA",
+      "factionName": "스칼드라",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode854": {
+      "name": "섬멸: 테크병",
+      "group": "1999MapName",
+      "missionType": "MT_EXTERMINATION",
+      "missionName": "섬멸",
+      "faction": "FC_TECHROT",
+      "factionName": "테크롯",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode855": {
+      "name": "경합: 분대 VS 분대",
+      "group": "1999MapName",
+      "missionType": "MT_PVPVE",
+      "missionName": "경합",
+      "faction": "FC_SCALDRA",
+      "factionName": "스칼드라",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode856": {
+      "name": "암살: H-09 탱크",
+      "group": "1999MapName",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_SCALDRA",
+      "factionName": "스칼드라",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode857": {
+      "name": "경합: 단독 분대",
+      "group": "1999MapName",
+      "missionType": "MT_PVPVE",
+      "missionName": "경합",
+      "faction": "FC_SCALDRA",
+      "factionName": "스칼드라",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode858": {
+      "name": "솔스티스 광장",
+      "group": "1999MapName",
+      "missionType": "MT_DEFENSE",
+      "missionName": "방어",
+      "faction": "FC_SCALDRA",
+      "factionName": "스칼드라",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode250": {
+      "name": "회상: 헌훌루스",
+      "group": "TauRegion",
+      "missionType": "MT_TAU_WAR",
+      "missionName": "페리타 반란",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode251": {
+      "name": "회상: 닥톨리스트",
+      "group": "TauRegion",
+      "missionType": "MT_TAU_WAR",
+      "missionName": "페리타 반란",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode252": {
+      "name": "회상: 선발대",
+      "group": "TauRegion",
+      "missionType": "MT_TAU_WAR",
+      "missionName": "페리타 반란",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode253": {
+      "name": "강하",
+      "group": "TauRegion",
+      "missionType": "MT_DESCENT",
+      "missionName": "디센디아",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 65,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode254": {
+      "name": "마리의 성역으로부터 강하",
+      "group": "TauRegion",
+      "missionType": "MT_DESCENT",
+      "missionName": "디센디아",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 72,
+      "maxEnemyLevel": 72,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode255": {
+      "name": "리온의 성역으로부터 강하",
+      "group": "TauRegion",
+      "missionType": "MT_DESCENT",
+      "missionName": "디센디아",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 79,
+      "maxEnemyLevel": 79,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode256": {
+      "name": "로스의 망각",
+      "group": "TauRegion",
+      "missionType": "MT_DESCENT",
+      "missionName": "디센디아",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 86,
+      "maxEnemyLevel": 86,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode257": {
+      "name": "죄인",
+      "group": "TauRegion",
+      "missionType": "MT_TAU_WAR",
+      "missionName": "페리타 반란",
+      "faction": "FC_OROKIN",
+      "factionName": "오로킨",
+      "minEnemyLevel": 165,
+      "maxEnemyLevel": 170,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode801": {
+      "name": "생츄어리 맹습",
+      "group": "RelayStationSanctuary",
+      "missionType": "MT_ENDLESS_EXTERMINATION",
+      "missionName": "생츄어리 맹습",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "SolNode802": {
+      "name": "엘리트 생츄어리 맹습",
+      "group": "RelayStationSanctuary",
+      "missionType": "MT_ENDLESS_EXTERMINATION",
+      "missionName": "생츄어리 맹습",
+      "minEnemyLevel": 60,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "PvpNode0": {
+      "name": "세팔론 쟁탈전",
+      "group": "Saturn",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "PvpNode9": {
+      "name": "팀 절멸전",
+      "group": "Saturn",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "PvpNode10": {
+      "name": "절멸전",
+      "group": "Saturn",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "MercuryHUB": {
+      "name": "라룬다 릴레이",
+      "group": "Mercury",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolarisUnitedHub1": {
+      "name": "포르투나",
+      "group": "Venus",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode129"
+      ]
+    },
+    "NokkoColony": {
+      "name": "지하 광산",
+      "group": "Venus",
+      "missionType": "MT_LANDSCAPE",
+      "missionName": "자유 탐험",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "VenusToMercuryJunction": {
+      "name": "수성 교차점",
+      "group": "Venus",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode103",
+        "SolNode226",
+        "MercuryHUB"
+      ]
+    },
+    "CetusHub4": {
+      "name": "시터스",
+      "group": "Earth",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode228",
+        "SolNode451"
+      ]
+    },
+    "EarthToVenusJunction": {
+      "name": "금성 교차점",
+      "group": "Earth",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode128"
+      ]
+    },
+    "EarthToMarsJunction": {
+      "name": "화성 교차점",
+      "group": "Earth",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 1,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "EarthHUB": {
+      "name": "스트라타 릴레이",
+      "group": "Earth",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "IronwakeHUB3": {
+      "name": "아이언 웨이크",
+      "group": "Earth",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "TradeHUB1": {
+      "name": "마루의 암시장",
+      "group": "Mars",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "MarsToCeresJunction": {
+      "name": "세레스 교차점",
+      "group": "Mars",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 1,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode131"
+      ]
+    },
+    "MarsToPhobosJunction": {
+      "name": "포보스 교차점",
+      "group": "Mars",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SettlementNode1"
+      ]
+    },
+    "DeimosHub": {
+      "name": "네크랄리스크",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": [
+        "EntratiLabHub"
+      ]
+    },
+    "EntratiLabHub": {
+      "name": "해부의 성역",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode715",
+        "SolNode716",
+        "SolNode717",
+        "SolNode718",
+        "SolNode719",
+        "SolNode720",
+        "SolNode721"
+      ]
+    },
+    "SolNode720": {
+      "name": "Testudo",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_VAULTS",
+      "missionName": "네트라셀",
+      "minEnemyLevel": 220,
+      "maxEnemyLevel": 240,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "CeresToJupiterJunction": {
+      "name": "목성 교차점",
+      "group": "SolarMapDeimosName",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode100"
+      ]
+    },
+    "JupiterToEuropaJunction": {
+      "name": "유로파 교차점",
+      "group": "Jupiter",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode209"
+      ]
+    },
+    "JupiterToSaturnJunction": {
+      "name": "토성 교차점",
+      "group": "Jupiter",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode70",
+        "SolNode67",
+        "SaturnHUB"
+      ]
+    },
+    "SaturnToUranusJunction": {
+      "name": "천왕성 교차점",
+      "group": "Saturn",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode34"
+      ]
+    },
+    "SaturnHUB": {
+      "name": "크로니아 릴레이",
+      "group": "Saturn",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode723": {
+      "name": "Brutus",
+      "group": "Uranus",
+      "missionType": "MT_ASCENSION",
+      "missionName": "상승",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 45,
+      "maxEnemyLevel": 50,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "UranusToNeptuneJunction": {
+      "name": "해왕성 교차점",
+      "group": "Uranus",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode1"
+      ]
+    },
+    "SolNode761": {
+      "name": "인덱스 : 엔듀런스 (저 위험도)",
+      "group": "Neptune",
+      "missionType": "MT_ARENA",
+      "missionName": "아레나",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "SolNode762": {
+      "name": "인덱스 : 엔듀런스 (중 위험도)",
+      "group": "Neptune",
+      "missionType": "MT_ARENA",
+      "missionName": "아레나",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "SolNode763": {
+      "name": "인덱스 : 엔듀런스 (고 위험도)",
+      "group": "Neptune",
+      "missionType": "MT_ARENA",
+      "missionName": "아레나",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "EventNode763": {
+      "name": "인덱스: 엔듀런스",
+      "group": "Neptune",
+      "missionType": "MT_ARENA",
+      "missionName": "아레나",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "NeptuneToPlutoJunction": {
+      "name": "명왕성 교차점",
+      "group": "Neptune",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 3,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode76",
+        "SolNode38",
+        "PlutoHUB"
+      ]
+    },
+    "PlutoToErisJunction": {
+      "name": "에리스 교차점",
+      "group": "Pluto",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 1,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode175"
+      ]
+    },
+    "PlutoHUB": {
+      "name": "오르커스 릴레이",
+      "group": "Pluto",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode701": {
+      "name": "조르다스 골렘 암살",
+      "group": "Eris",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 34,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "SolNode705": {
+      "name": "뮤탈리스트 알라드 V 암살",
+      "group": "Eris",
+      "missionType": "MT_ASSASSINATION",
+      "missionName": "암살",
+      "faction": "FC_INFESTATION",
+      "factionName": "인페스티드",
+      "minEnemyLevel": 30,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "ErisToSednaJunction": {
+      "name": "세드나 교차점",
+      "group": "Eris",
+      "missionType": "MT_JUNCTION",
+      "missionName": "솔라 레일 교차점",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 1,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode189"
+      ]
+    },
+    "ZarimanHub": {
+      "name": "크리살리스",
+      "group": "ZarimanRegionName",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": [
+        "SolNode230",
+        "SolNode231",
+        "SolNode232",
+        "SolNode233",
+        "SolNode235"
+      ]
+    },
+    "SolNode234": {
+      "name": "도미존",
+      "group": "ZarimanRegionName",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "1999Hub": {
+      "name": "홀바니아 중앙 쇼핑몰",
+      "group": "1999MapName",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "CrewBattleNode559": {
+      "name": "테크노사이트 코다 콘서트",
+      "group": "Earth_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "암살",
+      "minEnemyLevel": 100,
+      "maxEnemyLevel": 100,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "CrewBattleNode556": {
+      "name": "자유 비행",
+      "group": "Earth_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 1,
+      "maxEnemyLevel": 1,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "CrewBattleNode502": {
+      "name": "Sover Strait",
+      "group": "Earth_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode509"
+      ]
+    },
+    "CrewBattleNode509": {
+      "name": "Iota Temple",
+      "group": "Earth_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 28,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode518"
+      ]
+    },
+    "CrewBattleNode518": {
+      "name": "Ogal Cluster",
+      "group": "Earth_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 26,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode519"
+      ]
+    },
+    "CrewBattleNode519": {
+      "name": "Korm's Belt",
+      "group": "Earth_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 24,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode522"
+      ]
+    },
+    "CrewBattleNode522": {
+      "name": "Bendar Cluster",
+      "group": "Earth_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 29,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode533"
+      ]
+    },
+    "CrewBattleNode511": {
+      "name": "Beacon Shield Ring",
+      "group": "Venus_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "격변",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 17,
+      "maxEnemyLevel": 20,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode512"
+      ]
+    },
+    "CrewBattleNode513": {
+      "name": "Vesper Strait",
+      "group": "Venus_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "오르픽스",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 21,
+      "maxEnemyLevel": 24,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode515"
+      ]
+    },
+    "CrewBattleNode515": {
+      "name": "Luckless Expanse",
+      "group": "Venus_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 22,
+      "maxEnemyLevel": 25,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode514"
+      ]
+    },
+    "CrewBattleNode514": {
+      "name": "Falling Glory",
+      "group": "Venus_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 23,
+      "maxEnemyLevel": 26,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode533"
+      ]
+    },
+    "CrewBattleNode503": {
+      "name": "Bifrost Echo",
+      "group": "Venus_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 18,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode511"
+      ]
+    },
+    "CrewBattleNode512": {
+      "name": "Orvin-Haarc",
+      "group": "Venus_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "첩보",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 19,
+      "maxEnemyLevel": 22,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode513"
+      ]
+    },
+    "CrewBattleNode557": {
+      "name": "쿠바 리치 결전",
+      "group": "Saturn_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "암살",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 63,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "CrewBattleNode501": {
+      "name": "Mordo Cluster",
+      "group": "Saturn_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 55,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode534"
+      ]
+    },
+    "CrewBattleNode534": {
+      "name": "Lupal Pass",
+      "group": "Saturn_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 48,
+      "maxEnemyLevel": 56,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode535"
+      ]
+    },
+    "CrewBattleNode533": {
+      "name": "Nodo Gap",
+      "group": "Saturn_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 54,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode501"
+      ]
+    },
+    "CrewBattleNode535": {
+      "name": "Vand Cluster",
+      "group": "Saturn_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode530"
+      ]
+    },
+    "CrewBattleNode530": {
+      "name": "Kasio's Rest",
+      "group": "Saturn_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 70,
+      "maxEnemyLevel": 75,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode504"
+      ]
+    },
+    "CrewBattleNode558": {
+      "name": "파보스의 자매 결전",
+      "group": "Neptune_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 63,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "hidden": true,
+      "nextNodes": []
+    },
+    "CrewBattleNode504": {
+      "name": "Arva Vector",
+      "group": "Neptune_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 25,
+      "maxEnemyLevel": 28,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode516"
+      ]
+    },
+    "CrewBattleNode516": {
+      "name": "Nu-gua Mines",
+      "group": "Neptune_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 27,
+      "maxEnemyLevel": 30,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode521"
+      ]
+    },
+    "CrewBattleNode523": {
+      "name": "Mammon's Prospect",
+      "group": "Neptune_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "오르픽스",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 31,
+      "maxEnemyLevel": 34,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode525"
+      ]
+    },
+    "CrewBattleNode525": {
+      "name": "Brom Cluster",
+      "group": "Neptune_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "첩보",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 32,
+      "maxEnemyLevel": 35,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode524"
+      ]
+    },
+    "CrewBattleNode521": {
+      "name": "Enkidu Ice Drifts",
+      "group": "Neptune_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 29,
+      "maxEnemyLevel": 32,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode523"
+      ]
+    },
+    "CrewBattleNode524": {
+      "name": "Sovereign Grasp",
+      "group": "Neptune_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "격변",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 33,
+      "maxEnemyLevel": 36,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode526"
+      ]
+    },
+    "CrewBattleNode526": {
+      "name": "Khufu Envoy",
+      "group": "Pluto_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "오르픽스",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 35,
+      "maxEnemyLevel": 38,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode527"
+      ]
+    },
+    "CrewBattleNode527": {
+      "name": "Seven Sirens",
+      "group": "Pluto_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 37,
+      "maxEnemyLevel": 40,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode528"
+      ]
+    },
+    "CrewBattleNode528": {
+      "name": "Obol Crossing",
+      "group": "Pluto_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 39,
+      "maxEnemyLevel": 42,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode531"
+      ]
+    },
+    "CrewBattleNode531": {
+      "name": "Fenton's Field",
+      "group": "Pluto_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 40,
+      "maxEnemyLevel": 43,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode529"
+      ]
+    },
+    "CrewBattleNode529": {
+      "name": "Profit Margin",
+      "group": "Pluto_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "격변",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 41,
+      "maxEnemyLevel": 44,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode536"
+      ]
+    },
+    "CrewBattleNode536": {
+      "name": "Peregrine Axis",
+      "group": "Pluto_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "첩보",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 43,
+      "maxEnemyLevel": 46,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode550"
+      ]
+    },
+    "CrewBattleNode550": {
+      "name": "Nsu Grid",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 80,
+      "maxEnemyLevel": 90,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode553"
+      ]
+    },
+    "CrewBattleNode555": {
+      "name": "R-9 Cloud",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 80,
+      "maxEnemyLevel": 90,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode538"
+      ]
+    },
+    "CrewBattleNode554": {
+      "name": "H-2 Cloud",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 80,
+      "maxEnemyLevel": 90,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode555"
+      ]
+    },
+    "CrewBattleNode553": {
+      "name": "Flexa",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전",
+      "faction": "FC_GRINEER",
+      "factionName": "그리니어",
+      "minEnemyLevel": 80,
+      "maxEnemyLevel": 90,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode554"
+      ]
+    },
+    "CrewBattleNode538": {
+      "name": "Calabash",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "섬멸",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 45,
+      "maxEnemyLevel": 49,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode539"
+      ]
+    },
+    "CrewBattleNode539": {
+      "name": "Numina",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "격변",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 48,
+      "maxEnemyLevel": 52,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode540"
+      ]
+    },
+    "CrewBattleNode540": {
+      "name": "Arc Silver",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "방어",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 51,
+      "maxEnemyLevel": 55,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode541"
+      ]
+    },
+    "CrewBattleNode541": {
+      "name": "Erato",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "오르픽스",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 54,
+      "maxEnemyLevel": 58,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode542"
+      ]
+    },
+    "CrewBattleNode542": {
+      "name": "Lu-yan",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "생존",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 55,
+      "maxEnemyLevel": 59,
+      "masteryReq": 0,
+      "nextNodes": [
+        "CrewBattleNode543"
+      ]
+    },
+    "CrewBattleNode543": {
+      "name": "Sabmir Cloud",
+      "group": "DeepSpace_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "첩보",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 57,
+      "maxEnemyLevel": 60,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "JadeShadows2HUB": {
+      "name": "폰티스 탑",
+      "group": "Uranus_SPACE",
+      "missionType": "MT_PVP",
+      "missionName": "콘클레이브",
+      "minEnemyLevel": 0,
+      "maxEnemyLevel": 0,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "CrewBattleNode561": {
+      "name": "스코리아의 천사",
+      "group": "Uranus_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전 + 암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    },
+    "CrewBattleNode560": {
+      "name": "쿠바의 마녀",
+      "group": "Uranus_SPACE",
+      "missionType": "MT_RAILJACK",
+      "missionName": "접전 + 암살",
+      "faction": "FC_CORPUS",
+      "factionName": "코퍼스",
+      "minEnemyLevel": 65,
+      "maxEnemyLevel": 70,
+      "masteryReq": 0,
+      "nextNodes": []
+    }
+  }
+}

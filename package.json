@@ -10,7 +10,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "e2e": "playwright test",
-    "check:links": "node scripts/check-links.mts"
+    "check:links": "node scripts/check-links.mts",
+    "build:starchart": "node scripts/build-starchart-data.mts"
   },
   "dependencies": {
     "next": "16.3.2",
