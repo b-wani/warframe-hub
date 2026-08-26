@@ -15,8 +15,9 @@
 완료 집합 단일 모델)와 ② 실시간 월드스테이트(균열 + 기존 사이클·보이드 상인)를
 얹어, 초보자가 "다음에 뭘 해야 하나"를 게임 하는 느낌으로 파악하게 한다.
 
-- 스타차트가 **유일한 진행도 화면**이다. 기존 `/roadmap`은 스타차트 완성 시
-  제거하며, 그때까지 수정하지 않는다. ([ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md))
+- 스타차트가 **유일한 진행도 화면**이다. 기존 `/roadmap`은 2026-08-26에 제거했다
+  — 스타차트가 생기기 전이라 진행도 화면은 그때까지 없다.
+  ([ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md))
 - 인게임 비주얼 기준은 2016 Star Chart 3.0 체계다 — 2025 리워크(Update 38.5)는
   경로 개편이지 비주얼 개편이 아니다. 데이터는 리워크 반영분을 쓴다.
 
@@ -100,8 +101,9 @@
 - 대상: 주요 노드 32개 = 교차점 12 + 보스 노드(MT_ASSASSINATION) 20.
 - 형태: `src/data/`에 커밋되는 노드 id 키 JSON — 자동 생성물인 starchart.json과
   분리(재생성 충돌 방지, diff 검수 용이).
-- 스키마: 기존 roadmap-nodes.json 스키마(summary, preparations, cautions,
-  spoiler, sourceIds, basedOnPatch) + 보스용 `drops`(대표 드랍) 필드.
+- 스키마: 옛 roadmap-nodes.json 스키마(summary, preparations, cautions, spoiler,
+  sourceIds, basedOnPatch — `/roadmap` 제거 전 git 이력) + 보스용 `drops`(대표
+  드랍) 필드.
 - 저작은 지식 베이스(`knowledge/`, 로컬 전용) 참조 재서술 — **저작 자체는 스펙
   이후 단계**이며 이 스펙의 범위 밖(§9).
 
@@ -232,4 +234,4 @@ v1 요구사항인 적응 규칙 4항목:
    정책 재론 사유가 아니다.
 6. 폴백 뷰가 WebGL 불가 환경에서 자동 표시되고 수동 전환도 가능하다.
 7. Solar System Scope 텍스처 출처 표기(CC BY 4.0)가 페이지에 존재한다.
-8. `/roadmap` 제거는 스타차트 완성 시점에 별도 수행([ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md)).
+8. `/roadmap` 제거 — 2026-08-26 완료([ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md)).
