@@ -50,3 +50,14 @@ export function placedNodesByGroup(
   }
   return byGroup;
 }
+
+/**
+ * 진행도에 세는 그룹인가. 릴레이는 지도에서 숨기고 진행도와도 무관하므로(#26)
+ * 완료 집합·파생 상태 어디에도 등장하지 않는다 — 나머지 유형은 전부 대상이다.
+ *
+ * 조건이 `isPlacedGroup`과 같지만 이유가 다르다(좌표를 붙이는가 vs 진행도에
+ * 세는가). 그룹 유형이 늘어나면 서로 갈라질 수 있으니 합치지 않는다.
+ */
+export function isTrackedGroup(group: StarchartGroup): boolean {
+  return group.type !== "relay";
+}
