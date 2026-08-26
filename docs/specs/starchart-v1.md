@@ -85,7 +85,15 @@
 2. 보정은 좌표 JSON을 에디터에서 직접 수정 → 새로고침 확인. **편집 UI는 만들지
    않는다** (드래그 편집·스크린샷 트레이싱 변형은 기각, `prototype/starchart-layout-workflow` 브랜치에 보존).
 
-근거: [#29 좌표 배치 프로토타입](https://github.com/b-wani/warframe-hub/issues/29)
+- 산출물: `src/data/starchart-layout.json` (커밋됨) — 노드 352 · 천체 29.
+  릴레이 그룹은 지도에서 숨기므로 좌표 대상이 아니다.
+- 생성: `pnpm build:starchart-layout` (`scripts/build-starchart-layout.mts`).
+  재실행은 이미 있는 좌표를 보존하고 빠진 것만 채운다 — 수동 보정이 살아남는다.
+- 검증: 좌표가 빠진 노드·그룹, 고아 좌표, 천체 배치표와 데이터셋의 그룹 불일치가
+  있으면 실패한다. CI 단위 테스트가 커밋된 두 데이터셋의 정합을 지킨다.
+- 워크플로 문서: [좌표 데이터셋 생성·보정](../starchart-layout-workflow.md)
+
+근거: [#29 좌표 배치 프로토타입](https://github.com/b-wani/warframe-hub/issues/29), [#39 좌표 데이터셋 생성 파이프라인](https://github.com/b-wani/warframe-hub/issues/39) (구현 완료)
 
 ### 3.3 큐레이션 오버레이 (수동 저작)
 
