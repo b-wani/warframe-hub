@@ -38,7 +38,7 @@
   ⚓ 토글로 전환하며, 프록시마 노드는 행성 바깥 고리에 배치한다.
 - **릴레이** 그룹(1개)은 지도에서 숨긴다(진행도와도 무관).
 
-근거: [#32 카메라 연출 프로토타입](https://github.com/b-wani/warframe-hub/issues/32) (변형 A 채택, B·C 기각 — `prototype/starchart-camera-interaction` 브랜치), [#26 그룹 유형](https://github.com/b-wani/warframe-hub/issues/26)
+근거: [#32 카메라 연출 프로토타입](https://github.com/b-wani/warframe-hub/issues/32) (변형 A 채택, B·C 기각 — `prototype/starchart-camera-interaction` 브랜치), [#26 그룹 유형](https://github.com/b-wani/warframe-hub/issues/26), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (성계 뷰·릴레이 숨김 구현 완료)
 
 ### 2.2 노드 표현
 
@@ -75,7 +75,7 @@
 - 갱신: 게임 패치 때 수동 재실행 + diff 검수. 원본 사전(4.5MB)·원형 JSON은
   커밋·번들 제외.
 
-근거: [#22 데이터 소스](https://github.com/b-wani/warframe-hub/issues/22), [#26 표시명·분류](https://github.com/b-wani/warframe-hub/issues/26), [#28 빌드 파이프라인](https://github.com/b-wani/warframe-hub/issues/28) (구현 완료, 커밋 304a759)
+근거: [#22 데이터 소스](https://github.com/b-wani/warframe-hub/issues/22), [#26 표시명·분류](https://github.com/b-wani/warframe-hub/issues/26), [#28 빌드 파이프라인](https://github.com/b-wani/warframe-hub/issues/28) (구현 완료, 커밋 304a759), [#56 표시명 오버라이드](https://github.com/b-wani/warframe-hub/issues/56) (업스트림 사전이 틀린 키 — 타우 성계 그룹명)
 
 ### 3.2 좌표 (수동 큐레이션)
 
@@ -188,7 +188,7 @@ JSON을 사용자가 직접 붙여넣고 클라이언트에서 파싱한다. 서
 - 데이터 로드: 정제 노드 데이터셋(120KB) 정적 임포트 — 471KB 원형으로도 문제
   없음이 검증됐다.
 
-근거: [#24 렌더링 스택](https://github.com/b-wani/warframe-hub/issues/24) (`research/rendering-stack` 브랜치), [#31 행성 비주얼](https://github.com/b-wani/warframe-hub/issues/31) (`research/planet-visual-rendering` 브랜치), [#23 raw 슬라이스](https://github.com/b-wani/warframe-hub/issues/23)
+근거: [#24 렌더링 스택](https://github.com/b-wani/warframe-hub/issues/24) (`research/rendering-stack` 브랜치), [#31 행성 비주얼](https://github.com/b-wani/warframe-hub/issues/31) (`research/planet-visual-rendering` 브랜치), [#23 raw 슬라이스](https://github.com/b-wani/warframe-hub/issues/23), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (스택 도입·SSR 회피·행성 비주얼 구현 완료)
 
 ## 8. 모바일 정책과 폴백 뷰
 
@@ -206,7 +206,7 @@ v1 요구사항인 적응 규칙 4항목:
 체크리스트). 3D가 뜨는 환경에서도 수동 전환 가능(접근성·저사양 자구책).
 진행도 확인·체크는 3D 없이도 성립해야 한다.
 
-근거: [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34)
+근거: [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (적응 규칙 1 종횡비 인지 프레이밍 구현 완료 — 나머지 3항목은 [#51](https://github.com/b-wani/warframe-hub/issues/51))
 
 ## 9. v1 범위 밖 (맵의 fog·out of scope 승계)
 

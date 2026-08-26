@@ -43,6 +43,22 @@ pnpm build:starchart-layout --check  # 파일을 쓰지 않고 검증만
 좌표 보정은 `src/data/starchart-layout.json`을 에디터에서 직접 고치는 워크플로다 —
 [좌표 데이터셋 생성·보정](docs/starchart-layout-workflow.md) 참고.
 
+## 천체 텍스처 (한 번 받아서 커밋)
+
+성계 뷰의 행성 텍스처는 [Solar System Scope](https://www.solarsystemscope.com/textures/)의
+2K 이미지(CC BY 4.0)를 `public/textures/planets/`에 커밋해서 쓴다 — 배포본이 외부
+사이트의 생존에 매달리지 않게 하려는 것이다. 받을 목록은 텍스처 카탈로그
+(`src/starchart/textures.ts`)가 유일한 원본이고, 라이선스 조건인 출처 표기는
+스타차트 페이지에 있다.
+
+```bash
+pnpm fetch:textures          # 없는 것만 받는다
+pnpm fetch:textures --check  # 받지 않고 빠진 파일만 알려준다
+pnpm fetch:textures --force  # 이미 있는 것도 다시 받는다
+```
+
+카탈로그에 파일을 추가했을 때만 다시 돌린다.
+
 ## 링크 생존 점검 (운영 루틴)
 
 출처 등록부(`sources/README.md`)와 페이지 크레딧(`src/data/sources.json`)에 적힌

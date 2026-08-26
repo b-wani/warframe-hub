@@ -4,5 +4,6 @@ import { siteUrl } from "./site";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteUrl}/`, changeFrequency: "weekly", priority: 1 },
+    { url: `${siteUrl}/starchart`, changeFrequency: "weekly", priority: 0.9 },
   ];
 }

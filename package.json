@@ -12,12 +12,16 @@
     "e2e": "playwright test",
     "check:links": "node scripts/check-links.mts",
     "build:starchart": "node scripts/build-starchart-data.mts",
-    "build:starchart-layout": "node scripts/build-starchart-layout.mts"
+    "build:starchart-layout": "node scripts/build-starchart-layout.mts",
+    "fetch:textures": "node scripts/fetch-planet-textures.mts"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
     "next": "16.3.2",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "three": "^0.185.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -28,6 +32,7 @@
     "@types/node": "^24.13.3",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.185.4",
     "@vitejs/plugin-react": "^6.0.5",
     "eslint": "^9",
     "eslint-config-next": "16.3.2",
