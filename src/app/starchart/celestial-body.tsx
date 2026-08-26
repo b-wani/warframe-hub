@@ -86,7 +86,7 @@ export function CelestialBody({
       )}
       <Html
         center
-        position={[0, -(body.shellRadius + 0.6), 0]}
+        position={[0, body.labelY, 0]}
         zIndexRange={[5, 0]}
         wrapperClass={styles.labelWrapper}
       >

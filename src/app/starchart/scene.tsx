@@ -10,14 +10,15 @@
  * 무엇을 어디에 어떻게 그릴지는 표시 모델(`solarSystemBodies`)이 이미 정했다.
  */
 import { CameraControls, useTexture } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { Suspense, useEffect, useRef, type RefObject } from "react";
 import { BackSide, SRGBColorSpace, type Texture } from "three";
 import {
   STARFIELD_TEXTURE,
   SUN,
   solarSystemBodies,
 } from "@/starchart/bodies";
+import { SOLAR_VIEW_FOV, solarViewHome } from "@/starchart/camera";
 import { starchartDataset, starchartLayout } from "@/starchart/data";
 import {
   TEXTURE_FILES,
@@ -28,12 +29,26 @@ import { CelestialBody } from "./celestial-body";
 
 const { bodies } = solarSystemBodies(starchartDataset, starchartLayout);
 
+/**
+ * 첫 프레임용 카메라 자리. 실제 종횡비는 Canvas 안에서만 알 수 있어
+ * `HomeFraming`이 곧 다시 잡는다 — 그 사이 한 프레임이 엉뚱한 곳을 보지 않게
+ * 흔한 가로 화면 기준으로 미리 채워 둔다.
+ */
+const INITIAL_CAMERA = solarViewHome(bodies, 16 / 9);
+
 const TEXTURE_URLS = Object.fromEntries(
   TEXTURE_FILES.map((file) => [file, texturePath(file)]),
 ) as Record<TextureFile, string>;
 
-/** 별 배경의 반지름 — 가장 먼 천체(약 133)와 줌아웃 한계 바깥을 감싼다. */
-const BACKGROUND_RADIUS = 1600;
+/**
+ * 줌아웃 한계. 세로로 가장 긴 폰에서도 홈 거리가 900을 넘지 않으므로(스펙 §8-1의
+ * 프레이밍 계산) 그보다 넉넉히 둔다 — 한계가 홈 거리보다 가까우면 컨트롤이
+ * 프레이밍을 잘라 버린다.
+ */
+const MAX_DISTANCE = 1600;
+
+/** 별 배경의 반지름 — 줌아웃 한계 바깥을 감싼다. */
+const BACKGROUND_RADIUS = 2000;
 
 /**
  * 쓰는 텍스처를 한 번에 받아 파일명으로 나눠 준다 — 여러 천체가 같은 파일을
@@ -80,7 +95,42 @@ function SolarSystem() {
   );
 }
 
+/**
+ * 성계 전체가 프레임에 들어오도록 카메라를 홈 포지션에 놓는다(스펙 §8-1).
+ *
+ * 화면 크기가 바뀌면(폰 회전·창 크기 조절) 다시 잡되, 사용자가 한 번 카메라를
+ * 만진 뒤에는 손대지 않는다 — 보고 있던 시점을 리사이즈가 끌고 가면 안 된다.
+ *
+ * 컨트롤은 ref가 아니라 r3f 스토어에서 가져온다(`makeDefault`가 넣어 준다) —
+ * 컨트롤 인스턴스가 준비되는 시점이 이 컴포넌트의 마운트보다 늦을 수 있어서,
+ * 준비되면 효과가 다시 돌아야 한다.
+ */
+function HomeFraming({ moved }: { moved: RefObject<boolean> }) {
+  const controls = useThree((state) => state.controls);
+  const { width, height } = useThree((state) => state.size);
+
+  useEffect(() => {
+    if (!isCameraControls(controls) || moved.current) return;
+    const [x, y, z] = solarViewHome(bodies, width / height);
+    controls.setLookAt(x, y, z, 0, 0, 0, false);
+  }, [controls, moved, width, height]);
+
+  return null;
+}
+
+/** 스토어의 컨트롤이 우리가 붙인 CameraControls인가. */
+function isCameraControls(
+  controls: unknown,
+): controls is { setLookAt: CameraControls["setLookAt"] } {
+  return (
+    typeof (controls as { setLookAt?: unknown } | null)?.setLookAt ===
+    "function"
+  );
+}
+
 export default function Scene() {
+  const moved = useRef(false);
+
   return (
     <Canvas
       // 모바일도 같은 3D를 돌린다(스펙 §8) — DPR 상한으로 픽셀 수를 묶는다
@@ -89,16 +139,27 @@ export default function Scene() {
       // "demand"는 첫 프레임 요청을 놓쳐 빈 화면이 뜨는 사례가 있었다.
       // 프레임 예산 조정은 별건이다(#51의 품질 조정).
       gl={{ antialias: true }}
-      // 성계 전체가 프레임에 들어오는 거리에서 비스듬히 내려다본다 — 종횡비
-      // 인지 프레이밍은 별건이다(#51)
-      camera={{ position: [0, 174, 207], fov: 50, near: 0.1, far: 6000 }}
+      camera={{
+        position: INITIAL_CAMERA,
+        fov: SOLAR_VIEW_FOV,
+        near: 0.1,
+        far: 5000,
+      }}
     >
       <color attach="background" args={["#04060d"]} />
       <ambientLight intensity={0.14} />
       <Suspense fallback={null}>
         <SolarSystem />
       </Suspense>
-      <CameraControls makeDefault minDistance={3} maxDistance={1000} />
+      <CameraControls
+        makeDefault
+        minDistance={3}
+        maxDistance={MAX_DISTANCE}
+        onStart={() => {
+          moved.current = true;
+        }}
+      />
+      <HomeFraming moved={moved} />
     </Canvas>
   );
 }

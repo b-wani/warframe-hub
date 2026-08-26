@@ -75,7 +75,7 @@
 - 갱신: 게임 패치 때 수동 재실행 + diff 검수. 원본 사전(4.5MB)·원형 JSON은
   커밋·번들 제외.
 
-근거: [#22 데이터 소스](https://github.com/b-wani/warframe-hub/issues/22), [#26 표시명·분류](https://github.com/b-wani/warframe-hub/issues/26), [#28 빌드 파이프라인](https://github.com/b-wani/warframe-hub/issues/28) (구현 완료, 커밋 304a759)
+근거: [#22 데이터 소스](https://github.com/b-wani/warframe-hub/issues/22), [#26 표시명·분류](https://github.com/b-wani/warframe-hub/issues/26), [#28 빌드 파이프라인](https://github.com/b-wani/warframe-hub/issues/28) (구현 완료, 커밋 304a759), [#56 표시명 오버라이드](https://github.com/b-wani/warframe-hub/issues/56) (업스트림 사전이 틀린 키 — 타우 성계 그룹명)
 
 ### 3.2 좌표 (수동 큐레이션)
 
@@ -206,7 +206,7 @@ v1 요구사항인 적응 규칙 4항목:
 체크리스트). 3D가 뜨는 환경에서도 수동 전환 가능(접근성·저사양 자구책).
 진행도 확인·체크는 3D 없이도 성립해야 한다.
 
-근거: [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34)
+근거: [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (적응 규칙 1 종횡비 인지 프레이밍 구현 완료 — 나머지 3항목은 [#51](https://github.com/b-wani/warframe-hub/issues/51))
 
 ## 9. v1 범위 밖 (맵의 fog·out of scope 승계)
 

@@ -29,6 +29,9 @@ export const WORLD_SCALE = 0.05;
 /** 대기 셸이 지표면보다 부풀어 오르는 비율. */
 const SHELL_SCALE = 1.2;
 
+/** 라벨이 대기 셸 바깥으로 더 내려가는 거리. */
+const LABEL_DROP = 0.6;
+
 /** 태양 — 데이터셋의 그룹이 아니라 성계 뷰의 원점에 놓이는 광원이다. */
 export const SUN = {
   radius: 4.5,
@@ -203,6 +206,11 @@ export type SolarSystemBody = {
   radius: number;
   /** 대기 셸의 반지름. */
   shellRadius: number;
+  /**
+   * 표시명 라벨이 놓이는 높이(음수 — 천체 아래다). 천체가 화면에서 차지하는
+   * 아래쪽 끝이기도 해서, 카메라 프레이밍이 이 값을 여유로 쓴다.
+   */
+  labelY: number;
   texture: TextureFile;
   tint: string;
   atmosphere: string;
@@ -245,6 +253,7 @@ export function solarSystemBodies(
       position: [point.x * WORLD_SCALE, 0, point.y * WORLD_SCALE],
       radius: appearance.radius,
       shellRadius: appearance.radius * SHELL_SCALE,
+      labelY: -(appearance.radius * SHELL_SCALE + LABEL_DROP),
       texture: appearance.texture,
       tint: appearance.tint,
       atmosphere: appearance.atmosphere,
