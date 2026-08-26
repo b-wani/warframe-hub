@@ -52,6 +52,17 @@ export function placedNodesByGroup(
 }
 
 /**
+ * 성계 뷰에 천체로 놓이는 그룹인가. 프록시마는 독립 천체가 아니라 해당 행성에
+ * 종속 표시하고(스펙 §2.1), 릴레이는 지도에서 숨긴다 — 둘 다 성계 뷰에 없다.
+ *
+ * `isPlacedGroup`과 조건이 다르다: 프록시마는 좌표는 갖지만(행성 뷰의 바깥 고리)
+ * 성계 뷰의 천체는 아니다.
+ */
+export function isCelestialBodyGroup(group: StarchartGroup): boolean {
+  return group.type === "planet" || group.type === "special";
+}
+
+/**
  * 진행도에 세는 그룹인가. 릴레이는 지도에서 숨기고 진행도와도 무관하므로(#26)
  * 완료 집합·파생 상태 어디에도 등장하지 않는다 — 나머지 유형은 전부 대상이다.
  *

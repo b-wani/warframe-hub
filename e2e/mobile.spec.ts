@@ -21,5 +21,13 @@ test("홈에 가로 스크롤이 생기지 않는다", async ({ page }) => {
   expect(await horizontalOverflow(page)).toBe(0);
 });
 
-// 트래커·노드 상세·탭 타깃 검사는 /roadmap 제거와 함께 사라졌다 — 스타차트
-// 화면이 생기면 적응 규칙 4항목(스펙 §8)을 여기서 다시 본다.
+test("스타차트에 가로 스크롤이 생기지 않는다", async ({ page }) => {
+  await page.goto("/starchart");
+  await expect(page.locator("[data-body-id]").first()).toBeAttached({
+    timeout: 30_000,
+  });
+  expect(await horizontalOverflow(page)).toBe(0);
+});
+
+// 종횡비 인지 프레이밍·탭 타깃 44px·HUD 배치 등 적응 규칙 4항목(스펙 §8)의
+// 나머지는 #51에서 본다.

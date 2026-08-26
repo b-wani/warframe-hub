@@ -34,6 +34,9 @@ test("robots.txt는 전체 색인을 허용하고 사이트맵을 가리킨다",
   });
 });
 
-test("사이트맵에 홈이 들어 있다", () => {
-  expect(sitemap().map((entry) => entry.url)).toEqual([`${siteUrl}/`]);
+test("사이트맵에 홈과 스타차트가 들어 있다", () => {
+  expect(sitemap().map((entry) => entry.url)).toEqual([
+    `${siteUrl}/`,
+    `${siteUrl}/starchart`,
+  ]);
 });

@@ -1,0 +1,105 @@
+/*
+ * 성계 뷰는 화면을 꽉 채운다 — 지도가 주인공이고 HUD는 그 위에 얹힌다.
+ * 좁은 폭에서 겹치지 않게 하는 HUD 배치 규칙은 별건이다(#51).
+ */
+.page {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  color: #e8eef6;
+  background: #04060d;
+  font-family: var(--font-geist-sans);
+}
+
+/*
+ * 캔버스는 페이지를 통째로 덮는다 — flex 항목으로 두면 높이가 auto로 남아
+ * r3f 컨테이너의 height:100%가 풀리고 캔버스가 기본 150px로 쪼그라든다.
+ */
+.canvas {
+  position: absolute;
+  inset: 0;
+  /* three가 붙는 캔버스는 터치 스크롤이 아니라 카메라 조작을 받는다 */
+  touch-action: none;
+}
+
+.canvas canvas {
+  display: block;
+}
+
+.header,
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 12px 16px;
+  pointer-events: none;
+}
+
+.header {
+  top: 0;
+}
+
+.footer {
+  bottom: 0;
+  text-align: right;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 80%);
+}
+
+.credit {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #8d9bad;
+  text-wrap: balance;
+}
+
+.credit a {
+  pointer-events: auto;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #8d9bad;
+}
+
+/* drei Html이 만드는 래퍼 — 라벨은 카메라 조작을 가로채지 않는다 */
+.labelWrapper {
+  pointer-events: none;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+  color: #cfdcea;
+  text-shadow: 0 1px 4px #000, 0 0 10px #000;
+  user-select: none;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 17px;
+  }
+
+  .credit {
+    font-size: 10px;
+  }
+}
