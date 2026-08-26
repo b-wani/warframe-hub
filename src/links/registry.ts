@@ -1,4 +1,16 @@
-import type { Source } from "@/roadmap/schema";
+/**
+ * 페이지 크레딧(`src/data/sources.json`) 한 건. 로드맵 페이지와 함께 그 스키마도
+ * 사라졌고 지금 이 파일을 읽는 곳은 링크 생존 점검뿐이라, 점검이 필요한 만큼만
+ * 여기 둔다 — 크레딧을 다시 화면에 노출할 때(큐레이션 오버레이) 페이지 쪽
+ * 스키마를 새로 만든다.
+ */
+export type Source = {
+  id: string;
+  title: string;
+  url: string;
+  collectedAt: string;
+  status: "alive" | "dead";
+};
 
 /** 점검 대상 URL 하나 — 출처 등록부의 한 행 또는 페이지 크레딧 한 건. */
 export type RegistryEntry = {

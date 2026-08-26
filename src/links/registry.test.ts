@@ -1,6 +1,10 @@
 import { expect, test } from "vitest";
-import type { Source } from "@/roadmap/schema";
-import { creditEntries, mergeEntries, parseRegistry } from "./registry";
+import {
+  creditEntries,
+  mergeEntries,
+  parseRegistry,
+  type Source,
+} from "./registry";
 
 test("표에서 제목·URL·선언 상태를 뽑는다", () => {
   const markdown = `# 출처 등록부
