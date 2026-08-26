@@ -29,6 +29,20 @@ Playwright를 처음 실행하기 전에 브라우저를 설치한다:
 pnpm exec playwright install chromium
 ```
 
+## 스타차트 데이터 (수동 실행 루틴)
+
+게임 패치 때 운영자가 직접 돌리고 diff를 검수한다. 스크립트는 Node 24의 TypeScript
+직접 실행에 기댄다 (별도 빌드 없음).
+
+```bash
+pnpm build:starchart              # 정제 노드 데이터셋 (업스트림 → src/data/starchart.json)
+pnpm build:starchart-layout       # 좌표 데이터셋 — 빠진 좌표만 채운다 (수동 보정 보존)
+pnpm build:starchart-layout --check  # 파일을 쓰지 않고 검증만
+```
+
+좌표 보정은 `src/data/starchart-layout.json`을 에디터에서 직접 고치는 워크플로다 —
+[좌표 데이터셋 생성·보정](docs/starchart-layout-workflow.md) 참고.
+
 ## 링크 생존 점검 (운영 루틴)
 
 출처 등록부(`sources/README.md`)와 페이지 크레딧(`src/data/sources.json`)에 적힌
