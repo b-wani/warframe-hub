@@ -42,6 +42,7 @@
 | Mandascore (옥타비아 작곡기) | https://buff0000n.github.io/mandascore/ | 2026-08-20 | alive | 팬 제작 웹 도구 |
 | 공식 위키 — Shield | https://wiki.warframe.com/w/Shield | 2026-08-20 | alive | 실드 게이팅 수치·독성 관통 교차 확인 |
 | 공식 위키 — Damage | https://wiki.warframe.com/w/Damage | 2026-08-20 | alive | U36 팩션 상성표 교차 확인 |
+| Solar System Scope — Solar Textures | https://www.solarsystemscope.com/textures/ | 2026-08-26 | alive | 성계 뷰 행성 텍스처(2K). CC BY 4.0 — 파일은 `public/textures/planets/`에 커밋, 출처 표기는 스타차트 페이지 |
 
 라이선스: wiki.warframe.com 의 텍스트 콘텐츠는 CC BY-SA 4.0. 본 프로젝트는 사실만
 추출해 자체 집필하므로 전재에 해당하지 않으나, 페이지에 출처 크레딧과 원문 링크를

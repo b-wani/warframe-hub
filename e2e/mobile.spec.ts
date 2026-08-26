@@ -21,5 +21,54 @@ test("홈에 가로 스크롤이 생기지 않는다", async ({ page }) => {
   expect(await horizontalOverflow(page)).toBe(0);
 });
 
-// 트래커·노드 상세·탭 타깃 검사는 /roadmap 제거와 함께 사라졌다 — 스타차트
-// 화면이 생기면 적응 규칙 4항목(스펙 §8)을 여기서 다시 본다.
+test("스타차트에 가로 스크롤이 생기지 않는다", async ({ page }) => {
+  await page.goto("/starchart");
+  await expect(page.locator("[data-body-id]").first()).toBeAttached({
+    timeout: 30_000,
+  });
+  expect(await horizontalOverflow(page)).toBe(0);
+});
+
+/** 프레임 밖으로 나간 천체 라벨의 id — 비어 있어야 성계 전체가 보인다는 뜻이다. */
+async function bodiesOutsideFrame(page: import("@playwright/test").Page) {
+  return page.evaluate(() =>
+    [...document.querySelectorAll("[data-body-id]")]
+      .filter((element) => {
+        const box = element.getBoundingClientRect();
+        return (
+          box.left < 0 ||
+          box.right > window.innerWidth ||
+          box.top < 0 ||
+          box.bottom > window.innerHeight
+        );
+      })
+      .map((element) => (element as HTMLElement).dataset.bodyId),
+  );
+}
+
+// 적응 규칙 1 — 종횡비 인지 카메라 프레이밍(스펙 §8). 세로로 긴 화면은 가로
+// 화각이 좁아 데스크톱과 같은 거리로는 성계 좌우가 잘린다.
+test("세로 화면에서도 성계 전체가 프레임 안에 들어온다", async ({ page }) => {
+  await page.goto("/starchart");
+  await expect(page.locator("[data-body-id]")).toHaveCount(22, {
+    timeout: 30_000,
+  });
+  expect(await bodiesOutsideFrame(page)).toEqual([]);
+});
+
+test("화면을 돌려도 프레임을 다시 잡는다 — 카메라를 만지기 전까지는", async ({
+  page,
+}) => {
+  await page.goto("/starchart");
+  await expect(page.locator("[data-body-id]")).toHaveCount(22, {
+    timeout: 30_000,
+  });
+
+  await page.setViewportSize({ width: 844, height: 390 }); // 가로로 돌린다
+  await expect.poll(() => bodiesOutsideFrame(page)).toEqual([]);
+
+  await page.setViewportSize({ width: 390, height: 844 }); // 다시 세로로
+  await expect.poll(() => bodiesOutsideFrame(page)).toEqual([]);
+});
+
+// 탭 타깃 44px·HUD 배치·실기기 스모크 등 적응 규칙의 나머지는 #51에서 본다.
