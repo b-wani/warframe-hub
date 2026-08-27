@@ -78,9 +78,21 @@
   color: #8d9bad;
 }
 
-/* drei Html이 만드는 래퍼 — 라벨은 카메라 조작을 가로채지 않는다 */
+/* drei Html이 만드는 래퍼 — 라벨 글자 바깥은 카메라 조작을 가로채지 않는다 */
 .labelWrapper {
   pointer-events: none;
+}
+
+.label,
+.nodeLabel {
+  /* drei Html 래퍼가 포인터를 막아 둔다 — 손잡이인 라벨만 되살린다 */
+  pointer-events: auto;
+  /* 버튼은 UA 폰트를 쓴다 — 지도 라벨은 페이지 폰트여야 한다 */
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
 }
 
 .label {
@@ -92,6 +104,71 @@
   color: #cfdcea;
   text-shadow: 0 1px 4px #000, 0 0 10px #000;
   user-select: none;
+}
+
+/* 노드 라벨 — 천체 라벨보다 한 단계 작고 조용하다 */
+.nodeLabel {
+  display: block;
+  font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+  color: #9fb4cd;
+  text-shadow: 0 1px 3px #000, 0 0 8px #000;
+  user-select: none;
+}
+
+.label:hover,
+.nodeLabel:hover {
+  color: #fff;
+}
+
+.nodeLabel[data-selected] {
+  color: #ffd166;
+}
+
+/*
+ * 행성 뷰의 조작 — 성계로 돌아가는 길과 지금 어디에 있는지.
+ * 좁은 폭에서 다른 HUD와 겹치지 않게 하는 배치 규칙은 별건이다(#51).
+ */
+.viewHud {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  text-align: right;
+}
+
+.backButton {
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: #cfdcea;
+  cursor: pointer;
+  background: rgb(16 24 40 / 88%);
+  border: 1px solid #2a3a55;
+  border-radius: 6px;
+}
+
+.backButton:hover {
+  color: #fff;
+  border-color: #4d6a99;
+}
+
+.focusName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e8eef6;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 80%);
+}
+
+.selectedNode {
+  font-size: 12px;
+  color: #ffd166;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 80%);
 }
 
 @media (max-width: 600px) {

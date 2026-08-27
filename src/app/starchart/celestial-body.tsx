@@ -6,13 +6,13 @@
  * 무엇을 어떻게 그릴지는 전부 표시 모델(`solarSystemBodies`)이 정해서 넘긴다.
  * 이 컴포넌트는 그룹 유형도, 좌표계도, 행성별 무드 색도 모른다.
  */
-import { Html } from "@react-three/drei";
 import { useMemo } from "react";
 import { DoubleSide, RingGeometry, Vector3, type Texture } from "three";
 import type { SolarSystemBody } from "@/starchart/bodies";
 import type { TextureFile } from "@/starchart/textures";
 import { AtmosphereShell } from "./atmosphere";
-import styles from "./page.module.css";
+import { MapLabel } from "./map-label";
+import { usePointerCursor } from "./pointer-cursor";
 
 /**
  * 링 텍스처는 반지름 방향으로 늘어선 가로 스트립인데 `RingGeometry`의 기본 UV는
@@ -61,13 +61,28 @@ function Ring({
 export function CelestialBody({
   body,
   maps,
+  onSelect,
 }: {
   body: SolarSystemBody;
   maps: Record<TextureFile, Texture>;
+  /** 이 천체를 고르면 카메라가 여기까지 날아간다(스펙 §2.1). */
+  onSelect: (id: string) => void;
 }) {
+  const pointer = usePointerCursor();
+
   return (
     <group position={body.position}>
-      <mesh>
+      {/*
+        포인터를 받는 것은 지표면 하나뿐이다 — 대기 셸·링·라벨까지 받게 하면
+        r3f가 매 포인터 이동마다 그것들도 전부 레이캐스트한다.
+      */}
+      <mesh
+        {...pointer}
+        onClick={(event) => {
+          event.stopPropagation();
+          onSelect(body.id);
+        }}
+      >
         <sphereGeometry args={[body.radius, 64, 32]} />
         <meshStandardMaterial
           map={maps[body.texture]}
@@ -84,16 +99,14 @@ export function CelestialBody({
       {body.ring && (
         <Ring ring={body.ring} map={maps[body.ring.texture]} tint={body.tint} />
       )}
-      <Html
-        center
+      <MapLabel
+        id={body.id}
+        kind="body"
         position={[0, body.labelY, 0]}
-        zIndexRange={[5, 0]}
-        wrapperClass={styles.labelWrapper}
+        onSelect={onSelect}
       >
-        <span className={styles.label} data-body-id={body.id}>
-          {body.name}
-        </span>
-      </Html>
+        {body.name}
+      </MapLabel>
     </group>
   );
 }
