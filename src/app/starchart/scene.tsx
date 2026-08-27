@@ -1,40 +1,57 @@
 "use client";
 
 /**
- * 성계 뷰의 3D 장면.
+ * 성계 뷰와 행성 뷰 — 두 개의 뷰, 하나의 장면(스펙 §2.1).
  *
  * 이 모듈이 three를 끌어들이는 유일한 진입점이다 — 서버 번들에 3D가 들어가지
  * 않도록 `starchart-canvas.tsx`가 `next/dynamic({ ssr: false })`로만 불러온다.
  *
  * 데이터는 정제 노드 데이터셋과 좌표 데이터셋의 정적 임포트뿐이다(스펙 §7).
- * 무엇을 어디에 어떻게 그릴지는 표시 모델(`solarSystemBodies`)이 이미 정했다.
+ * 무엇을 어디에 어떻게 그릴지는 표시 모델(`solarSystemBodies`·`nodeClouds`)이
+ * 이미 정했다.
+ *
+ * 뷰를 바꾸는 것은 장면 교체가 아니라 카메라 이동 하나다 — 행성을 고르면
+ * `CameraControls`가 그 행성까지 보간해서 날아가고(변형 A 채택, #32), 돌아올
+ * 때도 같은 비행이다. 컷도 모프도 없다.
  */
-import { CameraControls, useTexture } from "@react-three/drei";
+import { Bvh, CameraControls, useTexture } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, type RefObject } from "react";
-import { BackSide, SRGBColorSpace, type Texture } from "three";
 import {
-  STARFIELD_TEXTURE,
-  SUN,
-  solarSystemBodies,
-} from "@/starchart/bodies";
-import { SOLAR_VIEW_FOV, solarViewHome } from "@/starchart/camera";
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
+import { BackSide, SRGBColorSpace, type Texture } from "three";
+import { STARFIELD_TEXTURE, SUN, solarSystemBodies } from "@/starchart/bodies";
+import {
+  SOLAR_VIEW_FOV,
+  planetViewShot,
+  solarViewShot,
+} from "@/starchart/camera";
 import { starchartDataset, starchartLayout } from "@/starchart/data";
+import { nodeClouds } from "@/starchart/node-cloud";
 import {
   TEXTURE_FILES,
   texturePath,
   type TextureFile,
 } from "@/starchart/textures";
 import { CelestialBody } from "./celestial-body";
+import { NodeCloudView } from "./node-cloud-view";
+import styles from "./page.module.css";
 
 const { bodies } = solarSystemBodies(starchartDataset, starchartLayout);
+const bodyById = new Map(bodies.map((body) => [body.id, body]));
+const { clouds } = nodeClouds(starchartDataset, starchartLayout, bodies);
 
 /**
  * 첫 프레임용 카메라 자리. 실제 종횡비는 Canvas 안에서만 알 수 있어
- * `HomeFraming`이 곧 다시 잡는다 — 그 사이 한 프레임이 엉뚱한 곳을 보지 않게
+ * `CameraDirector`가 곧 다시 잡는다 — 그 사이 한 프레임이 엉뚱한 곳을 보지 않게
  * 흔한 가로 화면 기준으로 미리 채워 둔다.
  */
-const INITIAL_CAMERA = solarViewHome(bodies, 16 / 9);
+const INITIAL_CAMERA = solarViewShot(bodies, 16 / 9).position;
 
 const TEXTURE_URLS = Object.fromEntries(
   TEXTURE_FILES.map((file) => [file, texturePath(file)]),
@@ -49,6 +66,9 @@ const MAX_DISTANCE = 1600;
 
 /** 별 배경의 반지름 — 줌아웃 한계 바깥을 감싼다. */
 const BACKGROUND_RADIUS = 2000;
+
+/** 카메라 보간의 감쇠 시간(초) — 뷰 전환 비행이 여기서 시네마틱해진다. */
+const SMOOTH_TIME = 0.5;
 
 /**
  * 쓰는 텍스처를 한 번에 받아 파일명으로 나눠 준다 — 여러 천체가 같은 파일을
@@ -66,8 +86,22 @@ function usePlanetTextures(): Record<TextureFile, Texture> {
   return maps;
 }
 
-function SolarSystem() {
+function SolarSystem({
+  focus,
+  cloudBody,
+  selected,
+  onFocus,
+  onSelect,
+}: {
+  focus: string | null;
+  /** 노드 구름을 붙여 둘 천체 — 초점을 놓아도 비행이 끝날 때까지 남는다. */
+  cloudBody: string | null;
+  selected: string | null;
+  onFocus: (id: string) => void;
+  onSelect: (id: string) => void;
+}) {
   const maps = usePlanetTextures();
+  const cloud = cloudBody ? clouds.get(cloudBody) : undefined;
 
   return (
     <>
@@ -88,32 +122,71 @@ function SolarSystem() {
       {/* decay 0 — 실제 감쇠를 쓰면 바깥 궤도의 천체가 새까맣게 죽는다 */}
       <pointLight position={[0, 0, 0]} intensity={3.2} decay={0} />
 
-      {bodies.map((body) => (
-        <CelestialBody key={body.id} body={body} maps={maps} />
-      ))}
+      {/*
+        천체를 고르려면 지표면 구체를 레이캐스트해야 하는데, 구체 하나가 4096
+        삼각형이라 포인터가 움직일 때마다 22개를 훑으면 그게 곧 프레임이다 —
+        BVH로 가속한다(스펙 §7). 텍스처가 오기 전에는 이 트리가 없으므로 Bvh는
+        Suspense 안쪽, 즉 여기에 있어야 한다.
+      */}
+      <Bvh firstHitOnly>
+        {bodies.map((body) => (
+          <CelestialBody
+            key={body.id}
+            body={body}
+            maps={maps}
+            onSelect={onFocus}
+          />
+        ))}
+      </Bvh>
+
+      {cloud && (
+        <NodeCloudView
+          cloud={cloud}
+          labelled={focus === cloud.body}
+          selected={selected}
+          onSelect={onSelect}
+        />
+      )}
     </>
   );
 }
 
 /**
- * 성계 전체가 프레임에 들어오도록 카메라를 홈 포지션에 놓는다(스펙 §8-1).
+ * 카메라를 뷰에 맞춰 놓는다 — 성계 전체를 담는 자리, 또는 고른 행성의 노드
+ * 구름을 담는 자리(스펙 §8-1).
  *
- * 화면 크기가 바뀌면(폰 회전·창 크기 조절) 다시 잡되, 사용자가 한 번 카메라를
- * 만진 뒤에는 손대지 않는다 — 보고 있던 시점을 리사이즈가 끌고 가면 안 된다.
+ * 첫 프레이밍만 즉시고 그 뒤는 전부 보간이다. 그래서 뷰 전환이 곧 연속 비행이
+ * 된다 — 이 컴포넌트 말고 전환을 담당하는 곳은 없다.
+ *
+ * 화면 크기가 바뀌면(폰 회전·창 크기 조절) 다시 잡되, 사용자가 카메라를 만진
+ * 뒤에는 손대지 않는다 — 보고 있던 시점을 리사이즈가 끌고 가면 안 된다.
  *
  * 컨트롤은 ref가 아니라 r3f 스토어에서 가져온다(`makeDefault`가 넣어 준다) —
  * 컨트롤 인스턴스가 준비되는 시점이 이 컴포넌트의 마운트보다 늦을 수 있어서,
  * 준비되면 효과가 다시 돌아야 한다.
  */
-function HomeFraming({ moved }: { moved: RefObject<boolean> }) {
+function CameraDirector({
+  focus,
+  moved,
+}: {
+  focus: string | null;
+  moved: RefObject<boolean>;
+}) {
   const controls = useThree((state) => state.controls);
   const { width, height } = useThree((state) => state.size);
+  const flown = useRef(false);
 
   useEffect(() => {
     if (!isCameraControls(controls) || moved.current) return;
-    const [x, y, z] = solarViewHome(bodies, width / height);
-    controls.setLookAt(x, y, z, 0, 0, 0, false);
-  }, [controls, moved, width, height]);
+    const body = focus ? bodyById.get(focus) : undefined;
+    const cloud = focus ? clouds.get(focus) : undefined;
+    const shot =
+      body && cloud
+        ? planetViewShot(body, cloud, width / height)
+        : solarViewShot(bodies, width / height);
+    controls.setLookAt(...shot.position, ...shot.target, flown.current);
+    flown.current = true;
+  }, [controls, focus, moved, width, height]);
 
   return null;
 }
@@ -130,36 +203,104 @@ function isCameraControls(
 
 export default function Scene() {
   const moved = useRef(false);
+  const [focus, setFocus] = useState<string | null>(null);
+  // 초점을 놓아도 구름은 남는다 — 성계로 돌아가는 비행 도중 노드가 툭 꺼지면
+  // 그 순간이 컷이 된다. 멀어지는 만큼 옅어지는 일은 구름 쪽이 한다.
+  const [cloudBody, setCloudBody] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(null);
+
+  const focusOn = useCallback(
+    (id: string | null) => {
+      setSelected(null);
+      if (id === focus) return;
+      // 뷰가 바뀔 때만 "사용자가 만졌다"를 잊는다 — 새 뷰의 첫 프레이밍은 우리
+      // 몫이지만(행성을 누르는 그 클릭의 pointerdown이 이미 컨트롤을 깨워 놨다),
+      // 뷰가 그대로면 사용자가 잡아 둔 시점을 리사이즈가 도로 뺏어서는 안 된다.
+      moved.current = false;
+      setFocus(id);
+      if (id) setCloudBody(id);
+    },
+    [focus],
+  );
+
+  // ESC로 성계 뷰까지 한 단계씩 물러난다 — 마우스가 없어도 빠져나올 길이 있어야 한다
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      if (selected) setSelected(null);
+      else focusOn(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [focusOn, selected]);
+
+  const focusedBody = focus ? bodyById.get(focus) : undefined;
+  const focusedCloud = focus ? clouds.get(focus) : undefined;
+  const selectedNode = focusedCloud?.nodes.find((node) => node.id === selected);
 
   return (
-    <Canvas
-      // 모바일도 같은 3D를 돌린다(스펙 §8) — DPR 상한으로 픽셀 수를 묶는다
-      dpr={[1, 2]}
-      // 자전·공전이 없는 정적 장면이지만 frameloop는 기본값(연속)을 쓴다 —
-      // "demand"는 첫 프레임 요청을 놓쳐 빈 화면이 뜨는 사례가 있었다.
-      // 프레임 예산 조정은 별건이다(#51의 품질 조정).
-      gl={{ antialias: true }}
-      camera={{
-        position: INITIAL_CAMERA,
-        fov: SOLAR_VIEW_FOV,
-        near: 0.1,
-        far: 5000,
-      }}
-    >
-      <color attach="background" args={["#04060d"]} />
-      <ambientLight intensity={0.14} />
-      <Suspense fallback={null}>
-        <SolarSystem />
-      </Suspense>
-      <CameraControls
-        makeDefault
-        minDistance={3}
-        maxDistance={MAX_DISTANCE}
-        onStart={() => {
-          moved.current = true;
+    <>
+      <Canvas
+        // 모바일도 같은 3D를 돌린다(스펙 §8) — DPR 상한으로 픽셀 수를 묶는다
+        dpr={[1, 2]}
+        // 자전·공전이 없는 정적 장면이지만 frameloop는 기본값(연속)을 쓴다 —
+        // "demand"는 첫 프레임 요청을 놓쳐 빈 화면이 뜨는 사례가 있었다.
+        // 프레임 예산 조정은 별건이다(#51의 품질 조정).
+        gl={{ antialias: true }}
+        camera={{
+          position: INITIAL_CAMERA,
+          fov: SOLAR_VIEW_FOV,
+          near: 0.1,
+          far: 5000,
         }}
-      />
-      <HomeFraming moved={moved} />
-    </Canvas>
+        // 빈 곳을 누르면 노드 선택만 놓는다 — 뷰에서 나가는 것은 명시적 조작이다
+        onPointerMissed={() => setSelected(null)}
+      >
+        <color attach="background" args={["#04060d"]} />
+        <ambientLight intensity={0.14} />
+        <Suspense fallback={null}>
+          <SolarSystem
+            focus={focus}
+            cloudBody={cloudBody}
+            selected={selected}
+            onFocus={focusOn}
+            onSelect={setSelected}
+          />
+        </Suspense>
+        <CameraControls
+          makeDefault
+          minDistance={3}
+          maxDistance={MAX_DISTANCE}
+          // 기본값(0.25)은 뷰 전환이 툭 끝나 컷처럼 읽힌다 — 채택안(#32)이 쓴
+          // 값으로 늘려 비행이 시네마틱하게 보이게 한다
+          smoothTime={SMOOTH_TIME}
+          onStart={() => {
+            moved.current = true;
+          }}
+        />
+        <CameraDirector focus={focus} moved={moved} />
+      </Canvas>
+
+      {focusedBody && (
+        <div className={styles.viewHud}>
+          <button
+            type="button"
+            className={styles.backButton}
+            onClick={() => focusOn(null)}
+          >
+            ← 성계로
+          </button>
+          <p className={styles.focusName} data-focus-body={focusedBody.id}>
+            {focusedBody.name}
+          </p>
+          {/* 노드 상세는 #43이 채운다 — 지금은 무엇을 골랐는지만 알린다 */}
+          {selectedNode && (
+            <p className={styles.selectedNode} data-selected-node={selected}>
+              {selectedNode.name}
+            </p>
+          )}
+        </div>
+      )}
+    </>
   );
 }
