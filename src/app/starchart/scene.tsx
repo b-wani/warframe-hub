@@ -20,6 +20,7 @@ import {
   Suspense,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type RefObject,
@@ -33,6 +34,13 @@ import {
 } from "@/starchart/camera";
 import { starchartDataset, starchartLayout } from "@/starchart/data";
 import { nodeClouds } from "@/starchart/node-cloud";
+import { nodeDetail } from "@/starchart/node-detail";
+import {
+  buildProgressGraph,
+  isGroupComplete,
+  nodeStates,
+  type NodeState,
+} from "@/starchart/progress";
 import {
   TEXTURE_FILES,
   texturePath,
@@ -40,11 +48,14 @@ import {
 } from "@/starchart/textures";
 import { CelestialBody } from "./celestial-body";
 import { NodeCloudView } from "./node-cloud-view";
+import { NodeDetailPanel } from "./node-detail-panel";
 import styles from "./page.module.css";
+import { useStarchartProgress } from "./use-progress";
 
 const { bodies } = solarSystemBodies(starchartDataset, starchartLayout);
 const bodyById = new Map(bodies.map((body) => [body.id, body]));
 const { clouds } = nodeClouds(starchartDataset, starchartLayout, bodies);
+const progressGraph = buildProgressGraph(starchartDataset);
 
 /**
  * 첫 프레임용 카메라 자리. 실제 종횡비는 Canvas 안에서만 알 수 있어
@@ -90,6 +101,8 @@ function SolarSystem({
   focus,
   cloudBody,
   selected,
+  states,
+  completeBodies,
   onFocus,
   onSelect,
 }: {
@@ -97,6 +110,10 @@ function SolarSystem({
   /** 노드 구름을 붙여 둘 천체 — 초점을 놓아도 비행이 끝날 때까지 남는다. */
   cloudBody: string | null;
   selected: string | null;
+  /** 노드 id → 파생 3상태. */
+  states: ReadonlyMap<string, NodeState>;
+  /** 노드를 전부 클리어한 천체 id — 완료 아이콘이 붙는다. */
+  completeBodies: ReadonlySet<string>;
   onFocus: (id: string) => void;
   onSelect: (id: string) => void;
 }) {
@@ -134,6 +151,7 @@ function SolarSystem({
             key={body.id}
             body={body}
             maps={maps}
+            complete={completeBodies.has(body.id)}
             onSelect={onFocus}
           />
         ))}
@@ -144,6 +162,7 @@ function SolarSystem({
           cloud={cloud}
           labelled={focus === cloud.body}
           selected={selected}
+          states={states}
           onSelect={onSelect}
         />
       )}
@@ -203,6 +222,7 @@ function isCameraControls(
 
 export default function Scene() {
   const moved = useRef(false);
+  const { completedIds, toggle } = useStarchartProgress();
   const [focus, setFocus] = useState<string | null>(null);
   // 초점을 놓아도 구름은 남는다 — 성계로 돌아가는 비행 도중 노드가 툭 꺼지면
   // 그 순간이 컷이 된다. 멀어지는 만큼 옅어지는 일은 구름 쪽이 한다.
@@ -234,9 +254,28 @@ export default function Scene() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [focusOn, selected]);
 
+  // 완료 집합 하나에서 지도 전체가 다시 파생된다 — 토글 한 번이면 노드 색도
+  // 연결선도 행성의 완료 아이콘도 같은 렌더에서 함께 바뀐다(스펙 §4.2).
+  const states = useMemo(
+    () => nodeStates(progressGraph, completedIds),
+    [completedIds],
+  );
+  const completeBodies = useMemo(
+    () =>
+      new Set(
+        bodies
+          .filter((body) =>
+            isGroupComplete(progressGraph, completedIds, body.id),
+          )
+          .map((body) => body.id),
+      ),
+    [completedIds],
+  );
+
   const focusedBody = focus ? bodyById.get(focus) : undefined;
-  const focusedCloud = focus ? clouds.get(focus) : undefined;
-  const selectedNode = focusedCloud?.nodes.find((node) => node.id === selected);
+  const selectedDetail = selected
+    ? nodeDetail(starchartDataset, selected)
+    : undefined;
 
   return (
     <>
@@ -263,6 +302,8 @@ export default function Scene() {
             focus={focus}
             cloudBody={cloudBody}
             selected={selected}
+            states={states}
+            completeBodies={completeBodies}
             onFocus={focusOn}
             onSelect={setSelected}
           />
@@ -292,12 +333,19 @@ export default function Scene() {
           </button>
           <p className={styles.focusName} data-focus-body={focusedBody.id}>
             {focusedBody.name}
+            {completeBodies.has(focusedBody.id) && (
+              <span className={styles.focusComplete} role="img" aria-label="완료">
+                ✓
+              </span>
+            )}
           </p>
-          {/* 노드 상세는 #43이 채운다 — 지금은 무엇을 골랐는지만 알린다 */}
-          {selectedNode && (
-            <p className={styles.selectedNode} data-selected-node={selected}>
-              {selectedNode.name}
-            </p>
+          {/* 상세는 호버가 아니라 선택으로 열린다(스펙 §2.2·§8-2) */}
+          {selectedDetail && (
+            <NodeDetailPanel
+              detail={selectedDetail}
+              state={states.get(selectedDetail.id) ?? "locked"}
+              onToggle={toggle}
+            />
           )}
         </div>
       )}
