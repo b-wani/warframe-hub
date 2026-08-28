@@ -61,10 +61,13 @@ function Ring({
 export function CelestialBody({
   body,
   maps,
+  complete,
   onSelect,
 }: {
   body: SolarSystemBody;
   maps: Record<TextureFile, Texture>;
+  /** 이 행성의 노드를 전부 클리어했는가 — 파생값이다(스펙 §4.2). */
+  complete: boolean;
   /** 이 천체를 고르면 카메라가 여기까지 날아간다(스펙 §2.1). */
   onSelect: (id: string) => void;
 }) {
@@ -99,10 +102,12 @@ export function CelestialBody({
       {body.ring && (
         <Ring ring={body.ring} map={maps[body.ring.texture]} tint={body.tint} />
       )}
+      {/* 행성 전체 클리어는 이름표의 완료 아이콘으로 알린다(스펙 §2.1) */}
       <MapLabel
         id={body.id}
         kind="body"
         position={[0, body.labelY, 0]}
+        state={complete ? "complete" : undefined}
         onSelect={onSelect}
       >
         {body.name}

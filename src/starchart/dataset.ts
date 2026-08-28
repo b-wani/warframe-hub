@@ -17,6 +17,16 @@ export type StarchartNode = {
   name: string;
   group: string;
   nextNodes: string[];
+  /** 미션 유형 enum(`MT_*`). 생성 파이프라인이 원본에 없으면 비운다. */
+  missionType?: string;
+  /** 미션 유형 표시명. */
+  missionName?: string;
+  /** 팩션 enum(`FC_*`). 팩션이 없는 노드(교차점 등)가 있다. */
+  faction?: string;
+  /** 팩션 표시명. */
+  factionName?: string;
+  minEnemyLevel?: number;
+  maxEnemyLevel?: number;
 };
 
 export type StarchartDataset = {
@@ -71,4 +81,15 @@ export function isCelestialBodyGroup(group: StarchartGroup): boolean {
  */
 export function isTrackedGroup(group: StarchartGroup): boolean {
   return group.type !== "relay";
+}
+
+/**
+ * 교차점(Junction)인가. 인게임에서 행성 사이를 잇는 특수 노드이며, 지도에서도
+ * 일반 노드와 구별해 표현한다(스펙 §2.2).
+ *
+ * 비노드 목표가 아니라 정제 노드 데이터셋의 실제 노드다(CONTEXT "비노드 목표") —
+ * 완료도 노드 완료로만 추적한다.
+ */
+export function isJunction(node: StarchartNode): boolean {
+  return node.missionType === "MT_JUNCTION";
 }
