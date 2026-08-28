@@ -119,38 +119,28 @@ describe("nodeClouds", () => {
     expect(overlapping).toEqual([]);
   });
 
-  test("연결선은 nextNodes 간선을 두 점씩 늘어놓은 것이다", () => {
+  test("연결선은 자기 두 끝 노드를 안다 — 상태에 따라 실선·점선이 갈린다", () => {
     for (const cloud of clouds.values()) {
-      expect(cloud.links.length % 2).toBe(0);
-      const positions = new Set(
-        cloud.nodes.map(({ position }) => position.join()),
-      );
-      for (const point of cloud.links) {
-        expect(positions.has(point.join())).toBe(true);
+      const byId = new Map(cloud.nodes.map((node) => [node.id, node]));
+      for (const link of cloud.links) {
+        expect(byId.get(link.from)!.position).toEqual(link.points[0]);
+        expect(byId.get(link.to)!.position).toEqual(link.points[1]);
       }
     }
     // 지구의 첫 미션 E Prime → Mariana 는 데이터셋에 있는 연결이다
-    const earth = cloudOf("Earth");
-    const at = (id: string) =>
-      earth.nodes.find((node) => node.id === id)!.position.join();
-    const pairs = new Set<string>();
-    for (let i = 0; i < earth.links.length; i += 2) {
-      pairs.add(
-        [earth.links[i].join(), earth.links[i + 1].join()].sort().join("|"),
-      );
-    }
-    expect(pairs.has([at("SolNode27"), at("SolNode89")].sort().join("|"))).toBe(
-      true,
+    const pairs = new Set(
+      cloudOf("Earth").links.map((link) =>
+        [link.from, link.to].sort().join("|"),
+      ),
     );
+    expect(pairs.has("SolNode27|SolNode89")).toBe(true);
   });
 
   test("같은 간선을 두 번 긋지 않는다 — 방향은 선에 없다", () => {
     for (const cloud of clouds.values()) {
       const drawn = new Set<string>();
-      for (let i = 0; i < cloud.links.length; i += 2) {
-        const key = [cloud.links[i].join(), cloud.links[i + 1].join()]
-          .sort()
-          .join("|");
+      for (const link of cloud.links) {
+        const key = [link.from, link.to].sort().join("|");
         expect(drawn.has(key)).toBe(false);
         drawn.add(key);
       }
@@ -160,14 +150,32 @@ describe("nodeClouds", () => {
   test("그룹 밖을 가리키는 간선은 긋지 않는다", () => {
     // 지구의 교차점은 금성·화성 노드를 가리킨다 — 지구 구름의 선이 아니다
     const junction = dataset.nodes["EarthToVenusJunction"];
-    expect(junction.nextNodes.some((id) => dataset.nodes[id].group !== "Earth"))
-      .toBe(true);
-    const inside = new Set(
-      cloudOf("Earth").nodes.map(({ position }) => position.join()),
-    );
-    for (const point of cloudOf("Earth").links) {
-      expect(inside.has(point.join())).toBe(true);
+    expect(
+      junction.nextNodes.some((id) => dataset.nodes[id].group !== "Earth"),
+    ).toBe(true);
+    const inside = new Set(cloudOf("Earth").nodes.map((node) => node.id));
+    for (const link of cloudOf("Earth").links) {
+      expect(inside.has(link.from)).toBe(true);
+      expect(inside.has(link.to)).toBe(true);
     }
+  });
+
+  test("교차점은 표시 모델이 구별해 알려 준다 — 화면이 미션 유형을 몰라도 된다", () => {
+    const earth = cloudOf("Earth");
+    const junctions = earth.nodes.filter((node) => node.junction);
+    expect(junctions.map((node) => node.id).sort()).toEqual([
+      "EarthToMarsJunction",
+      "EarthToVenusJunction",
+    ]);
+    expect(earth.nodes.find((node) => node.id === "SolNode27")!.junction).toBe(
+      false,
+    );
+    // 데이터셋의 교차점 13개는 모두 어느 구름에선가 교차점으로 뜬다
+    expect(allNodes.filter((node) => node.junction)).toHaveLength(
+      Object.values(dataset.nodes).filter(
+        (node) => node.missionType === "MT_JUNCTION",
+      ).length,
+    );
   });
 
   test("좌표가 빠진 노드는 문제로 보고한다", () => {

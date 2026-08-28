@@ -1,4 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
+import dataset from "../src/data/starchart.json";
+import { STARCHART_PROGRESS_STORAGE_KEY } from "../src/starchart/progress-repository";
 
 // 성계 뷰의 수용 기준 중 브라우저에서만 확인되는 것들 — 3D가 실제로 뜨는가,
 // 서버 렌더에 3D가 안 들어가는가, 카메라 조작이 되는가.
@@ -158,9 +160,11 @@ test("행성 뷰에서 노드를 고르면 표시된다", async ({ page }) => {
   await waitForCameraRest(page);
 
   await page.getByRole("button", { name: "Mariana" }).click();
-  await expect(page.locator("[data-selected-node='SolNode89']")).toHaveText(
-    "Mariana",
-  );
+  await expect(
+    page
+      .locator("[data-selected-node='SolNode89']")
+      .getByRole("heading", { name: "Mariana" }),
+  ).toBeVisible();
 
   // 빈 곳을 누르면 선택만 풀리고 행성 뷰는 그대로다
   await page.mouse.click(4, 400);
@@ -197,4 +201,116 @@ test("ESC로 선택과 행성 뷰를 차례로 빠져나온다", async ({ page }
 
   await page.keyboard.press("Escape");
   await expect(page.locator("[data-focus-body]")).toHaveCount(0);
+});
+
+// ─── 노드 3상태·상세·개별 체크 (#43) ─────────────────────────────────────────
+// 파생 3상태 자체는 단위 테스트(src/starchart/progress.test.ts)가, 상세 패널의
+// 내용은 src/app/starchart/node-detail-panel.test.tsx가 본다. 여기서는 브라우저
+// 에서만 확인되는 것 — 토글 하나가 저장·파생·지도까지 정말 끌고 가는가.
+
+const EARTH_NODE_IDS = Object.entries(dataset.nodes)
+  .filter(([, node]) => node.group === "Earth")
+  .map(([id]) => id);
+
+const nodeLabel = (page: Page, id: string) =>
+  page.locator(`[data-node-id="${id}"]`);
+
+/** 저장된 진행도를 심고 시작한다 — 행성 하나를 다 미는 데 21번을 누르지 않는다. */
+async function seedProgress(page: Page, completedIds: string[]) {
+  await page.addInitScript(
+    ({ key, ids }) => {
+      window.localStorage.setItem(
+        key,
+        JSON.stringify({ version: 2, completedIds: ids }),
+      );
+    },
+    { key: STARCHART_PROGRESS_STORAGE_KEY, ids: completedIds },
+  );
+}
+
+async function openEarth(page: Page) {
+  await openStarchart(page);
+  await page.getByRole("button", { name: "지구", exact: true }).click();
+  await expect(nodeLabels(page)).toHaveCount(EARTH_NODE_COUNT);
+  await waitForCameraRest(page);
+}
+
+test("노드가 3상태로 갈려 표시된다 — 잠긴 노드에는 자물쇠가 붙는다", async ({
+  page,
+}) => {
+  await openEarth(page);
+
+  // 진행도가 비어 있으면 진입 노드만 열려 있다
+  await expect(nodeLabel(page, "SolNode27")).toHaveAttribute(
+    "data-state",
+    "uncleared",
+  );
+  const mariana = nodeLabel(page, "SolNode89");
+  await expect(mariana).toHaveAttribute("data-state", "locked");
+  await expect(mariana).toContainText("🔒");
+});
+
+test("완료 토글이 저장·파생 상태·지도를 한 번에 끌고 간다", async ({ page }) => {
+  await openEarth(page);
+
+  await nodeLabel(page, "SolNode27").click();
+  const detail = page.locator("[data-selected-node='SolNode27']");
+  await expect(detail).toHaveAttribute("data-node-state", "uncleared");
+  // 표시명·미션 유형·팩션·레벨 범위가 상세에 다 있다
+  await expect(detail).toContainText("E Prime");
+  await expect(detail).toContainText("섬멸");
+  await expect(detail).toContainText("그리니어");
+  await expect(detail).toContainText("1–3");
+
+  await detail.getByRole("checkbox", { name: "완료" }).check();
+
+  await expect(detail).toHaveAttribute("data-node-state", "cleared");
+  await expect(nodeLabel(page, "SolNode27")).toHaveAttribute(
+    "data-state",
+    "cleared",
+  );
+  // 다음 노드가 함께 열린다 — 3상태는 저장값이 아니라 파생값이다
+  await expect(nodeLabel(page, "SolNode89")).toHaveAttribute(
+    "data-state",
+    "uncleared",
+  );
+
+  // 저장까지 갔는지는 새로고침이 말해 준다
+  await openEarth(page);
+  await expect(nodeLabel(page, "SolNode27")).toHaveAttribute(
+    "data-state",
+    "cleared",
+  );
+});
+
+test("교차점은 상세에서도 구별된다", async ({ page }) => {
+  await openEarth(page);
+
+  await nodeLabel(page, "EarthToVenusJunction").click();
+  const detail = page.locator("[data-selected-node='EarthToVenusJunction']");
+  await expect(detail).toContainText("금성 교차점");
+  await expect(detail).toContainText("교차점");
+});
+
+test("호버 없이 탭만으로 노드 정보에 닿는다", async ({ page }) => {
+  await openEarth(page);
+
+  // 포인터를 올리지 않고 탭만 보낸다 — 호버에만 기대는 정보가 있으면 안 된다
+  await nodeLabel(page, "SolNode27").dispatchEvent("click");
+  await expect(page.locator("[data-selected-node='SolNode27']")).toBeVisible();
+});
+
+test("행성 전체 클리어면 성계 뷰의 그 행성에 완료 아이콘이 뜬다", async ({
+  page,
+}) => {
+  await seedProgress(page, EARTH_NODE_IDS);
+  await openStarchart(page);
+
+  const earth = page.locator("[data-body-id='Earth']");
+  await expect(earth).toHaveAttribute("data-state", "complete");
+  await expect(earth).toContainText("✓");
+  // 아직 아무것도 안 한 행성은 그대로다
+  await expect(page.locator("[data-body-id='Mars']")).not.toHaveAttribute(
+    "data-state",
+  );
 });

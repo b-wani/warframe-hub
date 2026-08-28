@@ -12,11 +12,16 @@
  * 가까운 노드(가장 가까운 것이 그룹 중심에서 9px)가 행성 안에 파묻히기
  * 때문이다.
  *
- * 노드 상태(잠김/미클리어/클리어)의 시각 규칙은 여기 없다 — 파생 3상태는 완료
- * 집합이 있어야 계산되고, 그 시각화는 #43 소관이다.
+ * 노드 상태(잠김/미클리어/클리어)는 여기 없다 — 완료 집합이 있어야 계산되는
+ * 파생값이라 화면이 프레임마다 쥔다. 대신 상태가 붙을 자리는 여기서 만들어 둔다:
+ * 연결선이 자기 두 끝 노드를 알고 있어야 화면이 실선·점선을 가를 수 있다.
  */
 import type { SolarSystemBody } from "./bodies.ts";
-import { placedNodesByGroup, type StarchartDataset } from "./dataset.ts";
+import {
+  isJunction,
+  placedNodesByGroup,
+  type StarchartDataset,
+} from "./dataset.ts";
 import type { StarchartLayout } from "./layout.ts";
 
 /**
@@ -40,6 +45,16 @@ export type NodeMarker = {
   name: string;
   /** 태양을 원점으로 한 월드 좌표. */
   position: [number, number, number];
+  /** 교차점인가 — 특수 노드로 구별해 그린다(스펙 §2.2). */
+  junction: boolean;
+};
+
+/** 노드 둘을 잇는 선 하나. */
+export type NodeLink = {
+  from: string;
+  to: string;
+  /** 두 끝의 월드 좌표 — 그리는 쪽이 그대로 쓴다. */
+  points: [[number, number, number], [number, number, number]];
 };
 
 export type NodeCloud = {
@@ -49,10 +64,10 @@ export type NodeCloud = {
   center: [number, number, number];
   nodes: NodeMarker[];
   /**
-   * `nextNodes` 간선을 두 점씩 늘어놓은 목록 — 한 줄이 원소 두 개다.
-   * 선 하나짜리 `Line`(segments)에 그대로 넣는 모양이다.
+   * `nextNodes` 간선. 끝 노드의 id를 함께 들고 있어서 화면이 상태에 따라
+   * 실선·점선으로 나눠 그릴 수 있다.
    */
-  links: [number, number, number][];
+  links: NodeLink[];
   /**
    * 중심에서 가장 먼 노드까지의 거리. 이 구름이 화면을 채우는 거리의 척도라,
    * 카메라가 얼마나 멀어졌는지 재는 자로 쓴다.
@@ -101,23 +116,28 @@ export function nodeClouds(
         center[2] + point.y * NODE_SCALE,
       ];
       placed.set(id, position);
-      nodes.push({ id, name: dataset.nodes[id].name, position });
+      nodes.push({
+        id,
+        name: dataset.nodes[id].name,
+        position,
+        junction: isJunction(dataset.nodes[id]),
+      });
     }
 
     // 간선에 방향은 없다 — A→B와 B→A가 둘 다 있어도 선은 하나다. 그룹 밖을
     // 가리키는 간선(교차점 → 다음 행성)은 이 구름의 선이 아니다.
-    const links: [number, number, number][] = [];
+    const links: NodeLink[] = [];
     const drawn = new Set<string>();
     for (const { id, nextNodes } of members) {
-      const from = placed.get(id);
-      if (!from) continue;
+      const start = placed.get(id);
+      if (!start) continue;
       for (const next of nextNodes) {
-        const to = placed.get(next);
-        if (!to) continue;
+        const end = placed.get(next);
+        if (!end) continue;
         const key = id < next ? `${id} ${next}` : `${next} ${id}`;
         if (drawn.has(key)) continue;
         drawn.add(key);
-        links.push(from, to);
+        links.push({ from: id, to: next, points: [start, end] });
       }
     }
 
