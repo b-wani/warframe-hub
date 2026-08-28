@@ -57,7 +57,7 @@
 - 정보 노출은 선택(탭/클릭) 기준 — 호버는 데스크톱 보조 수단이며 호버에만
   의존하는 정보가 있어서는 안 된다(§7).
 
-근거: [#21](https://github.com/b-wani/warframe-hub/issues/21), [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34)
+근거: [#21](https://github.com/b-wani/warframe-hub/issues/21), [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34), [#43 노드 3상태·상세·개별 체크](https://github.com/b-wani/warframe-hub/issues/43) (3상태 시각·교차점 구별·노드 상세 구현 완료 — 주요 노드의 큐레이션 오버레이 콘텐츠는 [#50](https://github.com/b-wani/warframe-hub/issues/50))
 
 ## 3. 데이터 파이프라인
 
@@ -134,7 +134,7 @@
   확인 단계, 확인 후 진행이 바뀌면 확인 무효, 이미 완료된 노드엔 버튼 비노출.
 - **비노드 목표 체크**: 행성 가이드 안에서.
 
-근거: [#25 진행도 도메인 모델](https://github.com/b-wani/warframe-hub/issues/25), [ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md)
+근거: [#25 진행도 도메인 모델](https://github.com/b-wani/warframe-hub/issues/25), [ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md), [#43](https://github.com/b-wani/warframe-hub/issues/43) (개별 체크·파생 상태·행성 완료 아이콘 구현 완료 — 구간 일괄 체크는 [#46](https://github.com/b-wani/warframe-hub/issues/46), 비노드 목표 체크는 [#49](https://github.com/b-wani/warframe-hub/issues/49))
 
 ## 5. 진행도 가져오기 UX
 
