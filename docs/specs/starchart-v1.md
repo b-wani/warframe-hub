@@ -206,7 +206,7 @@ v1 요구사항인 적응 규칙 4항목:
 체크리스트). 3D가 뜨는 환경에서도 수동 전환 가능(접근성·저사양 자구책).
 진행도 확인·체크는 3D 없이도 성립해야 한다.
 
-근거: [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (적응 규칙 1 종횡비 인지 프레이밍 구현 완료 — 나머지 3항목은 [#51](https://github.com/b-wani/warframe-hub/issues/51))
+근거: [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (적응 규칙 1 종횡비 인지 프레이밍 구현 완료 — 나머지 3항목은 [#51](https://github.com/b-wani/warframe-hub/issues/51)), [#45 폴백 뷰](https://github.com/b-wani/warframe-hub/issues/45) (WebGL 불가 시 자동 표시·수동 전환·행성 아코디언 체크리스트 구현 완료)
 
 ## 9. v1 범위 밖 (맵의 fog·out of scope 승계)
 
