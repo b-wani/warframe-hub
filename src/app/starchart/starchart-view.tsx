@@ -20,6 +20,7 @@ import { knownNodeIds } from "@/starchart/data";
 import { isWebglAvailable } from "@/starchart/webgl";
 import { FallbackView } from "./fallback-view";
 import { ProgressControls } from "./progress-controls";
+import { StarchartLoading } from "./starchart-loading";
 import styles from "./page.module.css";
 import { useStarchartProgress } from "./use-progress";
 
@@ -29,7 +30,7 @@ import { useStarchartProgress } from "./use-progress";
  */
 const Scene = dynamic(() => import("./scene"), {
   ssr: false,
-  loading: () => <p className={styles.loading}>성계지도를 불러오는 중…</p>,
+  loading: () => <StarchartLoading />,
 });
 
 type ViewMode = "3d" | "fallback";

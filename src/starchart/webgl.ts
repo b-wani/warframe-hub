@@ -12,9 +12,12 @@ export function isWebglAvailable(): boolean {
   try {
     const canvas = document.createElement("canvas");
     // three는 webgl2를 먼저 쓰고 없으면 webgl로 내려간다 — 같은 순서로 묻는다
-    return Boolean(
-      canvas.getContext("webgl2") ?? canvas.getContext("webgl"),
-    );
+    const context = canvas.getContext("webgl2") ?? canvas.getContext("webgl");
+    if (!context) return false;
+    // 물어보려고 만든 컨텍스트는 물어본 자리에서 놓는다 — 브라우저가 동시에
+    // 들고 있을 수 있는 컨텍스트 수는 적고, 곧 3D 장면이 하나를 가져간다
+    context.getExtension("WEBGL_lose_context")?.loseContext();
+    return true;
   } catch {
     return false;
   }

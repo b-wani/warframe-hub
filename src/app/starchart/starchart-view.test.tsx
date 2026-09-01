@@ -13,7 +13,9 @@ const getContext = HTMLCanvasElement.prototype.getContext;
 
 /** WebGL이 되는 환경인 척한다 — jsdom은 기본이 "안 되는 환경"이다. */
 function withWebgl() {
-  HTMLCanvasElement.prototype.getContext = vi.fn(() => ({}) as never);
+  HTMLCanvasElement.prototype.getContext = vi.fn(
+    () => ({ getExtension: () => null }) as never,
+  );
 }
 
 afterEach(() => {

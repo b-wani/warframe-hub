@@ -19,6 +19,7 @@ import { starchartDataset, starchartProgressGraph } from "@/starchart/data";
 import { fallbackGroups } from "@/starchart/fallback";
 import {
   NODE_STATE_NAME,
+  isGroupComplete,
   nodeState,
   type NodeState,
 } from "@/starchart/progress";
@@ -69,8 +70,10 @@ function FallbackGroupSection({
       ),
     [group, completedIds],
   );
-  const done = group.nodes.filter((node) => completedIds.has(node.id)).length;
-  const complete = done === group.nodes.length && done > 0;
+  const done = [...states.values()].filter((state) => state === "cleared").length;
+  // 완료 여부는 세어서 판단하지 않는다 — 행성 완료는 3D 뷰의 완료 아이콘과 같은
+  // 파생값이고, 두 화면이 다른 규칙으로 답하면 그게 곧 어긋남이다(§4.2)
+  const complete = isGroupComplete(starchartProgressGraph, completedIds, group.id);
 
   return (
     <details
