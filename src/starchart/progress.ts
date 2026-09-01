@@ -15,6 +15,17 @@ import { isTrackedGroup, type StarchartDataset } from "./dataset";
 export type NodeState = "locked" | "uncleared" | "cleared";
 
 /**
+ * 3상태의 사용자 노출 표기. 상태를 색으로만 알리지 않기 위한 것이라 3D 뷰와
+ * 폴백 뷰가 같은 말을 써야 한다 — 표기가 갈리면 같은 노드가 화면마다 다른
+ * 상태처럼 읽힌다.
+ */
+export const NODE_STATE_NAME: Record<NodeState, string> = {
+  locked: "잠김",
+  uncleared: "미클리어",
+  cleared: "클리어",
+};
+
+/**
  * 파생 계산에 필요한 만큼만 데이터셋을 뒤집어 놓은 색인. 데이터셋마다 한 번
  * 만들어 두고 재사용한다 — 진행도 대상이 아닌 노드는 애초에 들어오지 않는다.
  */

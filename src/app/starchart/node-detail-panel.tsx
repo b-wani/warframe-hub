@@ -13,15 +13,8 @@
  * 생긴다.
  */
 import type { NodeDetail } from "@/starchart/node-detail";
-import type { NodeState } from "@/starchart/progress";
+import { NODE_STATE_NAME, type NodeState } from "@/starchart/progress";
 import styles from "./page.module.css";
-
-/** 3상태의 사용자 노출 표기 — 색만으로 상태를 알리지 않기 위한 것이기도 하다. */
-const STATE_NAME: Record<NodeState, string> = {
-  locked: "잠김",
-  uncleared: "미클리어",
-  cleared: "클리어",
-};
 
 export function NodeDetailPanel({
   detail,
@@ -43,7 +36,7 @@ export function NodeDetailPanel({
         <h2 className={styles.detailName}>{detail.name}</h2>
         {detail.junction && <span className={styles.junctionTag}>교차점</span>}
         <span className={styles.stateTag} data-state={state}>
-          {STATE_NAME[state]}
+          {NODE_STATE_NAME[state]}
         </span>
       </header>
 
