@@ -290,7 +290,290 @@
   cursor: pointer;
 }
 
+/*
+ * 진행도 조작 HUD — 툴바와 온보딩 배너가 제목 아래 왼쪽에 함께 선다.
+ * 오른쪽 위는 행성 뷰 HUD(뒤로·노드 상세)의 자리다. 좁은 폭의 배치 규칙
+ * 전반은 별건이다(#51).
+ */
+.progressHud {
+  position: absolute;
+  left: 16px;
+  top: 48px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.progressHud button,
+.progressHud summary,
+.progressHud a,
+.progressHud input,
+.progressHud textarea {
+  pointer-events: auto;
+}
+
+.toolbar {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.toolButton {
+  display: block;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: #cfdcea;
+  cursor: pointer;
+  background: rgb(16 24 40 / 88%);
+  border: 1px solid #2a3a55;
+  border-radius: 6px;
+}
+
+.toolButton:hover {
+  color: #fff;
+  border-color: #4d6a99;
+}
+
+.toolMenu {
+  position: relative;
+}
+
+.toolMenuBody {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  padding: 8px;
+  background: rgb(10 16 28 / 96%);
+  border: 1px solid #2a3a55;
+  border-radius: 8px;
+}
+
+.dangerButton {
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  white-space: nowrap;
+  color: #ff9c9c;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #593040;
+  border-radius: 6px;
+}
+
+.dangerButton:disabled {
+  color: #6d7a8b;
+  cursor: not-allowed;
+  border-color: #2a3a55;
+}
+
+/* 온보딩 배너 — 완료 집합이 비어 있을 때만 한 번 말을 건다(스펙 §5) */
+.banner {
+  width: min(320px, 78vw);
+  padding: 10px 12px;
+  background: rgb(10 16 28 / 92%);
+  border: 1px solid #2a3a55;
+  border-radius: 8px;
+  pointer-events: auto;
+}
+
+.bannerText {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #cfdcea;
+}
+
+.bannerActions,
+.modalActions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.modalActions {
+  justify-content: flex-end;
+}
+
+.primaryButton,
+.ghostButton {
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.primaryButton {
+  color: #06101f;
+  background: #6fa8f0;
+  border: 1px solid #6fa8f0;
+}
+
+.primaryButton:disabled {
+  color: #8d9bad;
+  cursor: not-allowed;
+  background: #22304a;
+  border-color: #22304a;
+}
+
+.ghostButton {
+  color: #cfdcea;
+  background: none;
+  border: 1px solid #2a3a55;
+}
+
+/* 가져오기 위저드 — 지도 위를 덮는 모달이다(뒤의 캔버스가 클릭을 받지 않게) */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgb(2 5 12 / 72%);
+  pointer-events: auto;
+}
+
+.modal {
+  width: min(460px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  color: #e8eef6;
+  background: #0b1220;
+  border: 1px solid #2a3a55;
+  border-radius: 10px;
+}
+
+.modalHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid #1c2942;
+}
+
+.modalTitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.modalClose {
+  padding: 2px 6px;
+  font: inherit;
+  color: #8d9bad;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.modalBody {
+  padding: 14px;
+}
+
+.stepMark {
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: #8d9bad;
+}
+
+.modalText {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #cfdcea;
+}
+
+.field {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: #8d9bad;
+}
+
+.field input,
+.field textarea {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px;
+  font: inherit;
+  font-size: 13px;
+  color: #e8eef6;
+  background: #060c17;
+  border: 1px solid #2a3a55;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.guide {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #a8b6c8;
+}
+
+.guide summary {
+  color: #cfdcea;
+  cursor: pointer;
+}
+
+.guide ol {
+  margin: 6px 0 0 18px;
+}
+
+.guide a {
+  color: #6fa8f0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.notice,
+.error,
+.preview {
+  margin-top: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  border-radius: 6px;
+}
+
+.notice {
+  color: #ffd166;
+  background: rgb(255 209 102 / 8%);
+  border: 1px solid #5b4a20;
+}
+
+.error {
+  color: #ff9c9c;
+  background: rgb(255 156 156 / 8%);
+  border: 1px solid #593040;
+}
+
+.preview {
+  color: #cfdcea;
+  background: rgb(111 168 240 / 8%);
+  border: 1px solid #2a3a55;
+}
+
+.previewNote {
+  margin-top: 4px;
+  color: #8d9bad;
+}
+
 @media (max-width: 600px) {
+  .progressHud {
+    right: 16px;
+    top: 44px;
+  }
+
+  .banner {
+    width: 100%;
+  }
+
   .title {
     font-size: 17px;
   }

@@ -152,3 +152,23 @@ export function toggleCompletion(
 export function resetCompletion(): Set<string> {
   return new Set();
 }
+
+/**
+ * 진행도 가져오기의 합집합 병합(스펙 §5) — 들어온 id를 더하기만 한다. 완료를
+ * 지우는 일이 없으므로 몇 번을 다시 실행해도 무해하다.
+ */
+export function mergeCompletion(
+  completedIds: ReadonlySet<string>,
+  ids: Iterable<string>,
+): Set<string> {
+  const next = new Set(completedIds);
+  for (const id of ids) next.add(id);
+  return next;
+}
+
+/** 진행도 대상 노드 id 전부 — 가져오기가 아는 `Tag`를 가리는 기준이다. */
+export function progressNodeIds(
+  graph: StarchartProgressGraph,
+): Set<string> {
+  return new Set(graph.predecessors.keys());
+}

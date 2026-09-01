@@ -39,6 +39,7 @@ import {
   buildProgressGraph,
   isGroupComplete,
   nodeStates,
+  progressNodeIds,
   type NodeState,
 } from "@/starchart/progress";
 import {
@@ -49,6 +50,7 @@ import {
 import { CelestialBody } from "./celestial-body";
 import { NodeCloudView } from "./node-cloud-view";
 import { NodeDetailPanel } from "./node-detail-panel";
+import { ProgressControls } from "./progress-controls";
 import styles from "./page.module.css";
 import { useStarchartProgress } from "./use-progress";
 
@@ -56,6 +58,8 @@ const { bodies } = solarSystemBodies(starchartDataset, starchartLayout);
 const bodyById = new Map(bodies.map((body) => [body.id, body]));
 const { clouds } = nodeClouds(starchartDataset, starchartLayout, bodies);
 const progressGraph = buildProgressGraph(starchartDataset);
+/** 가져오기가 아는 `Tag`의 기준 — 진행도 대상 노드 전부다(스펙 §5). */
+const knownNodeIds = progressNodeIds(progressGraph);
 
 /**
  * 첫 프레임용 카메라 자리. 실제 종횡비는 Canvas 안에서만 알 수 있어
@@ -222,7 +226,7 @@ function isCameraControls(
 
 export default function Scene() {
   const moved = useRef(false);
-  const { completedIds, toggle } = useStarchartProgress();
+  const { completedIds, toggle, merge, reset } = useStarchartProgress();
   const [focus, setFocus] = useState<string | null>(null);
   // 초점을 놓아도 구름은 남는다 — 성계로 돌아가는 비행 도중 노드가 툭 꺼지면
   // 그 순간이 컷이 된다. 멀어지는 만큼 옅어지는 일은 구름 쪽이 한다.
@@ -321,6 +325,13 @@ export default function Scene() {
         />
         <CameraDirector focus={focus} moved={moved} />
       </Canvas>
+
+      <ProgressControls
+        completedIds={completedIds}
+        knownNodeIds={knownNodeIds}
+        onImport={merge}
+        onReset={reset}
+      />
 
       {focusedBody && (
         <div className={styles.viewHud}>

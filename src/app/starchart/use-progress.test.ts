@@ -74,3 +74,41 @@ describe("useStarchartProgress", () => {
     );
   });
 });
+
+describe("useStarchartProgress — 가져오기와 초기화", () => {
+  test("병합은 합집합이다 — 기존 완료를 지우지 않는다", () => {
+    const repository = fakeRepository(["SolNode27", "quest-vor-prize"]);
+    const { result } = renderHook(() => useStarchartProgress(repository));
+
+    act(() => result.current.merge(["SolNode27", "SolNode89"]));
+
+    expect([...result.current.completedIds].sort()).toEqual([
+      "SolNode27",
+      "SolNode89",
+      "quest-vor-prize",
+    ]);
+    expect(repository.saved).toEqual([
+      ["SolNode27", "SolNode89", "quest-vor-prize"],
+    ]);
+  });
+
+  test("같은 병합을 다시 해도 완료가 그대로다 — 재실행이 무해하다", () => {
+    const { result } = renderHook(() =>
+      useStarchartProgress(fakeRepository(["SolNode27"])),
+    );
+
+    act(() => result.current.merge(["SolNode27"]));
+    act(() => result.current.merge(["SolNode27"]));
+    expect([...result.current.completedIds]).toEqual(["SolNode27"]);
+  });
+
+  test("초기화는 완료 집합을 비우고 그것까지 저장한다", () => {
+    const repository = fakeRepository(["SolNode27", "SolNode89"]);
+    const { result } = renderHook(() => useStarchartProgress(repository));
+
+    act(() => result.current.reset());
+
+    expect([...result.current.completedIds]).toEqual([]);
+    expect(repository.saved).toEqual([[]]);
+  });
+});
