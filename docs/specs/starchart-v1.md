@@ -159,7 +159,7 @@ JSON을 사용자가 직접 붙여넣고 클라이언트에서 파싱한다. 서
 - **재실행 무해**(합집합), 전용 되돌리기 없음. 탈출구는 툴바 설정 메뉴의
   **진행도 전체 초기화** — "완료 N개가 삭제됩니다" 숫자 confirm으로 보호.
 
-근거: [#27 가져오기 경로 리서치](https://github.com/b-wani/warframe-hub/issues/27) (`docs/research/account-progress-import.md`, `research/account-progress-import` 브랜치), [#33 UX 흐름](https://github.com/b-wani/warframe-hub/issues/33)
+근거: [#27 가져오기 경로 리서치](https://github.com/b-wani/warframe-hub/issues/27) (`docs/research/account-progress-import.md`, `research/account-progress-import` 브랜치), [#33 UX 흐름](https://github.com/b-wani/warframe-hub/issues/33), [#44 진행도 가져오기 위저드](https://github.com/b-wani/warframe-hub/issues/44) (온보딩 배너·2단계 위저드·오류 4구분·미리보기 병합·전체 초기화 구현 완료)
 
 ## 6. 월드스테이트 오버레이
 
