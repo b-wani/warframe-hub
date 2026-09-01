@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
-import { StarchartCanvas } from "./starchart-canvas";
+import { StarchartClient } from "./starchart-client";
 import { TextureCredit } from "./texture-credit";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function StarchartPage() {
       <header className={styles.header}>
         <h1 className={styles.title}>스타차트</h1>
       </header>
-      <StarchartCanvas />
+      <StarchartClient />
       <footer className={styles.footer}>
         <TextureCredit />
       </footer>

@@ -12,8 +12,21 @@ test("컨텍스트를 못 얻으면 WebGL이 없는 것으로 본다", () => {
   expect(isWebglAvailable()).toBe(false);
 });
 
-test("컨텍스트를 얻으면 WebGL이 있는 것으로 본다", () => {
-  HTMLCanvasElement.prototype.getContext = vi.fn(() => ({}) as never);
+test("컨텍스트를 얻으면 WebGL이 있는 것으로 본다 — 얻은 컨텍스트는 놓는다", () => {
+  const loseContext = vi.fn();
+  HTMLCanvasElement.prototype.getContext = vi.fn(
+    () => ({ getExtension: () => ({ loseContext }) }) as never,
+  );
+
+  expect(isWebglAvailable()).toBe(true);
+  // 3D 장면이 쓸 컨텍스트를 판별이 물고 있으면 안 된다
+  expect(loseContext).toHaveBeenCalledOnce();
+});
+
+test("컨텍스트를 놓는 확장이 없어도 답은 같다", () => {
+  HTMLCanvasElement.prototype.getContext = vi.fn(
+    () => ({ getExtension: () => null }) as never,
+  );
   expect(isWebglAvailable()).toBe(true);
 });
 

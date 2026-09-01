@@ -683,7 +683,7 @@
   align-items: center;
   gap: 8px;
   /* 이름까지가 체크 손잡이다 — 44px 탭 타깃을 줄 하나로 채운다 */
-  min-height: 40px;
+  min-height: 44px;
   font-size: 13px;
   cursor: pointer;
 }
