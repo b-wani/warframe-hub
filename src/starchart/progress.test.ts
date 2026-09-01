@@ -6,6 +6,7 @@ import {
   completeGroup,
   completeThrough,
   isGroupComplete,
+  mergeCompletion,
   nodeState,
   nodeStates,
   resetCompletion,
@@ -304,5 +305,23 @@ describe("정제 노드 데이터셋", () => {
     expect(isGroupComplete(real, completeGroup(real, new Set(), "Mercury"), "Mercury")).toBe(
       true,
     );
+  });
+});
+
+describe("mergeCompletion", () => {
+  test("더하기만 한다 — 기존 완료는 하나도 지우지 않는다", () => {
+    const before = new Set(["SolNode27", "quest-vor-prize"]);
+    const after = mergeCompletion(before, ["SolNode27", "SolNode89"]);
+    expect([...after].sort()).toEqual([
+      "SolNode27",
+      "SolNode89",
+      "quest-vor-prize",
+    ]);
+    expect([...before].sort()).toEqual(["SolNode27", "quest-vor-prize"]);
+  });
+
+  test("같은 병합을 다시 해도 결과가 같다 — 재실행이 무해하다", () => {
+    const once = mergeCompletion(new Set(), ["SolNode27"]);
+    expect([...mergeCompletion(once, ["SolNode27"])]).toEqual(["SolNode27"]);
   });
 });

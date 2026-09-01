@@ -16,13 +16,21 @@ import {
   createLocalStorageProgressRepository,
   type ProgressRepository,
 } from "@/starchart/progress-repository";
-import { toggleCompletion } from "@/starchart/progress";
+import {
+  mergeCompletion,
+  resetCompletion,
+  toggleCompletion,
+} from "@/starchart/progress";
 
 export type StarchartProgress = {
   /** 완료 집합 — 토글할 때만 새 객체가 된다. */
   completedIds: ReadonlySet<string>;
   /** 개별 체크(§4.3) — 완료를 뒤집고 곧바로 저장한다. */
   toggle: (id: string) => void;
+  /** 진행도 가져오기(§5) — 합집합 병합. 완료를 지우는 일은 없다. */
+  merge: (ids: Iterable<string>) => void;
+  /** 진행도 전체 초기화(§5) — 확인 절차는 이 훅이 아니라 화면의 몫이다. */
+  reset: () => void;
 };
 
 /**
@@ -54,5 +62,22 @@ export function useStarchartProgress(
     [completedIds, store],
   );
 
-  return { completedIds, toggle };
+  // 가져오기는 합집합이라 순서가 어떻든 결과가 같다 — 미리보기에서 센 것과
+  // 여기서 반영하는 것이 같은 계산이다(스펙 §5).
+  const merge = useCallback(
+    (ids: Iterable<string>) => {
+      const next = mergeCompletion(completedIds, ids);
+      store.save(next);
+      setCompletedIds(next);
+    },
+    [completedIds, store],
+  );
+
+  const reset = useCallback(() => {
+    const next = resetCompletion();
+    store.save(next);
+    setCompletedIds(next);
+  }, [store]);
+
+  return { completedIds, toggle, merge, reset };
 }
