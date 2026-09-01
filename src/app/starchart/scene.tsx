@@ -3,8 +3,10 @@
 /**
  * 성계 뷰와 행성 뷰 — 두 개의 뷰, 하나의 장면(스펙 §2.1).
  *
- * 이 모듈이 three를 끌어들이는 유일한 진입점이다 — 서버 번들에 3D가 들어가지
- * 않도록 `starchart-canvas.tsx`가 `next/dynamic({ ssr: false })`로만 불러온다.
+ * 이 모듈이 three를 끌어들이는 유일한 진입점이다 — 3D 뷰에 들어갈 때만 내려오도록
+ * `starchart-view.tsx`가 `next/dynamic({ ssr: false })`로만 불러온다.
+ *
+ * 완료 집합은 여기 없다 — 폴백 뷰와 같은 집합을 써야 하므로 뷰보다 위에 있다.
  *
  * 데이터는 정제 노드 데이터셋과 좌표 데이터셋의 정적 임포트뿐이다(스펙 §7).
  * 무엇을 어디에 어떻게 그릴지는 표시 모델(`solarSystemBodies`·`nodeClouds`)이
@@ -32,14 +34,16 @@ import {
   planetViewShot,
   solarViewShot,
 } from "@/starchart/camera";
-import { starchartDataset, starchartLayout } from "@/starchart/data";
+import {
+  starchartDataset,
+  starchartLayout,
+  starchartProgressGraph as progressGraph,
+} from "@/starchart/data";
 import { nodeClouds } from "@/starchart/node-cloud";
 import { nodeDetail } from "@/starchart/node-detail";
 import {
-  buildProgressGraph,
   isGroupComplete,
   nodeStates,
-  progressNodeIds,
   type NodeState,
 } from "@/starchart/progress";
 import {
@@ -50,16 +54,11 @@ import {
 import { CelestialBody } from "./celestial-body";
 import { NodeCloudView } from "./node-cloud-view";
 import { NodeDetailPanel } from "./node-detail-panel";
-import { ProgressControls } from "./progress-controls";
 import styles from "./page.module.css";
-import { useStarchartProgress } from "./use-progress";
 
 const { bodies } = solarSystemBodies(starchartDataset, starchartLayout);
 const bodyById = new Map(bodies.map((body) => [body.id, body]));
 const { clouds } = nodeClouds(starchartDataset, starchartLayout, bodies);
-const progressGraph = buildProgressGraph(starchartDataset);
-/** 가져오기가 아는 `Tag`의 기준 — 진행도 대상 노드 전부다(스펙 §5). */
-const knownNodeIds = progressNodeIds(progressGraph);
 
 /**
  * 첫 프레임용 카메라 자리. 실제 종횡비는 Canvas 안에서만 알 수 있어
@@ -224,9 +223,16 @@ function isCameraControls(
   );
 }
 
-export default function Scene() {
+export default function Scene({
+  completedIds,
+  onToggle,
+}: {
+  /** 완료 집합은 뷰보다 위(`starchart-view`)에 있다 — 여기서는 읽기만 한다. */
+  completedIds: ReadonlySet<string>;
+  /** 개별 체크(§4.3) — 폴백 뷰의 체크리스트와 같은 조작이다. */
+  onToggle: (id: string) => void;
+}) {
   const moved = useRef(false);
-  const { completedIds, toggle, merge, reset } = useStarchartProgress();
   const [focus, setFocus] = useState<string | null>(null);
   // 초점을 놓아도 구름은 남는다 — 성계로 돌아가는 비행 도중 노드가 툭 꺼지면
   // 그 순간이 컷이 된다. 멀어지는 만큼 옅어지는 일은 구름 쪽이 한다.
@@ -326,13 +332,6 @@ export default function Scene() {
         <CameraDirector focus={focus} moved={moved} />
       </Canvas>
 
-      <ProgressControls
-        completedIds={completedIds}
-        knownNodeIds={knownNodeIds}
-        onImport={merge}
-        onReset={reset}
-      />
-
       {focusedBody && (
         <div className={styles.viewHud}>
           <button
@@ -355,7 +354,7 @@ export default function Scene() {
             <NodeDetailPanel
               detail={selectedDetail}
               state={states.get(selectedDetail.id) ?? "locked"}
-              onToggle={toggle}
+              onToggle={onToggle}
             />
           )}
         </div>

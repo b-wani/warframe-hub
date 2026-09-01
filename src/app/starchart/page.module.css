@@ -582,3 +582,148 @@
     font-size: 10px;
   }
 }
+
+/*
+ * 폴백 뷰 — 3D 없이 진행도를 확인·체크하는 텍스트 화면(스펙 §8).
+ *
+ * 지도가 아니라 글이므로 규칙이 반대다: 화면을 덮는 HUD도, 포인터를 가려야 할
+ * 캔버스도 없고 그냥 스크롤된다. 조작도 글의 흐름 안에 서므로 겹칠 자리가
+ * 없다 — 좁은 폭에서도 배치를 따로 손볼 것이 없다.
+ */
+.fallbackPage {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding: 52px 16px 44px;
+}
+
+.fallbackHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 720px;
+  margin: 0 auto 12px;
+}
+
+/* 흐름 안에 서는 진행도 조작 — 지도 위에 얹힐 때의 절대 배치를 푼다 */
+.fallbackPage .progressHud {
+  position: static;
+  flex: 1;
+  min-width: 200px;
+  pointer-events: auto;
+}
+
+.fallbackNotice {
+  flex: 1;
+  min-width: 200px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #a8b6c8;
+}
+
+.fallbackList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.fallbackGroup {
+  background: rgb(10 16 28 / 72%);
+  border: 1px solid #1c2942;
+  border-radius: 8px;
+}
+
+.fallbackSummary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* 탭 타깃은 시각 크기보다 넉넉하게(스펙 §8-3) */
+  padding: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.fallbackGroupName {
+  flex: 1;
+  font-weight: 600;
+  color: #e8eef6;
+}
+
+.fallbackCount {
+  font-size: 12px;
+  color: #8d9bad;
+  font-variant-numeric: tabular-nums;
+}
+
+.fallbackGroup[data-complete] .fallbackGroupName {
+  color: #fff;
+}
+
+.fallbackNodes {
+  padding: 0 12px 8px;
+  list-style: none;
+}
+
+.fallbackNode {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  border-top: 1px solid #141f33;
+}
+
+.fallbackNodeLabel {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  /* 이름까지가 체크 손잡이다 — 44px 탭 타깃을 줄 하나로 채운다 */
+  min-height: 44px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.fallbackNodeLabel input {
+  width: 18px;
+  height: 18px;
+  accent-color: #4b8fe3;
+  cursor: pointer;
+}
+
+.fallbackNodeName {
+  color: #cfdcea;
+}
+
+.fallbackNode[data-state="locked"] .fallbackNodeName {
+  color: #8b97a8;
+}
+
+.fallbackNode[data-state="cleared"] .fallbackNodeName {
+  color: #e8f0fb;
+}
+
+/* 3D ↔ 목록 수동 전환 — 지도 위에서는 왼쪽 아래 구석에 조용히 선다 */
+.viewToggle {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  z-index: 10;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: #cfdcea;
+  cursor: pointer;
+  background: rgb(16 24 40 / 88%);
+  border: 1px solid #2a3a55;
+  border-radius: 6px;
+}
+
+.viewToggle:hover {
+  color: #fff;
+  border-color: #4d6a99;
+}
