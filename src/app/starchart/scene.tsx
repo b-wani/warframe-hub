@@ -12,6 +12,10 @@
  * 무엇을 어디에 어떻게 그릴지는 표시 모델(`solarSystemBodies`·`nodeClouds`)이
  * 이미 정했다.
  *
+ * 실시간 월드스테이트(활성 균열)도 여기서 받는다 — 지도와 진행도는 월드스테이트와
+ * 무관하게 온전해야 하므로, 스냅숏이 없으면 균열 심볼과 목록만 비고 나머지는
+ * 아무것도 달라지지 않는다(스펙 §6).
+ *
  * 뷰를 바꾸는 것은 장면 교체가 아니라 카메라 이동 하나다 — 행성을 고르면
  * `CameraControls`가 그 행성까지 보간해서 날아가고(변형 A 채택, #32), 돌아올
  * 때도 같은 비행이다. 컷도 모프도 없다.
@@ -37,8 +41,14 @@ import {
 import {
   starchartDataset,
   starchartLayout,
+  starchartNodeNames,
   starchartProgressGraph as progressGraph,
 } from "@/starchart/data";
+import {
+  activeFissures,
+  fissuresByNode,
+  type FissureMarker,
+} from "@/starchart/fissures";
 import { nodeClouds } from "@/starchart/node-cloud";
 import { nodeDetail } from "@/starchart/node-detail";
 import {
@@ -53,13 +63,22 @@ import {
 } from "@/starchart/textures";
 import { BulkComplete } from "./bulk-complete";
 import { CelestialBody } from "./celestial-body";
+import { FissureList, type FissureStatus } from "./fissure-list";
 import { NodeCloudView } from "./node-cloud-view";
 import { NodeDetailPanel } from "./node-detail-panel";
 import styles from "./page.module.css";
+import { useNow } from "./use-now";
+import { useWorldState } from "./use-worldstate";
 
 const { bodies } = solarSystemBodies(starchartDataset, starchartLayout);
 const bodyById = new Map(bodies.map((body) => [body.id, body]));
 const { clouds } = nodeClouds(starchartDataset, starchartLayout, bodies);
+
+/** 남은 시간·만료를 다시 세는 간격. 스냅숏 갱신과 별개의 눈금이다. */
+const FISSURE_TICK_MS = 15_000;
+
+/** 균열을 놓을 수 있는 천체 — 지도에 없는 그룹의 균열은 표시할 자리가 없다. */
+const bodyIds = new Set(bodies.map((body) => body.id));
 
 /**
  * 첫 프레임용 카메라 자리. 실제 종횡비는 Canvas 안에서만 알 수 있어
@@ -107,6 +126,7 @@ function SolarSystem({
   selected,
   states,
   completeBodies,
+  fissures,
   onFocus,
   onSelect,
 }: {
@@ -118,6 +138,8 @@ function SolarSystem({
   states: ReadonlyMap<string, NodeState>;
   /** 노드를 전부 클리어한 천체 id — 완료 아이콘이 붙는다. */
   completeBodies: ReadonlySet<string>;
+  /** 노드 id → 활성 균열. 월드스테이트가 없으면 비어 있다. */
+  fissures: ReadonlyMap<string, FissureMarker>;
   onFocus: (id: string) => void;
   onSelect: (id: string) => void;
 }) {
@@ -167,6 +189,7 @@ function SolarSystem({
           labelled={focus === cloud.body}
           selected={selected}
           states={states}
+          fissures={fissures}
           onSelect={onSelect}
         />
       )}
@@ -236,6 +259,11 @@ export default function Scene({
   /** 구간 일괄 체크 확정(§4.3) — 폴백 뷰의 같은 조작과 한 자리로 모인다. */
   onBulkComplete: (addedIds: ReadonlySet<string>) => void;
 }) {
+  const worldState = useWorldState();
+  // 균열이 닫히는 것을 지도가 알아야 한다. 스냅숏 갱신(60초)보다 촘촘히 세는
+  // 이유는 남은 시간이 분 단위 표기라서다 — 갱신 박자로 세면 "1분 미만"이라고
+  // 적어 둔 균열이 한 박자 내내 남는다.
+  const now = useNow(FISSURE_TICK_MS);
   const moved = useRef(false);
   const [focus, setFocus] = useState<string | null>(null);
   // 초점을 놓아도 구름은 남는다 — 성계로 돌아가는 비행 도중 노드가 툭 꺼지면
@@ -255,6 +283,16 @@ export default function Scene({
       if (id) setCloudBody(id);
     },
     [focus],
+  );
+
+  // 목록 탭에서 균열을 고르면 그 행성까지 연속 비행하고 노드를 골라 둔다 —
+  // 전환은 언제나 카메라 하나다(스펙 §2.1).
+  const goToFissure = useCallback(
+    (marker: FissureMarker) => {
+      focusOn(marker.bodyId);
+      setSelected(marker.nodeId);
+    },
+    [focusOn],
   );
 
   // ESC로 성계 뷰까지 한 단계씩 물러난다 — 마우스가 없어도 빠져나올 길이 있어야 한다
@@ -285,6 +323,29 @@ export default function Scene({
       ),
     [completedIds],
   );
+
+  // 활성 균열은 받은 스냅숏에서 파생된다 — 닫힌 균열은 다음 스냅숏을 기다리지
+  // 않고 눈금이 한 번 갈 때 빠진다.
+  const fissureMarkers = useMemo(
+    () =>
+      activeFissures(worldState?.fissures ?? null, {
+        dataset: starchartDataset,
+        names: starchartNodeNames,
+        bodies: bodyIds,
+        now,
+      }),
+    [worldState, now],
+  );
+  const fissures = useMemo(
+    () => fissuresByNode(fissureMarkers),
+    [fissureMarkers],
+  );
+  const fissureStatus: FissureStatus =
+    worldState === null || worldState.fissures === null
+      ? "unavailable"
+      : worldState.stale
+        ? "stale"
+        : "ok";
 
   const focusedBody = focus ? bodyById.get(focus) : undefined;
   const selectedDetail = selected
@@ -318,6 +379,7 @@ export default function Scene({
             selected={selected}
             states={states}
             completeBodies={completeBodies}
+            fissures={fissures}
             onFocus={focusOn}
             onSelect={setSelected}
           />
@@ -335,6 +397,14 @@ export default function Scene({
         />
         <CameraDirector focus={focus} moved={moved} />
       </Canvas>
+
+      {/* 균열 목록은 성계 뷰에서도 필요하다 — 어느 행성에 열렸는지부터 읽는다 */}
+      <FissureList
+        markers={fissureMarkers}
+        status={fissureStatus}
+        now={now}
+        onGo={goToFissure}
+      />
 
       {focusedBody && (
         <div className={styles.viewHud}>

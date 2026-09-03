@@ -55,5 +55,5 @@ describe("nodeDetail", () => {
 });
 
 function node(fields: Partial<(typeof dataset)["nodes"][string]>) {
-  return { name: "N", group: "G", nextNodes: [], ...fields };
+  return { name: "N", enName: "N", group: "G", nextNodes: [], ...fields };
 }

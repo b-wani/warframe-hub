@@ -11,6 +11,7 @@ const sectionPaths: Record<keyof RawWorldState, string> = {
   voidTrader: "voidTrader",
   earthCycle: "earthCycle",
   cetusCycle: "cetusCycle",
+  fissures: "fissures",
 };
 
 export type WorldStateDeps = {
@@ -80,6 +81,12 @@ function mergeWithPrevious(
     stale = true;
   }
 
+  let fissures = fresh.fissures;
+  if (fissures === null && previous.fissures !== null) {
+    fissures = previous.fissures;
+    stale = true;
+  }
+
   const cycles = cycleRegionSchema.options.flatMap((region) => {
     const received = fresh.cycles.find((cycle) => cycle.region === region);
     if (received !== undefined) return [received];
@@ -89,7 +96,7 @@ function mergeWithPrevious(
     return [cached];
   });
 
-  return { ...fresh, voidTrader, cycles, stale };
+  return { ...fresh, voidTrader, cycles, fissures, stale };
 }
 
 /** 섹션별로 받아온다. 하나도 못 받으면 null(=외부 장애). */

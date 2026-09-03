@@ -12,6 +12,7 @@
 import starchartJson from "@/data/starchart.json";
 import layoutJson from "@/data/starchart-layout.json";
 import type { StarchartDataset } from "./dataset.ts";
+import { nodeNamesByEn } from "./fissures.ts";
 import type { StarchartLayout } from "./layout.ts";
 import { buildProgressGraph, progressNodeIds } from "./progress.ts";
 
@@ -26,6 +27,12 @@ export const starchartLayout = layoutJson as StarchartLayout;
  * 빌드 시점에 고정이라 앱마다 한 번 만들어 두면 된다.
  */
 export const starchartProgressGraph = buildProgressGraph(starchartDataset);
+
+/**
+ * 영문 표시명 색인 — 월드스테이트의 균열을 노드에 붙이는 기준(스펙 §6).
+ * 데이터셋이 빌드 시점에 고정이라 앱마다 한 번 만들어 두면 된다.
+ */
+export const starchartNodeNames = nodeNamesByEn(starchartDataset);
 
 /** 가져오기가 아는 `Tag`의 기준 — 진행도 대상 노드 전부다(스펙 §5). */
 export const knownNodeIds = progressNodeIds(starchartProgressGraph);
