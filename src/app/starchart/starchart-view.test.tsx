@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, expect, test, vi } from "vitest";
 import StarchartView from "./starchart-view";
@@ -78,4 +78,26 @@ test("진행도 가져오기는 폴백 뷰에서도 열린다", async () => {
   expect(
     screen.getAllByRole("button", { name: "진행도 가져오기" }).length,
   ).toBeGreaterThan(0);
+});
+
+test("폴백 뷰의 구간 일괄 체크도 같은 완료 집합에 반영된다", async () => {
+  const user = userEvent.setup();
+  render(<StarchartView />);
+  await screen.findByText(/3D를 렌더할 수 없어/);
+
+  const earth = document.querySelector<HTMLElement>("[data-group-id='Earth']")!;
+  await user.click(earth.querySelector("summary")!);
+  await user.click(
+    within(earth).getByRole("button", { name: "행성 전체 완료" }),
+  );
+  await user.click(within(earth).getByRole("button", { name: "21개 완료" }));
+
+  // 개별 체크와 같은 저장소·같은 집합이다 — 지구 21노드가 한 번에 들어간다
+  const stored = JSON.parse(
+    window.localStorage.getItem("warframe-hub:progress")!,
+  );
+  expect(stored.version).toBe(2);
+  expect(stored.completedIds).toHaveLength(21);
+  // 완료가 지워지는 일은 없다 — 아코디언 제목이 그대로 21/21을 말한다
+  expect(earth.textContent).toContain("21/21");
 });

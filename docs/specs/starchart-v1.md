@@ -134,7 +134,7 @@
   확인 단계, 확인 후 진행이 바뀌면 확인 무효, 이미 완료된 노드엔 버튼 비노출.
 - **비노드 목표 체크**: 행성 가이드 안에서.
 
-근거: [#25 진행도 도메인 모델](https://github.com/b-wani/warframe-hub/issues/25), [ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md), [#43](https://github.com/b-wani/warframe-hub/issues/43) (개별 체크·파생 상태·행성 완료 아이콘 구현 완료 — 구간 일괄 체크는 [#46](https://github.com/b-wani/warframe-hub/issues/46), 비노드 목표 체크는 [#49](https://github.com/b-wani/warframe-hub/issues/49))
+근거: [#25 진행도 도메인 모델](https://github.com/b-wani/warframe-hub/issues/25), [ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md), [#43](https://github.com/b-wani/warframe-hub/issues/43) (개별 체크·파생 상태·행성 완료 아이콘 구현 완료), [#46](https://github.com/b-wani/warframe-hub/issues/46) (구간 일괄 체크·행성 전체 완료 구현 완료 — 확인 단계·확인 무효화·버튼 비노출 포함. 비노드 목표 체크는 [#49](https://github.com/b-wani/warframe-hub/issues/49))
 
 ## 5. 진행도 가져오기 UX
 

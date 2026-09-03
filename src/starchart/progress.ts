@@ -149,6 +149,56 @@ export function completeGroup(
   return next;
 }
 
+/**
+ * 구간 일괄 체크의 대상 — "여기까지"(노드 하나까지)인가 "행성 전체"(그룹 하나)
+ * 인가. 두 조작은 같은 규칙의 두 형태이므로 한 타입으로 묶어 둔다(스펙 §4.3).
+ * `kind`가 `id`의 뜻을 정한다: 노드 id이거나 그룹 id다.
+ */
+export type BulkTarget = {
+  readonly kind: "through" | "group";
+  readonly id: string;
+};
+
+/**
+ * 구간 일괄 체크로 **새로 완료되는** 노드 id. 확인 단계가 세는 것도, 확정이
+ * 반영하는 것도 이 집합 하나다 — 읽은 개수와 반영되는 집합이 어긋날 자리를
+ * 없애려고 세는 것과 넣는 것을 같은 값으로 둔다(스펙 §4.3).
+ *
+ * 이미 완료된 것은 결과에 없으므로 이 집합을 합집합으로 더하면 완료가 해제될
+ * 길이 없다. 비어 있다는 것은 자신과 선행이 이미 모두 완료됐다는 뜻이고, 그때는
+ * 버튼을 노출하지 않는다.
+ */
+export function bulkCompletion(
+  graph: StarchartProgressGraph,
+  completedIds: ReadonlySet<string>,
+  target: BulkTarget,
+): Set<string> {
+  const filled =
+    target.kind === "group"
+      ? completeGroup(graph, completedIds, target.id)
+      : completeThrough(graph, completedIds, target.id);
+
+  const added = new Set<string>();
+  for (const id of filled) if (!completedIds.has(id)) added.add(id);
+  return added;
+}
+
+/**
+ * 두 완료 집합이 같은 사실을 말하는가. 화면이 "그새 진행이 바뀌었는가"를 물을 때
+ * 쓰는 비교다 — 같은 객체인지가 아니라 담긴 id가 같은지를 본다. 진행도의 출처가
+ * 어떻게 바뀌든(메모이제이션·복사·서버 전환) 답이 흔들리지 않아야 하는 질문이라
+ * 참조 동일성에 기대지 않는다.
+ */
+export function sameCompletion(
+  a: ReadonlySet<string>,
+  b: ReadonlySet<string>,
+): boolean {
+  if (a === b) return true;
+  if (a.size !== b.size) return false;
+  for (const id of a) if (!b.has(id)) return false;
+  return true;
+}
+
 /** 개별 체크 — 완료 여부를 뒤집은 새 집합. 노드가 아닌 목표도 같은 집합이다. */
 export function toggleCompletion(
   completedIds: ReadonlySet<string>,
