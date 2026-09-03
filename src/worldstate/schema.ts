@@ -35,7 +35,51 @@ export const dayNightCycleSchema = z
   })
   .transform((raw) => ({ isDay: raw.isDay, expiryAt: raw.expiry }));
 
+/**
+ * 보이드 균열의 로테이션 — 인게임 렐릭 등급 순서다(스펙 §6). 이 순서가 곧
+ * 목록의 정렬 기준이므로 열거 순서에 의미가 있다.
+ */
+export const fissureTierSchema = z.enum([
+  "Lith",
+  "Meso",
+  "Neo",
+  "Axi",
+  "Requiem",
+  "Omnia",
+]);
+
+/**
+ * 외부 응답의 fissures 항목 하나 → 내부 타입.
+ *
+ * 외부는 노드를 SolNode id가 아니라 영문 표시명("E Gate (Venus)")으로만 알려준다.
+ * 괄호 안 행성은 우리 데이터셋이 이미 아는 사실이라 떼어 둔 이름도 함께 준다 —
+ * 이름 자체가 괄호로 끝나는 노드가 있어("THE INDEX: ENDURANCE (LOW RISK)") 뗀
+ * 것만 남기면 그 노드를 영영 못 알아본다. 이름을 노드 id로 바꾸는 일은 스타차트
+ * 쪽 소관이다.
+ */
+export const voidFissureSchema = z
+  .object({
+    nodeKey: z.string().min(1),
+    tier: fissureTierSchema,
+    activation: epochFromIso,
+    expiry: epochFromIso,
+    /** 스틸패스 균열인가. 없는 응답도 있어 기본은 일반 균열이다. */
+    isHard: z.boolean().optional(),
+  })
+  .transform((raw) => ({
+    /** 외부가 준 원문 그대로. */
+    nodeKey: raw.nodeKey,
+    /** 행성 괄호를 뗀 이름 — 대조는 이 둘을 차례로 시도한다. */
+    nodeName: raw.nodeKey.replace(/\s*\([^()]*\)\s*$/, ""),
+    tier: raw.tier,
+    activationAt: raw.activation,
+    expiryAt: raw.expiry,
+    hard: raw.isHard ?? false,
+  }));
+
 export type CycleRegion = z.infer<typeof cycleRegionSchema>;
+export type FissureTier = z.infer<typeof fissureTierSchema>;
+export type VoidFissure = z.infer<typeof voidFissureSchema>;
 export type VoidTrader = z.infer<typeof voidTraderSchema>;
 export type DayNightCycle = z.infer<typeof dayNightCycleSchema> & {
   region: CycleRegion;
@@ -48,6 +92,11 @@ export type DayNightCycle = z.infer<typeof dayNightCycleSchema> & {
 export type WorldState = {
   voidTrader: VoidTrader | null;
   cycles: DayNightCycle[];
+  /**
+   * 활성 보이드 균열. 빈 배열은 "지금 균열이 없다", null은 "이 섹션을 못
+   * 받았다" — 폴백이 마지막 성공 값으로 메울 대상을 가리려면 둘이 달라야 한다.
+   */
+  fissures: VoidFissure[] | null;
   /** 이 스냅숏을 외부에서 받아온 시각(epoch ms) */
   fetchedAt: number;
   /** 마지막 성공 캐시로 대체된 스냅숏인지 */

@@ -68,10 +68,11 @@
   스타차트 데이터.
 - 생성: `pnpm build:starchart` (`scripts/build-starchart-data.mts`) — 업스트림
   [warframe-public-export-plus](https://github.com/calamity-inc/warframe-public-export-plus)의
-  `ExportRegions.json` + `dict.ko.json`에서 생성. 표시명 인라인(한국어 사전 표기
-  그대로), 그룹 유형 태그, 팩션 수동 매핑(enum 10종) 포함.
-- 검증: 사전 누락 키·미매핑 팩션·데이터셋 밖을 가리키는 간선이 있으면 빌드 실패.
-  런타임 폴백은 언어 키 마지막 세그먼트.
+  `ExportRegions.json` + `dict.ko.json` + `dict.en.json`에서 생성. 표시명
+  인라인(한국어 사전 표기 그대로), 영문 표시명 인라인(월드스테이트 대조용 —
+  §6), 그룹 유형 태그, 팩션 수동 매핑(enum 10종) 포함.
+- 검증: 사전 누락 키·미매핑 팩션·겹치는 영문 표시명·데이터셋 밖을 가리키는
+  간선이 있으면 빌드 실패. 런타임 폴백은 언어 키 마지막 세그먼트.
 - 갱신: 게임 패치 때 수동 재실행 + diff 검수. 원본 사전(4.5MB)·원형 JSON은
   커밋·번들 제외.
 
@@ -171,7 +172,7 @@ JSON을 사용자가 직접 붙여넣고 클라이언트에서 파싱한다. 서
   실패·TTL 캐시·폴백 규칙 그대로. 균열 섹션을 어댑터에 추가한다. 월드스테이트를
   못 받아도 지도·진행도는 온전하고 실시간 항목만 빠진다.
 
-근거: [#21](https://github.com/b-wani/warframe-hub/issues/21), 기존 월드스테이트 어댑터 규약(CONTEXT.md)
+근거: [#21](https://github.com/b-wani/warframe-hub/issues/21), 기존 월드스테이트 어댑터 규약(CONTEXT.md), [#47](https://github.com/b-wani/warframe-hub/issues/47) (균열 섹션·노드 심볼·목록 탭 구현 완료 — 프록시마 노드의 보이드 폭풍은 프록시마가 지도에 붙는 [#48](https://github.com/b-wani/warframe-hub/issues/48) 이후다)
 
 ## 7. 렌더링 구성
 

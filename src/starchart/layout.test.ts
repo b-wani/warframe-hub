@@ -18,9 +18,14 @@ const tinyDataset: StarchartDataset = {
     RelayStationSanctuary: { name: "미션 통제실", type: "relay" },
   },
   nodes: {
-    SolNode1: { name: "A", group: "Mercury", nextNodes: ["SolNode2"] },
-    SolNode2: { name: "B", group: "Mercury", nextNodes: [] },
-    SolNode801: { name: "릴레이", group: "RelayStationSanctuary", nextNodes: [] },
+    SolNode1: { name: "A", enName: "A", group: "Mercury", nextNodes: ["SolNode2"] },
+    SolNode2: { name: "B", enName: "B", group: "Mercury", nextNodes: [] },
+    SolNode801: {
+      name: "릴레이",
+      enName: "Relay",
+      group: "RelayStationSanctuary",
+      nextNodes: [],
+    },
   },
 };
 

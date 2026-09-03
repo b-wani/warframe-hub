@@ -11,17 +11,33 @@ const dataset: StarchartDataset = {
     RelayStationSanctuary: { name: "미션 통제실", type: "relay" },
   },
   nodes: {
-    SolNode27: { name: "E Prime", group: "Earth", nextNodes: ["SolNode89"] },
-    SolNode89: { name: "Mariana", group: "Earth", nextNodes: [] },
+    SolNode27: {
+      name: "E Prime",
+      enName: "E Prime",
+      group: "Earth",
+      nextNodes: ["SolNode89"],
+    },
+    SolNode89: { name: "Mariana", enName: "Mariana", group: "Earth", nextNodes: [] },
     EarthToVenusJunction: {
       name: "금성 교차점",
+      enName: "Venus Junction",
       group: "Earth",
       nextNodes: [],
       missionType: "MT_JUNCTION",
     },
-    CrewBattleNode500: { name: "Bendar Cluster", group: "Earth_SPACE", nextNodes: [] },
-    SolNode1: { name: "Teshub", group: "Void", nextNodes: [] },
-    RelayNode: { name: "라루스 릴레이", group: "RelayStationSanctuary", nextNodes: [] },
+    CrewBattleNode500: {
+      name: "Bendar Cluster",
+      enName: "Bendar Cluster",
+      group: "Earth_SPACE",
+      nextNodes: [],
+    },
+    SolNode1: { name: "Teshub", enName: "Teshub", group: "Void", nextNodes: [] },
+    RelayNode: {
+      name: "라루스 릴레이",
+      enName: "Larunda Relay",
+      group: "RelayStationSanctuary",
+      nextNodes: [],
+    },
   },
 };
 

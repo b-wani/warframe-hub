@@ -670,6 +670,159 @@
 }
 
 /*
+ * 보이드 균열 오버레이 — 노드에 얹히는 심볼과 활성 균열 목록 탭(스펙 §6).
+ *
+ * 로테이션은 색으로 구별하지만 색만으로 알리지는 않는다 — 심볼과 목록 항목 모두
+ * 등급 이름을 글로 함께 적는다. 색은 지도를 훑을 때의 단서일 뿐이다.
+ */
+.fissureSymbol {
+  /* drei Html 래퍼가 포인터를 막아 둔다 — 손잡이인 심볼만 되살린다 */
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  font: inherit;
+  font-size: 10px;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+  background: rgb(6 12 23 / 88%);
+  border: 1px solid currentcolor;
+  border-radius: 999px;
+  user-select: none;
+}
+
+.fissureGlyph {
+  font-size: 1.1em;
+}
+
+/* 활성 균열 목록 탭 — 오른쪽 아래에서 위로 펼친다(왼쪽 아래는 뷰 전환 자리다) */
+.fissureHud {
+  position: absolute;
+  right: 16px;
+  bottom: 44px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.fissureHud button {
+  pointer-events: auto;
+}
+
+.fissurePanel {
+  width: min(300px, 78vw);
+  max-height: min(46vh, 360px);
+  overflow-y: auto;
+  padding: 8px;
+  text-align: left;
+  background: rgb(10 16 28 / 94%);
+  border: 1px solid #2a3a55;
+  border-radius: 8px;
+  pointer-events: auto;
+}
+
+.fissureNotice {
+  padding: 2px 4px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #a8b6c8;
+}
+
+.fissureItems {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.fissureItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  /* 탭 타깃 최소 44px (스펙 §8-3) */
+  min-height: 44px;
+  padding: 4px 6px;
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 6px;
+}
+
+.fissureItem:hover {
+  background: rgb(111 168 240 / 10%);
+}
+
+.fissureTier {
+  flex: none;
+  min-width: 46px;
+  padding: 1px 6px;
+  font-size: 11px;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid currentcolor;
+  border-radius: 999px;
+}
+
+.fissureNode {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  color: #e8eef6;
+}
+
+.fissureBody {
+  font-size: 11px;
+  color: #8d9bad;
+}
+
+.fissureRemaining {
+  flex: none;
+  font-size: 11px;
+  color: #a8b6c8;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 로테이션 색 — 심볼과 목록 항목이 같은 색을 쓴다 */
+.fissureSymbol[data-fissure-tier="Lith"],
+.fissureItem[data-fissure-tier="Lith"] .fissureTier {
+  color: #7fe0a8;
+}
+
+.fissureSymbol[data-fissure-tier="Meso"],
+.fissureItem[data-fissure-tier="Meso"] .fissureTier {
+  color: #6fa8f0;
+}
+
+.fissureSymbol[data-fissure-tier="Neo"],
+.fissureItem[data-fissure-tier="Neo"] .fissureTier {
+  color: #c9a6ff;
+}
+
+.fissureSymbol[data-fissure-tier="Axi"],
+.fissureItem[data-fissure-tier="Axi"] .fissureTier {
+  color: #ffd166;
+}
+
+.fissureSymbol[data-fissure-tier="Requiem"],
+.fissureItem[data-fissure-tier="Requiem"] .fissureTier {
+  color: #ff9c9c;
+}
+
+.fissureSymbol[data-fissure-tier="Omnia"],
+.fissureItem[data-fissure-tier="Omnia"] .fissureTier {
+  color: #e8eef6;
+}
+
+/*
  * 폴백 뷰 — 3D 없이 진행도를 확인·체크하는 텍스트 화면(스펙 §8).
  *
  * 지도가 아니라 글이므로 규칙이 반대다: 화면을 덮는 HUD도, 포인터를 가려야 할

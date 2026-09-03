@@ -15,6 +15,12 @@ export type StarchartGroup = {
 
 export type StarchartNode = {
   name: string;
+  /**
+   * 영문 표시명. 월드스테이트가 노드를 id 없이 이 이름으로만 알려주므로
+   * 대조용으로 인라인한다(스펙 §6) — 데이터셋 안에서 겹치지 않는다는 것은
+   * 빌드 파이프라인이 지킨다.
+   */
+  enName: string;
   group: string;
   nextNodes: string[];
   /** 미션 유형 enum(`MT_*`). 생성 파이프라인이 원본에 없으면 비운다. */
