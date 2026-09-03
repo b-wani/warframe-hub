@@ -27,7 +27,12 @@ export type StarchartProgress = {
   completedIds: ReadonlySet<string>;
   /** 개별 체크(§4.3) — 완료를 뒤집고 곧바로 저장한다. */
   toggle: (id: string) => void;
-  /** 진행도 가져오기(§5) — 합집합 병합. 완료를 지우는 일은 없다. */
+  /**
+   * 합집합 병합 — 진행도 가져오기(§5)와 구간 일괄 체크(§4.3)가 같은 조작이다:
+   * 들어온 id를 더하기만 하고 완료를 지우는 일은 없다. 두 조작 모두 미리 세어
+   * 보여 준 그 집합을 그대로 넘기므로, 읽은 개수와 반영되는 집합이 어긋나지
+   * 않는다.
+   */
   merge: (ids: Iterable<string>) => void;
   /** 진행도 전체 초기화(§5) — 확인 절차는 이 훅이 아니라 화면의 몫이다. */
   reset: () => void;
@@ -62,8 +67,8 @@ export function useStarchartProgress(
     [completedIds, store],
   );
 
-  // 가져오기는 합집합이라 순서가 어떻든 결과가 같다 — 미리보기에서 센 것과
-  // 여기서 반영하는 것이 같은 계산이다(스펙 §5).
+  // 합집합이라 순서가 어떻든 결과가 같다 — 가져오기 미리보기에서 센 것도(§5),
+  // 일괄 체크 확인 단계에서 센 것도(§4.3) 여기서 반영하는 것과 같은 집합이다.
   const merge = useCallback(
     (ids: Iterable<string>) => {
       const next = mergeCompletion(completedIds, ids);

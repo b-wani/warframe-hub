@@ -51,6 +51,7 @@ import {
   texturePath,
   type TextureFile,
 } from "@/starchart/textures";
+import { BulkComplete } from "./bulk-complete";
 import { CelestialBody } from "./celestial-body";
 import { NodeCloudView } from "./node-cloud-view";
 import { NodeDetailPanel } from "./node-detail-panel";
@@ -226,11 +227,14 @@ function isCameraControls(
 export default function Scene({
   completedIds,
   onToggle,
+  onBulkComplete,
 }: {
   /** 완료 집합은 뷰보다 위(`starchart-view`)에 있다 — 여기서는 읽기만 한다. */
   completedIds: ReadonlySet<string>;
   /** 개별 체크(§4.3) — 폴백 뷰의 체크리스트와 같은 조작이다. */
   onToggle: (id: string) => void;
+  /** 구간 일괄 체크 확정(§4.3) — 폴백 뷰의 같은 조작과 한 자리로 모인다. */
+  onBulkComplete: (addedIds: ReadonlySet<string>) => void;
 }) {
   const moved = useRef(false);
   const [focus, setFocus] = useState<string | null>(null);
@@ -349,12 +353,21 @@ export default function Scene({
               </span>
             )}
           </p>
+          {/* 행성 전체 완료 — 구간 일괄 체크의 한 형태다(스펙 §4.3) */}
+          <BulkComplete
+            target={{ kind: "group", id: focusedBody.id }}
+            completedIds={completedIds}
+            onComplete={onBulkComplete}
+            className={styles.hudBulk}
+          />
           {/* 상세는 호버가 아니라 선택으로 열린다(스펙 §2.2·§8-2) */}
           {selectedDetail && (
             <NodeDetailPanel
               detail={selectedDetail}
               state={states.get(selectedDetail.id) ?? "locked"}
+              completedIds={completedIds}
               onToggle={onToggle}
+              onBulkComplete={onBulkComplete}
             />
           )}
         </div>

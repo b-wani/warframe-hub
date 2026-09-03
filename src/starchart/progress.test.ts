@@ -3,6 +3,7 @@ import starchartJson from "@/data/starchart.json";
 import type { StarchartDataset } from "./dataset";
 import {
   buildProgressGraph,
+  bulkCompletion,
   completeGroup,
   completeThrough,
   isGroupComplete,
@@ -10,6 +11,7 @@ import {
   nodeState,
   nodeStates,
   resetCompletion,
+  sameCompletion,
   toggleCompletion,
 } from "./progress";
 
@@ -44,6 +46,10 @@ const dataset: StarchartDataset = {
 };
 
 const graph = buildProgressGraph(dataset);
+
+/** 구간 일괄 체크의 두 형태 — 테스트가 읽히게 짧게 쓴다. */
+const through = (id: string) => ({ kind: "through", id }) as const;
+const group = (id: string) => ({ kind: "group", id }) as const;
 
 describe("nodeState", () => {
   test("완료 집합에 있으면 클리어다", () => {
@@ -227,6 +233,85 @@ describe("completeGroup", () => {
     const after = completeGroup(graph, new Set(["V2", "quest-vors-prize"]), "Mercury");
     expect(after.has("V2")).toBe(true);
     expect(after.has("quest-vors-prize")).toBe(true);
+  });
+});
+
+describe("bulkCompletion", () => {
+  test("새로 완료되는 노드만 돌려준다 — 확인 단계가 세는 것이 이것이다", () => {
+    expect([...bulkCompletion(graph, new Set(["M1"]), through("V1"))].sort()).toEqual([
+      "M2",
+      "MJ",
+      "V1",
+    ]);
+  });
+
+  test("행성 전체 완료도 같은 계산이다", () => {
+    expect([...bulkCompletion(graph, new Set(["M1"]), group("Venus"))].sort()).toEqual([
+      "M2",
+      "MJ",
+      "V1",
+      "V2",
+    ]);
+  });
+
+  test("자신과 선행이 모두 완료됐으면 비어 있다 — 버튼을 감출 근거다", () => {
+    const completed = completeThrough(graph, new Set(), "V2");
+    expect(bulkCompletion(graph, completed, through("V2")).size).toBe(0);
+    expect(bulkCompletion(graph, completed, group("Venus")).size).toBe(0);
+  });
+
+  test("자신만 완료되고 선행이 비어 있으면 아직 채울 것이 남는다", () => {
+    // 개별 체크로 중간 노드만 찍어 둔 진행도 — 여기까지 완료가 할 일이 있다
+    const added = bulkCompletion(graph, new Set(["MJ"]), through("MJ"));
+    expect([...added].sort()).toEqual(["M1", "M2"]);
+  });
+
+  test("진행도 대상이 아닌 노드·그룹이면 비어 있다", () => {
+    expect(bulkCompletion(graph, new Set(), through("Ghost")).size).toBe(0);
+    expect(bulkCompletion(graph, new Set(), through("R1")).size).toBe(0);
+    expect(bulkCompletion(graph, new Set(), group("Pluto")).size).toBe(0);
+  });
+
+  test("이미 완료된 것은 결과에 없다 — 해제할 것도 다시 셀 것도 없다", () => {
+    const before = new Set(["V2", "quest-vors-prize"]);
+    const added = bulkCompletion(graph, before, through("V2"));
+    expect(added.has("V2")).toBe(false);
+    expect(added.has("quest-vors-prize")).toBe(false);
+  });
+
+  test("센 개수와 반영되는 집합이 어긋나지 않는다", () => {
+    // 확인 단계가 읽은 수와 병합 결과의 증가분이 같아야 한다(스펙 §4.3)
+    const before = new Set(["M1", "quest-vors-prize"]);
+    const added = bulkCompletion(graph, before, group("Venus"));
+    const after = mergeCompletion(before, added);
+    expect(after.size - before.size).toBe(added.size);
+    expect([...after].sort()).toEqual(
+      [...completeGroup(graph, before, "Venus")].sort(),
+    );
+  });
+
+  test("입력 집합을 바꾸지 않는다", () => {
+    const before = new Set(["M1"]);
+    bulkCompletion(graph, before, group("Venus"));
+    expect([...before]).toEqual(["M1"]);
+  });
+});
+
+describe("sameCompletion", () => {
+  test("담긴 id가 같으면 다른 객체라도 같다 — 참조로 보지 않는다", () => {
+    expect(sameCompletion(new Set(["M1", "M2"]), new Set(["M2", "M1"]))).toBe(
+      true,
+    );
+  });
+
+  test("하나라도 다르면 다르다", () => {
+    expect(sameCompletion(new Set(["M1"]), new Set(["M2"]))).toBe(false);
+    expect(sameCompletion(new Set(["M1"]), new Set(["M1", "M2"]))).toBe(false);
+    expect(sameCompletion(new Set(), new Set(["M1"]))).toBe(false);
+  });
+
+  test("빈 집합끼리는 같다", () => {
+    expect(sameCompletion(new Set(), new Set())).toBe(true);
   });
 });
 
