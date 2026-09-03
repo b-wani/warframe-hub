@@ -1,9 +1,11 @@
 import {
   cycleRegionSchema,
   dayNightCycleSchema,
+  voidFissureSchema,
   voidTraderSchema,
   type CycleRegion,
   type DayNightCycle,
+  type VoidFissure,
   type VoidTrader,
   type WorldState,
 } from "./schema";
@@ -13,6 +15,7 @@ export type RawWorldState = {
   voidTrader?: unknown;
   earthCycle?: unknown;
   cetusCycle?: unknown;
+  fissures?: unknown;
 };
 
 const cycleKeys: Record<CycleRegion, keyof RawWorldState> = {
@@ -35,6 +38,7 @@ export function toWorldState(
   return {
     voidTrader: parseVoidTrader(sections.voidTrader),
     cycles: parseCycles(sections),
+    fissures: parseFissures(sections.fissures),
     fetchedAt: options.fetchedAt,
     stale: options.stale ?? false,
   };
@@ -42,12 +46,30 @@ export function toWorldState(
 
 /** 아무 정보도 없는 스냅숏. 외부 호출이 통째로 실패했을 때의 폴백. */
 export function emptyWorldState(fetchedAt: number): WorldState {
-  return { voidTrader: null, cycles: [], fetchedAt, stale: false };
+  return {
+    voidTrader: null,
+    cycles: [],
+    fissures: null,
+    fetchedAt,
+    stale: false,
+  };
 }
 
 function parseVoidTrader(raw: unknown): VoidTrader | null {
   const result = voidTraderSchema.safeParse(raw);
   return result.success ? result.data : null;
+}
+
+/**
+ * 균열 섹션. 항목 단위로도 독립 실패한다 — 모르는 로테이션이 하나 들어와도
+ * 나머지 균열은 지도에 뜬다. 배열이 아니면 섹션 자체를 못 받은 것으로 본다.
+ */
+function parseFissures(raw: unknown): VoidFissure[] | null {
+  if (!Array.isArray(raw)) return null;
+  return raw.flatMap((item) => {
+    const result = voidFissureSchema.safeParse(item);
+    return result.success ? [result.data] : [];
+  });
 }
 
 function parseCycles(sections: RawWorldState): DayNightCycle[] {
