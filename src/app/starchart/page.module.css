@@ -291,6 +291,92 @@
 }
 
 /*
+ * 구간 일괄 체크 — "여기까지 완료"·"행성 전체 완료"와 그 확인 단계(스펙 §4.3).
+ *
+ * 세 자리(노드 상세·행성 뷰 HUD·폴백 목록)에 같은 조작이 서므로 옷만 자리마다
+ * 다르고 생김새의 뼈대는 여기 하나다. 확인 단계가 버튼 자리를 그대로 차지해
+ * 화면이 밀리지 않게 한다 — 옆의 개별 체크가 밀려나면 그게 오조작을 부른다.
+ */
+.bulk {
+  margin-top: 8px;
+}
+
+.bulkButton {
+  padding: 0 10px;
+  /* 탭 타깃 최소 44px (스펙 §8-3) */
+  min-height: 44px;
+  font: inherit;
+  font-size: 12px;
+  color: #cfdcea;
+  cursor: pointer;
+  background: rgb(16 24 40 / 88%);
+  border: 1px solid #2a3a55;
+  border-radius: 6px;
+}
+
+.bulkButton:hover {
+  color: #fff;
+  border-color: #4d6a99;
+}
+
+.bulkConfirm {
+  padding: 8px 10px;
+  text-align: left;
+  background: rgb(111 168 240 / 8%);
+  border: 1px solid #2a3a55;
+  border-radius: 6px;
+  /* 확인 단계는 눌러야 하는 자리다 — 지도 위 HUD의 pointer-events를 되돌린다 */
+  pointer-events: auto;
+}
+
+.bulkDetail {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #cfdcea;
+}
+
+.bulkActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.bulkStale {
+  margin-bottom: 6px;
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
+  color: #ffd166;
+  background: rgb(255 209 102 / 8%);
+  border: 1px solid #5b4a20;
+  border-radius: 6px;
+}
+
+/* 행성 뷰 HUD의 행성 전체 완료 — 오른쪽 위 열에 맞춰 선다 */
+.hudBulk {
+  width: min(260px, 72vw);
+  text-align: right;
+}
+
+/* 폴백 뷰: 행성 전체 완료는 아코디언을 편 첫 줄에 선다 */
+.fallbackGroupBulk {
+  margin: 0 12px 4px;
+}
+
+/* 폴백 뷰: 노드 줄의 여기까지 완료 — 이름·상태 표기 다음 자리다 */
+.fallbackNodeBulk {
+  margin-top: 0;
+}
+
+/* 확인이나 무효 알림이 뜨면 줄 전체를 쓴다 — 좁은 폭에서 글이 잘리지 않게 */
+.fallbackNodeBulk:has(.bulkConfirm, .bulkStale) {
+  flex-basis: 100%;
+  margin: 4px 0;
+}
+
+/*
  * 진행도 조작 HUD — 툴바와 온보딩 배너가 제목 아래 왼쪽에 함께 선다.
  * 오른쪽 위는 행성 뷰 HUD(뒤로·노드 상세)의 자리다. 좁은 폭의 배치 규칙
  * 전반은 별건이다(#51).

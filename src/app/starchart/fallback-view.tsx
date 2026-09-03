@@ -7,6 +7,10 @@
  * 열린다. 지도가 하던 일 중 여기서 성립해야 하는 것은 **진행도 확인·체크**다 —
  * 노드가 어떤 상태인지 읽고, 완료를 켜고 끄는 것. 카메라도 좌표도 여기 없다.
  *
+ * 구간 일괄 체크도 여기 있다(§4.3) — 행성 전체 완료는 아코디언 안에, 여기까지
+ * 완료는 노드 줄마다. 3D 뷰에서만 되는 조작을 남기면 폴백 뷰만 쓰는 사용자에게
+ * 영영 닿지 않는 길이 생긴다.
+ *
  * 완료 집합은 이 화면의 것이 아니다 — 받아서 읽고, 바꾸는 것은 위로 알린다.
  * 그래서 3D 뷰와 같은 완료 집합·같은 저장소를 쓰고, 어느 쪽에서 체크하든 다른
  * 쪽이 곧바로 같은 상태를 말한다(§4.1).
@@ -23,6 +27,7 @@ import {
   nodeState,
   type NodeState,
 } from "@/starchart/progress";
+import { BulkComplete } from "./bulk-complete";
 import styles from "./page.module.css";
 
 const groups = fallbackGroups(starchartDataset);
@@ -30,10 +35,13 @@ const groups = fallbackGroups(starchartDataset);
 export function FallbackView({
   completedIds,
   onToggle,
+  onBulkComplete,
 }: {
   completedIds: ReadonlySet<string>;
   /** 개별 체크(§4.3) — 3D 뷰의 노드 상세와 같은 조작이다. */
   onToggle: (id: string) => void;
+  /** 구간 일괄 체크 확정(§4.3) — 새로 완료되는 id만 올라간다. */
+  onBulkComplete: (addedIds: ReadonlySet<string>) => void;
 }) {
   return (
     <div className={styles.fallbackList}>
@@ -43,6 +51,7 @@ export function FallbackView({
           group={group}
           completedIds={completedIds}
           onToggle={onToggle}
+          onBulkComplete={onBulkComplete}
         />
       ))}
     </div>
@@ -53,10 +62,12 @@ function FallbackGroupSection({
   group,
   completedIds,
   onToggle,
+  onBulkComplete,
 }: {
   group: (typeof groups)[number];
   completedIds: ReadonlySet<string>;
   onToggle: (id: string) => void;
+  onBulkComplete: (addedIds: ReadonlySet<string>) => void;
 }) {
   // 아코디언이 닫혀 있어도 제목은 완료 개수를 말해야 한다 — 전부 펼쳐 보지 않고도
   // "어디를 더 해야 하는가"를 읽는 것이 이 화면의 쓸모다
@@ -93,6 +104,17 @@ function FallbackGroupSection({
         )}
       </summary>
 
+      {/*
+        행성 전체 완료는 아코디언 안이다 — summary 안에 버튼을 두면 그 클릭이
+        아코디언을 여닫는 클릭과 한 자리에서 겹친다
+      */}
+      <BulkComplete
+        target={{ kind: "group", id: group.id }}
+        completedIds={completedIds}
+        onComplete={onBulkComplete}
+        className={styles.fallbackGroupBulk}
+      />
+
       <ul className={styles.fallbackNodes}>
         {group.nodes.map((node) => {
           const state = states.get(node.id) ?? "locked";
@@ -118,6 +140,12 @@ function FallbackGroupSection({
               <span className={styles.stateTag} data-state={state}>
                 {NODE_STATE_NAME[state]}
               </span>
+              <BulkComplete
+                target={{ kind: "through", id: node.id }}
+                completedIds={completedIds}
+                onComplete={onBulkComplete}
+                className={styles.fallbackNodeBulk}
+              />
             </li>
           );
         })}
