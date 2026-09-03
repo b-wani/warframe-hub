@@ -11,8 +11,9 @@
  *
  * 완료 집합을 쥐는 것도 여기다. 두 뷰가 각자 진행도를 들면 뷰를 옮기는 순간
  * 진행도가 갈리므로, 완료 집합은 뷰보다 위에 하나만 있고 두 뷰는 같은 집합을
- * 읽고 같은 토글을 부른다(§4.1). 가져오기·초기화 조작(`ProgressControls`)도
- * 마찬가지 이유로 여기 붙는다 — 3D가 없다고 진행도를 못 다루면 안 된다.
+ * 읽고 같은 토글·같은 일괄 체크를 부른다(§4.1). 가져오기·초기화 조작
+ * (`ProgressControls`)도 마찬가지 이유로 여기 붙는다 — 3D가 없다고 진행도를 못
+ * 다루면 안 된다.
  */
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -59,7 +60,11 @@ export default function StarchartView() {
     return (
       <>
         <div className={styles.canvas}>
-          <Scene completedIds={completedIds} onToggle={toggle} />
+          <Scene
+            completedIds={completedIds}
+            onToggle={toggle}
+            onBulkComplete={merge}
+          />
         </div>
         {controls}
         <button
@@ -94,7 +99,11 @@ export default function StarchartView() {
           </p>
         )}
       </div>
-      <FallbackView completedIds={completedIds} onToggle={toggle} />
+      <FallbackView
+        completedIds={completedIds}
+        onToggle={toggle}
+        onBulkComplete={merge}
+      />
     </div>
   );
 }
