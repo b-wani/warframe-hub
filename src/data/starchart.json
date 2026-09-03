@@ -124,6 +124,7 @@
   "nodes": {
     "SolNode94": {
       "name": "Apollodorus",
+      "enName": "Apollodorus",
       "group": "Mercury",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -136,6 +137,7 @@
     },
     "SolNode130": {
       "name": "Lares",
+      "enName": "Lares",
       "group": "Mercury",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -148,6 +150,7 @@
     },
     "SolNode119": {
       "name": "Caloris",
+      "enName": "Caloris",
       "group": "Mercury",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -162,6 +165,7 @@
     },
     "SolNode12": {
       "name": "Elion",
+      "enName": "Elion",
       "group": "Mercury",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -176,6 +180,7 @@
     },
     "SolNode103": {
       "name": "M Prime",
+      "enName": "M Prime",
       "group": "Mercury",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -191,6 +196,7 @@
     },
     "SolNode28": {
       "name": "Terminus",
+      "enName": "Terminus",
       "group": "Mercury",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -205,6 +211,7 @@
     },
     "SolNode108": {
       "name": "Tolstoj",
+      "enName": "Tolstoj",
       "group": "Mercury",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -217,6 +224,7 @@
     },
     "SolNode223": {
       "name": "Boethius",
+      "enName": "Boethius",
       "group": "Mercury",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -231,6 +239,7 @@
     },
     "SolNode224": {
       "name": "Odin",
+      "enName": "Odin",
       "group": "Mercury",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -243,6 +252,7 @@
     },
     "SolNode225": {
       "name": "Suisei",
+      "enName": "Suisei",
       "group": "Mercury",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -258,6 +268,7 @@
     },
     "SolNode226": {
       "name": "Pantheon",
+      "enName": "Pantheon",
       "group": "Mercury",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -272,6 +283,7 @@
     },
     "SolNode129": {
       "name": "오브 협곡",
+      "enName": "Orb Vallis",
       "group": "Venus",
       "missionType": "MT_LANDSCAPE",
       "missionName": "자유 탐험",
@@ -286,6 +298,7 @@
     },
     "SolNode123": {
       "name": "V Prime",
+      "enName": "V Prime",
       "group": "Venus",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -298,6 +311,7 @@
     },
     "SolNode61": {
       "name": "Ishtar",
+      "enName": "Ishtar",
       "group": "Venus",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -313,6 +327,7 @@
     },
     "SolNode2": {
       "name": "Aphrodite",
+      "enName": "Aphrodite",
       "group": "Venus",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -328,6 +343,7 @@
     },
     "SolNode23": {
       "name": "Cytherean",
+      "enName": "Cytherean",
       "group": "Venus",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -343,6 +359,7 @@
     },
     "SolNode128": {
       "name": "E Gate",
+      "enName": "E Gate",
       "group": "Venus",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -359,6 +376,7 @@
     },
     "SolNode109": {
       "name": "Linea",
+      "enName": "Linea",
       "group": "Venus",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -373,6 +391,7 @@
     },
     "SolNode104": {
       "name": "Fossa",
+      "enName": "Fossa",
       "group": "Venus",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -387,6 +406,7 @@
     },
     "SolNode66": {
       "name": "Unda",
+      "enName": "Unda",
       "group": "Venus",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -401,6 +421,7 @@
     },
     "ClanNode1": {
       "name": "Malva",
+      "enName": "Malva",
       "group": "Venus",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -413,6 +434,7 @@
     },
     "SolNode107": {
       "name": "Venera",
+      "enName": "Venera",
       "group": "Venus",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -427,6 +449,7 @@
     },
     "SolNode22": {
       "name": "Tessera",
+      "enName": "Tessera",
       "group": "Venus",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -442,6 +465,7 @@
     },
     "SolNode101": {
       "name": "Kiliken",
+      "enName": "Kiliken",
       "group": "Venus",
       "missionType": "MT_EXCAVATE",
       "missionName": "발굴",
@@ -456,6 +480,7 @@
     },
     "ClanNode0": {
       "name": "Romula",
+      "enName": "Romula",
       "group": "Venus",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -468,6 +493,7 @@
     },
     "SolNode239": {
       "name": "베스퍼 릴레이",
+      "enName": "Vesper Relay",
       "group": "Venus",
       "missionType": "MT_PAINT_FLOOD",
       "missionName": "폴리의 사냥",
@@ -480,6 +506,7 @@
     },
     "SolNode902": {
       "name": "Montes",
+      "enName": "Montes",
       "group": "Venus",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -492,6 +519,7 @@
     },
     "SolNode63": {
       "name": "Mantle",
+      "enName": "Mantle",
       "group": "Earth",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -507,6 +535,7 @@
     },
     "SolNode27": {
       "name": "E Prime",
+      "enName": "E Prime",
       "group": "Earth",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -521,6 +550,7 @@
     },
     "SolNode79": {
       "name": "Cambria",
+      "enName": "Cambria",
       "group": "Earth",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -535,6 +565,7 @@
     },
     "SolNode39": {
       "name": "Everest",
+      "enName": "Everest",
       "group": "Earth",
       "missionType": "MT_EXCAVATE",
       "missionName": "발굴",
@@ -550,6 +581,7 @@
     },
     "SolNode15": {
       "name": "Pacific",
+      "enName": "Pacific",
       "group": "Earth",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -562,6 +594,7 @@
     },
     "SolNode26": {
       "name": "Lith",
+      "enName": "Lith",
       "group": "Earth",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -576,6 +609,7 @@
     },
     "SolNode89": {
       "name": "Mariana",
+      "enName": "Mariana",
       "group": "Earth",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -590,6 +624,7 @@
     },
     "SolNode85": {
       "name": "Gaia",
+      "enName": "Gaia",
       "group": "Earth",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -605,6 +640,7 @@
     },
     "SolNode59": {
       "name": "Eurasia",
+      "enName": "Eurasia",
       "group": "Earth",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -619,6 +655,7 @@
     },
     "SolNode75": {
       "name": "Cervantes",
+      "enName": "Cervantes",
       "group": "Earth",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -634,6 +671,7 @@
     },
     "SolNode24": {
       "name": "Oro",
+      "enName": "Oro",
       "group": "Earth",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -648,6 +686,7 @@
     },
     "ClanNode2": {
       "name": "Coba",
+      "enName": "Coba",
       "group": "Earth",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -660,6 +699,7 @@
     },
     "SolNode903": {
       "name": "Erpo",
+      "enName": "Erpo",
       "group": "Earth",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -674,6 +714,7 @@
     },
     "ClanNode3": {
       "name": "Tikal",
+      "enName": "Tikal",
       "group": "Earth",
       "missionType": "MT_EXCAVATE",
       "missionName": "발굴",
@@ -686,6 +727,7 @@
     },
     "SolNode228": {
       "name": "아이돌론 평원",
+      "enName": "Plains of Eidolon",
       "group": "Earth",
       "missionType": "MT_LANDSCAPE",
       "missionName": "자유 탐험",
@@ -700,6 +742,7 @@
     },
     "SolNode451": {
       "name": "사야의 예지몽",
+      "enName": "Saya's Visions",
       "group": "Earth",
       "missionType": "MT_OFFERING",
       "missionName": "신사 방어",
@@ -712,6 +755,7 @@
     },
     "SolNode30": {
       "name": "Olympus",
+      "enName": "Olympus",
       "group": "Mars",
       "missionType": "MT_ARTIFACT",
       "missionName": "교란",
@@ -724,6 +768,7 @@
     },
     "SolNode113": {
       "name": "Ares",
+      "enName": "Ares",
       "group": "Mars",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -739,6 +784,7 @@
     },
     "SolNode46": {
       "name": "Spear",
+      "enName": "Spear",
       "group": "Mars",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -754,6 +800,7 @@
     },
     "SolNode68": {
       "name": "Vallis",
+      "enName": "Vallis",
       "group": "Mars",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -766,6 +813,7 @@
     },
     "SolNode58": {
       "name": "Hellas",
+      "enName": "Hellas",
       "group": "Mars",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -781,6 +829,7 @@
     },
     "SolNode106": {
       "name": "Alator",
+      "enName": "Alator",
       "group": "Mars",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -795,6 +844,7 @@
     },
     "SolNode41": {
       "name": "Arval",
+      "enName": "Arval",
       "group": "Mars",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -810,6 +860,7 @@
     },
     "SolNode14": {
       "name": "Ultor",
+      "enName": "Ultor",
       "group": "Mars",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -824,6 +875,7 @@
     },
     "SolNode16": {
       "name": "Augustus",
+      "enName": "Augustus",
       "group": "Mars",
       "missionType": "MT_EXCAVATE",
       "missionName": "발굴",
@@ -839,6 +891,7 @@
     },
     "SolNode45": {
       "name": "Ara",
+      "enName": "Ara",
       "group": "Mars",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -854,6 +907,7 @@
     },
     "SolNode36": {
       "name": "Martialis",
+      "enName": "Martialis",
       "group": "Mars",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -870,6 +924,7 @@
     },
     "ClanNode8": {
       "name": "Kadesh",
+      "enName": "Kadesh",
       "group": "Mars",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -882,6 +937,7 @@
     },
     "SolNode99": {
       "name": "War",
+      "enName": "War",
       "group": "Mars",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -897,6 +953,7 @@
     },
     "SolNode65": {
       "name": "Gradivus",
+      "enName": "Gradivus",
       "group": "Mars",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -911,6 +968,7 @@
     },
     "ClanNode9": {
       "name": "Wahiba",
+      "enName": "Wahiba",
       "group": "Mars",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -923,6 +981,7 @@
     },
     "SolNode11": {
       "name": "Tharsis",
+      "enName": "Tharsis",
       "group": "Mars",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -938,6 +997,7 @@
     },
     "SolNode904": {
       "name": "Syrtis",
+      "enName": "Syrtis",
       "group": "Mars",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -950,6 +1010,7 @@
     },
     "SolNode450": {
       "name": "Tyana Pass",
+      "enName": "Tyana Pass",
       "group": "Mars",
       "missionType": "MT_DEFENSE",
       "missionName": "거울상 방어",
@@ -962,6 +1023,7 @@
     },
     "SolNode87": {
       "name": "Ganymede",
+      "enName": "Ganymede",
       "group": "Jupiter",
       "missionType": "MT_ARTIFACT",
       "missionName": "교란",
@@ -976,6 +1038,7 @@
     },
     "SolNode88": {
       "name": "Adrastea",
+      "enName": "Adrastea",
       "group": "Jupiter",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -990,6 +1053,7 @@
     },
     "SolNode97": {
       "name": "Amalthea",
+      "enName": "Amalthea",
       "group": "Jupiter",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -1005,6 +1069,7 @@
     },
     "SolNode126": {
       "name": "Metis",
+      "enName": "Metis",
       "group": "Jupiter",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -1020,6 +1085,7 @@
     },
     "SolNode125": {
       "name": "Io",
+      "enName": "Io",
       "group": "Jupiter",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -1034,6 +1100,7 @@
     },
     "SolNode100": {
       "name": "Elara",
+      "enName": "Elara",
       "group": "Jupiter",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -1048,6 +1115,7 @@
     },
     "SolNode10": {
       "name": "Thebe",
+      "enName": "Thebe",
       "group": "Jupiter",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -1063,6 +1131,7 @@
     },
     "SolNode25": {
       "name": "Callisto",
+      "enName": "Callisto",
       "group": "Jupiter",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -1077,6 +1146,7 @@
     },
     "SolNode121": {
       "name": "Carpo",
+      "enName": "Carpo",
       "group": "Jupiter",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -1092,6 +1162,7 @@
     },
     "SolNode53": {
       "name": "Themisto",
+      "enName": "Themisto",
       "group": "Jupiter",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -1106,6 +1177,7 @@
     },
     "SolNode74": {
       "name": "Carme",
+      "enName": "Carme",
       "group": "Jupiter",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -1120,6 +1192,7 @@
     },
     "SolNode740": {
       "name": "로팔로리스트",
+      "enName": "The Ropalolyst",
       "group": "Jupiter",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -1132,6 +1205,7 @@
     },
     "ClanNode4": {
       "name": "Sinai",
+      "enName": "Sinai",
       "group": "Jupiter",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -1144,6 +1218,7 @@
     },
     "SolNode73": {
       "name": "Ananke",
+      "enName": "Ananke",
       "group": "Jupiter",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -1159,6 +1234,7 @@
     },
     "SolNode905": {
       "name": "Galilea",
+      "enName": "Galilea",
       "group": "Jupiter",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -1171,6 +1247,7 @@
     },
     "ClanNode5": {
       "name": "Cameria",
+      "enName": "Cameria",
       "group": "Jupiter",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -1183,6 +1260,7 @@
     },
     "SolNode42": {
       "name": "Helene",
+      "enName": "Helene",
       "group": "Saturn",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -1197,6 +1275,7 @@
     },
     "SolNode19": {
       "name": "Enceladus",
+      "enName": "Enceladus",
       "group": "Saturn",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -1212,6 +1291,7 @@
     },
     "SolNode96": {
       "name": "Titan",
+      "enName": "Titan",
       "group": "Saturn",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -1224,6 +1304,7 @@
     },
     "SolNode67": {
       "name": "Dione",
+      "enName": "Dione",
       "group": "Saturn",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -1239,6 +1320,7 @@
     },
     "SolNode93": {
       "name": "Keeler",
+      "enName": "Keeler",
       "group": "Saturn",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -1253,6 +1335,7 @@
     },
     "SolNode32": {
       "name": "Tethys",
+      "enName": "Tethys",
       "group": "Saturn",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -1267,6 +1350,7 @@
     },
     "SolNode18": {
       "name": "Rhea",
+      "enName": "Rhea",
       "group": "Saturn",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -1281,6 +1365,7 @@
     },
     "SolNode20": {
       "name": "Telesto",
+      "enName": "Telesto",
       "group": "Saturn",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -1295,6 +1380,7 @@
     },
     "SolNode70": {
       "name": "Cassini",
+      "enName": "Cassini",
       "group": "Saturn",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -1309,6 +1395,7 @@
     },
     "SolNode31": {
       "name": "Anthe",
+      "enName": "Anthe",
       "group": "Saturn",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -1323,6 +1410,7 @@
     },
     "SolNode50": {
       "name": "Numa",
+      "enName": "Numa",
       "group": "Saturn",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -1338,6 +1426,7 @@
     },
     "SolNode82": {
       "name": "Calypso",
+      "enName": "Calypso",
       "group": "Saturn",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -1352,6 +1441,7 @@
     },
     "SolNode906": {
       "name": "Pandora",
+      "enName": "Pandora",
       "group": "Saturn",
       "missionType": "MT_PURSUIT",
       "missionName": "추적",
@@ -1366,6 +1456,7 @@
     },
     "ClanNode13": {
       "name": "Piscinas",
+      "enName": "Piscinas",
       "group": "Saturn",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -1380,6 +1471,7 @@
     },
     "ClanNode12": {
       "name": "Caracol",
+      "enName": "Caracol",
       "group": "Saturn",
       "missionType": "MT_EVACUATION",
       "missionName": "탈주",
@@ -1392,6 +1484,7 @@
     },
     "SolNode33": {
       "name": "Ariel",
+      "enName": "Ariel",
       "group": "Uranus",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -1406,6 +1499,7 @@
     },
     "SolNode105": {
       "name": "Titania",
+      "enName": "Titania",
       "group": "Uranus",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -1420,6 +1514,7 @@
     },
     "SolNode64": {
       "name": "Umbriel",
+      "enName": "Umbriel",
       "group": "Uranus",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -1434,6 +1529,7 @@
     },
     "SolNode69": {
       "name": "Ophelia",
+      "enName": "Ophelia",
       "group": "Uranus",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -1448,6 +1544,7 @@
     },
     "SolNode83": {
       "name": "Cressida",
+      "enName": "Cressida",
       "group": "Uranus",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -1464,6 +1561,7 @@
     },
     "SolNode98": {
       "name": "Desdemona",
+      "enName": "Desdemona",
       "group": "Uranus",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -1479,6 +1577,7 @@
     },
     "SolNode9": {
       "name": "Rosalind",
+      "enName": "Rosalind",
       "group": "Uranus",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -1493,6 +1592,7 @@
     },
     "SolNode60": {
       "name": "Caliban",
+      "enName": "Caliban",
       "group": "Uranus",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -1508,6 +1608,7 @@
     },
     "SolNode114": {
       "name": "Puck",
+      "enName": "Puck",
       "group": "Uranus",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -1523,6 +1624,7 @@
     },
     "ClanNode16": {
       "name": "Ur",
+      "enName": "Ur",
       "group": "Uranus",
       "missionType": "MT_ARTIFACT",
       "missionName": "교란",
@@ -1535,6 +1637,7 @@
     },
     "SolNode34": {
       "name": "Sycorax",
+      "enName": "Sycorax",
       "group": "Uranus",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -1551,6 +1654,7 @@
     },
     "SolNode122": {
       "name": "Stephano",
+      "enName": "Stephano",
       "group": "Uranus",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -1565,6 +1669,7 @@
     },
     "SolNode907": {
       "name": "Caelus",
+      "enName": "Caelus",
       "group": "Uranus",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -1577,6 +1682,7 @@
     },
     "ClanNode17": {
       "name": "Assur",
+      "enName": "Assur",
       "group": "Uranus",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -1589,6 +1695,7 @@
     },
     "SolNode49": {
       "name": "Larissa",
+      "enName": "Larissa",
       "group": "Neptune",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -1603,6 +1710,7 @@
     },
     "SolNode1": {
       "name": "Galatea",
+      "enName": "Galatea",
       "group": "Neptune",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -1618,6 +1726,7 @@
     },
     "SolNode17": {
       "name": "Proteus",
+      "enName": "Proteus",
       "group": "Neptune",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -1632,6 +1741,7 @@
     },
     "SolNode78": {
       "name": "Triton",
+      "enName": "Triton",
       "group": "Neptune",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -1647,6 +1757,7 @@
     },
     "SolNode6": {
       "name": "Despina",
+      "enName": "Despina",
       "group": "Neptune",
       "missionType": "MT_EXCAVATE",
       "missionName": "발굴",
@@ -1661,6 +1772,7 @@
     },
     "SolNode57": {
       "name": "Sao",
+      "enName": "Sao",
       "group": "Neptune",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -1677,6 +1789,7 @@
     },
     "SolNode62": {
       "name": "Neso",
+      "enName": "Neso",
       "group": "Neptune",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -1692,6 +1805,7 @@
     },
     "SolNode908": {
       "name": "Salacia",
+      "enName": "Salacia",
       "group": "Neptune",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -1706,6 +1820,7 @@
     },
     "SolNode127": {
       "name": "Psamathe",
+      "enName": "Psamathe",
       "group": "Neptune",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -1720,6 +1835,7 @@
     },
     "SolNode118": {
       "name": "Laomedeia",
+      "enName": "Laomedeia",
       "group": "Neptune",
       "missionType": "MT_ARTIFACT",
       "missionName": "교란",
@@ -1734,6 +1850,7 @@
     },
     "SolNode84": {
       "name": "Nereid",
+      "enName": "Nereid",
       "group": "Neptune",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -1749,6 +1866,7 @@
     },
     "ClanNode20": {
       "name": "Yursa",
+      "enName": "Yursa",
       "group": "Neptune",
       "missionType": "MT_EVACUATION",
       "missionName": "탈주",
@@ -1761,6 +1879,7 @@
     },
     "ClanNode21": {
       "name": "Kelashin",
+      "enName": "Kelashin",
       "group": "Neptune",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -1773,6 +1892,7 @@
     },
     "SolNode4": {
       "name": "Acheron",
+      "enName": "Acheron",
       "group": "Pluto",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -1787,6 +1907,7 @@
     },
     "SolNode72": {
       "name": "Outer Terminus",
+      "enName": "Outer Terminus",
       "group": "Pluto",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -1801,6 +1922,7 @@
     },
     "SolNode48": {
       "name": "Regna",
+      "enName": "Regna",
       "group": "Pluto",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -1816,6 +1938,7 @@
     },
     "SolNode21": {
       "name": "Narcissus",
+      "enName": "Narcissus",
       "group": "Pluto",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -1831,6 +1954,7 @@
     },
     "SolNode76": {
       "name": "Hydra",
+      "enName": "Hydra",
       "group": "Pluto",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -1845,6 +1969,7 @@
     },
     "SolNode51": {
       "name": "Hades",
+      "enName": "Hades",
       "group": "Pluto",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -1857,6 +1982,7 @@
     },
     "SolNode38": {
       "name": "Minthe",
+      "enName": "Minthe",
       "group": "Pluto",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -1871,6 +1997,7 @@
     },
     "SolNode56": {
       "name": "Cypress",
+      "enName": "Cypress",
       "group": "Pluto",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -1885,6 +2012,7 @@
     },
     "SolNode43": {
       "name": "Cerberus",
+      "enName": "Cerberus",
       "group": "Pluto",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -1899,6 +2027,7 @@
     },
     "SolNode81": {
       "name": "Palus",
+      "enName": "Palus",
       "group": "Pluto",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -1913,6 +2042,7 @@
     },
     "ClanNode24": {
       "name": "Sechura",
+      "enName": "Sechura",
       "group": "Pluto",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -1925,6 +2055,7 @@
     },
     "SolNode102": {
       "name": "Oceanum",
+      "enName": "Oceanum",
       "group": "Pluto",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -1941,6 +2072,7 @@
     },
     "ClanNode25": {
       "name": "Hieracon",
+      "enName": "Hieracon",
       "group": "Pluto",
       "missionType": "MT_EXCAVATE",
       "missionName": "발굴",
@@ -1953,6 +2085,7 @@
     },
     "SolNode131": {
       "name": "Pallas",
+      "enName": "Pallas",
       "group": "Ceres",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -1968,6 +2101,7 @@
     },
     "SolNode135": {
       "name": "Thon",
+      "enName": "Thon",
       "group": "Ceres",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -1980,6 +2114,7 @@
     },
     "SolNode132": {
       "name": "Bode",
+      "enName": "Bode",
       "group": "Ceres",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -1995,6 +2130,7 @@
     },
     "SolNode139": {
       "name": "Lex",
+      "enName": "Lex",
       "group": "Ceres",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -2010,6 +2146,7 @@
     },
     "SolNode141": {
       "name": "Ker",
+      "enName": "Ker",
       "group": "Ceres",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -2025,6 +2162,7 @@
     },
     "SolNode137": {
       "name": "Nuovo",
+      "enName": "Nuovo",
       "group": "Ceres",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -2039,6 +2177,7 @@
     },
     "SolNode140": {
       "name": "Kiste",
+      "enName": "Kiste",
       "group": "Ceres",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -2054,6 +2193,7 @@
     },
     "SolNode138": {
       "name": "Ludi",
+      "enName": "Ludi",
       "group": "Ceres",
       "missionType": "MT_RETRIEVAL",
       "missionName": "탈취",
@@ -2066,6 +2206,7 @@
     },
     "SolNode144": {
       "name": "Exta",
+      "enName": "Exta",
       "group": "Ceres",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -2080,6 +2221,7 @@
     },
     "SolNode149": {
       "name": "Casta",
+      "enName": "Casta",
       "group": "Ceres",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2095,6 +2237,7 @@
     },
     "SolNode147": {
       "name": "Cinxia",
+      "enName": "Cinxia",
       "group": "Ceres",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -2110,6 +2253,7 @@
     },
     "SolNode146": {
       "name": "Draco",
+      "enName": "Draco",
       "group": "Ceres",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2122,6 +2266,7 @@
     },
     "ClanNode23": {
       "name": "Gabii",
+      "enName": "Gabii",
       "group": "Ceres",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2134,6 +2279,7 @@
     },
     "ClanNode22": {
       "name": "Seimeni",
+      "enName": "Seimeni",
       "group": "Ceres",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2146,6 +2292,7 @@
     },
     "SolNode153": {
       "name": "Brugia",
+      "enName": "Brugia",
       "group": "Eris",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -2161,6 +2308,7 @@
     },
     "SolNode164": {
       "name": "Kala-azar",
+      "enName": "Kala-azar",
       "group": "Eris",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2175,6 +2323,7 @@
     },
     "SolNode162": {
       "name": "Isos",
+      "enName": "Isos",
       "group": "Eris",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -2190,6 +2339,7 @@
     },
     "SolNode171": {
       "name": "Saxis",
+      "enName": "Saxis",
       "group": "Eris",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -2202,6 +2352,7 @@
     },
     "SolNode167": {
       "name": "Oestrus",
+      "enName": "Oestrus",
       "group": "Eris",
       "missionType": "MT_PURIFY",
       "missionName": "인페스티드 인양",
@@ -2214,6 +2365,7 @@
     },
     "SolNode166": {
       "name": "Nimus",
+      "enName": "Nimus",
       "group": "Eris",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2228,6 +2380,7 @@
     },
     "SolNode173": {
       "name": "Solium",
+      "enName": "Solium",
       "group": "Eris",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -2242,6 +2395,7 @@
     },
     "ClanNode18": {
       "name": "Akkad",
+      "enName": "Akkad",
       "group": "Eris",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2254,6 +2408,7 @@
     },
     "SolNode172": {
       "name": "Xini",
+      "enName": "Xini",
       "group": "Eris",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -2268,6 +2423,7 @@
     },
     "ClanNode19": {
       "name": "Zabala",
+      "enName": "Zabala",
       "group": "Eris",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2280,6 +2436,7 @@
     },
     "SolNode175": {
       "name": "Naeglar",
+      "enName": "Naeglar",
       "group": "Eris",
       "missionType": "MT_HIVE",
       "missionName": "하이브",
@@ -2295,6 +2452,7 @@
     },
     "SolNode177": {
       "name": "Kappa",
+      "enName": "Kappa",
       "group": "Sedna",
       "missionType": "MT_ARTIFACT",
       "missionName": "교란",
@@ -2307,6 +2465,7 @@
     },
     "SolNode184": {
       "name": "Rusalka",
+      "enName": "Rusalka",
       "group": "Sedna",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -2322,6 +2481,7 @@
     },
     "SolNode181": {
       "name": "Adaro",
+      "enName": "Adaro",
       "group": "Sedna",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -2336,6 +2496,7 @@
     },
     "SolNode183": {
       "name": "Vodyanoi",
+      "enName": "Vodyanoi",
       "group": "Sedna",
       "missionType": "MT_ARENA",
       "missionName": "아레나",
@@ -2348,6 +2509,7 @@
     },
     "SolNode190": {
       "name": "Nakki",
+      "enName": "Nakki",
       "group": "Sedna",
       "missionType": "MT_ARENA",
       "missionName": "아레나",
@@ -2363,6 +2525,7 @@
     },
     "SolNode185": {
       "name": "Berehynia",
+      "enName": "Berehynia",
       "group": "Sedna",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -2377,6 +2540,7 @@
     },
     "SolNode187": {
       "name": "Selkie",
+      "enName": "Selkie",
       "group": "Sedna",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2392,6 +2556,7 @@
     },
     "SolNode191": {
       "name": "Marid",
+      "enName": "Marid",
       "group": "Sedna",
       "missionType": "MT_RETRIEVAL",
       "missionName": "탈취",
@@ -2406,6 +2571,7 @@
     },
     "SolNode188": {
       "name": "Kelpie",
+      "enName": "Kelpie",
       "group": "Sedna",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -2420,6 +2586,7 @@
     },
     "SolNode189": {
       "name": "Naga",
+      "enName": "Naga",
       "group": "Sedna",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -2435,6 +2602,7 @@
     },
     "SolNode199": {
       "name": "Yam",
+      "enName": "Yam",
       "group": "Sedna",
       "missionType": "MT_ARENA",
       "missionName": "아레나",
@@ -2449,6 +2617,7 @@
     },
     "SolNode193": {
       "name": "Merrow",
+      "enName": "Merrow",
       "group": "Sedna",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -2461,6 +2630,7 @@
     },
     "SolNode196": {
       "name": "Charybdis",
+      "enName": "Charybdis",
       "group": "Sedna",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -2475,6 +2645,7 @@
     },
     "SolNode195": {
       "name": "Hydron",
+      "enName": "Hydron",
       "group": "Sedna",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2490,6 +2661,7 @@
     },
     "ClanNode14": {
       "name": "Amarna",
+      "enName": "Amarna",
       "group": "Sedna",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2502,6 +2674,7 @@
     },
     "ClanNode15": {
       "name": "Sangeru",
+      "enName": "Sangeru",
       "group": "Sedna",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2514,6 +2687,7 @@
     },
     "SolNode203": {
       "name": "Abaddon",
+      "enName": "Abaddon",
       "group": "Europa",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -2528,6 +2702,7 @@
     },
     "SolNode204": {
       "name": "Armaros",
+      "enName": "Armaros",
       "group": "Europa",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -2540,6 +2715,7 @@
     },
     "SolNode209": {
       "name": "Morax",
+      "enName": "Morax",
       "group": "Europa",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -2556,6 +2732,7 @@
     },
     "SolNode210": {
       "name": "Naamah",
+      "enName": "Naamah",
       "group": "Europa",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -2570,6 +2747,7 @@
     },
     "SolNode205": {
       "name": "Baal",
+      "enName": "Baal",
       "group": "Europa",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -2585,6 +2763,7 @@
     },
     "SolNode216": {
       "name": "Valefor",
+      "enName": "Valefor",
       "group": "Europa",
       "missionType": "MT_EXCAVATE",
       "missionName": "발굴",
@@ -2599,6 +2778,7 @@
     },
     "SolNode214": {
       "name": "Sorath",
+      "enName": "Sorath",
       "group": "Europa",
       "missionType": "MT_RETRIEVAL",
       "missionName": "탈취",
@@ -2614,6 +2794,7 @@
     },
     "SolNode211": {
       "name": "Ose",
+      "enName": "Ose",
       "group": "Europa",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -2628,6 +2809,7 @@
     },
     "SolNode215": {
       "name": "Valac",
+      "enName": "Valac",
       "group": "Europa",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -2640,6 +2822,7 @@
     },
     "SolNode212": {
       "name": "Paimon",
+      "enName": "Paimon",
       "group": "Europa",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2652,6 +2835,7 @@
     },
     "SolNode217": {
       "name": "Orias",
+      "enName": "Orias",
       "group": "Europa",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -2666,6 +2850,7 @@
     },
     "ClanNode6": {
       "name": "Larzac",
+      "enName": "Larzac",
       "group": "Europa",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2678,6 +2863,7 @@
     },
     "SolNode220": {
       "name": "Kokabiel",
+      "enName": "Kokabiel",
       "group": "Europa",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -2693,6 +2879,7 @@
     },
     "ClanNode7": {
       "name": "Cholistan",
+      "enName": "Cholistan",
       "group": "Europa",
       "missionType": "MT_EXCAVATE",
       "missionName": "발굴",
@@ -2705,6 +2892,7 @@
     },
     "SolNode400": {
       "name": "Teshub",
+      "enName": "Teshub",
       "group": "Void",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -2719,6 +2907,7 @@
     },
     "SolNode401": {
       "name": "Hepit",
+      "enName": "Hepit",
       "group": "Void",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -2733,6 +2922,7 @@
     },
     "SolNode402": {
       "name": "Taranis",
+      "enName": "Taranis",
       "group": "Void",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2745,6 +2935,7 @@
     },
     "SolNode403": {
       "name": "Tiwaz",
+      "enName": "Tiwaz",
       "group": "Void",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -2759,6 +2950,7 @@
     },
     "SolNode404": {
       "name": "Stribog",
+      "enName": "Stribog",
       "group": "Void",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -2773,6 +2965,7 @@
     },
     "SolNode405": {
       "name": "Ani",
+      "enName": "Ani",
       "group": "Void",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2785,6 +2978,7 @@
     },
     "SolNode406": {
       "name": "Ukko",
+      "enName": "Ukko",
       "group": "Void",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -2799,6 +2993,7 @@
     },
     "SolNode407": {
       "name": "Oxomoco",
+      "enName": "Oxomoco",
       "group": "Void",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -2813,6 +3008,7 @@
     },
     "SolNode408": {
       "name": "Belenus",
+      "enName": "Belenus",
       "group": "Void",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2825,6 +3021,7 @@
     },
     "SolNode409": {
       "name": "Mot",
+      "enName": "Mot",
       "group": "Void",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2837,6 +3034,7 @@
     },
     "SolNode410": {
       "name": "Aten",
+      "enName": "Aten",
       "group": "Void",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -2851,6 +3049,7 @@
     },
     "SolNode411": {
       "name": "Marduk",
+      "enName": "Marduk",
       "group": "Void",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -2865,6 +3064,7 @@
     },
     "SolNode412": {
       "name": "Mithra",
+      "enName": "Mithra",
       "group": "Void",
       "missionType": "MT_TERRITORY",
       "missionName": "감청",
@@ -2879,6 +3079,7 @@
     },
     "SettlementNode1": {
       "name": "Roche",
+      "enName": "Roche",
       "group": "Phobos",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -2894,6 +3095,7 @@
     },
     "SettlementNode3": {
       "name": "Stickney",
+      "enName": "Stickney",
       "group": "Phobos",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -2908,6 +3110,7 @@
     },
     "SettlementNode2": {
       "name": "Skyresh",
+      "enName": "Skyresh",
       "group": "Phobos",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -2923,6 +3126,7 @@
     },
     "SettlementNode12": {
       "name": "Monolith",
+      "enName": "Monolith",
       "group": "Phobos",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -2937,6 +3141,7 @@
     },
     "SettlementNode10": {
       "name": "Kepler",
+      "enName": "Kepler",
       "group": "Phobos",
       "missionType": "MT_RACE",
       "missionName": "돌진",
@@ -2953,6 +3158,7 @@
     },
     "SettlementNode15": {
       "name": "Sharpless",
+      "enName": "Sharpless",
       "group": "Phobos",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -2968,6 +3174,7 @@
     },
     "SettlementNode11": {
       "name": "Gulliver",
+      "enName": "Gulliver",
       "group": "Phobos",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -2980,6 +3187,7 @@
     },
     "SettlementNode14": {
       "name": "Shklovsky",
+      "enName": "Shklovsky",
       "group": "Phobos",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -2994,6 +3202,7 @@
     },
     "ClanNode10": {
       "name": "Memphis",
+      "enName": "Memphis",
       "group": "Phobos",
       "missionType": "MT_EVACUATION",
       "missionName": "탈주",
@@ -3006,6 +3215,7 @@
     },
     "SettlementNode20": {
       "name": "Iliad",
+      "enName": "Iliad",
       "group": "Phobos",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -3018,6 +3228,7 @@
     },
     "ClanNode11": {
       "name": "Zeugma",
+      "enName": "Zeugma",
       "group": "Phobos",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -3030,6 +3241,7 @@
     },
     "SolNode706": {
       "name": "Horend",
+      "enName": "Horend",
       "group": "SolarMapDeimosName",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -3044,6 +3256,7 @@
     },
     "SolNode707": {
       "name": "Hyf",
+      "enName": "Hyf",
       "group": "SolarMapDeimosName",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -3058,6 +3271,7 @@
     },
     "SolNode708": {
       "name": "Phlegyas",
+      "enName": "Phlegyas",
       "group": "SolarMapDeimosName",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -3073,6 +3287,7 @@
     },
     "SolNode709": {
       "name": "Dirus",
+      "enName": "Dirus",
       "group": "SolarMapDeimosName",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -3087,6 +3302,7 @@
     },
     "SolNode710": {
       "name": "Formido",
+      "enName": "Formido",
       "group": "SolarMapDeimosName",
       "missionType": "MT_SABOTAGE",
       "missionName": "파괴공작",
@@ -3102,6 +3318,7 @@
     },
     "SolNode711": {
       "name": "Terrorem",
+      "enName": "Terrorem",
       "group": "SolarMapDeimosName",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -3116,6 +3333,7 @@
     },
     "SolNode712": {
       "name": "Magnacidium",
+      "enName": "Magnacidium",
       "group": "SolarMapDeimosName",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -3130,6 +3348,7 @@
     },
     "SolNode713": {
       "name": "Exequias",
+      "enName": "Exequias",
       "group": "SolarMapDeimosName",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -3142,6 +3361,7 @@
     },
     "SolNode229": {
       "name": "캠비온 퇴적지",
+      "enName": "Cambion Drift",
       "group": "SolarMapDeimosName",
       "missionType": "MT_LANDSCAPE",
       "missionName": "자유 탐험",
@@ -3156,6 +3376,7 @@
     },
     "SolNode715": {
       "name": "Effervo",
+      "enName": "Effervo",
       "group": "SolarMapDeimosName",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -3168,6 +3389,7 @@
     },
     "SolNode716": {
       "name": "Nex",
+      "enName": "Nex",
       "group": "SolarMapDeimosName",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -3180,6 +3402,7 @@
     },
     "SolNode717": {
       "name": "Persto",
+      "enName": "Persto",
       "group": "SolarMapDeimosName",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -3192,6 +3415,7 @@
     },
     "SolNode718": {
       "name": "Cambire",
+      "enName": "Cambire",
       "group": "SolarMapDeimosName",
       "missionType": "MT_ALCHEMY",
       "missionName": "연금술",
@@ -3204,6 +3428,7 @@
     },
     "SolNode719": {
       "name": "MUNIO",
+      "enName": "Munio",
       "group": "SolarMapDeimosName",
       "missionType": "MT_DEFENSE",
       "missionName": "거울상 방어",
@@ -3216,6 +3441,7 @@
     },
     "SolNode721": {
       "name": "Armatus",
+      "enName": "Armatus",
       "group": "SolarMapDeimosName",
       "missionType": "MT_ARTIFACT",
       "missionName": "교란",
@@ -3228,6 +3454,7 @@
     },
     "SolNode300": {
       "name": "Plato",
+      "enName": "Plato",
       "group": "Moon",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -3243,6 +3470,7 @@
     },
     "SolNode306": {
       "name": "Pavlov",
+      "enName": "Pavlov",
       "group": "Moon",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -3257,6 +3485,7 @@
     },
     "SolNode302": {
       "name": "Tycho",
+      "enName": "Tycho",
       "group": "Moon",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -3271,6 +3500,7 @@
     },
     "SolNode305": {
       "name": "Stöfler",
+      "enName": "Stöfler",
       "group": "Moon",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -3285,6 +3515,7 @@
     },
     "SolNode304": {
       "name": "Copernicus",
+      "enName": "Copernicus",
       "group": "Moon",
       "missionType": "MT_CAPTURE",
       "missionName": "생포",
@@ -3299,6 +3530,7 @@
     },
     "SolNode301": {
       "name": "Grimaldi",
+      "enName": "Grimaldi",
       "group": "Moon",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -3314,6 +3546,7 @@
     },
     "SolNode307": {
       "name": "Zeipel",
+      "enName": "Zeipel",
       "group": "Moon",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -3328,6 +3561,7 @@
     },
     "SolNode308": {
       "name": "Apollo",
+      "enName": "Apollo",
       "group": "Moon",
       "missionType": "MT_ARTIFACT",
       "missionName": "교란",
@@ -3340,6 +3574,7 @@
     },
     "SolNode309": {
       "name": "유바리움",
+      "enName": "Yuvarium",
       "group": "Moon",
       "missionType": "MT_SURVIVAL",
       "missionName": "회합 생존",
@@ -3354,6 +3589,7 @@
     },
     "SolNode310": {
       "name": "서큘러스",
+      "enName": "Circulus",
       "group": "Moon",
       "missionType": "MT_SURVIVAL",
       "missionName": "회합 생존",
@@ -3366,6 +3602,7 @@
     },
     "SolNode741": {
       "name": "Koro",
+      "enName": "Koro",
       "group": "Fortress",
       "missionType": "MT_ASSAULT",
       "missionName": "맹공",
@@ -3381,6 +3618,7 @@
     },
     "SolNode742": {
       "name": "Nabuk",
+      "enName": "Nabuk",
       "group": "Fortress",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -3395,6 +3633,7 @@
     },
     "SolNode743": {
       "name": "Rotuma",
+      "enName": "Rotuma",
       "group": "Fortress",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -3409,6 +3648,7 @@
     },
     "SolNode744": {
       "name": "Taveuni",
+      "enName": "Taveuni",
       "group": "Fortress",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -3421,6 +3661,7 @@
     },
     "SolNode745": {
       "name": "Tamu",
+      "enName": "Tamu",
       "group": "Fortress",
       "missionType": "MT_ARTIFACT",
       "missionName": "교란",
@@ -3433,6 +3674,7 @@
     },
     "SolNode746": {
       "name": "Dakata",
+      "enName": "Dakata",
       "group": "Fortress",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -3447,6 +3689,7 @@
     },
     "SolNode747": {
       "name": "Pago",
+      "enName": "Pago",
       "group": "Fortress",
       "missionType": "MT_INTEL",
       "missionName": "첩보활동",
@@ -3461,6 +3704,7 @@
     },
     "SolNode748": {
       "name": "Garus",
+      "enName": "Garus",
       "group": "Fortress",
       "missionType": "MT_RESCUE",
       "missionName": "구출",
@@ -3475,6 +3719,7 @@
     },
     "SolNode230": {
       "name": "에버뷰 반원로",
+      "enName": "Everview Arc",
       "group": "ZarimanRegionName",
       "missionType": "MT_CORRUPTION",
       "missionName": "보이드 홍수",
@@ -3487,6 +3732,7 @@
     },
     "SolNode231": {
       "name": "할라코 외곽",
+      "enName": "Halako Perimeter",
       "group": "ZarimanRegionName",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -3499,6 +3745,7 @@
     },
     "SolNode232": {
       "name": "투불 광장",
+      "enName": "Tuvul Commons",
       "group": "ZarimanRegionName",
       "missionType": "MT_VOID_CASCADE",
       "missionName": "보이드 범람",
@@ -3511,6 +3758,7 @@
     },
     "SolNode233": {
       "name": "오로 작업장",
+      "enName": "Oro Works",
       "group": "ZarimanRegionName",
       "missionType": "MT_ARMAGEDDON",
       "missionName": "보이드 대격전",
@@ -3523,6 +3771,7 @@
     },
     "SolNode235": {
       "name": "녹색 산책로",
+      "enName": "The Greenway",
       "group": "ZarimanRegionName",
       "missionType": "MT_MOBILE_DEFENSE",
       "missionName": "이동 방어",
@@ -3535,6 +3784,7 @@
     },
     "SolNode236": {
       "name": "두비리에서의 경험",
+      "enName": "The Duviri Experience",
       "group": "Duviri",
       "missionType": "MT_LANDSCAPE",
       "missionName": "자유 탐험",
@@ -3547,6 +3797,7 @@
     },
     "SolNode237": {
       "name": "홀로 흐르는 이야기",
+      "enName": "The Lone Story",
       "group": "Duviri",
       "missionType": "MT_LANDSCAPE",
       "missionName": "자유 탐험",
@@ -3559,6 +3810,7 @@
     },
     "SolNode238": {
       "name": "순환로",
+      "enName": "The Circuit",
       "group": "Duviri",
       "missionType": "MT_ENDLESS_DUVIRI",
       "missionName": "순환로",
@@ -3571,6 +3823,7 @@
     },
     "SolNode850": {
       "name": "레가사이트 수확",
+      "enName": "Legacyte Harvest",
       "group": "1999MapName",
       "missionType": "MT_ENDLESS_CAPTURE",
       "missionName": "레가사이트 수확",
@@ -3583,6 +3836,7 @@
     },
     "SolNode851": {
       "name": "헬스크럽: 스칼드라",
+      "enName": "Hell-Scrub: Scaldra",
       "group": "1999MapName",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -3595,6 +3849,7 @@
     },
     "SolNode852": {
       "name": "헬스크럽: 테크병",
+      "enName": "Hell-Scrub: Techrot",
       "group": "1999MapName",
       "missionType": "MT_SURVIVAL",
       "missionName": "생존",
@@ -3607,6 +3862,7 @@
     },
     "SolNode853": {
       "name": "섬멸: 스칼드라",
+      "enName": "Exterminate: Scaldra",
       "group": "1999MapName",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -3619,6 +3875,7 @@
     },
     "SolNode854": {
       "name": "섬멸: 테크병",
+      "enName": "Exterminate: Techrot",
       "group": "1999MapName",
       "missionType": "MT_EXTERMINATION",
       "missionName": "섬멸",
@@ -3631,6 +3888,7 @@
     },
     "SolNode855": {
       "name": "경합: 분대 VS 분대",
+      "enName": "Faceoff: Squad VS Squad",
       "group": "1999MapName",
       "missionType": "MT_PVPVE",
       "missionName": "경합",
@@ -3643,6 +3901,7 @@
     },
     "SolNode856": {
       "name": "암살: H-09 탱크",
+      "enName": "Assassinate: H-09 Tank",
       "group": "1999MapName",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -3655,6 +3914,7 @@
     },
     "SolNode857": {
       "name": "경합: 단독 분대",
+      "enName": "Faceoff: Single Squad",
       "group": "1999MapName",
       "missionType": "MT_PVPVE",
       "missionName": "경합",
@@ -3667,6 +3927,7 @@
     },
     "SolNode858": {
       "name": "솔스티스 광장",
+      "enName": "Solstice Square",
       "group": "1999MapName",
       "missionType": "MT_DEFENSE",
       "missionName": "방어",
@@ -3679,6 +3940,7 @@
     },
     "SolNode250": {
       "name": "회상: 헌훌루스",
+      "enName": "Recall: Hunhullus",
       "group": "TauRegion",
       "missionType": "MT_TAU_WAR",
       "missionName": "페리타 반란",
@@ -3691,6 +3953,7 @@
     },
     "SolNode251": {
       "name": "회상: 닥톨리스트",
+      "enName": "Recall: Dactolyst",
       "group": "TauRegion",
       "missionType": "MT_TAU_WAR",
       "missionName": "페리타 반란",
@@ -3703,6 +3966,7 @@
     },
     "SolNode252": {
       "name": "회상: 선발대",
+      "enName": "Recall: Vanguard",
       "group": "TauRegion",
       "missionType": "MT_TAU_WAR",
       "missionName": "페리타 반란",
@@ -3715,6 +3979,7 @@
     },
     "SolNode253": {
       "name": "강하",
+      "enName": "Descend",
       "group": "TauRegion",
       "missionType": "MT_DESCENT",
       "missionName": "디센디아",
@@ -3727,6 +3992,7 @@
     },
     "SolNode254": {
       "name": "마리의 성역으로부터 강하",
+      "enName": "Descend from Marie's Sanctuary",
       "group": "TauRegion",
       "missionType": "MT_DESCENT",
       "missionName": "디센디아",
@@ -3739,6 +4005,7 @@
     },
     "SolNode255": {
       "name": "리온의 성역으로부터 강하",
+      "enName": "Descend from Lyon's Sanctuary",
       "group": "TauRegion",
       "missionType": "MT_DESCENT",
       "missionName": "디센디아",
@@ -3751,6 +4018,7 @@
     },
     "SolNode256": {
       "name": "로스의 망각",
+      "enName": "Roathe's Oblivion",
       "group": "TauRegion",
       "missionType": "MT_DESCENT",
       "missionName": "디센디아",
@@ -3763,6 +4031,7 @@
     },
     "SolNode257": {
       "name": "죄인",
+      "enName": "The Guilty",
       "group": "TauRegion",
       "missionType": "MT_TAU_WAR",
       "missionName": "페리타 반란",
@@ -3775,6 +4044,7 @@
     },
     "SolNode801": {
       "name": "생츄어리 맹습",
+      "enName": "Sanctuary Onslaught",
       "group": "RelayStationSanctuary",
       "missionType": "MT_ENDLESS_EXTERMINATION",
       "missionName": "생츄어리 맹습",
@@ -3786,6 +4056,7 @@
     },
     "SolNode802": {
       "name": "엘리트 생츄어리 맹습",
+      "enName": "Elite Sanctuary Onslaught",
       "group": "RelayStationSanctuary",
       "missionType": "MT_ENDLESS_EXTERMINATION",
       "missionName": "생츄어리 맹습",
@@ -3797,6 +4068,7 @@
     },
     "PvpNode0": {
       "name": "세팔론 쟁탈전",
+      "enName": "Cephalon Capture",
       "group": "Saturn",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3808,6 +4080,7 @@
     },
     "PvpNode9": {
       "name": "팀 절멸전",
+      "enName": "Team Annihilation",
       "group": "Saturn",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3819,6 +4092,7 @@
     },
     "PvpNode10": {
       "name": "절멸전",
+      "enName": "Annihilation",
       "group": "Saturn",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3830,6 +4104,7 @@
     },
     "MercuryHUB": {
       "name": "라룬다 릴레이",
+      "enName": "Larunda Relay",
       "group": "Mercury",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3840,6 +4115,7 @@
     },
     "SolarisUnitedHub1": {
       "name": "포르투나",
+      "enName": "Fortuna",
       "group": "Venus",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3852,6 +4128,7 @@
     },
     "NokkoColony": {
       "name": "지하 광산",
+      "enName": "Deepmines",
       "group": "Venus",
       "missionType": "MT_LANDSCAPE",
       "missionName": "자유 탐험",
@@ -3864,6 +4141,7 @@
     },
     "VenusToMercuryJunction": {
       "name": "수성 교차점",
+      "enName": "MERCURY JUNCTION",
       "group": "Venus",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -3878,6 +4156,7 @@
     },
     "CetusHub4": {
       "name": "시터스",
+      "enName": "Cetus",
       "group": "Earth",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3891,6 +4170,7 @@
     },
     "EarthToVenusJunction": {
       "name": "금성 교차점",
+      "enName": "VENUS JUNCTION",
       "group": "Earth",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -3903,6 +4183,7 @@
     },
     "EarthToMarsJunction": {
       "name": "화성 교차점",
+      "enName": "MARS JUNCTION",
       "group": "Earth",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -3913,6 +4194,7 @@
     },
     "EarthHUB": {
       "name": "스트라타 릴레이",
+      "enName": "Strata Relay",
       "group": "Earth",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3923,6 +4205,7 @@
     },
     "IronwakeHUB3": {
       "name": "아이언 웨이크",
+      "enName": "Iron Wake",
       "group": "Earth",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3933,6 +4216,7 @@
     },
     "TradeHUB1": {
       "name": "마루의 암시장",
+      "enName": "Maroo's Bazaar",
       "group": "Mars",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3943,6 +4227,7 @@
     },
     "MarsToCeresJunction": {
       "name": "세레스 교차점",
+      "enName": "CERES JUNCTION",
       "group": "Mars",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -3955,6 +4240,7 @@
     },
     "MarsToPhobosJunction": {
       "name": "포보스 교차점",
+      "enName": "PHOBOS JUNCTION",
       "group": "Mars",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -3967,6 +4253,7 @@
     },
     "DeimosHub": {
       "name": "네크랄리스크",
+      "enName": "Necralisk",
       "group": "SolarMapDeimosName",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3979,6 +4266,7 @@
     },
     "EntratiLabHub": {
       "name": "해부의 성역",
+      "enName": "Sanctum Anatomica",
       "group": "SolarMapDeimosName",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -3997,6 +4285,7 @@
     },
     "SolNode720": {
       "name": "Testudo",
+      "enName": "Testudo",
       "group": "SolarMapDeimosName",
       "missionType": "MT_VAULTS",
       "missionName": "네트라셀",
@@ -4008,6 +4297,7 @@
     },
     "CeresToJupiterJunction": {
       "name": "목성 교차점",
+      "enName": "JUPITER JUNCTION",
       "group": "SolarMapDeimosName",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -4020,6 +4310,7 @@
     },
     "JupiterToEuropaJunction": {
       "name": "유로파 교차점",
+      "enName": "EUROPA JUNCTION",
       "group": "Jupiter",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -4032,6 +4323,7 @@
     },
     "JupiterToSaturnJunction": {
       "name": "토성 교차점",
+      "enName": "SATURN JUNCTION",
       "group": "Jupiter",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -4046,6 +4338,7 @@
     },
     "SaturnToUranusJunction": {
       "name": "천왕성 교차점",
+      "enName": "URANUS JUNCTION",
       "group": "Saturn",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -4058,6 +4351,7 @@
     },
     "SaturnHUB": {
       "name": "크로니아 릴레이",
+      "enName": "Kronia Relay",
       "group": "Saturn",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -4068,6 +4362,7 @@
     },
     "SolNode723": {
       "name": "Brutus",
+      "enName": "Brutus",
       "group": "Uranus",
       "missionType": "MT_ASCENSION",
       "missionName": "상승",
@@ -4081,6 +4376,7 @@
     },
     "UranusToNeptuneJunction": {
       "name": "해왕성 교차점",
+      "enName": "NEPTUNE JUNCTION",
       "group": "Uranus",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -4093,6 +4389,7 @@
     },
     "SolNode761": {
       "name": "인덱스 : 엔듀런스 (저 위험도)",
+      "enName": "THE INDEX: ENDURANCE (LOW RISK)",
       "group": "Neptune",
       "missionType": "MT_ARENA",
       "missionName": "아레나",
@@ -4106,6 +4403,7 @@
     },
     "SolNode762": {
       "name": "인덱스 : 엔듀런스 (중 위험도)",
+      "enName": "THE INDEX: ENDURANCE (MEDIUM RISK)",
       "group": "Neptune",
       "missionType": "MT_ARENA",
       "missionName": "아레나",
@@ -4119,6 +4417,7 @@
     },
     "SolNode763": {
       "name": "인덱스 : 엔듀런스 (고 위험도)",
+      "enName": "THE INDEX: ENDURANCE (HIGH RISK)",
       "group": "Neptune",
       "missionType": "MT_ARENA",
       "missionName": "아레나",
@@ -4132,6 +4431,7 @@
     },
     "EventNode763": {
       "name": "인덱스: 엔듀런스",
+      "enName": "The Index: Endurance",
       "group": "Neptune",
       "missionType": "MT_ARENA",
       "missionName": "아레나",
@@ -4144,6 +4444,7 @@
     },
     "NeptuneToPlutoJunction": {
       "name": "명왕성 교차점",
+      "enName": "PLUTO JUNCTION",
       "group": "Neptune",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -4158,6 +4459,7 @@
     },
     "PlutoToErisJunction": {
       "name": "에리스 교차점",
+      "enName": "ERIS JUNCTION",
       "group": "Pluto",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -4170,6 +4472,7 @@
     },
     "PlutoHUB": {
       "name": "오르커스 릴레이",
+      "enName": "Orcus Relay",
       "group": "Pluto",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -4180,6 +4483,7 @@
     },
     "SolNode701": {
       "name": "조르다스 골렘 암살",
+      "enName": "Jordas Golem Assassinate",
       "group": "Eris",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -4192,6 +4496,7 @@
     },
     "SolNode705": {
       "name": "뮤탈리스트 알라드 V 암살",
+      "enName": "Mutalist Alad V Assassinate",
       "group": "Eris",
       "missionType": "MT_ASSASSINATION",
       "missionName": "암살",
@@ -4204,6 +4509,7 @@
     },
     "ErisToSednaJunction": {
       "name": "세드나 교차점",
+      "enName": "SEDNA JUNCTION",
       "group": "Eris",
       "missionType": "MT_JUNCTION",
       "missionName": "솔라 레일 교차점",
@@ -4216,6 +4522,7 @@
     },
     "ZarimanHub": {
       "name": "크리살리스",
+      "enName": "Chrysalith",
       "group": "ZarimanRegionName",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -4232,6 +4539,7 @@
     },
     "SolNode234": {
       "name": "도미존",
+      "enName": "Dormizone",
       "group": "ZarimanRegionName",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -4242,6 +4550,7 @@
     },
     "1999Hub": {
       "name": "홀바니아 중앙 쇼핑몰",
+      "enName": "Höllvania Central Mall",
       "group": "1999MapName",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -4252,6 +4561,7 @@
     },
     "CrewBattleNode559": {
       "name": "테크노사이트 코다 콘서트",
+      "enName": "TECHNOCYTE CODA CONCERT",
       "group": "Earth_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "암살",
@@ -4263,6 +4573,7 @@
     },
     "CrewBattleNode556": {
       "name": "자유 비행",
+      "enName": "Free Flight",
       "group": "Earth_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4275,6 +4586,7 @@
     },
     "CrewBattleNode502": {
       "name": "Sover Strait",
+      "enName": "Sover Strait",
       "group": "Earth_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4289,6 +4601,7 @@
     },
     "CrewBattleNode509": {
       "name": "Iota Temple",
+      "enName": "Iota Temple",
       "group": "Earth_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4303,6 +4616,7 @@
     },
     "CrewBattleNode518": {
       "name": "Ogal Cluster",
+      "enName": "Ogal Cluster",
       "group": "Earth_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4317,6 +4631,7 @@
     },
     "CrewBattleNode519": {
       "name": "Korm's Belt",
+      "enName": "Korm's Belt",
       "group": "Earth_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4331,6 +4646,7 @@
     },
     "CrewBattleNode522": {
       "name": "Bendar Cluster",
+      "enName": "Bendar Cluster",
       "group": "Earth_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4345,6 +4661,7 @@
     },
     "CrewBattleNode511": {
       "name": "Beacon Shield Ring",
+      "enName": "Beacon Shield Ring",
       "group": "Venus_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "격변",
@@ -4359,6 +4676,7 @@
     },
     "CrewBattleNode513": {
       "name": "Vesper Strait",
+      "enName": "Vesper Strait",
       "group": "Venus_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "오르픽스",
@@ -4373,6 +4691,7 @@
     },
     "CrewBattleNode515": {
       "name": "Luckless Expanse",
+      "enName": "Luckless Expanse",
       "group": "Venus_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "생존",
@@ -4387,6 +4706,7 @@
     },
     "CrewBattleNode514": {
       "name": "Falling Glory",
+      "enName": "Falling Glory",
       "group": "Venus_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "방어",
@@ -4401,6 +4721,7 @@
     },
     "CrewBattleNode503": {
       "name": "Bifrost Echo",
+      "enName": "Bifrost Echo",
       "group": "Venus_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "섬멸",
@@ -4415,6 +4736,7 @@
     },
     "CrewBattleNode512": {
       "name": "Orvin-Haarc",
+      "enName": "Orvin-Haarc",
       "group": "Venus_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "첩보",
@@ -4429,6 +4751,7 @@
     },
     "CrewBattleNode557": {
       "name": "쿠바 리치 결전",
+      "enName": "Kuva Lich Confrontation",
       "group": "Saturn_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "암살",
@@ -4442,6 +4765,7 @@
     },
     "CrewBattleNode501": {
       "name": "Mordo Cluster",
+      "enName": "Mordo Cluster",
       "group": "Saturn_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4456,6 +4780,7 @@
     },
     "CrewBattleNode534": {
       "name": "Lupal Pass",
+      "enName": "Lupal Pass",
       "group": "Saturn_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4470,6 +4795,7 @@
     },
     "CrewBattleNode533": {
       "name": "Nodo Gap",
+      "enName": "Nodo Gap",
       "group": "Saturn_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4484,6 +4810,7 @@
     },
     "CrewBattleNode535": {
       "name": "Vand Cluster",
+      "enName": "Vand Cluster",
       "group": "Saturn_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4498,6 +4825,7 @@
     },
     "CrewBattleNode530": {
       "name": "Kasio's Rest",
+      "enName": "Kasio's Rest",
       "group": "Saturn_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4512,6 +4840,7 @@
     },
     "CrewBattleNode558": {
       "name": "파보스의 자매 결전",
+      "enName": "Sister of Parvos Confrontation",
       "group": "Neptune_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "암살",
@@ -4525,6 +4854,7 @@
     },
     "CrewBattleNode504": {
       "name": "Arva Vector",
+      "enName": "Arva Vector",
       "group": "Neptune_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "방어",
@@ -4539,6 +4869,7 @@
     },
     "CrewBattleNode516": {
       "name": "Nu-gua Mines",
+      "enName": "Nu-gua Mines",
       "group": "Neptune_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "섬멸",
@@ -4553,6 +4884,7 @@
     },
     "CrewBattleNode523": {
       "name": "Mammon's Prospect",
+      "enName": "Mammon's Prospect",
       "group": "Neptune_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "오르픽스",
@@ -4567,6 +4899,7 @@
     },
     "CrewBattleNode525": {
       "name": "Brom Cluster",
+      "enName": "Brom Cluster",
       "group": "Neptune_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "첩보",
@@ -4581,6 +4914,7 @@
     },
     "CrewBattleNode521": {
       "name": "Enkidu Ice Drifts",
+      "enName": "Enkidu Ice Drifts",
       "group": "Neptune_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "생존",
@@ -4595,6 +4929,7 @@
     },
     "CrewBattleNode524": {
       "name": "Sovereign Grasp",
+      "enName": "Sovereign Grasp",
       "group": "Neptune_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "격변",
@@ -4609,6 +4944,7 @@
     },
     "CrewBattleNode526": {
       "name": "Khufu Envoy",
+      "enName": "Khufu Envoy",
       "group": "Pluto_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "오르픽스",
@@ -4623,6 +4959,7 @@
     },
     "CrewBattleNode527": {
       "name": "Seven Sirens",
+      "enName": "Seven Sirens",
       "group": "Pluto_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "섬멸",
@@ -4637,6 +4974,7 @@
     },
     "CrewBattleNode528": {
       "name": "Obol Crossing",
+      "enName": "Obol Crossing",
       "group": "Pluto_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "방어",
@@ -4651,6 +4989,7 @@
     },
     "CrewBattleNode531": {
       "name": "Fenton's Field",
+      "enName": "Fenton's Field",
       "group": "Pluto_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "생존",
@@ -4665,6 +5004,7 @@
     },
     "CrewBattleNode529": {
       "name": "Profit Margin",
+      "enName": "Profit Margin",
       "group": "Pluto_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "격변",
@@ -4679,6 +5019,7 @@
     },
     "CrewBattleNode536": {
       "name": "Peregrine Axis",
+      "enName": "Peregrine Axis",
       "group": "Pluto_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "첩보",
@@ -4693,6 +5034,7 @@
     },
     "CrewBattleNode550": {
       "name": "Nsu Grid",
+      "enName": "Nsu Grid",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4707,6 +5049,7 @@
     },
     "CrewBattleNode555": {
       "name": "R-9 Cloud",
+      "enName": "R-9 Cloud",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4721,6 +5064,7 @@
     },
     "CrewBattleNode554": {
       "name": "H-2 Cloud",
+      "enName": "H-2 Cloud",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4735,6 +5079,7 @@
     },
     "CrewBattleNode553": {
       "name": "Flexa",
+      "enName": "Flexa",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전",
@@ -4749,6 +5094,7 @@
     },
     "CrewBattleNode538": {
       "name": "Calabash",
+      "enName": "Calabash",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "섬멸",
@@ -4763,6 +5109,7 @@
     },
     "CrewBattleNode539": {
       "name": "Numina",
+      "enName": "Numina",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "격변",
@@ -4777,6 +5124,7 @@
     },
     "CrewBattleNode540": {
       "name": "Arc Silver",
+      "enName": "Arc Silver",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "방어",
@@ -4791,6 +5139,7 @@
     },
     "CrewBattleNode541": {
       "name": "Erato",
+      "enName": "Erato",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "오르픽스",
@@ -4805,6 +5154,7 @@
     },
     "CrewBattleNode542": {
       "name": "Lu-yan",
+      "enName": "Lu-yan",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "생존",
@@ -4819,6 +5169,7 @@
     },
     "CrewBattleNode543": {
       "name": "Sabmir Cloud",
+      "enName": "Sabmir Cloud",
       "group": "DeepSpace_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "첩보",
@@ -4831,6 +5182,7 @@
     },
     "JadeShadows2HUB": {
       "name": "폰티스 탑",
+      "enName": "Pontis Tower",
       "group": "Uranus_SPACE",
       "missionType": "MT_PVP",
       "missionName": "콘클레이브",
@@ -4841,6 +5193,7 @@
     },
     "CrewBattleNode561": {
       "name": "스코리아의 천사",
+      "enName": "Scoria's Angel",
       "group": "Uranus_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전 + 암살",
@@ -4853,6 +5206,7 @@
     },
     "CrewBattleNode560": {
       "name": "쿠바의 마녀",
+      "enName": "The Kuva Wytch",
       "group": "Uranus_SPACE",
       "missionType": "MT_RAILJACK",
       "missionName": "접전 + 암살",

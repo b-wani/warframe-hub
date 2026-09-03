@@ -16,6 +16,10 @@
  * 상태를 인스턴스 색이 아니라 덩어리로 가르는 이유는 자체발광(emissive)이 재질
  * 단위 값이어서다 — 인스턴스 색만으로는 잠긴 노드도 파랗게 빛난다.
  *
+ * 활성 균열이 있는 노드에는 로테이션 심볼이 얹힌다(스펙 §6). 심볼도 라벨과 같은
+ * 이유로 DOM이다 — 등급을 색으로만 알리면 색을 구별하지 못하는 눈에는 아무것도
+ * 알리지 않은 것이라, 로테이션 이름이 글로도 읽혀야 한다.
+ *
  * 구름은 초점을 옮겨도 바로 사라지지 않고 카메라가 멀어지는 만큼 옅어진다.
  * 성계 뷰로 돌아가는 연속 비행 도중에 노드가 툭 꺼지면 그 순간이 컷이 된다 —
  * 연속성이 핵심 경험이라(스펙 §2.1) 사라지는 쪽도 비행에 맡긴다.
@@ -30,12 +34,14 @@ import {
   type ReactNode,
 } from "react";
 import { Vector3, type Group, type MeshStandardMaterial } from "three";
+import type { FissureMarker } from "@/starchart/fissures";
 import {
   NODE_RADIUS,
   type NodeCloud,
   type NodeMarker,
 } from "@/starchart/node-cloud";
 import type { NodeState } from "@/starchart/progress";
+import { FissureSymbol } from "./fissure-symbol";
 import { MapLabel } from "./map-label";
 import { usePointerCursor } from "./pointer-cursor";
 
@@ -155,6 +161,7 @@ export function NodeCloudView({
   labelled,
   selected,
   states,
+  fissures,
   onSelect,
 }: {
   cloud: NodeCloud;
@@ -163,6 +170,8 @@ export function NodeCloudView({
   selected: string | null;
   /** 노드 id → 파생 3상태. 완료 집합이 바뀌면 이 지도도 함께 바뀐다. */
   states: ReadonlyMap<string, NodeState>;
+  /** 노드 id → 활성 균열. 월드스테이트를 못 받으면 비어 있다(스펙 §6). */
+  fissures: ReadonlyMap<string, FissureMarker>;
   onSelect: (id: string) => void;
 }) {
   const group = useRef<Group>(null);
@@ -294,6 +303,25 @@ export function NodeCloudView({
           </group>
         );
       })}
+
+      {labelled &&
+        !gone &&
+        cloud.nodes.map((node) => {
+          const fissure = fissures.get(node.id);
+          if (!fissure) return null;
+          return (
+            <FissureSymbol
+              key={`fissure:${node.id}`}
+              fissure={fissure}
+              position={[
+                node.position[0],
+                node.position[1] + NODE_RADIUS * 5,
+                node.position[2],
+              ]}
+              onSelect={onSelect}
+            />
+          );
+        })}
 
       {labelled &&
         !gone &&
