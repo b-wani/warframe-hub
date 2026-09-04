@@ -1,9 +1,15 @@
 import { describe, expect, test } from "vitest";
 import guidesJson from "@/data/planet-guides.json";
 import { starchartDataset as dataset } from "./data";
-import { nonNodeObjectiveSlugs, planetGuides } from "./planet-guide";
+import { planetGuides } from "./planet-guide";
 
 const { guides, issues } = planetGuides(dataset, guidesJson);
+
+/** 실린 비노드 목표 슬러그 전부. */
+const allSlugs = () =>
+  [...guides.values()].flatMap((guide) =>
+    guide.objectives.map((objective) => objective.slug),
+  );
 
 describe("커밋된 행성 가이드", () => {
   test("문제 없이 읽힌다", () => {
@@ -14,13 +20,13 @@ describe("커밋된 행성 가이드", () => {
     // 옛 로드맵(/roadmap 제거 전)의 비노드 항목 = 퀘스트 8 + 라이노 준비 1.
     // 스펙이 적어 둔 "퀘스트 7"은 교차점 7과 자릿수가 엇갈린 셈으로 보인다 —
     // 목록의 확정은 저작 단계 소관이므로(스펙 §9) 여기서 하나를 골라 버리지 않는다.
-    const slugs = nonNodeObjectiveSlugs(guides);
-    expect(slugs.size).toBe(9);
-    expect(slugs.has("rhino-prep")).toBe(true);
+    const slugs = allSlugs();
+    expect(slugs).toHaveLength(9);
+    expect(slugs).toContain("rhino-prep");
   });
 
   test("교차점은 비노드 목표가 아니다 — 노드 완료로만 추적한다", () => {
-    for (const slug of nonNodeObjectiveSlugs(guides)) {
+    for (const slug of allSlugs()) {
       expect(dataset.nodes[slug]).toBeUndefined();
     }
   });
@@ -104,9 +110,28 @@ describe("planetGuides", () => {
     expect(issues[0]).toContain("SolNode27");
   });
 
+  test("겹치는 슬러그는 문제로 알리는 데서 그치지 않고 화면에서도 빠진다", () => {
+    // 남아 있으면 체크 한 번이 성계 노드를 완료 집합에 밀어 넣는다
+    const { guides } = planetGuides(
+      dataset,
+      file([
+        {
+          body: "Earth",
+          objectives: [
+            { slug: "SolNode27", kind: "quest", title: "노드를 흉내 낸 목표" },
+            { slug: "vors-prize", kind: "quest", title: "보어의 전리품" },
+          ],
+        },
+      ]),
+    );
+    expect(guides.get("Earth")?.objectives.map((o) => o.slug)).toEqual([
+      "vors-prize",
+    ]);
+  });
+
   test("슬러그가 두 천체에서 겹치면 문제로 알린다", () => {
     const objectives = [{ slug: "natah", kind: "quest", title: "나타" }];
-    const { issues } = planetGuides(
+    const { guides, issues } = planetGuides(
       dataset,
       file([
         { body: "Uranus", objectives },
@@ -115,5 +140,8 @@ describe("planetGuides", () => {
     );
     expect(issues).toHaveLength(1);
     expect(issues[0]).toContain("natah");
+    // 나중 것만 빠진다 — 먼저 선 가이드의 목표까지 잃을 이유는 없다
+    expect(guides.get("Uranus")?.objectives).toHaveLength(1);
+    expect(guides.get("Neptune")?.objectives).toEqual([]);
   });
 });
