@@ -42,15 +42,28 @@ const COPY = {
     detail: (count: number) =>
       `이 행성과 선행 노드를 포함해 ${count}개가 새로 완료됩니다.`,
   },
+  /**
+   * 프록시마 고리도 그룹 하나라 규칙은 같다 — 부르는 말만 다르다. 행성 뷰의 ⚓
+   * 토글로 들어온 자리에서 "행성 전체 완료"라고 적으면 무엇이 채워지는지가
+   * 어긋난다(채워지는 것은 프록시마 노드다).
+   */
+  proximaGroup: {
+    action: "프록시마 전체 완료",
+    detail: (count: number) =>
+      `이 프록시마와 선행 노드를 포함해 ${count}개가 새로 완료됩니다.`,
+  },
 } as const;
 
 export function BulkComplete({
   target,
+  proxima,
   completedIds,
   onComplete,
   className,
 }: {
   target: BulkTarget;
+  /** 대상이 프록시마 고리인가 — 조작은 같고 문구만 갈린다. */
+  proxima?: boolean;
   completedIds: ReadonlySet<string>;
   /** 확정 — 새로 완료되는 id만 넘긴다. 합집합이라 완료가 지워질 길이 없다. */
   onComplete: (addedIds: ReadonlySet<string>) => void;
@@ -93,7 +106,7 @@ export function BulkComplete({
 
   if (added.size === 0) return null;
 
-  const copy = COPY[kind];
+  const copy = kind === "group" && proxima ? COPY.proximaGroup : COPY[kind];
   // 렌더 중 setState는 이 렌더를 한 번 더 돌린다 — 버려질 그 한 판이 남은 옛
   // 확인을 그리지 않도록, 근거가 아직 맞는지 여기서 한 번 더 본다
   const open = confirming !== null && confirming.target === targetKey;

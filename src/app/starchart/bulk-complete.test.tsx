@@ -192,3 +192,26 @@ test("확인 단계는 개수를 읽어 주고 초점을 취소에 둔다", asyn
   // 개수를 듣지 못하면 확인 단계가 없는 것과 같다
   expect(screen.getByRole("status").textContent).toContain("2개가 새로 완료");
 });
+
+test("프록시마 고리는 부르는 말만 다르다 — 조작과 확인 단계는 같다", async () => {
+  const user = userEvent.setup();
+  const onComplete = vi.fn();
+  render(
+    <BulkComplete
+      target={{ kind: "group", id: "Earth_SPACE" }}
+      proxima
+      completedIds={new Set()}
+      onComplete={onComplete}
+    />,
+  );
+
+  await user.click(action("프록시마 전체 완료"));
+  expect(screen.getByText(/이 프록시마와 선행 노드를 포함해/)).toBeTruthy();
+
+  const added = bulkCompletion(starchartProgressGraph, new Set(), {
+    kind: "group",
+    id: "Earth_SPACE",
+  });
+  await user.click(action(`${added.size}개 완료`));
+  expect([...onComplete.mock.calls[0][0]].sort()).toEqual([...added].sort());
+});
