@@ -190,6 +190,32 @@
   border-color: #4d6a99;
 }
 
+/*
+ * 프록시마 ⚓ 토글 — 켜졌는지가 눈에도 보여야 한다(aria-pressed만으로는 화면을
+ * 보는 눈에 아무것도 알리지 않는다).
+ */
+.proximaToggle {
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: #cfdcea;
+  cursor: pointer;
+  background: rgb(16 24 40 / 88%);
+  border: 1px solid #2a3a55;
+  border-radius: 6px;
+}
+
+.proximaToggle:hover {
+  color: #fff;
+  border-color: #4d6a99;
+}
+
+.proximaToggle[aria-pressed="true"] {
+  color: #06101f;
+  background: #8fc0f5;
+  border-color: #8fc0f5;
+}
+
 .focusName {
   font-size: 15px;
   font-weight: 600;
