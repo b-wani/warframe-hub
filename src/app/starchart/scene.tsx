@@ -42,6 +42,7 @@ import {
   starchartDataset,
   starchartLayout,
   starchartNodeNames,
+  starchartPlanetGuides,
   starchartProgressGraph as progressGraph,
 } from "@/starchart/data";
 import {
@@ -68,6 +69,7 @@ import { FissureList, type FissureStatus } from "./fissure-list";
 import { NodeCloudView } from "./node-cloud-view";
 import { NodeDetailPanel } from "./node-detail-panel";
 import styles from "./page.module.css";
+import { PlanetGuidePanel } from "./planet-guide-panel";
 import { useNow } from "./use-now";
 import { useWorldState } from "./use-worldstate";
 
@@ -407,6 +409,12 @@ export default function Scene({
           complete: completeBodies.has(focusedBody.id),
         };
 
+  /** 지금 행성 뷰가 보고 있는 행성의 가이드. 프록시마를 보고 있으면 없다. */
+  const guide =
+    hud && hud.group === hud.body
+      ? starchartPlanetGuides.get(hud.body)
+      : undefined;
+
   return (
     <>
       <Canvas
@@ -506,6 +514,19 @@ export default function Scene({
             onComplete={onBulkComplete}
             className={styles.hudBulk}
           />
+          {/*
+            행성 가이드 — 행성 뷰에 함께 뜨는 안내와 비노드 목표 체크(스펙 §2.1).
+            ⚓ 토글로 프록시마를 보고 있을 때는 뜨지 않는다: 가이드가 말하는 것은
+            행성이고, 그때 HUD가 말하는 대상은 프록시마다.
+          */}
+          {guide && (
+            <PlanetGuidePanel
+              guide={guide}
+              completedIds={completedIds}
+              onToggle={onToggle}
+              className={styles.hudGuide}
+            />
+          )}
           {/* 상세는 호버가 아니라 선택으로 열린다(스펙 §2.2·§8-2) */}
           {selectedDetail && (
             <NodeDetailPanel

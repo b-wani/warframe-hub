@@ -38,7 +38,7 @@
   ⚓ 토글로 전환하며, 프록시마 노드는 행성 바깥 고리에 배치한다.
 - **릴레이** 그룹(1개)은 지도에서 숨긴다(진행도와도 무관).
 
-근거: [#32 카메라 연출 프로토타입](https://github.com/b-wani/warframe-hub/issues/32) (변형 A 채택, B·C 기각 — `prototype/starchart-camera-interaction` 브랜치), [#26 그룹 유형](https://github.com/b-wani/warframe-hub/issues/26), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (성계 뷰·릴레이 숨김 구현 완료), [#42 행성 뷰와 연속 비행](https://github.com/b-wani/warframe-hub/issues/42) (행성 뷰·연속 비행 구현 완료), [#48 프록시마 ⚓ 토글](https://github.com/b-wani/warframe-hub/issues/48) (⚓ 토글·바깥 고리 배치·천체 완료 집계 구현 완료 — 베일 프록시마는 붙을 행성이 없어 폴백 뷰로만 닿는다)
+근거: [#32 카메라 연출 프로토타입](https://github.com/b-wani/warframe-hub/issues/32) (변형 A 채택, B·C 기각 — `prototype/starchart-camera-interaction` 브랜치), [#26 그룹 유형](https://github.com/b-wani/warframe-hub/issues/26), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (성계 뷰·릴레이 숨김 구현 완료), [#42 행성 뷰와 연속 비행](https://github.com/b-wani/warframe-hub/issues/42) (행성 뷰·연속 비행 구현 완료), [#48 프록시마 ⚓ 토글](https://github.com/b-wani/warframe-hub/issues/48) (⚓ 토글·바깥 고리 배치·천체 완료 집계 구현 완료 — 베일 프록시마는 붙을 행성이 없어 폴백 뷰로만 닿는다), [#49 행성 가이드 그릇](https://github.com/b-wani/warframe-hub/issues/49) (행성 뷰의 행성 가이드 패널·비노드 목표 체크 구현 완료 — 콘텐츠 저작은 §9)
 
 ### 2.2 노드 표현
 
@@ -138,7 +138,7 @@
   확인 단계, 확인 후 진행이 바뀌면 확인 무효, 이미 완료된 노드엔 버튼 비노출.
 - **비노드 목표 체크**: 행성 가이드 안에서.
 
-근거: [#25 진행도 도메인 모델](https://github.com/b-wani/warframe-hub/issues/25), [ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md), [#43](https://github.com/b-wani/warframe-hub/issues/43) (개별 체크·파생 상태·행성 완료 아이콘 구현 완료), [#46](https://github.com/b-wani/warframe-hub/issues/46) (구간 일괄 체크·행성 전체 완료 구현 완료 — 확인 단계·확인 무효화·버튼 비노출 포함. 비노드 목표 체크는 [#49](https://github.com/b-wani/warframe-hub/issues/49)), [#48](https://github.com/b-wani/warframe-hub/issues/48) (프록시마 노드의 3상태·개별 체크·일괄 체크와 천체 완료 집계 구현 완료)
+근거: [#25 진행도 도메인 모델](https://github.com/b-wani/warframe-hub/issues/25), [ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md), [#43](https://github.com/b-wani/warframe-hub/issues/43) (개별 체크·파생 상태·행성 완료 아이콘 구현 완료), [#46](https://github.com/b-wani/warframe-hub/issues/46) (구간 일괄 체크·행성 전체 완료 구현 완료 — 확인 단계·확인 무효화·버튼 비노출 포함), [#49](https://github.com/b-wani/warframe-hub/issues/49) (비노드 목표 체크 구현 완료 — 행성 가이드 안에서 슬러그로 완료 집합에 기록된다), [#48](https://github.com/b-wani/warframe-hub/issues/48) (프록시마 노드의 3상태·개별 체크·일괄 체크와 천체 완료 집계 구현 완료)
 
 ## 5. 진행도 가져오기 UX
 
@@ -219,6 +219,12 @@ v1 요구사항인 적응 규칙 4항목:
 - 침공·얼럿 등 추가 월드스테이트 오버레이.
 - 행성 가이드 저작 워크플로·범위, 비노드 목표 행성별 확정 재선정, 큐레이션
   오버레이 32노드 저작 — 그릇(스키마·위치)은 확정, 저작은 스펙 이후 단계.
+  행성 가이드의 그릇은 [#49](https://github.com/b-wani/warframe-hub/issues/49)로
+  섰다: `src/data/planet-guides.json`(커밋됨·수동 저작) + `src/starchart/planet-guide.ts`
+  (스키마·로더). 실린 비노드 목표는 옛 로드맵에서 옮겨 온 **잠정 9개**다 —
+  퀘스트 8 + 라이노 준비 1이며, §4.1이 적어 둔 "퀘스트 7"은 교차점 7과 자릿수가
+  엇갈린 셈으로 보인다. 목록을 하나 골라 버리는 대신 저작 단계의 확정 재선정에
+  맡긴다.
 - 스틸패스 진행도 축, 프로시저럴 행성 재현(v2), 트랙 A 전체(스타차트 외
   대시보드 위젯 — career/ROADMAP.md 소관).
 
