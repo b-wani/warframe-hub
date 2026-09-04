@@ -186,3 +186,35 @@ test("다 클리어한 행성에는 일괄 체크 버튼이 하나도 없다", a
     within(earth).queryAllByRole("button", { name: "여기까지 완료" }),
   ).toHaveLength(0);
 });
+
+test("행성 가이드가 아코디언 안에 서고 비노드 목표를 체크할 수 있다", async () => {
+  const user = userEvent.setup();
+  const onToggle = vi.fn();
+  render(
+    <FallbackView
+      completedIds={new Set()}
+      onToggle={onToggle}
+      onBulkComplete={() => {}}
+    />,
+  );
+
+  const earth = await openEarth(user);
+  const guide = within(earth).getByRole("region", { name: "행성 가이드" });
+  await user.click(within(guide).getByRole("checkbox", { name: /보어의 전리품/ }));
+  expect(onToggle).toHaveBeenCalledWith("vors-prize");
+});
+
+test("가이드가 없는 그룹에는 패널도 없다 — 프록시마는 독립 항목이다", async () => {
+  const user = userEvent.setup();
+  render(
+    <FallbackView
+      completedIds={new Set()}
+      onToggle={() => {}}
+      onBulkComplete={() => {}}
+    />,
+  );
+
+  const proxima = groupSection("Earth_SPACE")!;
+  await user.click(within(proxima).getByText("지구 프록시마"));
+  expect(within(proxima).queryByRole("region", { name: "행성 가이드" })).toBeNull();
+});

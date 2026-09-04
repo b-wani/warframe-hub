@@ -992,3 +992,135 @@
   color: #fff;
   border-color: #4d6a99;
 }
+
+/*
+ * 행성 가이드 — 행성 뷰의 안내와 비노드 목표 체크(스펙 §2.1·§4.3).
+ * 3D 뷰의 HUD와 폴백 뷰의 아코디언에 같은 컴포넌트가 서므로, 자리에 따라
+ * 달라지는 것(폭·정렬·여백)만 아래의 .hudGuide·.fallbackGuide가 얹는다.
+ */
+.guide {
+  padding: 10px 12px;
+  text-align: left;
+  background: rgb(10 16 28 / 92%);
+  border: 1px solid #2a3a55;
+  border-radius: 8px;
+  pointer-events: auto;
+}
+
+.guideHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guideTitle {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e8eef6;
+}
+
+.guideCount {
+  font-size: 12px;
+  color: #8d9bad;
+  font-variant-numeric: tabular-nums;
+}
+
+.guideSummary {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #cfdcea;
+}
+
+/* 아직 저작되지 않은 본문 — 없는 글을 지어내지 않고 준비 중임을 적는다(§9) */
+.guidePending {
+  margin-top: 6px;
+  font-size: 12px;
+  font-style: italic;
+  color: #8d9bad;
+}
+
+.guideObjectivesTitle {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8d9bad;
+  letter-spacing: 0.04em;
+}
+
+.guideObjectives {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  list-style: none;
+}
+
+.guideObjective {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.guideObjectiveLabel {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #cfdcea;
+  cursor: pointer;
+}
+
+.guideObjectiveLabel input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  accent-color: #4b8fe3;
+  cursor: pointer;
+}
+
+.guideObjective[data-complete] .guideObjectiveTitle {
+  color: #7fe0a8;
+}
+
+/* 퀘스트인가 준비 목표인가 — 색이 아니라 글로 구별한다 */
+.guideKind {
+  padding: 1px 6px;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #c9a6ff;
+  white-space: nowrap;
+  border: 1px solid currentcolor;
+  border-radius: 999px;
+}
+
+.guideNote {
+  flex-basis: 100%;
+  padding-left: 22px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #8d9bad;
+}
+
+.guidePatch {
+  margin-top: 10px;
+  font-size: 11px;
+  color: #6f7d90;
+}
+
+/* 행성 뷰 HUD의 가이드 — 오른쪽 위 열의 다른 패널과 같은 폭으로 선다 */
+.hudGuide {
+  width: min(260px, 72vw);
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+/* 폴백 뷰의 가이드 — 아코디언을 편 첫 자리, 노드 목록보다 앞이다 */
+.fallbackGuide {
+  margin: 8px 12px;
+}
