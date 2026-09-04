@@ -29,6 +29,15 @@ Playwright를 처음 실행하기 전에 브라우저를 설치한다:
 pnpm exec playwright install chromium
 ```
 
+`pnpm e2e`는 서버가 없으면 `pnpm build && pnpm start`부터 돌린다. 반복 실행할
+때는 다른 터미널에 서버를 미리 띄워 두면 `reuseExistingServer`가 그 서버를
+재사용해 매번의 빌드를 건너뛴다:
+
+```bash
+pnpm build && pnpm start   # 터미널 1 — 코드를 고치면 다시 빌드한다
+pnpm e2e                   # 터미널 2 — 빌드 없이 바로 돈다
+```
+
 ## 스타차트 데이터 (수동 실행 루틴)
 
 게임 패치 때 운영자가 직접 돌리고 diff를 검수한다. 스크립트는 Node 24의 TypeScript
