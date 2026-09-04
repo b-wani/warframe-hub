@@ -49,13 +49,14 @@ import {
   fissuresByNode,
   type FissureMarker,
 } from "@/starchart/fissures";
-import { nodeClouds } from "@/starchart/node-cloud";
+import { nodeClouds, type NodeCloud } from "@/starchart/node-cloud";
 import { nodeDetail } from "@/starchart/node-detail";
 import {
   isGroupComplete,
   nodeStates,
   type NodeState,
 } from "@/starchart/progress";
+import { isBodyComplete, proximaRings } from "@/starchart/proxima";
 import {
   TEXTURE_FILES,
   texturePath,
@@ -73,6 +74,11 @@ import { useWorldState } from "./use-worldstate";
 const { bodies } = solarSystemBodies(starchartDataset, starchartLayout);
 const bodyById = new Map(bodies.map((body) => [body.id, body]));
 const { clouds } = nodeClouds(starchartDataset, starchartLayout, bodies);
+/**
+ * 행성 id → 그 행성의 프록시마 고리. 조회 하나가 곧 ⚓ 토글의 노출 조건이다 —
+ * 프록시마가 없는 행성에는 토글이 없다(스펙 §2.1).
+ */
+const { rings } = proximaRings(starchartDataset, starchartLayout, bodies);
 
 /** 남은 시간·만료를 다시 세는 간격. 스냅숏 갱신과 별개의 눈금이다. */
 const FISSURE_TICK_MS = 15_000;
@@ -122,7 +128,7 @@ function usePlanetTextures(): Record<TextureFile, Texture> {
 
 function SolarSystem({
   focus,
-  cloudBody,
+  cloud,
   selected,
   states,
   completeBodies,
@@ -131,8 +137,11 @@ function SolarSystem({
   onSelect,
 }: {
   focus: string | null;
-  /** 노드 구름을 붙여 둘 천체 — 초점을 놓아도 비행이 끝날 때까지 남는다. */
-  cloudBody: string | null;
+  /**
+   * 지금 그릴 원반 — 행성의 노드 구름이거나 ⚓ 토글이 켜진 프록시마 고리다.
+   * 초점을 놓아도 비행이 끝날 때까지 남는다.
+   */
+  cloud: NodeCloud | undefined;
   selected: string | null;
   /** 노드 id → 파생 3상태. */
   states: ReadonlyMap<string, NodeState>;
@@ -144,7 +153,6 @@ function SolarSystem({
   onSelect: (id: string) => void;
 }) {
   const maps = usePlanetTextures();
-  const cloud = cloudBody ? clouds.get(cloudBody) : undefined;
 
   return (
     <>
@@ -213,9 +221,12 @@ function SolarSystem({
  */
 function CameraDirector({
   focus,
+  cloud,
   moved,
 }: {
   focus: string | null;
+  /** 프레임에 담아야 하는 원반 — ⚓ 토글을 켜면 프록시마 고리가 그 대상이다. */
+  cloud: NodeCloud | undefined;
   moved: RefObject<boolean>;
 }) {
   const controls = useThree((state) => state.controls);
@@ -225,14 +236,13 @@ function CameraDirector({
   useEffect(() => {
     if (!isCameraControls(controls) || moved.current) return;
     const body = focus ? bodyById.get(focus) : undefined;
-    const cloud = focus ? clouds.get(focus) : undefined;
     const shot =
       body && cloud
         ? planetViewShot(body, cloud, width / height)
         : solarViewShot(bodies, width / height);
     controls.setLookAt(...shot.position, ...shot.target, flown.current);
     flown.current = true;
-  }, [controls, focus, moved, width, height]);
+  }, [controls, focus, cloud, moved, width, height]);
 
   return null;
 }
@@ -270,10 +280,15 @@ export default function Scene({
   // 그 순간이 컷이 된다. 멀어지는 만큼 옅어지는 일은 구름 쪽이 한다.
   const [cloudBody, setCloudBody] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  // ⚓ 토글 — 행성의 노드 구름과 프록시마 고리 중 무엇을 보고 있는가(스펙 §2.1).
+  // 행성을 옮기면 꺼진다: 프록시마가 없는 행성으로 날아가면 볼 것이 없고,
+  // 있는 행성이어도 행성 뷰의 기본은 그 행성의 노드 구름이다.
+  const [proxima, setProxima] = useState(false);
 
   const focusOn = useCallback(
     (id: string | null) => {
       setSelected(null);
+      setProxima(false);
       if (id === focus) return;
       // 뷰가 바뀔 때만 "사용자가 만졌다"를 잊는다 — 새 뷰의 첫 프레이밍은 우리
       // 몫이지만(행성을 누르는 그 클릭의 pointerdown이 이미 컨트롤을 깨워 놨다),
@@ -284,6 +299,14 @@ export default function Scene({
     },
     [focus],
   );
+
+  // ⚓ 토글도 뷰가 바뀌는 조작이다 — 카메라가 고리까지 다시 날아가고(컷이 아니다)
+  // 고른 노드는 놓는다. 지금 화면에 없는 노드의 상세가 남아 있을 자리는 없다.
+  const toggleProxima = useCallback(() => {
+    setSelected(null);
+    moved.current = false;
+    setProxima((on) => !on);
+  }, []);
 
   // 목록 탭에서 균열을 고르면 그 행성까지 연속 비행하고 노드를 골라 둔다 —
   // 전환은 언제나 카메라 하나다(스펙 §2.1).
@@ -312,13 +335,13 @@ export default function Scene({
     () => nodeStates(progressGraph, completedIds),
     [completedIds],
   );
+  // 완료 아이콘의 주체는 그룹이 아니라 천체다 — 행성 뷰에서 ⚓ 토글로 닿는
+  // 프록시마 노드까지 채워졌을 때만 그 행성이 완료다(스펙 §4.2).
   const completeBodies = useMemo(
     () =>
       new Set(
         bodies
-          .filter((body) =>
-            isGroupComplete(progressGraph, completedIds, body.id),
-          )
+          .filter((body) => isBodyComplete(progressGraph, completedIds, body.id))
           .map((body) => body.id),
       ),
     [completedIds],
@@ -348,9 +371,41 @@ export default function Scene({
         : "ok";
 
   const focusedBody = focus ? bodyById.get(focus) : undefined;
+  // 초점이 있는 행성의 프록시마 고리. 없으면 ⚓ 토글도 없다.
+  const focusedRing = focus ? rings.get(focus) : undefined;
+  /** 지금 그릴 원반 — 토글이 켜졌고 고리가 있으면 고리, 아니면 노드 구름이다. */
+  const cloudFor = (bodyId: string | null): NodeCloud | undefined => {
+    if (!bodyId) return undefined;
+    return (proxima ? rings.get(bodyId)?.cloud : undefined) ?? clouds.get(bodyId);
+  };
   const selectedDetail = selected
     ? nodeDetail(starchartDataset, selected)
     : undefined;
+
+  /**
+   * 행성 뷰 HUD가 말하는 대상 — 행성이거나, ⚓ 토글로 들어온 그 행성의
+   * 프록시마다. 완료 표식도 그 대상의 것이다: 행성은 종속 프록시마까지 포함한
+   * 천체 완료(§4.2), 프록시마는 그 그룹의 완료다.
+   */
+  const hud = !focusedBody
+    ? undefined
+    : proxima && focusedRing
+      ? {
+          body: focusedBody.id,
+          group: focusedRing.group,
+          name: focusedRing.name,
+          complete: isGroupComplete(
+            progressGraph,
+            completedIds,
+            focusedRing.group,
+          ),
+        }
+      : {
+          body: focusedBody.id,
+          group: focusedBody.id,
+          name: focusedBody.name,
+          complete: completeBodies.has(focusedBody.id),
+        };
 
   return (
     <>
@@ -375,7 +430,7 @@ export default function Scene({
         <Suspense fallback={null}>
           <SolarSystem
             focus={focus}
-            cloudBody={cloudBody}
+            cloud={cloudFor(cloudBody)}
             selected={selected}
             states={states}
             completeBodies={completeBodies}
@@ -395,7 +450,7 @@ export default function Scene({
             moved.current = true;
           }}
         />
-        <CameraDirector focus={focus} moved={moved} />
+        <CameraDirector focus={focus} cloud={cloudFor(focus)} moved={moved} />
       </Canvas>
 
       {/* 균열 목록은 성계 뷰에서도 필요하다 — 어느 행성에 열렸는지부터 읽는다 */}
@@ -406,7 +461,7 @@ export default function Scene({
         onGo={goToFissure}
       />
 
-      {focusedBody && (
+      {hud && (
         <div className={styles.viewHud}>
           <button
             type="button"
@@ -415,17 +470,38 @@ export default function Scene({
           >
             ← 성계로
           </button>
-          <p className={styles.focusName} data-focus-body={focusedBody.id}>
-            {focusedBody.name}
-            {completeBodies.has(focusedBody.id) && (
+          {/* 지금 어디에 와 있는지 — 행성 이름이거나 프록시마 이름이다 */}
+          <p
+            className={styles.focusName}
+            data-focus-body={hud.body}
+            data-focus-group={hud.group}
+          >
+            {hud.name}
+            {hud.complete && (
               <span className={styles.focusComplete} role="img" aria-label="완료">
                 ✓
               </span>
             )}
           </p>
+          {/*
+            ⚓ 토글 — 프록시마 그룹이 있는 행성에만 있다(스펙 §2.1). 누르면 노드
+            구름 대신 행성 바깥 고리가 뜨고, 다시 누르면 구름으로 돌아온다.
+          */}
+          {focusedRing && (
+            <button
+              type="button"
+              className={styles.proximaToggle}
+              data-proxima-toggle={focusedRing.group}
+              aria-pressed={proxima}
+              onClick={toggleProxima}
+            >
+              <span aria-hidden="true">⚓</span> 프록시마
+            </button>
+          )}
           {/* 행성 전체 완료 — 구간 일괄 체크의 한 형태다(스펙 §4.3) */}
           <BulkComplete
-            target={{ kind: "group", id: focusedBody.id }}
+            target={{ kind: "group", id: hud.group }}
+            proxima={hud.group !== hud.body}
             completedIds={completedIds}
             onComplete={onBulkComplete}
             className={styles.hudBulk}
