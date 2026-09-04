@@ -76,12 +76,91 @@ export type NodeCloud = {
 };
 
 /**
- * 천체마다 노드 구름을 계산한다. 좌표가 빠진 노드는 그리지 않고 `issues`로
- * 알린다 — 게임 패치로 노드가 늘면 화면이 조용히 빠뜨리는 대신 CI에서 드러나야
- * 한다.
+ * 그룹 하나의 노드를 원반 하나로 옮긴다. 어느 그룹을 어느 천체 위 어디에 놓을지는
+ * 부르는 쪽이 정한다 — 행성 뷰의 노드 구름은 천체 바로 위에(`offset` 없이),
+ * 프록시마 고리는 같은 높이의 옆자리에 선다(`proxima.ts`).
+ *
+ * 좌표가 빠진 노드는 그리지 않고 `issues`로 알린다 — 게임 패치로 노드가 늘면
+ * 화면이 조용히 빠뜨리는 대신 CI에서 드러나야 한다.
+ */
+export function nodeCloud(
+  dataset: StarchartDataset,
+  layout: StarchartLayout,
+  {
+    body,
+    group = body.id,
+    offset = [0, 0],
+  }: {
+    /** 원반이 매달리는 천체 — 높이도 이 천체가 정한다. */
+    body: SolarSystemBody;
+    /** 원반에 실을 그룹. 기본값은 천체 자신의 그룹이다. */
+    group?: string;
+    /** 천체에서 황도면 위로 얼마나 비켜 놓는가(월드 단위 x·z). */
+    offset?: readonly [number, number];
+  },
+): { cloud: NodeCloud; issues: string[] } {
+  const issues: string[] = [];
+  const members = placedNodesByGroup(dataset).get(group) ?? [];
+  const center: [number, number, number] = [
+    body.position[0] + offset[0],
+    body.position[1] + body.shellRadius + CLOUD_LIFT,
+    body.position[2] + offset[1],
+  ];
+
+  const placed = new Map<string, [number, number, number]>();
+  const nodes: NodeMarker[] = [];
+  for (const { id } of members) {
+    const point = layout.nodes[id];
+    if (!point) {
+      issues.push(
+        `노드 "${id}"의 좌표가 없다 (좌표 데이터셋을 다시 생성해야 한다)`,
+      );
+      continue;
+    }
+    const position: [number, number, number] = [
+      center[0] + point.x * NODE_SCALE,
+      center[1],
+      center[2] + point.y * NODE_SCALE,
+    ];
+    placed.set(id, position);
+    nodes.push({
+      id,
+      name: dataset.nodes[id].name,
+      position,
+      junction: isJunction(dataset.nodes[id]),
+    });
+  }
+
+  // 간선에 방향은 없다 — A→B와 B→A가 둘 다 있어도 선은 하나다. 그룹 밖을
+  // 가리키는 간선(교차점 → 다음 행성)은 이 구름의 선이 아니다.
+  const links: NodeLink[] = [];
+  const drawn = new Set<string>();
+  for (const { id, nextNodes } of members) {
+    const start = placed.get(id);
+    if (!start) continue;
+    for (const next of nextNodes) {
+      const end = placed.get(next);
+      if (!end) continue;
+      const key = id < next ? `${id} ${next}` : `${next} ${id}`;
+      if (drawn.has(key)) continue;
+      drawn.add(key);
+      links.push({ from: id, to: next, points: [start, end] });
+    }
+  }
+
+  const radius = nodes.reduce(
+    (far, { position }) =>
+      Math.max(far, Math.hypot(position[0] - center[0], position[2] - center[2])),
+    0,
+  );
+  return { cloud: { body: body.id, center, nodes, links, radius }, issues };
+}
+
+/**
+ * 천체마다 노드 구름을 계산한다.
  *
  * 구름은 넘겨받은 천체에만 생긴다. 프록시마는 독립 천체가 아니라 행성 뷰의 ⚓
- * 토글로 붙고(#48), 릴레이는 지도에서 숨기므로 둘 다 여기 없다.
+ * 토글로 붙고(`proxima.ts`), 릴레이는 지도에서 숨기므로 둘 다 여기 없다.
  */
 export function nodeClouds(
   dataset: StarchartDataset,
@@ -90,63 +169,11 @@ export function nodeClouds(
 ): { clouds: Map<string, NodeCloud>; issues: string[] } {
   const clouds = new Map<string, NodeCloud>();
   const issues: string[] = [];
-  const byGroup = placedNodesByGroup(dataset);
 
   for (const body of bodies) {
-    const members = byGroup.get(body.id) ?? [];
-    const center: [number, number, number] = [
-      body.position[0],
-      body.position[1] + body.shellRadius + CLOUD_LIFT,
-      body.position[2],
-    ];
-
-    const placed = new Map<string, [number, number, number]>();
-    const nodes: NodeMarker[] = [];
-    for (const { id } of members) {
-      const point = layout.nodes[id];
-      if (!point) {
-        issues.push(
-          `노드 "${id}"의 좌표가 없다 (좌표 데이터셋을 다시 생성해야 한다)`,
-        );
-        continue;
-      }
-      const position: [number, number, number] = [
-        center[0] + point.x * NODE_SCALE,
-        center[1],
-        center[2] + point.y * NODE_SCALE,
-      ];
-      placed.set(id, position);
-      nodes.push({
-        id,
-        name: dataset.nodes[id].name,
-        position,
-        junction: isJunction(dataset.nodes[id]),
-      });
-    }
-
-    // 간선에 방향은 없다 — A→B와 B→A가 둘 다 있어도 선은 하나다. 그룹 밖을
-    // 가리키는 간선(교차점 → 다음 행성)은 이 구름의 선이 아니다.
-    const links: NodeLink[] = [];
-    const drawn = new Set<string>();
-    for (const { id, nextNodes } of members) {
-      const start = placed.get(id);
-      if (!start) continue;
-      for (const next of nextNodes) {
-        const end = placed.get(next);
-        if (!end) continue;
-        const key = id < next ? `${id} ${next}` : `${next} ${id}`;
-        if (drawn.has(key)) continue;
-        drawn.add(key);
-        links.push({ from: id, to: next, points: [start, end] });
-      }
-    }
-
-    const radius = nodes.reduce(
-      (far, { position }) =>
-        Math.max(far, Math.hypot(position[0] - center[0], position[2] - center[2])),
-      0,
-    );
-    clouds.set(body.id, { body: body.id, center, nodes, links, radius });
+    const built = nodeCloud(dataset, layout, { body });
+    clouds.set(body.id, built.cloud);
+    issues.push(...built.issues);
   }
 
   return { clouds, issues };

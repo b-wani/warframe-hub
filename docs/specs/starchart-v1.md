@@ -38,7 +38,7 @@
   ⚓ 토글로 전환하며, 프록시마 노드는 행성 바깥 고리에 배치한다.
 - **릴레이** 그룹(1개)은 지도에서 숨긴다(진행도와도 무관).
 
-근거: [#32 카메라 연출 프로토타입](https://github.com/b-wani/warframe-hub/issues/32) (변형 A 채택, B·C 기각 — `prototype/starchart-camera-interaction` 브랜치), [#26 그룹 유형](https://github.com/b-wani/warframe-hub/issues/26), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (성계 뷰·릴레이 숨김 구현 완료), [#42 행성 뷰와 연속 비행](https://github.com/b-wani/warframe-hub/issues/42) (행성 뷰·연속 비행 구현 완료 — 프록시마 ⚓ 토글은 [#48](https://github.com/b-wani/warframe-hub/issues/48))
+근거: [#32 카메라 연출 프로토타입](https://github.com/b-wani/warframe-hub/issues/32) (변형 A 채택, B·C 기각 — `prototype/starchart-camera-interaction` 브랜치), [#26 그룹 유형](https://github.com/b-wani/warframe-hub/issues/26), [#41 성계 뷰 골격](https://github.com/b-wani/warframe-hub/issues/41) (성계 뷰·릴레이 숨김 구현 완료), [#42 행성 뷰와 연속 비행](https://github.com/b-wani/warframe-hub/issues/42) (행성 뷰·연속 비행 구현 완료), [#48 프록시마 ⚓ 토글](https://github.com/b-wani/warframe-hub/issues/48) (⚓ 토글·바깥 고리 배치·천체 완료 집계 구현 완료 — 베일 프록시마는 붙을 행성이 없어 폴백 뷰로만 닿는다)
 
 ### 2.2 노드 표현
 
@@ -125,7 +125,10 @@
 
 - 노드 3상태(잠김/미클리어/클리어)는 완료 집합 + `nextNodes` 그래프에서 계산,
   저장하지 않는다.
-- 행성 완료 여부·완료 아이콘도 파생.
+- 행성 완료 여부·완료 아이콘도 파생. 프록시마는 해당 행성에 종속 표시하므로
+  (§2.1) 행성 완료는 그 행성의 노드와 종속 프록시마 노드가 **모두** 완료됐을
+  때다 — 폴백 뷰의 목록에는 종속 관계가 없어 프록시마가 독립 항목으로 서고,
+  그 항목의 완료는 그 그룹 하나의 것이다.
 
 ### 4.3 조작
 
@@ -135,7 +138,7 @@
   확인 단계, 확인 후 진행이 바뀌면 확인 무효, 이미 완료된 노드엔 버튼 비노출.
 - **비노드 목표 체크**: 행성 가이드 안에서.
 
-근거: [#25 진행도 도메인 모델](https://github.com/b-wani/warframe-hub/issues/25), [ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md), [#43](https://github.com/b-wani/warframe-hub/issues/43) (개별 체크·파생 상태·행성 완료 아이콘 구현 완료), [#46](https://github.com/b-wani/warframe-hub/issues/46) (구간 일괄 체크·행성 전체 완료 구현 완료 — 확인 단계·확인 무효화·버튼 비노출 포함. 비노드 목표 체크는 [#49](https://github.com/b-wani/warframe-hub/issues/49))
+근거: [#25 진행도 도메인 모델](https://github.com/b-wani/warframe-hub/issues/25), [ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md), [#43](https://github.com/b-wani/warframe-hub/issues/43) (개별 체크·파생 상태·행성 완료 아이콘 구현 완료), [#46](https://github.com/b-wani/warframe-hub/issues/46) (구간 일괄 체크·행성 전체 완료 구현 완료 — 확인 단계·확인 무효화·버튼 비노출 포함. 비노드 목표 체크는 [#49](https://github.com/b-wani/warframe-hub/issues/49)), [#48](https://github.com/b-wani/warframe-hub/issues/48) (프록시마 노드의 3상태·개별 체크·일괄 체크와 천체 완료 집계 구현 완료)
 
 ## 5. 진행도 가져오기 UX
 
@@ -172,7 +175,7 @@ JSON을 사용자가 직접 붙여넣고 클라이언트에서 파싱한다. 서
   실패·TTL 캐시·폴백 규칙 그대로. 균열 섹션을 어댑터에 추가한다. 월드스테이트를
   못 받아도 지도·진행도는 온전하고 실시간 항목만 빠진다.
 
-근거: [#21](https://github.com/b-wani/warframe-hub/issues/21), 기존 월드스테이트 어댑터 규약(CONTEXT.md), [#47](https://github.com/b-wani/warframe-hub/issues/47) (균열 섹션·노드 심볼·목록 탭 구현 완료 — 프록시마 노드의 보이드 폭풍은 프록시마가 지도에 붙는 [#48](https://github.com/b-wani/warframe-hub/issues/48) 이후다)
+근거: [#21](https://github.com/b-wani/warframe-hub/issues/21), 기존 월드스테이트 어댑터 규약(CONTEXT.md), [#47](https://github.com/b-wani/warframe-hub/issues/47) (균열 섹션·노드 심볼·목록 탭 구현 완료 — 프록시마 노드의 보이드 폭풍은 아직 빠진다: [#48](https://github.com/b-wani/warframe-hub/issues/48)로 프록시마가 행성 뷰에 붙었지만 균열을 남기는 기준은 여전히 성계 뷰의 천체다)
 
 ## 7. 렌더링 구성
 
