@@ -411,8 +411,8 @@ export default function Scene({
 
   /** 지금 행성 뷰가 보고 있는 행성의 가이드. 프록시마를 보고 있으면 없다. */
   const guide =
-    hud && hud.group === hud.body
-      ? starchartPlanetGuides.get(hud.body)
+    focusedBody && !(proxima && focusedRing)
+      ? starchartPlanetGuides.get(focusedBody.id)
       : undefined;
 
   return (

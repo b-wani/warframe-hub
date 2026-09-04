@@ -60,8 +60,14 @@ export type PlanetGuide = z.infer<typeof guideSchema> & {
  * 저작 JSON을 화면이 읽는 모양으로 옮긴다. 천체 id로 찾을 수 있어야 하므로
  * Map이다 — 행성 뷰도 폴백 뷰도 "지금 이 천체의 가이드"만 묻는다.
  *
- * 문제가 있는 가이드는 결과에서 빠지고 `issues`에 남는다: 스키마 위반, 성계
- * 뷰에 없는 천체, 천체 중복, 슬러그 중복, 노드 id와 겹치는 슬러그.
+ * 문제가 있는 것은 결과에서 빠지고 `issues`에 남는다. 빠지는 단위는 문제의
+ * 단위다: 스키마 위반은 파일 전체, 성계 뷰에 없는 천체·천체 중복은 가이드
+ * 하나, 노드 id와 겹치는 슬러그·슬러그 중복은 그 목표 하나다. 잘못된 목표
+ * 하나 때문에 그 행성의 나머지 안내까지 사라질 이유는 없다.
+ *
+ * 겹치는 슬러그를 굳이 걸러 내는 것은 그것이 화면에 서면 체크 한 번이 성계
+ * 노드를 완료 집합에 밀어 넣기 때문이다 — 같은 id를 두 화면이 서로 다른
+ * 것으로 부르게 된다(CONTEXT "비노드 목표").
  */
 export function planetGuides(
   dataset: StarchartDataset,
@@ -92,31 +98,29 @@ export function planetGuides(
       continue;
     }
 
+    const objectives: NonNodeObjective[] = [];
     for (const objective of guide.objectives) {
       if (dataset.nodes[objective.slug]) {
         issues.push(
           `비노드 목표 "${objective.slug}"가 성계 노드 id와 겹친다 (노드는 노드 완료로만 추적한다)`,
         );
+        continue;
       }
       if (seenSlugs.has(objective.slug)) {
         issues.push(`비노드 목표 슬러그 "${objective.slug}"가 두 번 쓰였다`);
+        continue;
       }
       seenSlugs.add(objective.slug);
+      objectives.push(objective);
     }
 
-    guides.set(guide.body, { ...guide, basedOnPatch: file.data.basedOnPatch });
+    guides.set(guide.body, {
+      ...guide,
+      objectives,
+      basedOnPatch: file.data.basedOnPatch,
+    });
   }
 
   return { guides, issues };
 }
 
-/** 저작된 비노드 목표 슬러그 전부 — 완료 집합에서 노드가 아닌 것을 가리는 기준. */
-export function nonNodeObjectiveSlugs(
-  guides: ReadonlyMap<string, PlanetGuide>,
-): Set<string> {
-  const slugs = new Set<string>();
-  for (const guide of guides.values()) {
-    for (const objective of guide.objectives) slugs.add(objective.slug);
-  }
-  return slugs;
-}
