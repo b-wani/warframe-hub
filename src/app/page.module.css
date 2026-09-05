@@ -4,6 +4,8 @@
 
   --text-primary: #000;
   --text-secondary: #666;
+  --accent: #1a1a1a;
+  --accent-text: #fafafa;
 
   display: flex;
   flex: 1;
@@ -44,6 +46,28 @@
   color: var(--text-secondary);
 }
 
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent-text);
+  background-color: var(--accent);
+}
+
+.cta:hover {
+  opacity: 0.85;
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 @media (max-width: 600px) {
   .main {
     padding: 48px 24px;
@@ -63,5 +87,7 @@
 
     --text-primary: #ededed;
     --text-secondary: #999;
+    --accent: #ededed;
+    --accent-text: #0a0a0a;
   }
 }
