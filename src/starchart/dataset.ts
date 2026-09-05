@@ -99,3 +99,12 @@ export function isTrackedGroup(group: StarchartGroup): boolean {
 export function isJunction(node: StarchartNode): boolean {
   return node.missionType === "MT_JUNCTION";
 }
+
+/**
+ * 보스 노드(암살 미션)인가. 교차점과 함께 큐레이션 오버레이가 얹히는 주요
+ * 노드다(CONTEXT "주요 노드") — 구조화 데이터만으로는 "여기서 무엇을 얻는가"가
+ * 드러나지 않는 자리다.
+ */
+export function isBossNode(node: StarchartNode): boolean {
+  return node.missionType === "MT_ASSASSINATION";
+}

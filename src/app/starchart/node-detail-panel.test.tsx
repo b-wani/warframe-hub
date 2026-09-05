@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import type { ComponentProps } from "react";
 import { describe, expect, test, vi } from "vitest";
 import type { NodeDetail } from "@/starchart/node-detail";
+import type { NodeOverlay } from "@/starchart/node-overlay";
 import { NodeDetailPanel } from "./node-detail-panel";
 
 /**
@@ -145,5 +146,98 @@ describe("NodeDetailPanel 구간 일괄 체크", () => {
     expect(screen.queryByRole("button", { name: "여기까지 완료" })).toBeNull();
     // 개별 체크는 그대로 있다 — 사라지는 것은 일괄 체크뿐이다
     expect(screen.getByRole("checkbox", { name: "완료" })).toBeTruthy();
+  });
+});
+
+describe("NodeDetailPanel 큐레이션 오버레이", () => {
+  const junction: NodeDetail = {
+    id: "EarthToVenusJunction",
+    name: "금성 교차점",
+    junction: true,
+  };
+
+  const overlay: NodeOverlay = {
+    summary: "금성으로 가는 관문.",
+    preparations: [
+      { name: "택슨 센티넬 설계도", source: "교차점 과제 보상", quantity: 1 },
+    ],
+    cautions: ["과제를 다 마치기 전에는 스펙터 방에 들어갈 수 없다"],
+    spoiler: false,
+    sourceIds: ["wiki-venus-junction"],
+    basedOnPatch: "Update 43",
+  };
+
+  test("오버레이가 있으면 구조화 데이터와 함께 표시된다", () => {
+    render(
+      <Panel
+        detail={ePrime}
+        overlay={overlay}
+        state="uncleared"
+        onToggle={vi.fn()}
+      />,
+    );
+
+    // 구조화 데이터는 그대로 남는다 — 오버레이는 얹는 것이지 대신하는 것이 아니다
+    expect(screen.getByText("섬멸")).toBeTruthy();
+    expect(screen.getByText("금성으로 가는 관문.")).toBeTruthy();
+    expect(screen.getByText(/택슨 센티넬 설계도/)).toBeTruthy();
+    expect(
+      screen.getByText("과제를 다 마치기 전에는 스펙터 방에 들어갈 수 없다"),
+    ).toBeTruthy();
+    expect(screen.getByText(/Update 43/)).toBeTruthy();
+  });
+
+  test("오버레이가 없는 노드는 구조화 데이터만 표시한다", () => {
+    render(<Panel detail={ePrime} state="uncleared" onToggle={vi.fn()} />);
+
+    expect(screen.getByText("섬멸")).toBeTruthy();
+    expect(screen.queryByText(/기준 패치/)).toBeNull();
+    expect(document.querySelector("[data-node-overlay]")).toBeNull();
+  });
+
+  test("빈 목록은 제목도 세우지 않는다 — 빈칸을 지어내지 않는다", () => {
+    render(
+      <Panel
+        detail={junction}
+        overlay={{ ...overlay, preparations: [], cautions: [] }}
+        state="uncleared"
+        onToggle={vi.fn()}
+      />,
+    );
+
+    expect(screen.queryByText("준비물")).toBeNull();
+    expect(screen.queryByText("주의")).toBeNull();
+    expect(screen.queryByText("대표 드랍")).toBeNull();
+  });
+
+  test("보스의 대표 드랍을 보여 준다", () => {
+    render(
+      <Panel
+        detail={{ id: "SolNode104", name: "Fossa", junction: false }}
+        overlay={{ ...overlay, drops: ["라이노 섀시 설계도"] }}
+        state="uncleared"
+        onToggle={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByText("대표 드랍")).toBeTruthy();
+    expect(screen.getByText("라이노 섀시 설계도")).toBeTruthy();
+  });
+
+  test("스포일러 콘텐츠는 접어 두고 펼쳐야 읽힌다", async () => {
+    render(
+      <Panel
+        detail={junction}
+        overlay={{ ...overlay, spoiler: true }}
+        state="uncleared"
+        onToggle={vi.fn()}
+      />,
+    );
+
+    const summary = screen.getByText("스포일러 — 눌러서 펼치기");
+    expect(summary.closest("details")?.open).toBe(false);
+
+    await userEvent.click(summary);
+    expect(summary.closest("details")?.open).toBe(true);
   });
 });
