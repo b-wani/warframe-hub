@@ -46,7 +46,7 @@ test("텍스처 출처 표기가 페이지에 있다", async ({ page }) => {
   );
 });
 
-test("카메라 궤도·줌이 동작한다", async ({ page }) => {
+test("카메라 궤도·줌이 동작한다", { tag: "@smoke" }, async ({ page }) => {
   await openStarchart(page);
   const canvas = page.locator("canvas");
   const box = (await canvas.boundingBox())!;

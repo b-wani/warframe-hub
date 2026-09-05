@@ -63,7 +63,7 @@ test("세로 화면에서도 성계 전체가 프레임 안에 들어온다", as
   expect(await bodiesOutsideFrame(page)).toEqual([]);
 });
 
-test("화면을 돌려도 프레임을 다시 잡는다 — 카메라를 만지기 전까지는", async ({
+test("화면을 돌려도 프레임을 다시 잡는다 — 카메라를 만지기 전까지는", { tag: "@smoke" }, async ({
   page,
 }) => {
   await page.goto("/starchart");
