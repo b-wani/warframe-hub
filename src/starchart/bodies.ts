@@ -211,6 +211,11 @@ export type SolarSystemBody = {
    * 아래쪽 끝이기도 해서, 카메라 프레이밍이 이 값을 여유로 쓴다.
    */
   labelY: number;
+  /**
+   * 가장 가까운 다른 천체까지의 거리. 탭 히트 영역을 얼마나 키울 수 있는지가
+   * 여기서 나온다 — 이웃의 중심까지 삼키면 그 이웃을 못 누른다(`tap-target.ts`).
+   */
+  spacing: number;
   texture: TextureFile;
   tint: string;
   atmosphere: string;
@@ -254,6 +259,8 @@ export function solarSystemBodies(
       radius: appearance.radius,
       shellRadius: appearance.radius * SHELL_SCALE,
       labelY: -(appearance.radius * SHELL_SCALE + LABEL_DROP),
+      // 이웃이 다 모인 뒤에야 알 수 있다 — 아래에서 채운다
+      spacing: Infinity,
       texture: appearance.texture,
       tint: appearance.tint,
       atmosphere: appearance.atmosphere,
@@ -265,6 +272,20 @@ export function solarSystemBodies(
         },
       }),
     });
+  }
+
+  // 천체는 전부 황도면(y=0) 위에 있으므로 간격도 평면에서 잰다
+  for (const body of bodies) {
+    for (const other of bodies) {
+      if (other === body) continue;
+      body.spacing = Math.min(
+        body.spacing,
+        Math.hypot(
+          body.position[0] - other.position[0],
+          body.position[2] - other.position[2],
+        ),
+      );
+    }
   }
 
   for (const id of Object.keys(APPEARANCE)) {

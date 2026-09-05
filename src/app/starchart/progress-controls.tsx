@@ -42,7 +42,7 @@ export function ProgressControls({
   const [wizardOpen, setWizardOpen] = useState(false);
 
   return (
-    <div className={styles.progressHud}>
+    <div className={styles.progressHud} data-hud="progress">
       <ProgressToolbar
         completedCount={completedIds.size}
         onImport={() => setWizardOpen(true)}

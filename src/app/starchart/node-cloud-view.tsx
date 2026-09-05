@@ -27,13 +27,21 @@
 import { Instance, Instances, Line } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import {
+  useCallback,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
   type ComponentRef,
   type ReactNode,
 } from "react";
-import { Vector3, type Group, type MeshStandardMaterial } from "three";
+import {
+  Object3D,
+  Vector3,
+  type Group,
+  type InstancedMesh,
+  type MeshStandardMaterial,
+} from "three";
 import type { FissureMarker } from "@/starchart/fissures";
 import {
   NODE_RADIUS,
@@ -41,6 +49,7 @@ import {
   type NodeMarker,
 } from "@/starchart/node-cloud";
 import type { NodeState } from "@/starchart/progress";
+import { tapRadius } from "@/starchart/tap-target";
 import { FissureSymbol } from "./fissure-symbol";
 import { MapLabel } from "./map-label";
 import { usePointerCursor } from "./pointer-cursor";
@@ -95,6 +104,91 @@ function fade(distance: number, radius: number): number {
   return (far - distance) / (far - near);
 }
 
+/** 히트 구체의 행렬을 다시 쓸 때 쓰는 임시 객체 — 프레임마다 새로 만들지 않는다. */
+const scratch = new Object3D();
+
+/**
+ * 노드를 누르는 자리 — 마름모보다 큰, 눈에 보이지 않는 구체들(스펙 §8-3).
+ *
+ * 마름모는 화면에서 8~19px이라 손가락으로 겨냥할 크기가 아니다. 그래서 누르는
+ * 것은 마름모가 아니라 그것을 감싼 구체이고, 구체는 화면에서 44px을 채우도록
+ * 프레임마다 크기를 다시 잡는다 — 3D에서 "화면에서 몇 px"은 카메라가 움직이면
+ * 같이 변하는 값이라 월드 크기 하나로 고정할 수 없다(계산은 `tap-target.ts`).
+ *
+ * 그리지는 않는다(`colorWrite`·`depthWrite` 둘 다 끈다). 레이캐스트는 `visible`을
+ * 보지 않으므로 이것만으로 "안 보이지만 눌리는" 자리가 된다.
+ *
+ * 마름모 쪽이 아니라 여기가 포인터를 받는 이유는 하나 더 있다: 레이캐스트 대상이
+ * 상태별 덩어리 셋이 아니라 이 하나로 줄어든다.
+ */
+function NodeHitTargets({
+  cloud,
+  onSelect,
+}: {
+  cloud: NodeCloud;
+  onSelect: (id: string) => void;
+}) {
+  const mesh = useRef<InstancedMesh>(null);
+  const pointer = usePointerCursor();
+  const center = useMemo(() => new Vector3(...cloud.center), [cloud.center]);
+  /** 지금 적용돼 있는 일반 노드의 반지름 — 카메라가 멈춰 있으면 다시 쓰지 않는다. */
+  const applied = useRef(0);
+
+  const write = useCallback(
+    (radiusOf: (visualRadius: number) => number) => {
+      const target = mesh.current;
+      if (!target) return;
+      const plain = radiusOf(NODE_RADIUS);
+      const junction = radiusOf(JUNCTION_RADIUS);
+      cloud.nodes.forEach((node, index) => {
+        scratch.position.set(...node.position);
+        scratch.scale.setScalar(node.junction ? junction : plain);
+        scratch.updateMatrix();
+        target.setMatrixAt(index, scratch.matrix);
+      });
+      target.instanceMatrix.needsUpdate = true;
+      applied.current = plain;
+    },
+    [cloud.nodes],
+  );
+
+  // 첫 프레임 전에도 구체가 제자리에 있어야 한다 — 카메라를 아직 모르니 일단
+  // 마름모 크기로 놓고, 곧 아래 useFrame이 화면 크기에 맞춰 키운다.
+  useLayoutEffect(() => {
+    write((visualRadius) => visualRadius);
+  }, [write]);
+
+  useFrame(({ camera, size }) => {
+    const distance = camera.position.distanceTo(center);
+    const radiusOf = (visualRadius: number) =>
+      tapRadius({
+        distance,
+        viewportHeight: size.height,
+        spacing: cloud.minSpacing,
+        visualRadius,
+      });
+    if (Math.abs(radiusOf(NODE_RADIUS) - applied.current) < 1e-4) return;
+    write(radiusOf);
+  });
+
+  return (
+    <instancedMesh
+      ref={mesh}
+      args={[undefined, undefined, cloud.nodes.length]}
+      {...pointer}
+      onClick={(event) => {
+        event.stopPropagation();
+        const index = event.instanceId;
+        if (index !== undefined) onSelect(cloud.nodes[index].id);
+      }}
+    >
+      <sphereGeometry args={[1, 8, 6]} />
+      {/* 그리지 않는 재질 — 자리만 차지하고 화면에는 아무 흔적도 남기지 않는다 */}
+      <meshBasicMaterial colorWrite={false} depthWrite={false} />
+    </instancedMesh>
+  );
+}
+
 /**
  * 상태·모양이 같은 노드 한 덩어리. 재질이 덩어리마다 하나이므로 페이드도
  * 덩어리마다 걸어야 한다 — 부모가 프레임마다 만질 수 있게 재질을 넘겨준다.
@@ -105,7 +199,6 @@ function NodeInstances({
   geometry,
   rotation,
   selected,
-  onSelect,
   onMaterial,
 }: {
   nodes: NodeMarker[];
@@ -114,11 +207,8 @@ function NodeInstances({
   /** 덩어리 전체에 같은 각도를 주고 싶을 때. */
   rotation?: [number, number, number];
   selected: string | null;
-  /** 없으면 포인터를 받지 않는다 — r3f는 핸들러가 붙은 것만 레이캐스트한다. */
-  onSelect?: (id: string) => void;
   onMaterial: (material: MeshStandardMaterial | null) => void;
 }) {
-  const pointer = usePointerCursor();
   const look = STATE_LOOK[state];
 
   return (
@@ -142,14 +232,6 @@ function NodeInstances({
           position={node.position}
           rotation={rotation}
           color={node.id === selected ? SELECTED_COLOR : look.color}
-          {...(onSelect ? pointer : {})}
-          onClick={
-            onSelect &&
-            ((event) => {
-              event.stopPropagation();
-              onSelect(node.id);
-            })
-          }
         />
       ))}
     </Instances>
@@ -265,7 +347,6 @@ export function NodeCloudView({
                 nodes={plain}
                 state={state}
                 selected={selected}
-                onSelect={onSelect}
                 onMaterial={(material) =>
                   keep(materials.current, `node:${state}`, material)
                 }
@@ -279,13 +360,12 @@ export function NodeCloudView({
                   nodes={junctions}
                   state={state}
                   selected={selected}
-                  onSelect={onSelect}
                   onMaterial={(material) =>
                     keep(materials.current, `junction:${state}`, material)
                   }
                   geometry={<octahedronGeometry args={[JUNCTION_RADIUS, 0]} />}
                 />
-                {/* 겹치는 마름모는 실루엣일 뿐이다 — 누르는 것은 아래 하나다 */}
+                {/* 겹치는 마름모는 실루엣일 뿐이다 — 누르는 자리는 따로 있다 */}
                 <NodeInstances
                   nodes={junctions}
                   state={state}
@@ -303,6 +383,12 @@ export function NodeCloudView({
           </group>
         );
       })}
+
+      {/*
+        누르는 자리는 마름모 위에 따로 얹는다(스펙 §8-3). 구름이 완전히 옅어지면
+        같이 빠진다 — 화면에 없는 것이 눌리면 성계 뷰에서 허공이 반응한다.
+      */}
+      {!gone && <NodeHitTargets cloud={cloud} onSelect={onSelect} />}
 
       {labelled &&
         !gone &&

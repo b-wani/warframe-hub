@@ -4,7 +4,12 @@ import {
   starchartDataset as dataset,
   starchartLayout as layout,
 } from "./data";
-import { NODE_RADIUS, NODE_SCALE, nodeClouds } from "./node-cloud";
+import {
+  NODE_RADIUS,
+  NODE_SCALE,
+  nodeCloud,
+  nodeClouds,
+} from "./node-cloud";
 
 const { bodies } = solarSystemBodies(dataset, layout);
 const byId = new Map(bodies.map((body) => [body.id, body]));
@@ -85,6 +90,29 @@ describe("nodeClouds", () => {
       expect(cloud.radius).toBeCloseTo(far);
       expect(cloud.radius).toBeGreaterThan(0);
     }
+  });
+
+  test("최소 간격은 가장 가까운 두 노드 사이의 거리다", () => {
+    for (const cloud of clouds.values()) {
+      let closest = Infinity;
+      for (let i = 0; i < cloud.nodes.length; i++) {
+        for (let j = i + 1; j < cloud.nodes.length; j++) {
+          const a = cloud.nodes[i].position;
+          const b = cloud.nodes[j].position;
+          closest = Math.min(closest, Math.hypot(a[0] - b[0], a[2] - b[2]));
+        }
+      }
+      expect(cloud.minSpacing).toBeCloseTo(closest);
+    }
+  });
+
+  test("이웃이 없으면 간격도 없다 — 히트 영역에 상한이 없다는 뜻이다", () => {
+    const empty = nodeCloud(dataset, layout, {
+      body: bodies[0],
+      group: "없는그룹",
+    }).cloud;
+    expect(empty.nodes).toEqual([]);
+    expect(empty.minSpacing).toBe(Infinity);
   });
 
   test("좌표 데이터셋의 상대 배치를 배율만 바꿔 옮긴다", () => {
