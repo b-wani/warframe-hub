@@ -52,7 +52,7 @@ test("완료가 하나라도 있으면 배너가 뜨지 않는다", async ({ pag
   await expect(banner(page)).toHaveCount(0);
 });
 
-test("계정 ID를 넣으면 앱이 조립한 프로필 URL이 새 탭으로 열린다", async ({
+test("계정 ID를 넣으면 앱이 조립한 프로필 URL이 새 탭으로 열린다", { tag: "@smoke" }, async ({
   page,
 }) => {
   // 비문서화 엔드포인트를 실제로 부르지 않는다 — 열리는 주소만 확인한다
@@ -78,7 +78,7 @@ test("계정 ID를 넣으면 앱이 조립한 프로필 URL이 새 탭으로 열
   await expect(page.getByLabel("프로필 JSON")).toBeVisible();
 });
 
-test("붙여넣기 한 번이 미리보기를 거쳐 합집합으로 저장까지 간다", async ({
+test("붙여넣기 한 번이 미리보기를 거쳐 합집합으로 저장까지 간다", { tag: "@smoke" }, async ({
   page,
 }) => {
   await seedProgress(page, ["SolNode11"]);

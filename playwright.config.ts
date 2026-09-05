@@ -6,13 +6,18 @@ export default defineConfig({
   // 자기 브라우저 컨텍스트의 localStorage로만 시작한다) — 파일 안에서도 병렬로 돈다.
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
+  // github 리포터는 성공 건을 찍지 않아 진행이 멈춘 듯 보인다 — list를 함께 둔다
   reporter: process.env.CI
-    ? [["github"], ["html", { open: "never" }]]
+    ? [["list"], ["github"], ["html", { open: "never" }]]
     : "list",
   use: {
     baseURL: "http://127.0.0.1:3000",
     trace: "on-first-retry",
+    // 카메라 연속 비행을 건너뛴다(앱이 prefers-reduced-motion을 따른다) — 테스트
+    // 하나가 비행이 멈추기를 기다리는 데 10초 넘게 쓰던 것을 없앤다. 비행 자체를
+    // 검증하는 테스트만 `test.use({ contextOptions: { reducedMotion: "no-preference" } })`로 되돌린다.
+    contextOptions: { reducedMotion: "reduce" },
   },
   projects: [
     {

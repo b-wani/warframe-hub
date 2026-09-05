@@ -28,7 +28,7 @@ test("노드가 3상태로 갈려 표시된다 — 잠긴 노드에는 자물쇠
   await expect(mariana).toContainText("🔒");
 });
 
-test("완료 토글이 저장·파생 상태·지도를 한 번에 끌고 간다", async ({ page }) => {
+test("완료 토글이 저장·파생 상태·지도를 한 번에 끌고 간다", { tag: "@smoke" }, async ({ page }) => {
   // 저장 검증을 새로고침으로 하느라 openEarth(≈10초)를 두 번 부르는 유일한 테스트 —
   // CI 러너에서 기본 30초 예산을 초과한다
   test.slow();

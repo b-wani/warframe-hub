@@ -40,30 +40,35 @@ test("프록시마가 있는 행성에만 ⚓ 토글이 뜬다", async ({ page }
   await expect(proximaToggle(page)).toHaveCount(0);
 });
 
-test("토글이 노드 구름과 행성 바깥 고리를 갈아 끼운다", async ({ page }) => {
-  await openEarth(page);
-  await recordFrames(page, "Earth");
+// 비행 자체를 보는 테스트 — 기본값(모션 감소)을 되돌린다
+test.describe("연속 비행", () => {
+  test.use({ contextOptions: { reducedMotion: "no-preference" } });
 
-  await proximaToggle(page).click();
+  test("토글이 노드 구름과 행성 바깥 고리를 갈아 끼운다", async ({ page }) => {
+    await openEarth(page);
+    await recordFrames(page, "Earth");
 
-  // 노드 구름 대신 프록시마 고리가 뜬다 — 행성 뷰에서 나가지는 않는다
-  await expect(nodeLabels(page)).toHaveCount(EARTH_PROXIMA_NODE_COUNT);
-  await expect(page.locator("[data-focus-group='Earth_SPACE']")).toContainText(
-    "지구 프록시마",
-  );
-  await expect(proximaToggle(page)).toHaveAttribute("aria-pressed", "true");
-  await expect(page.locator("[data-focus-body='Earth']")).toBeVisible();
-  await expect(nodeLabel(page, "CrewBattleNode502")).toBeVisible();
+    await proximaToggle(page).click();
 
-  // 고리까지 가는 것도 컷이 아니라 비행이다(스펙 §2.1)
-  await waitForCameraRest(page);
-  expect(await distinctFrames(page)).toBeGreaterThan(5);
+    // 노드 구름 대신 프록시마 고리가 뜬다 — 행성 뷰에서 나가지는 않는다
+    await expect(nodeLabels(page)).toHaveCount(EARTH_PROXIMA_NODE_COUNT);
+    await expect(page.locator("[data-focus-group='Earth_SPACE']")).toContainText(
+      "지구 프록시마",
+    );
+    await expect(proximaToggle(page)).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator("[data-focus-body='Earth']")).toBeVisible();
+    await expect(nodeLabel(page, "CrewBattleNode502")).toBeVisible();
 
-  // 되돌리면 일반 노드 구름으로 복귀한다
-  await proximaToggle(page).click();
-  await expect(nodeLabels(page)).toHaveCount(EARTH_NODE_COUNT);
-  await expect(page.locator("[data-focus-group='Earth']")).toContainText("지구");
-  await expect(proximaToggle(page)).toHaveAttribute("aria-pressed", "false");
+    // 고리까지 가는 것도 컷이 아니라 비행이다(스펙 §2.1)
+    await waitForCameraRest(page);
+    expect(await distinctFrames(page)).toBeGreaterThan(5);
+
+    // 되돌리면 일반 노드 구름으로 복귀한다
+    await proximaToggle(page).click();
+    await expect(nodeLabels(page)).toHaveCount(EARTH_NODE_COUNT);
+    await expect(page.locator("[data-focus-group='Earth']")).toContainText("지구");
+    await expect(proximaToggle(page)).toHaveAttribute("aria-pressed", "false");
+  });
 });
 
 test("프록시마 노드도 3상태·상세·완료 체크가 같다", async ({ page }) => {
