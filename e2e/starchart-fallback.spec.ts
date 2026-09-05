@@ -1,19 +1,12 @@
 import { expect, test, type Page } from "./fixtures";
-import {
-  BODY_COUNT,
-  EARTH_NODE_COUNT,
-  labels,
-  nodeLabel,
-  nodeLabels,
-  openStarchart,
-  storedProgress,
-} from "./helpers";
+import { BODY_COUNT, labels, openStarchart } from "./helpers";
 
 // 폴백 뷰 (#45)
 // 목록의 내용과 파생 3상태는 단위 테스트(src/starchart/fallback.test.ts,
 // src/app/starchart/fallback-view.test.tsx)가, 어느 뷰를 띄우는지의 규칙은
-// src/app/starchart/starchart-view.test.tsx가 본다. 여기서는 브라우저에서만
-// 확인되는 것 — WebGL이 정말 없을 때 자동으로 뜨는가, 3D와 같은 진행도인가.
+// src/app/starchart/starchart-view.test.tsx가 본다(3D와 같은 완료 집합인가도 거기).
+// 여기서는 브라우저에서만 확인되는 것 — WebGL이 정말 없을 때 자동으로 뜨는가,
+// 3D 캔버스가 실제로 사라지고 돌아오는가.
 
 const earthAccordion = (page: Page) => page.locator("[data-group-id='Earth']");
 
@@ -34,12 +27,6 @@ async function blockWebgl(page: Page) {
       );
     } as typeof original;
   });
-}
-
-/** 폴백 뷰에서 지구 아코디언을 펼친다. */
-async function openEarthAccordion(page: Page) {
-  await expect(earthAccordion(page)).toBeVisible();
-  await earthAccordion(page).locator("summary").click();
 }
 
 test("WebGL을 못 쓰면 폴백 뷰가 자동으로 뜬다", { tag: "@smoke" }, async ({ page }) => {
@@ -70,36 +57,3 @@ test("3D 환경에서도 목록으로 수동 전환하고 되돌아올 수 있�
   await expect(earthAccordion(page)).toHaveCount(0);
 });
 
-test("폴백 뷰의 완료 체크가 3D 뷰와 같은 완료 집합에 반영된다", async ({
-  page,
-}) => {
-  // 두 뷰를 오가며 성계지도를 두 번 세운다 — CI 러너에서 기본 30초 예산을 넘긴다
-  test.slow();
-  await openStarchart(page);
-  await page.getByRole("button", { name: "목록으로 보기" }).click();
-  await openEarthAccordion(page);
-
-  const ePrime = earthAccordion(page).getByRole("checkbox", {
-    name: /E Prime/,
-  });
-  await expect(ePrime).not.toBeChecked();
-  await ePrime.check();
-
-  // 같은 저장소에 남는다
-  expect(JSON.parse((await storedProgress(page))!).completedIds).toEqual([
-    "SolNode27",
-  ]);
-  // 파생 상태도 함께 간다 — 다음 노드가 목록에서 열린다
-  await expect(
-    earthAccordion(page).locator("[data-node-id='SolNode89']"),
-  ).toHaveAttribute("data-state", "uncleared");
-
-  // 3D로 돌아가면 같은 사실을 지도가 말한다
-  await page.getByRole("button", { name: "3D로 보기" }).click();
-  await page.getByRole("button", { name: "지구", exact: true }).click();
-  await expect(nodeLabels(page)).toHaveCount(EARTH_NODE_COUNT);
-  await expect(nodeLabel(page, "SolNode27")).toHaveAttribute(
-    "data-state",
-    "cleared",
-  );
-});

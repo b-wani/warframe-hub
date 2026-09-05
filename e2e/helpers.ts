@@ -92,7 +92,7 @@ export async function waitForCameraRest(page: Page) {
     .toBe(true);
 }
 
-export const nodeIdsOf = (groupId: string) =>
+const nodeIdsOf = (groupId: string) =>
   Object.entries(dataset.nodes)
     .filter(([, node]) => node.group === groupId)
     .map(([id]) => id);
