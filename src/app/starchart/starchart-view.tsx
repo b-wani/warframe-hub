@@ -70,6 +70,7 @@ export default function StarchartView() {
         <button
           type="button"
           className={styles.viewToggle}
+          data-hud="view-mode"
           onClick={() => setChosen("fallback")}
         >
           목록으로 보기

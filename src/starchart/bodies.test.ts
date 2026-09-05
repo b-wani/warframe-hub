@@ -86,6 +86,24 @@ describe("solarSystemBodies", () => {
     expect(overlapping).toEqual([]);
   });
 
+  test("간격은 가장 가까운 다른 천체까지의 거리다", () => {
+    for (const body of bodies) {
+      const closest = Math.min(
+        ...bodies
+          .filter((other) => other.id !== body.id)
+          .map((other) => distance(body.id, other.id)),
+      );
+      expect(body.spacing).toBeCloseTo(closest);
+    }
+    // 히트 영역의 상한으로 쓰이므로 늘 유한한 양수여야 한다. 위성을 곁에 둔
+    // 행성은 이 값의 절반이 자기 셸보다도 좁은데, 히트 영역이 시각 크기 아래로
+    // 내려가지 않게 막는 것은 `tapRadius` 쪽 일이다.
+    for (const body of bodies) {
+      expect(body.spacing).toBeGreaterThan(0);
+      expect(Number.isFinite(body.spacing)).toBe(true);
+    }
+  });
+
   test("링은 해당 행성에만 있다 — v1은 토성뿐", () => {
     expect(bodies.filter((body) => body.ring).map((body) => body.id)).toEqual([
       "Saturn",

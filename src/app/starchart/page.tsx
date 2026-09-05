@@ -16,10 +16,12 @@ export default function StarchartPage() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <h1 className={styles.title}>스타차트</h1>
+        <h1 className={styles.title} data-hud="title">
+          스타차트
+        </h1>
       </header>
       <StarchartClient />
-      <footer className={styles.footer}>
+      <footer className={styles.footer} data-hud="credit">
         <PatchBaseline patches={starchartPatchBaseline} />
         <TextureCredit />
       </footer>
