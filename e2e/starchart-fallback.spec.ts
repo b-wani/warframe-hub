@@ -70,7 +70,7 @@ test("3D 환경에서도 목록으로 수동 전환하고 되돌아올 수 있�
   await expect(earthAccordion(page)).toHaveCount(0);
 });
 
-test("폴백 뷰의 완료 체크가 3D 뷰와 같은 완료 집합에 반영된다", { tag: "@smoke" }, async ({
+test("폴백 뷰의 완료 체크가 3D 뷰와 같은 완료 집합에 반영된다", async ({
   page,
 }) => {
   // 두 뷰를 오가며 성계지도를 두 번 세운다 — CI 러너에서 기본 30초 예산을 넘긴다
