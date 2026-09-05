@@ -1,4 +1,4 @@
-import { expect, type Page } from "@playwright/test";
+import { expect, type Page } from "./fixtures";
 import dataset from "../src/data/starchart.json";
 import { STARCHART_PROGRESS_STORAGE_KEY } from "../src/starchart/progress-repository";
 
@@ -14,8 +14,8 @@ export const nodeLabels = (page: Page) => page.locator("[data-node-id]");
 
 /**
  * 노드 하나를 id로 집는다. 이름으로 찾으면 균열이 열린 노드에서 심볼의
- * aria-label("보이드 균열 리스 — Mariana")까지 걸려 두 개가 잡힌다 — 실제
- * 월드스테이트를 쓰는 테스트라 그날 균열이 어디 열렸는지에 결과가 매달린다.
+ * aria-label("보이드 균열 리스 — Mariana")까지 걸려 두 개가 잡힌다 — 월드스테이트는
+ * fixtures.ts가 고정하지만, 균열 스펙은 자기 스냅숏으로 균열을 열어 둔다.
  */
 export const nodeLabel = (page: Page, id: string) =>
   page.locator(`[data-node-id="${id}"]`);

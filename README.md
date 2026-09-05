@@ -29,6 +29,11 @@ Playwright를 처음 실행하기 전에 브라우저를 설치한다:
 pnpm exec playwright install chromium
 ```
 
+e2e는 외부 API에 닿지 않는다 — 스펙은 `@playwright/test`가 아니라 `e2e/fixtures.ts`의
+`test`를 임포트하고, 그 픽스처가 모든 테스트에서 `/api/worldstate`를 빈 스냅숏으로
+고정한다(자기 스냅숏이 필요한 스펙은 `page.route`를 한 번 더 건다). 결과가 그날의
+균열 상황에 매달리지 않는다.
+
 `pnpm e2e`는 서버가 없으면 `pnpm build && pnpm start`부터 돌린다. 반복 실행할
 때는 다른 터미널에 서버를 미리 띄워 두면 `reuseExistingServer`가 그 서버를
 재사용해 매번의 빌드를 건너뛴다:
