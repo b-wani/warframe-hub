@@ -1,0 +1,9 @@
+{
+  "SolNode1": {
+    "name": "/Lotus/Language/Regions/Node1",
+    "systemName": "/Lotus/Language/Regions/EarthName",
+    "nodeType": 0,
+    "faction": "FC_GRINEER",
+    "nextNodes": []
+  }
+}
