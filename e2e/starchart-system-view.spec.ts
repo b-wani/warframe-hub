@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 import { labelPositions, labels, openStarchart } from "./helpers";
 
 // 성계 뷰 (#41)

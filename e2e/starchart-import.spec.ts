@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./fixtures";
 import { openStarchart, seedProgress, storedProgress } from "./helpers";
 
 // 진행도 가져오기 (#44)
