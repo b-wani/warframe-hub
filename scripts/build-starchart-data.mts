@@ -4,6 +4,7 @@
  *   pnpm build:starchart                          업스트림에서 받아 생성
  *   pnpm build:starchart --regions=a.json --dict=b.json --dict-en=c.json
  *                                                 로컬 파일로 생성
+ *   pnpm build:starchart --out=path.json          다른 경로에 생성
  *
  * 업스트림 warframe-public-export-plus의 ExportRegions.json(노드 그래프)과
  * dict.ko.json(공식 한국어 사전) + dict.en.json(영문 사전)을 합쳐
@@ -15,13 +16,15 @@
  * 데이터셋 안에 있어야 균열을 노드에 붙일 수 있다.
  *
  * 언어 키가 사전에 없거나 팩션 enum이 수동 매핑에 없거나 영문 표시명이 겹치면
- * 실패한다 — 매핑 실패가 화면에 도달하기 전에 여기서 드러나야 한다.
+ * 실패한다 — 매핑 실패가 화면에 도달하기 전에 여기서 드러나야 한다. 사전이 키를
+ * 엉뚱한 문자열로 해석하는 경우(누락이 아니라 오역)는 표시명 오버라이드 표로
+ * 덮으며, 쓰이지 않는 오버라이드 항목이 남아도 실패한다.
  */
 import { readFile, writeFile } from "node:fs/promises";
 
 const UPSTREAM =
   "https://raw.githubusercontent.com/calamity-inc/warframe-public-export-plus/senpai";
-const OUT_PATH = "src/data/starchart.json";
+const DEFAULT_OUT_PATH = "src/data/starchart.json";
 
 // 그룹 유형 4분류 (#26). 그룹 id는 systemName 마지막 세그먼트.
 const SPECIAL_GROUPS = new Set([
@@ -51,6 +54,19 @@ const FACTIONS: Record<string, string> = {
   FC_MITW: "머머",
   FC_SCALDRA: "스칼드라",
   FC_TECHROT: "테크롯",
+};
+
+// 업스트림 사전이 틀린 표기를 내놓는 언어 키의 예외 표 (#56). 키가 사전에
+// "존재하므로" 누락 검사로는 잡히지 않아, 우리가 정한 인게임 표기로 덮는 자리를
+// 명시적으로 둔다. name은 인게임 한국어 클라이언트 표기, why는 왜 덮는지 한 줄.
+// 사전이 고쳐졌거나 키가 더 이상 쓰이지 않으면 빌드가 실패하니, 그때 지운다.
+// 영문 표시명(enName)은 덮지 않는다 — 사용자에게 보이지 않는 월드스테이트
+// 대조용 키라 표기 문제가 없다.
+const DISPLAY_NAME_OVERRIDES: Record<string, { name: string; why: string }> = {
+  "/Lotus/Language/TauPrequel/TauPrequelFinal/TauRegion": {
+    name: "타우",
+    why: '업스트림 ko/en 사전이 이 키를 데이모스의 구역 이름("데이모스, 다크 리프랙토리")으로 해석한다',
+  },
 };
 
 type RawNode = {
@@ -94,9 +110,19 @@ const [regions, dict, enDict] = (await Promise.all([
 ])) as [Record<string, RawNode>, Record<string, string>, Record<string, string>];
 
 const errors: string[] = [];
+const usedOverrides = new Set<string>();
 const displayName = (langKey: string): string => {
   const value = dict[langKey];
   if (!value) errors.push(`사전에 없는 언어 키: ${langKey}`);
+  const override = DISPLAY_NAME_OVERRIDES[langKey];
+  if (override) {
+    usedOverrides.add(langKey);
+    // 사전이 우리 표기와 같아졌다면 덮을 이유가 사라졌다
+    if (value === override.name) {
+      errors.push(`사전이 고쳐진 표시명 오버라이드: ${langKey} (표에서 지운다)`);
+    }
+    return override.name;
+  }
   // 런타임 폴백과 같은 규칙(마지막 세그먼트)이지만, 여기 도달하면 어차피 실패한다
   return value ?? langKey.split("/").pop() ?? langKey;
 };
@@ -165,6 +191,13 @@ for (const [name, ids] of byEnName) {
   if (ids.length > 1) errors.push(`영문 표시명이 겹침: ${name} (${ids.join(", ")})`);
 }
 
+// 사전이 고쳐졌는데 우리 예외가 남아 있는 상황은 드러나야 한다
+for (const langKey of Object.keys(DISPLAY_NAME_OVERRIDES)) {
+  if (!usedOverrides.has(langKey)) {
+    errors.push(`쓰이지 않는 표시명 오버라이드: ${langKey} (표에서 지운다)`);
+  }
+}
+
 // 간선이 데이터셋 밖을 가리키면 그래프 파생(진행도 3상태)이 깨진다
 for (const [id, node] of Object.entries(nodes)) {
   for (const next of node.nextNodes) {
@@ -180,9 +213,10 @@ if (errors.length > 0) {
 const byType: Record<string, number> = {};
 for (const g of Object.values(groups)) byType[g.type] = (byType[g.type] ?? 0) + 1;
 
-await writeFile(OUT_PATH, `${JSON.stringify({ groups, nodes }, null, 2)}\n`);
+const outPath = args.get("out") || DEFAULT_OUT_PATH;
+await writeFile(outPath, `${JSON.stringify({ groups, nodes }, null, 2)}\n`);
 process.stderr.write(
-  `${OUT_PATH}: 노드 ${Object.keys(nodes).length}개, 그룹 ${Object.keys(groups).length}개 ` +
+  `${outPath}: 노드 ${Object.keys(nodes).length}개, 그룹 ${Object.keys(groups).length}개 ` +
     `(${Object.entries(byType)
       .map(([t, n]) => `${t} ${n}`)
       .join(", ")})\n`,

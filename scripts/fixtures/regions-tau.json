@@ -1,0 +1,16 @@
+{
+  "SolNode250": {
+    "name": "/Lotus/Language/TauPrequel/Node250",
+    "systemName": "/Lotus/Language/TauPrequel/TauPrequelFinal/TauRegion",
+    "nodeType": 0,
+    "faction": "FC_OROKIN",
+    "nextNodes": []
+  },
+  "SolNode1": {
+    "name": "/Lotus/Language/Regions/Node1",
+    "systemName": "/Lotus/Language/Regions/EarthName",
+    "nodeType": 0,
+    "faction": "FC_GRINEER",
+    "nextNodes": []
+  }
+}
