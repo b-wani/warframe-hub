@@ -9,12 +9,14 @@
  * 데이터셋 자체의 무결성은 빌드 파이프라인(`scripts/build-starchart-*.mts`)과
  * CI 단위 테스트가 지킨다 — 런타임 검증을 여기서 또 하지 않는다.
  */
+import nodeOverlaysJson from "@/data/node-overlays.json";
 import planetGuidesJson from "@/data/planet-guides.json";
 import starchartJson from "@/data/starchart.json";
 import layoutJson from "@/data/starchart-layout.json";
 import type { StarchartDataset } from "./dataset.ts";
 import { nodeNamesByEn } from "./fissures.ts";
 import type { StarchartLayout } from "./layout.ts";
+import { nodeOverlays, patchBaseline } from "./node-overlay.ts";
 import { planetGuides } from "./planet-guide.ts";
 import { buildProgressGraph, progressNodeIds } from "./progress.ts";
 
@@ -47,3 +49,16 @@ export const starchartPlanetGuides = planetGuides(
   starchartDataset,
   planetGuidesJson,
 ).guides;
+
+/**
+ * 큐레이션 오버레이 — 주요 노드의 노드 상세가 구조화 데이터 위에 얹어 읽는
+ * 수동 저작 콘텐츠(스펙 §3.3). 잘못된 오버레이는 여기서 조용히 빠지고
+ * (`issues`) CI 단위 테스트가 잡는다.
+ */
+export const starchartNodeOverlays = nodeOverlays(
+  starchartDataset,
+  nodeOverlaysJson,
+).overlays;
+
+/** 콘텐츠 기준 패치 — 페이지가 노출하는 오버레이의 기준 패치를 모은 것. */
+export const starchartPatchBaseline = patchBaseline(starchartNodeOverlays);
