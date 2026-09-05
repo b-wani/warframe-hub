@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 import { nodeLabel, openEarth } from "./helpers";
 
 // 큐레이션 오버레이 그릇 — 스키마·로더·상세 표시 (#50)
