@@ -6,7 +6,12 @@ import {
   starchartLayout as layout,
 } from "./data";
 import { NODE_RADIUS, nodeClouds, type NodeCloud } from "./node-cloud";
-import { MIN_TAP_PX, tapRadius, worldPerPixel } from "./tap-target";
+import {
+  MIN_TAP_PX,
+  nearestSpacings,
+  tapRadius,
+  worldPerPixel,
+} from "./tap-target";
 import { proximaRings } from "./proxima";
 
 const { bodies } = solarSystemBodies(dataset, layout);
@@ -105,56 +110,93 @@ describe("노드 구름의 실제 배치", () => {
     ),
   ];
 
+  /** 행성 뷰 기본 프레이밍에서 노드 하나의 히트 지름(화면 px). */
+  function tapDiameterPx(
+    bodyId: string,
+    cloud: NodeCloud,
+    node: NodeCloud["nodes"][number],
+    width: number,
+    height: number,
+  ): number {
+    const distance = planetViewDistance(bodyId, cloud, width, height);
+    const radius = tapRadius({
+      distance,
+      viewportHeight: height,
+      spacing: node.spacing,
+      visualRadius: NODE_RADIUS,
+    });
+    return (2 * radius) / worldPerPixel(distance, height);
+  }
+
   for (const [label, { width, height }] of Object.entries(PHONES)) {
     test(`${label}에서 노드 히트 영역이 마름모보다 크다`, () => {
       const tight: string[] = [];
       for (const [bodyId, cloud] of all) {
-        const distance = planetViewDistance(bodyId, cloud, width, height);
-        const radius = tapRadius({
-          distance,
-          viewportHeight: height,
-          spacing: cloud.minSpacing,
-          visualRadius: NODE_RADIUS,
-        });
-        // 노드가 하나뿐인 구름은 없다 — 간격이 늘 유한하므로 상한이 실제로 걸린다
-        if (radius <= NODE_RADIUS) tight.push(bodyId);
+        for (const node of cloud.nodes) {
+          const visualPx =
+            (2 * NODE_RADIUS) /
+            worldPerPixel(
+              planetViewDistance(bodyId, cloud, width, height),
+              height,
+            );
+          if (tapDiameterPx(bodyId, cloud, node, width, height) <= visualPx) {
+            tight.push(node.id);
+          }
+        }
       }
       expect(tight).toEqual([]);
     });
 
     test(`${label}에서 노드 히트 영역이 화면 20px을 넘는다`, () => {
-      // 44px은 배치가 허락하는 곳에서만 채워진다(가장 촘촘한 구름은 두 노드가
-      // 화면에서 23px 떨어져 있어 44px을 줄 자리가 애초에 없다) — 그래도 어느
-      // 구름에서든 마름모(8~19px)보다는 확실히 커야 한다.
+      // 44px은 배치가 허락하는 곳에서만 채워진다(가장 촘촘한 두 노드는 화면에서
+      // 23px 떨어져 있어 44px을 줄 자리가 애초에 없다) — 그래도 어느 노드든
+      // 마름모(8~19px)보다는 확실히 커야 한다.
       const worst = Math.min(
-        ...all.map(([bodyId, cloud]) => {
-          const distance = planetViewDistance(bodyId, cloud, width, height);
-          const radius = tapRadius({
-            distance,
-            viewportHeight: height,
-            spacing: cloud.minSpacing,
-            visualRadius: NODE_RADIUS,
-          });
-          return (2 * radius) / worldPerPixel(distance, height);
-        }),
+        ...all.flatMap(([bodyId, cloud]) =>
+          cloud.nodes.map((node) =>
+            tapDiameterPx(bodyId, cloud, node, width, height),
+          ),
+        ),
       );
       expect(worst).toBeGreaterThan(20);
+    });
+
+    test(`${label}에서 노드 절반 이상이 44px을 그대로 받는다`, () => {
+      const nodes = all.flatMap(([bodyId, cloud]) =>
+        cloud.nodes.map((node) =>
+          tapDiameterPx(bodyId, cloud, node, width, height),
+        ),
+      );
+      const full = nodes.filter((px) => px > MIN_TAP_PX - 0.001);
+      expect(full.length / nodes.length).toBeGreaterThan(0.5);
     });
   }
 
   test("성긴 구름에서는 44px을 그대로 채운다", () => {
     const duviri = clouds.get("Duviri")!;
     const { height, width } = PHONES["390x844"];
-    const distance = planetViewDistance("Duviri", duviri, width, height);
-    const radius = tapRadius({
-      distance,
-      viewportHeight: height,
-      spacing: duviri.minSpacing,
-      visualRadius: NODE_RADIUS,
-    });
-    expect((2 * radius) / worldPerPixel(distance, height)).toBeCloseTo(
-      MIN_TAP_PX,
-      6,
-    );
+    for (const node of duviri.nodes) {
+      expect(tapDiameterPx("Duviri", duviri, node, width, height)).toBeCloseTo(
+        MIN_TAP_PX,
+        6,
+      );
+    }
+  });
+});
+
+describe("nearestSpacings", () => {
+  test("각 점에서 가장 가까운 이웃까지의 거리를 돌려준다 — 높이는 보지 않는다", () => {
+    expect(
+      nearestSpacings([
+        [0, 0, 0],
+        [3, 99, 0],
+        [3, 0, 4],
+      ]),
+    ).toEqual([3, 3, 4]);
+  });
+
+  test("이웃이 없으면 상한도 없다", () => {
+    expect(nearestSpacings([[1, 2, 3]])).toEqual([Infinity]);
+    expect(nearestSpacings([])).toEqual([]);
   });
 });

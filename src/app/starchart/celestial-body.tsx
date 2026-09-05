@@ -19,6 +19,7 @@ import type { SolarSystemBody } from "@/starchart/bodies";
 import { tapRadius } from "@/starchart/tap-target";
 import type { TextureFile } from "@/starchart/textures";
 import { AtmosphereShell } from "./atmosphere";
+import { HIT_MATERIAL } from "./hit-target";
 import { MapLabel } from "./map-label";
 import { usePointerCursor } from "./pointer-cursor";
 
@@ -74,8 +75,7 @@ function Ring({
  * 44px을 채우도록 프레임마다 크기를 다시 잡는다(계산은 `tap-target.ts`).
  * 행성 뷰까지 날아가면 지표면 자체가 화면을 채우므로 구체도 셸 크기로 줄어든다.
  *
- * 그리지는 않는다(`colorWrite`·`depthWrite` 둘 다 끈다) — 레이캐스트는 `visible`을
- * 보지 않으므로 이것만으로 "안 보이지만 눌리는" 자리가 된다.
+ * 그리지 않고도 눌리게 만드는 규약은 노드 히트 구체와 같다(`hit-target.ts`).
  */
 function BodyHitTarget({
   body,
@@ -110,7 +110,7 @@ function BodyHitTarget({
       }}
     >
       <sphereGeometry args={[1, 12, 8]} />
-      <meshBasicMaterial colorWrite={false} depthWrite={false} />
+      <meshBasicMaterial {...HIT_MATERIAL} />
     </mesh>
   );
 }

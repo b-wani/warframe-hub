@@ -1276,7 +1276,8 @@
   .fissurePanel {
     /*
      * 화면 절반 아래에 머물러야 위쪽의 행성 뷰 HUD와 닿지 않는다. 목록은 접힌
-     * 버튼(44px)과 그 사이 간격(6px) 위로 펼쳐지므로 그만큼을 더 뺀다.
+     * 버튼(44px)과 그 사이 간격(6px) 위로 펼쳐지므로 그만큼(50px)에 여유 6px을
+     * 더해서 뺀다.
      */
     max-height: calc(50vh - var(--hud-bottom) - 56px);
     width: min(300px, calc(100vw - 32px));

@@ -92,18 +92,30 @@ describe("nodeClouds", () => {
     }
   });
 
-  test("최소 간격은 가장 가까운 두 노드 사이의 거리다", () => {
+  test("노드마다 자기에게 가장 가까운 이웃까지의 거리를 안다", () => {
     for (const cloud of clouds.values()) {
-      let closest = Infinity;
-      for (let i = 0; i < cloud.nodes.length; i++) {
-        for (let j = i + 1; j < cloud.nodes.length; j++) {
-          const a = cloud.nodes[i].position;
-          const b = cloud.nodes[j].position;
-          closest = Math.min(closest, Math.hypot(a[0] - b[0], a[2] - b[2]));
-        }
+      for (const node of cloud.nodes) {
+        const closest = Math.min(
+          ...cloud.nodes
+            .filter((other) => other.id !== node.id)
+            .map((other) =>
+              Math.hypot(
+                node.position[0] - other.position[0],
+                node.position[2] - other.position[2],
+              ),
+            ),
+        );
+        expect(node.spacing).toBeCloseTo(closest);
       }
-      expect(cloud.minSpacing).toBeCloseTo(closest);
     }
+  });
+
+  test("간격은 구름마다가 아니라 노드마다다 — 옆이 빈 노드는 넓게 잡는다", () => {
+    // 히트 영역의 상한이라, 한 구름에서 가장 촘촘한 한 쌍이 나머지 노드의 상한까지
+    // 깎아서는 안 된다
+    const earth = cloudOf("Earth");
+    const spacings = earth.nodes.map((node) => node.spacing);
+    expect(Math.max(...spacings)).toBeGreaterThan(Math.min(...spacings));
   });
 
   test("이웃이 없으면 간격도 없다 — 히트 영역에 상한이 없다는 뜻이다", () => {
@@ -112,7 +124,6 @@ describe("nodeClouds", () => {
       group: "없는그룹",
     }).cloud;
     expect(empty.nodes).toEqual([]);
-    expect(empty.minSpacing).toBe(Infinity);
   });
 
   test("좌표 데이터셋의 상대 배치를 배율만 바꿔 옮긴다", () => {

@@ -95,8 +95,9 @@ describe("solarSystemBodies", () => {
       );
       expect(body.spacing).toBeCloseTo(closest);
     }
-    // 위성을 곁에 둔 행성은 간격의 절반이 자기 셸보다 좁다 — 히트 영역이
-    // 시각 크기 아래로 내려가지 않게 막는 것은 `tapRadius` 쪽 일이다
+    // 히트 영역의 상한으로 쓰이므로 늘 유한한 양수여야 한다. 위성을 곁에 둔
+    // 행성은 이 값의 절반이 자기 셸보다도 좁은데, 히트 영역이 시각 크기 아래로
+    // 내려가지 않게 막는 것은 `tapRadius` 쪽 일이다.
     for (const body of bodies) {
       expect(body.spacing).toBeGreaterThan(0);
       expect(Number.isFinite(body.spacing)).toBe(true);
