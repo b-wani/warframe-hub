@@ -11,17 +11,28 @@
  * 한 번 더 등록한다 — 나중에 등록한 라우트가 먼저 잡힌다.
  */
 import { test as base } from "@playwright/test";
+import type { WorldState } from "../src/worldstate/schema";
 
 export { expect, type Page } from "@playwright/test";
 
-/** 월드스테이트 어댑터의 빈 응답 — 상인 없음, 주기 없음, 균열 없음. */
-export const EMPTY_WORLDSTATE = { voidTrader: null, cycles: [], fissures: [] };
+/**
+ * 월드스테이트가 살아 있고 알릴 것이 없는 스냅숏 — 상인 없음, 주기 없음, 균열
+ * 0건. 균열이 `null`(섹션을 못 받음)이 아니라 `[]`인 것이 요점이다: 여기서는
+ * 폴백이 아니라 조용한 하루를 흉내 낸다.
+ */
+export const emptyWorldstate = (): WorldState => ({
+  voidTrader: null,
+  cycles: [],
+  fissures: [],
+  fetchedAt: Date.now(),
+  stale: false,
+});
 
 export const test = base.extend<{ worldstate: void }>({
   worldstate: [
     async ({ page }, use) => {
       await page.route("**/api/worldstate", (route) =>
-        route.fulfill({ json: EMPTY_WORLDSTATE }),
+        route.fulfill({ json: emptyWorldstate() }),
       );
       await use();
     },

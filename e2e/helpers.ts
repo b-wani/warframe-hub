@@ -1,4 +1,4 @@
-import { expect, type Page } from "@playwright/test";
+import { expect, type Page } from "./fixtures";
 import dataset from "../src/data/starchart.json";
 import { STARCHART_PROGRESS_STORAGE_KEY } from "../src/starchart/progress-repository";
 
