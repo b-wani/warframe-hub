@@ -1124,3 +1124,42 @@
 .fallbackGuide {
   margin: 8px 12px;
 }
+
+/*
+ * 큐레이션 오버레이 — 노드 상세에 얹히는 수동 저작 콘텐츠(스펙 §3.3).
+ * 구조화 데이터와 시각적으로 구별되도록 위에 선 하나를 긋는다.
+ */
+.overlay {
+  margin-top: 10px;
+  padding-top: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #cfdcea;
+  border-top: 1px solid #2a3a55;
+}
+
+.overlaySummary {
+  text-wrap: pretty;
+}
+
+.overlaySpoiler summary {
+  cursor: pointer;
+  color: #c9a6ff;
+}
+
+.overlayListTitle {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #8d9bad;
+}
+
+.overlayList {
+  padding-left: 16px;
+  list-style: disc;
+}
+
+.overlayPatch {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #8d9bad;
+}
