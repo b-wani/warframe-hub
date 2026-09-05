@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 import {
   EARTH_NODE_IDS,
   EARTH_PROXIMA_NODE_IDS,

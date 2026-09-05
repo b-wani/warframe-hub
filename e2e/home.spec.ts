@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 import { waitForSystemView } from "./helpers";
 
 test("홈 페이지가 렌더링된다", { tag: "@smoke" }, async ({ page }) => {
