@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { starchartPatchBaseline } from "@/starchart/data";
 import styles from "./page.module.css";
+import { PatchBaseline } from "./patch-baseline";
 import { StarchartClient } from "./starchart-client";
 import { TextureCredit } from "./texture-credit";
 
@@ -18,6 +20,7 @@ export default function StarchartPage() {
       </header>
       <StarchartClient />
       <footer className={styles.footer}>
+        <PatchBaseline patches={starchartPatchBaseline} />
         <TextureCredit />
       </footer>
     </div>

@@ -42,6 +42,7 @@ import {
   starchartDataset,
   starchartLayout,
   starchartNodeNames,
+  starchartNodeOverlays,
   starchartPlanetGuides,
   starchartProgressGraph as progressGraph,
 } from "@/starchart/data";
@@ -531,6 +532,7 @@ export default function Scene({
           {selectedDetail && (
             <NodeDetailPanel
               detail={selectedDetail}
+              overlay={starchartNodeOverlays.get(selectedDetail.id)}
               state={states.get(selectedDetail.id) ?? "locked"}
               completedIds={completedIds}
               onToggle={onToggle}
