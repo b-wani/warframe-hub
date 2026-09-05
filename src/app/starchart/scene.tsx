@@ -177,10 +177,10 @@ function SolarSystem({
       <pointLight position={[0, 0, 0]} intensity={3.2} decay={0} />
 
       {/*
-        천체를 고르려면 지표면 구체를 레이캐스트해야 하는데, 구체 하나가 4096
-        삼각형이라 포인터가 움직일 때마다 22개를 훑으면 그게 곧 프레임이다 —
-        BVH로 가속한다(스펙 §7). 텍스처가 오기 전에는 이 트리가 없으므로 Bvh는
-        Suspense 안쪽, 즉 여기에 있어야 한다.
+        레이캐스트 가속(스펙 §7). 천체가 포인터를 받는 자리는 이제 지표면이 아니라
+        그것을 감싼 히트 구체이므로(스펙 §8-3의 탭 타깃) 훑을 삼각형은 구체당
+        4096개에서 192개로 줄었지만, 스택 구성은 스펙이 정한 그대로 둔다. 텍스처가
+        오기 전에는 이 트리가 없으므로 Bvh는 Suspense 안쪽, 즉 여기에 있어야 한다.
       */}
       <Bvh firstHitOnly>
         {bodies.map((body) => (
@@ -471,7 +471,7 @@ export default function Scene({
       />
 
       {hud && (
-        <div className={styles.viewHud}>
+        <div className={styles.viewHud} data-hud="view">
           <button
             type="button"
             className={styles.backButton}

@@ -48,6 +48,7 @@ export function FissureList({
       <button
         type="button"
         className={styles.toolButton}
+        data-hud="fissure-tab"
         aria-expanded={open}
         onClick={() => setOpen((wasOpen) => !wasOpen)}
       >
@@ -55,7 +56,7 @@ export function FissureList({
       </button>
 
       {open && (
-        <div className={styles.fissurePanel}>
+        <div className={styles.fissurePanel} data-hud="fissure-list">
           {status === "unavailable" ? (
             <p className={styles.fissureNotice}>
               월드스테이트를 받지 못해 균열을 표시할 수 없습니다. 지도와 진행도는

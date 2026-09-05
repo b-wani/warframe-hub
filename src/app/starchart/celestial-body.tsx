@@ -6,9 +6,17 @@
  * 무엇을 어떻게 그릴지는 전부 표시 모델(`solarSystemBodies`)이 정해서 넘긴다.
  * 이 컴포넌트는 그룹 유형도, 좌표계도, 행성별 무드 색도 모른다.
  */
-import { useMemo } from "react";
-import { DoubleSide, RingGeometry, Vector3, type Texture } from "three";
+import { useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
+import {
+  DoubleSide,
+  RingGeometry,
+  Vector3,
+  type Mesh,
+  type Texture,
+} from "three";
 import type { SolarSystemBody } from "@/starchart/bodies";
+import { tapRadius } from "@/starchart/tap-target";
 import type { TextureFile } from "@/starchart/textures";
 import { AtmosphereShell } from "./atmosphere";
 import { MapLabel } from "./map-label";
@@ -58,6 +66,55 @@ function Ring({
   );
 }
 
+/**
+ * 천체를 누르는 자리 — 지표면보다 큰, 눈에 보이지 않는 구체(스펙 §8-3).
+ *
+ * 성계 뷰의 행성은 화면에서 지름 5~20px이라 손가락으로 겨냥할 크기가 아니다.
+ * 그래서 누르는 것은 지표면이 아니라 그것을 감싼 구체이고, 구체는 화면에서
+ * 44px을 채우도록 프레임마다 크기를 다시 잡는다(계산은 `tap-target.ts`).
+ * 행성 뷰까지 날아가면 지표면 자체가 화면을 채우므로 구체도 셸 크기로 줄어든다.
+ *
+ * 그리지는 않는다(`colorWrite`·`depthWrite` 둘 다 끈다) — 레이캐스트는 `visible`을
+ * 보지 않으므로 이것만으로 "안 보이지만 눌리는" 자리가 된다.
+ */
+function BodyHitTarget({
+  body,
+  onSelect,
+}: {
+  body: SolarSystemBody;
+  onSelect: (id: string) => void;
+}) {
+  const mesh = useRef<Mesh>(null);
+  const pointer = usePointerCursor();
+  const center = useMemo(() => new Vector3(...body.position), [body.position]);
+
+  useFrame(({ camera, size }) => {
+    if (!mesh.current) return;
+    mesh.current.scale.setScalar(
+      tapRadius({
+        distance: camera.position.distanceTo(center),
+        viewportHeight: size.height,
+        spacing: body.spacing,
+        visualRadius: body.shellRadius,
+      }),
+    );
+  });
+
+  return (
+    <mesh
+      ref={mesh}
+      {...pointer}
+      onClick={(event) => {
+        event.stopPropagation();
+        onSelect(body.id);
+      }}
+    >
+      <sphereGeometry args={[1, 12, 8]} />
+      <meshBasicMaterial colorWrite={false} depthWrite={false} />
+    </mesh>
+  );
+}
+
 export function CelestialBody({
   body,
   maps,
@@ -71,21 +128,15 @@ export function CelestialBody({
   /** 이 천체를 고르면 카메라가 여기까지 날아간다(스펙 §2.1). */
   onSelect: (id: string) => void;
 }) {
-  const pointer = usePointerCursor();
-
   return (
     <group position={body.position}>
       {/*
-        포인터를 받는 것은 지표면 하나뿐이다 — 대기 셸·링·라벨까지 받게 하면
-        r3f가 매 포인터 이동마다 그것들도 전부 레이캐스트한다.
+        포인터를 받는 것은 히트 구체 하나뿐이다 — 지표면·대기 셸·링까지 받게 하면
+        r3f가 매 포인터 이동마다 그것들도 전부 레이캐스트한다(지표면 구체 하나가
+        4096 삼각형이다).
       */}
-      <mesh
-        {...pointer}
-        onClick={(event) => {
-          event.stopPropagation();
-          onSelect(body.id);
-        }}
-      >
+      <BodyHitTarget body={body} onSelect={onSelect} />
+      <mesh>
         <sphereGeometry args={[body.radius, 64, 32]} />
         <meshStandardMaterial
           map={maps[body.texture]}

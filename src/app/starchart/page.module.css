@@ -1,6 +1,13 @@
 /*
  * 성계 뷰는 화면을 꽉 채운다 — 지도가 주인공이고 HUD는 그 위에 얹힌다.
- * 좁은 폭에서 겹치지 않게 하는 HUD 배치 규칙은 별건이다(#51).
+ *
+ * HUD 조각은 저마다 화면 구석에 절대 배치로 선다: 제목(왼쪽 위) · 진행도 조작
+ * (그 아래) · 행성 뷰 HUD(오른쪽 위) · 균열 목록(오른쪽 아래) · 뷰 전환(왼쪽
+ * 아래) · 출처 표기(맨 아래). 넓은 화면에서는 서로 닿을 일이 없지만 좁은 폭
+ * (360~430px)에서는 두 열이 설 자리가 없다 — 그 폭의 배치 규칙(스펙 §8-4)은
+ * 파일 아래쪽 `@media (max-width: 600px)`에 모여 있다.
+ *
+ * 조각마다 `data-hud`가 붙어 있고, e2e가 그것들의 사각형이 겹치지 않는지 본다.
  */
 .page {
   position: relative;
@@ -143,6 +150,11 @@
   color: #7fe0a8;
 }
 
+/*
+ * 호버는 "누를 수 있다"는 표시일 뿐이다 — 호버에서만 드러나는 정보는 지도 어디에도
+ * 없다(스펙 §8의 적응 규칙 2). 노드가 가진 것은 전부 선택으로 열리는 상세 패널에
+ * 있고, 손가락에는 호버가 없으므로 그래야만 폰에서 지도가 성립한다.
+ */
 .label:hover,
 .nodeLabel:hover {
   color: #fff;
@@ -154,7 +166,6 @@
 
 /*
  * 행성 뷰의 조작 — 성계로 돌아가는 길과 지금 어디에 있는지, 고른 노드의 상세.
- * 좁은 폭에서 다른 HUD와 겹치지 않게 하는 배치 규칙은 별건이다(#51).
  */
 .viewHud {
   position: absolute;
@@ -404,8 +415,7 @@
 
 /*
  * 진행도 조작 HUD — 툴바와 온보딩 배너가 제목 아래 왼쪽에 함께 선다.
- * 오른쪽 위는 행성 뷰 HUD(뒤로·노드 상세)의 자리다. 좁은 폭의 배치 규칙
- * 전반은 별건이다(#51).
+ * 오른쪽 위는 행성 뷰 HUD(뒤로·노드 상세)의 자리다.
  */
 .progressHud {
   position: absolute;
@@ -674,25 +684,6 @@
 .previewNote {
   margin-top: 4px;
   color: #8d9bad;
-}
-
-@media (max-width: 600px) {
-  .progressHud {
-    right: 16px;
-    top: 44px;
-  }
-
-  .banner {
-    width: 100%;
-  }
-
-  .title {
-    font-size: 17px;
-  }
-
-  .credit {
-    font-size: 10px;
-  }
 }
 
 /*
@@ -1183,4 +1174,124 @@
   font-size: 11px;
   line-height: 1.5;
   color: #8d9bad;
+}
+
+/*
+ * 좁은 폭(360~430px)의 HUD 배치 규칙 — 스펙 §8의 적응 규칙 4번.
+ *
+ * 이 폭에서는 패널 두 열이 나란히 설 자리가 없다(패널 하나가 260px인데 화면이
+ * 360px이다). 그래서 배치를 열이 아니라 **띠**로 나눈다 — 위에서부터 제목 ·
+ * 진행도 조작 · 행성 뷰 HUD, 아래에서부터 출처 표기 · 조작 버튼 · 균열 목록.
+ * 띠의 경계는 아래 두 변수가 쥐고, 넘치는 내용은 밀어내는 대신 스스로 스크롤한다.
+ *
+ * 규칙이 지켜지는지는 e2e(`e2e/mobile.spec.ts`)가 `data-hud` 사각형끼리 겹치는지로
+ * 확인한다 — 배치를 손볼 때 여기 숫자와 그 테스트가 한 쌍이다.
+ *
+ * 이 블록은 파일 맨 끝에 있어야 한다: 미디어 쿼리는 특정도를 올리지 않으므로
+ * 뒤에 오는 규칙에 그대로 덮인다.
+ */
+@media (max-width: 600px) {
+  .page {
+    /* 제목과 진행도 툴바가 쓰는 위쪽 띠 */
+    --hud-top: 96px;
+    /* 출처 표기가 쓰는 아래쪽 띠 — 좁은 폭에서 두 줄로 접히는 것까지 감안한다 */
+    --hud-bottom: 84px;
+  }
+
+  .title {
+    font-size: 17px;
+  }
+
+  .credit {
+    font-size: 10px;
+  }
+
+  .progressHud {
+    top: 44px;
+    right: 16px;
+  }
+
+  .banner {
+    width: 100%;
+  }
+
+  /*
+   * 온보딩 배너와 행성 뷰 HUD는 같은 띠를 두고 다툰다 — 행성 뷰에 들어가면
+   * 배너가 자리를 내준다(성계 뷰로 돌아오면 그대로 다시 뜬다). 넓은 화면에서는
+   * 둘이 좌우로 갈라서므로 이 양보도 이 폭에서만이다.
+   */
+  .page:has(.viewHud) .banner {
+    display: none;
+  }
+
+  /* 행성 뷰 HUD는 위쪽 띠 아래에서 화면 절반까지 — 넘치면 열 자체가 스크롤한다 */
+  .viewHud {
+    top: var(--hud-top);
+    right: 16px;
+    left: 16px;
+    bottom: 50%;
+    align-items: flex-start;
+    text-align: left;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+
+  .viewHud .detail,
+  .viewHud .hudBulk,
+  .viewHud .hudGuide {
+    width: 100%;
+  }
+
+  .hudBulk {
+    text-align: left;
+  }
+
+  /*
+   * 좁은 폭에서는 열이 넘쳐 스크롤하므로 순서가 곧 우선순위다 — 방금 고른 노드의
+   * 상세가 "여기가 어디인지"(뒤로·행성 이름) 바로 아래에 와야, 탭한 결과가 화면
+   * 밖에서 열리는 일이 없다. 가이드처럼 긴 것은 뒤로 물린다.
+   */
+  .viewHud .detail {
+    order: 1;
+  }
+
+  .viewHud .proximaToggle,
+  .viewHud .hudBulk,
+  .viewHud .hudGuide {
+    order: 2;
+  }
+
+  /* 가이드가 따로 스크롤하면 한 열 안에서 스크롤이 둘이 된다 — 열 하나만 민다 */
+  .hudGuide {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .viewToggle,
+  .fissureHud {
+    bottom: var(--hud-bottom);
+  }
+
+  .fissurePanel {
+    /*
+     * 화면 절반 아래에 머물러야 위쪽의 행성 뷰 HUD와 닿지 않는다. 목록은 접힌
+     * 버튼(44px)과 그 사이 간격(6px) 위로 펼쳐지므로 그만큼을 더 뺀다.
+     */
+    max-height: calc(50vh - var(--hud-bottom) - 56px);
+    width: min(300px, calc(100vw - 32px));
+    touch-action: pan-y;
+  }
+
+  /* 손가락으로 누르는 것은 44px을 채운다(스펙 §8-3) */
+  .toolButton,
+  .backButton,
+  .proximaToggle,
+  .viewToggle,
+  .dangerButton,
+  .primaryButton,
+  .ghostButton,
+  .modalClose {
+    min-height: 44px;
+  }
 }

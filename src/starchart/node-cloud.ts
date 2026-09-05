@@ -73,6 +73,12 @@ export type NodeCloud = {
    * 카메라가 얼마나 멀어졌는지 재는 자로 쓴다.
    */
   radius: number;
+  /**
+   * 가장 가까운 두 노드 사이의 거리. 탭 히트 영역을 얼마나 키울 수 있는지가
+   * 여기서 나온다 — 이웃의 중심까지 삼키면 그 이웃을 못 누른다(`tap-target.ts`).
+   * 노드가 하나뿐이면 `Infinity`, 즉 상한이 없다.
+   */
+  minSpacing: number;
 };
 
 /**
@@ -153,7 +159,20 @@ export function nodeCloud(
       Math.max(far, Math.hypot(position[0] - center[0], position[2] - center[2])),
     0,
   );
-  return { cloud: { body: body.id, center, nodes, links, radius }, issues };
+  // 노드는 전부 같은 높이의 원반 위에 있으므로 간격도 평면에서 잰다
+  let minSpacing = Infinity;
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const a = nodes[i].position;
+      const b = nodes[j].position;
+      minSpacing = Math.min(minSpacing, Math.hypot(a[0] - b[0], a[2] - b[2]));
+    }
+  }
+
+  return {
+    cloud: { body: body.id, center, nodes, links, radius, minSpacing },
+    issues,
+  };
 }
 
 /**
