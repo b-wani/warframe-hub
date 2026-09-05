@@ -44,6 +44,26 @@
   color: var(--text-secondary);
 }
 
+.cta {
+  --accent: #1a1a1a;
+  --accent-text: #fafafa;
+
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent-text);
+  background-color: var(--accent);
+}
+
+.cta:hover {
+  opacity: 0.85;
+}
+
 @media (max-width: 600px) {
   .main {
     padding: 48px 24px;
@@ -63,5 +83,10 @@
 
     --text-primary: #ededed;
     --text-secondary: #999;
+  }
+
+  .cta {
+    --accent: #ededed;
+    --accent-text: #0a0a0a;
   }
 }

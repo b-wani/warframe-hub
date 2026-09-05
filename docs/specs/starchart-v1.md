@@ -1,6 +1,6 @@
 # 스타차트 v1 스펙
 
-상태: 확정 (구현 착수 가능)
+상태: v1 구현 완료 (§10.1 전수 점검, 실기기 스모크만 미실시)
 확정일: 2026-08-26
 근거: [웨이파인더 맵 #20](https://github.com/b-wani/warframe-hub/issues/20)의 결정 티켓 #21~#34.
 각 절 끝의 `근거:` 링크가 해당 결정의 상세(대안·기각 사유 포함)를 담은 원본이다.
@@ -257,3 +257,22 @@ v1 요구사항인 적응 규칙 4항목:
 6. 폴백 뷰가 WebGL 불가 환경에서 자동 표시되고 수동 전환도 가능하다.
 7. Solar System Scope 텍스처 출처 표기(CC BY 4.0)가 페이지에 존재한다.
 8. `/roadmap` 제거 — 2026-08-26 완료([ADR 0002](../adr/0002-starchart-is-the-only-progress-lens.md)).
+
+### 10.1 전수 점검 결과 (2026-09-05, [#52](https://github.com/b-wani/warframe-hub/issues/52))
+
+각 기준을 자동 검증이 지키는 자리와 함께 기록한다. 근거가 테스트인 것은 회귀가
+CI에서 잡힌다는 뜻이다.
+
+| # | 결과 | 근거 |
+| --- | --- | --- |
+| 1 | 충족 | `e2e/starchart-planet-view.spec.ts`(연속 비행 진입·복귀), `e2e/starchart-proxima.spec.ts`(⚓ 토글 4건), `e2e/starchart-system-view.spec.ts`("릴레이와 프록시마는 지도에 없다") |
+| 2 | 충족 | `src/starchart/data.test.ts`(노드 354·그룹 30), `src/starchart/layout.test.ts`(좌표 대상 352·29 — 릴레이 제외), `src/starchart/progress.test.ts`(3상태 파생), `e2e/starchart-node-progress.spec.ts`(3상태 표시·자물쇠) |
+| 3 | 충족 | `e2e/starchart-node-progress.spec.ts`(개별 체크), `e2e/starchart-bulk-complete.spec.ts`(구간 일괄·행성 전체 완료), `e2e/starchart-import.spec.ts`(가져오기·전체 초기화) |
+| 4 | 충족 | `e2e/starchart-fissures.spec.ts`(목록 탭·노드 심볼·"월드스테이트가 죽어도 지도·진행도는 온전하고 균열만 빠진다") |
+| 5 | **부분 충족** | 적응 규칙 4항목은 충족 — 규칙 1 `e2e/mobile.spec.ts`(세로 프레이밍·회전), 규칙 2(호버 없이 탭), 규칙 3 `src/starchart/tap-target.test.ts`, 규칙 4(360·390·430px HUD 겹침 없음). **중급 안드로이드 실기기 스모크는 미실시** — 사람이 실기기로 해야 하는 확인이라 자동 검증으로 대체하지 않는다. |
+| 6 | 충족 | `e2e/starchart-fallback.spec.ts`(WebGL 불가 시 자동 표시·수동 전환·같은 완료 집합) |
+| 7 | 충족 | `e2e/starchart-system-view.spec.ts`("텍스처 출처 표기가 페이지에 있다") |
+| 8 | 충족 | `/roadmap` 라우트·전용 코드·사이트맵 항목 모두 없음(2026-08-26 제거). 내비게이션은 홈의 "스타차트 열기" 링크가 그 자리를 대신한다 — `src/app/page.test.tsx`, `e2e/home.spec.ts` |
+
+남은 것은 기준 5의 실기기 스모크 하나다. 미달이 확인되면 품질 조정(별 개수·DPR
+캡)으로 대응하며, 정책 재론 사유가 아니다(§8).
