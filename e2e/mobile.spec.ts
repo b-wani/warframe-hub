@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import {
   EARTH_NODE_COUNT,
   nodeLabel,
@@ -15,7 +15,7 @@ test.use({
   hasTouch: true,
 });
 
-async function horizontalOverflow(page: import("@playwright/test").Page) {
+async function horizontalOverflow(page: Page) {
   return page.evaluate(
     () =>
       document.documentElement.scrollWidth -
@@ -37,7 +37,7 @@ test("스타차트에 가로 스크롤이 생기지 않는다", async ({ page })
 });
 
 /** 프레임 밖으로 나간 천체 라벨의 id — 비어 있어야 성계 전체가 보인다는 뜻이다. */
-async function bodiesOutsideFrame(page: import("@playwright/test").Page) {
+async function bodiesOutsideFrame(page: Page) {
   return page.evaluate(() =>
     [...document.querySelectorAll("[data-body-id]")]
       .filter((element) => {
@@ -90,7 +90,7 @@ test("화면을 돌려도 프레임을 다시 잡는다 — 카메라를 만지�
  * (지도를 탭으로 쓰는 길은 천체 히트 영역이 따로 낸다), 여기서 볼 것은 행성 뷰에
  * 들어간 다음의 화면이다.
  */
-async function focusEarth(page: import("@playwright/test").Page) {
+async function focusEarth(page: Page) {
   await openStarchart(page);
   await page.locator("[data-body-id='Earth']").dispatchEvent("click");
   // 노드 라벨 21개는 DOM 포털이라 한 프레임에 다 서지 않는다
@@ -156,7 +156,7 @@ test("마름모 바깥을 탭해도 노드가 선택된다", async ({ page }) =>
 });
 
 /** 활성 균열 목록을 여닫는 탭 — 지도 위의 균열 심볼도 같은 이름을 쓴다. */
-const fissureTab = (page: import("@playwright/test").Page) =>
+const fissureTab = (page: Page) =>
   page.locator("[data-hud='fissure-tab']");
 
 /**
@@ -167,7 +167,7 @@ const fissureTab = (page: import("@playwright/test").Page) =>
  * 예외는 행성 뷰 HUD다: 좁은 폭에서 그 열이 통째로 한 띠를 차지하므로 열 전체를
  * 하나로 본다.
  */
-async function hudBoxes(page: import("@playwright/test").Page) {
+async function hudBoxes(page: Page) {
   return page.evaluate(() =>
     [...document.querySelectorAll<HTMLElement>("[data-hud]")]
       .map((element) => {

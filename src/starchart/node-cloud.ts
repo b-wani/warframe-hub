@@ -23,6 +23,7 @@ import {
   type StarchartDataset,
 } from "./dataset.ts";
 import type { StarchartLayout } from "./layout.ts";
+import { nearestSpacings } from "./tap-target.ts";
 
 /**
  * 좌표 데이터셋의 노드 픽셀을 3D 월드 단위로 옮기는 배율.
@@ -47,6 +48,12 @@ export type NodeMarker = {
   position: [number, number, number];
   /** 교차점인가 — 특수 노드로 구별해 그린다(스펙 §2.2). */
   junction: boolean;
+  /**
+   * 같은 구름에서 가장 가까운 이웃까지의 거리. 탭 히트 영역을 얼마나 키울 수
+   * 있는지가 여기서 나온다 — 이웃의 중심까지 삼키면 그 이웃을 못 누른다
+   * (`tap-target.ts`). 이웃이 없으면 `Infinity`, 즉 상한이 없다.
+   */
+  spacing: number;
 };
 
 /** 노드 둘을 잇는 선 하나. */
@@ -73,12 +80,6 @@ export type NodeCloud = {
    * 카메라가 얼마나 멀어졌는지 재는 자로 쓴다.
    */
   radius: number;
-  /**
-   * 가장 가까운 두 노드 사이의 거리. 탭 히트 영역을 얼마나 키울 수 있는지가
-   * 여기서 나온다 — 이웃의 중심까지 삼키면 그 이웃을 못 누른다(`tap-target.ts`).
-   * 노드가 하나뿐이면 `Infinity`, 즉 상한이 없다.
-   */
-  minSpacing: number;
 };
 
 /**
@@ -134,8 +135,15 @@ export function nodeCloud(
       name: dataset.nodes[id].name,
       position,
       junction: isJunction(dataset.nodes[id]),
+      // 이웃은 구름이 다 모인 뒤에야 알 수 있다 — 아래에서 채운다
+      spacing: Infinity,
     });
   }
+
+  const spacings = nearestSpacings(nodes.map((node) => node.position));
+  nodes.forEach((node, index) => {
+    node.spacing = spacings[index];
+  });
 
   // 간선에 방향은 없다 — A→B와 B→A가 둘 다 있어도 선은 하나다. 그룹 밖을
   // 가리키는 간선(교차점 → 다음 행성)은 이 구름의 선이 아니다.
@@ -159,20 +167,7 @@ export function nodeCloud(
       Math.max(far, Math.hypot(position[0] - center[0], position[2] - center[2])),
     0,
   );
-  // 노드는 전부 같은 높이의 원반 위에 있으므로 간격도 평면에서 잰다
-  let minSpacing = Infinity;
-  for (let i = 0; i < nodes.length; i++) {
-    for (let j = i + 1; j < nodes.length; j++) {
-      const a = nodes[i].position;
-      const b = nodes[j].position;
-      minSpacing = Math.min(minSpacing, Math.hypot(a[0] - b[0], a[2] - b[2]));
-    }
-  }
-
-  return {
-    cloud: { body: body.id, center, nodes, links, radius, minSpacing },
-    issues,
-  };
+  return { cloud: { body: body.id, center, nodes, links, radius }, issues };
 }
 
 /**

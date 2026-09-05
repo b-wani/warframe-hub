@@ -50,6 +50,7 @@ import {
 } from "@/starchart/node-cloud";
 import type { NodeState } from "@/starchart/progress";
 import { tapRadius } from "@/starchart/tap-target";
+import { HIT_MATERIAL, writeHitMatrices } from "./hit-target";
 import { FissureSymbol } from "./fissure-symbol";
 import { MapLabel } from "./map-label";
 import { usePointerCursor } from "./pointer-cursor";
@@ -113,10 +114,12 @@ const scratch = new Object3D();
  * 마름모는 화면에서 8~19px이라 손가락으로 겨냥할 크기가 아니다. 그래서 누르는
  * 것은 마름모가 아니라 그것을 감싼 구체이고, 구체는 화면에서 44px을 채우도록
  * 프레임마다 크기를 다시 잡는다 — 3D에서 "화면에서 몇 px"은 카메라가 움직이면
- * 같이 변하는 값이라 월드 크기 하나로 고정할 수 없다(계산은 `tap-target.ts`).
+ * 같이 변하는 값이라 월드 크기 하나로 고정할 수 없다(규약은 `hit-target.ts`,
+ * 계산은 `tap-target.ts`).
  *
- * 그리지는 않는다(`colorWrite`·`depthWrite` 둘 다 끈다). 레이캐스트는 `visible`을
- * 보지 않으므로 이것만으로 "안 보이지만 눌리는" 자리가 된다.
+ * 크기의 하한은 노드마다 다르다 — 교차점은 마름모부터가 크다. 상한도 노드마다
+ * 다르다 — 이웃이 붙어 있는 노드만 좁게 잡히고, 옆이 비어 있는 노드는 같은
+ * 구름에 있어도 44px을 그대로 받는다.
  *
  * 마름모 쪽이 아니라 여기가 포인터를 받는 이유는 하나 더 있다: 레이캐스트 대상이
  * 상태별 덩어리 셋이 아니라 이 하나로 줄어든다.
@@ -131,44 +134,37 @@ function NodeHitTargets({
   const mesh = useRef<InstancedMesh>(null);
   const pointer = usePointerCursor();
   const center = useMemo(() => new Vector3(...cloud.center), [cloud.center]);
-  /** 지금 적용돼 있는 일반 노드의 반지름 — 카메라가 멈춰 있으면 다시 쓰지 않는다. */
+  /** 지금 적용돼 있는 마름모 하나짜리 반지름 — 카메라가 멈춰 있으면 다시 쓰지 않는다. */
   const applied = useRef(0);
 
   const write = useCallback(
-    (radiusOf: (visualRadius: number) => number) => {
+    (distance: number, viewportHeight: number) => {
       const target = mesh.current;
       if (!target) return;
-      const plain = radiusOf(NODE_RADIUS);
-      const junction = radiusOf(JUNCTION_RADIUS);
-      cloud.nodes.forEach((node, index) => {
-        scratch.position.set(...node.position);
-        scratch.scale.setScalar(node.junction ? junction : plain);
-        scratch.updateMatrix();
-        target.setMatrixAt(index, scratch.matrix);
-      });
-      target.instanceMatrix.needsUpdate = true;
-      applied.current = plain;
+      writeHitMatrices(target, scratch, cloud.nodes, (node) =>
+        tapRadius({
+          distance,
+          viewportHeight,
+          spacing: node.spacing,
+          visualRadius: node.junction ? JUNCTION_RADIUS : NODE_RADIUS,
+        }),
+      );
+      applied.current = distance / viewportHeight;
     },
     [cloud.nodes],
   );
 
   // 첫 프레임 전에도 구체가 제자리에 있어야 한다 — 카메라를 아직 모르니 일단
-  // 마름모 크기로 놓고, 곧 아래 useFrame이 화면 크기에 맞춰 키운다.
+  // 마름모 크기(거리 0)로 놓고, 곧 아래 useFrame이 화면 크기에 맞춰 키운다.
   useLayoutEffect(() => {
-    write((visualRadius) => visualRadius);
+    write(0, 1);
   }, [write]);
 
   useFrame(({ camera, size }) => {
     const distance = camera.position.distanceTo(center);
-    const radiusOf = (visualRadius: number) =>
-      tapRadius({
-        distance,
-        viewportHeight: size.height,
-        spacing: cloud.minSpacing,
-        visualRadius,
-      });
-    if (Math.abs(radiusOf(NODE_RADIUS) - applied.current) < 1e-4) return;
-    write(radiusOf);
+    // 반지름은 거리와 화면 높이의 비에만 달렸다 — 그 비가 그대로면 다시 쓸 것이 없다
+    if (Math.abs(distance / size.height - applied.current) < 1e-6) return;
+    write(distance, size.height);
   });
 
   return (
@@ -183,8 +179,7 @@ function NodeHitTargets({
       }}
     >
       <sphereGeometry args={[1, 8, 6]} />
-      {/* 그리지 않는 재질 — 자리만 차지하고 화면에는 아무 흔적도 남기지 않는다 */}
-      <meshBasicMaterial colorWrite={false} depthWrite={false} />
+      <meshBasicMaterial {...HIT_MATERIAL} />
     </instancedMesh>
   );
 }

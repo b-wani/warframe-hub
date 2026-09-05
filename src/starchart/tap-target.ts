@@ -28,12 +28,9 @@ export const MIN_TAP_PX = 44;
  * 가로가 아니라 세로를 기준으로 삼는 이유는 three의 `fov`가 수직 화각이어서다 —
  * 가로는 종횡비에 따라 달라지지만 이 값은 달라지지 않는다.
  */
-export function worldPerPixel(
-  distance: number,
-  viewportHeight: number,
-  fovDeg: number = SOLAR_VIEW_FOV,
-): number {
-  const visible = 2 * distance * Math.tan(((fovDeg / 2) * Math.PI) / 180);
+export function worldPerPixel(distance: number, viewportHeight: number): number {
+  const visible =
+    2 * distance * Math.tan(((SOLAR_VIEW_FOV / 2) * Math.PI) / 180);
   return visible / viewportHeight;
 }
 
@@ -48,7 +45,6 @@ export function tapRadius({
   viewportHeight,
   spacing,
   visualRadius,
-  fovDeg = SOLAR_VIEW_FOV,
 }: {
   /** 카메라에서 물체까지의 거리. */
   distance: number;
@@ -58,9 +54,32 @@ export function tapRadius({
   spacing: number;
   /** 눈에 보이는 크기 — 히트 영역은 여기서 더 작아지지 않는다. */
   visualRadius: number;
-  fovDeg?: number;
 }): number {
-  const wanted =
-    (MIN_TAP_PX / 2) * worldPerPixel(distance, viewportHeight, fovDeg);
+  const wanted = (MIN_TAP_PX / 2) * worldPerPixel(distance, viewportHeight);
   return Math.max(visualRadius, Math.min(wanted, spacing / 2));
+}
+
+/**
+ * 각 점에서 가장 가까운 이웃까지의 거리 — 그대로 `tapRadius`의 `spacing`이 된다.
+ *
+ * 지도의 것들(천체도, 노드 구름도)은 전부 황도면 위에 눕는 평면 배치라 거리도
+ * 평면(xz)에서 잰다. 이웃이 없는 점은 상한이 없다는 뜻으로 `Infinity`다.
+ *
+ * 개수가 수십 개뿐이라(구름 하나가 최대 21노드, 천체 22개) 짝을 전부 훑는다.
+ */
+export function nearestSpacings(
+  points: readonly (readonly [number, number, number])[],
+): number[] {
+  const spacings = points.map(() => Infinity);
+  for (let i = 0; i < points.length; i++) {
+    for (let j = i + 1; j < points.length; j++) {
+      const gap = Math.hypot(
+        points[i][0] - points[j][0],
+        points[i][2] - points[j][2],
+      );
+      spacings[i] = Math.min(spacings[i], gap);
+      spacings[j] = Math.min(spacings[j], gap);
+    }
+  }
+  return spacings;
 }

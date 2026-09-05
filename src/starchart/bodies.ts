@@ -21,6 +21,7 @@
  */
 import { isCelestialBodyGroup, type StarchartDataset } from "./dataset.ts";
 import type { StarchartLayout } from "./layout.ts";
+import { nearestSpacings } from "./tap-target.ts";
 import { type TextureFile } from "./textures.ts";
 
 /** 좌표 데이터셋의 픽셀을 3D 월드 단위로 옮기는 배율. */
@@ -259,7 +260,7 @@ export function solarSystemBodies(
       radius: appearance.radius,
       shellRadius: appearance.radius * SHELL_SCALE,
       labelY: -(appearance.radius * SHELL_SCALE + LABEL_DROP),
-      // 이웃이 다 모인 뒤에야 알 수 있다 — 아래에서 채운다
+      // 아래에서 채운다
       spacing: Infinity,
       texture: appearance.texture,
       tint: appearance.tint,
@@ -274,19 +275,11 @@ export function solarSystemBodies(
     });
   }
 
-  // 천체는 전부 황도면(y=0) 위에 있으므로 간격도 평면에서 잰다
-  for (const body of bodies) {
-    for (const other of bodies) {
-      if (other === body) continue;
-      body.spacing = Math.min(
-        body.spacing,
-        Math.hypot(
-          body.position[0] - other.position[0],
-          body.position[2] - other.position[2],
-        ),
-      );
-    }
-  }
+  // 이웃은 천체가 다 모인 뒤에야 알 수 있다
+  const spacings = nearestSpacings(bodies.map((body) => body.position));
+  bodies.forEach((body, index) => {
+    body.spacing = spacings[index];
+  });
 
   for (const id of Object.keys(APPEARANCE)) {
     const group = dataset.groups[id];
