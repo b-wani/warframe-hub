@@ -61,25 +61,30 @@ test("활성 균열이 목록 탭에 로테이션 순서로 뜬다", async ({ pa
   await expect(items.first()).toContainText("지구");
 });
 
-test("목록에서 균열을 고르면 그 노드까지 연속 비행한다", async ({ page }) => {
-  await withFissures(page);
-  await openStarchart(page);
-  await recordFrames(page, "Earth");
+// 비행 자체를 보는 테스트 — 기본값(모션 감소)을 되돌린다
+test.describe("연속 비행", () => {
+  test.use({ contextOptions: { reducedMotion: "no-preference" } });
 
-  await page.getByRole("button", { name: "보이드 균열 2" }).click();
-  await page.locator("[data-fissure-node='SolNode89']").click();
+  test("목록에서 균열을 고르면 그 노드까지 연속 비행한다", async ({ page }) => {
+    await withFissures(page);
+    await openStarchart(page);
+    await recordFrames(page, "Earth");
 
-  // 행성 뷰에 들면서 그 노드가 골라져 있다 — 상세가 이미 열려 있다
-  await expect(page.locator("[data-focus-body='Earth']")).toBeVisible();
-  await expect(
-    page
-      .locator("[data-selected-node='SolNode89']")
-      .getByRole("heading", { name: "Mariana" }),
-  ).toBeVisible();
+    await page.getByRole("button", { name: "보이드 균열 2" }).click();
+    await page.locator("[data-fissure-node='SolNode89']").click();
 
-  // 컷이 아니라 비행이다 — 지나온 자리가 여러 군데 남는다
-  await waitForCameraRest(page);
-  expect(await distinctFrames(page)).toBeGreaterThan(5);
+    // 행성 뷰에 들면서 그 노드가 골라져 있다 — 상세가 이미 열려 있다
+    await expect(page.locator("[data-focus-body='Earth']")).toBeVisible();
+    await expect(
+      page
+        .locator("[data-selected-node='SolNode89']")
+        .getByRole("heading", { name: "Mariana" }),
+    ).toBeVisible();
+
+    // 컷이 아니라 비행이다 — 지나온 자리가 여러 군데 남는다
+    await waitForCameraRest(page);
+    expect(await distinctFrames(page)).toBeGreaterThan(5);
+  });
 });
 
 test("균열이 있는 노드에는 지도에도 로테이션 심볼이 얹힌다", async ({ page }) => {
@@ -93,7 +98,7 @@ test("균열이 있는 노드에는 지도에도 로테이션 심볼이 얹힌�
   await expect(page.locator("[data-selected-node='SolNode27']")).toBeVisible();
 });
 
-test("월드스테이트가 죽어도 지도·진행도는 온전하고 균열만 빠진다", async ({
+test("월드스테이트가 죽어도 지도·진행도는 온전하고 균열만 빠진다", { tag: "@smoke" }, async ({
   page,
 }) => {
   await page.route("**/api/worldstate", (route) => route.abort());

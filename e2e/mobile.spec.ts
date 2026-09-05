@@ -28,7 +28,7 @@ test("홈에 가로 스크롤이 생기지 않는다", async ({ page }) => {
   expect(await horizontalOverflow(page)).toBe(0);
 });
 
-test("스타차트에 가로 스크롤이 생기지 않는다", async ({ page }) => {
+test("스타차트에 가로 스크롤이 생기지 않는다", { tag: "@smoke" }, async ({ page }) => {
   await page.goto("/starchart");
   await expect(page.locator("[data-body-id]").first()).toBeAttached({
     timeout: 30_000,
@@ -120,7 +120,7 @@ test("세로 화면에서 행성 뷰의 노드도 프레임 안에 들어온다"
 
 // 적응 규칙 2 — 호버 의존 금지. 손가락에는 호버가 없으므로, 탭 한 번으로
 // 노드의 모든 정보(이름·상태·미션 정보·완료 체크)에 닿아야 한다.
-test("탭 한 번으로 노드 상세에 닿는다 — 호버가 필요 없다", async ({ page }) => {
+test("탭 한 번으로 노드 상세에 닿는다 — 호버가 필요 없다", { tag: "@smoke" }, async ({ page }) => {
   await focusEarth(page);
 
   await nodeLabel(page, "SolNode89").tap();
