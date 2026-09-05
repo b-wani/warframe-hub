@@ -1,0 +1,49 @@
+{
+  "basedOnPatch": "Update 43",
+  "guides": [
+    {
+      "body": "Earth",
+      "objectives": [
+        { "slug": "vors-prize", "kind": "quest", "title": "보어의 전리품 (Vor's Prize)" },
+        { "slug": "the-teacher", "kind": "quest", "title": "스승 (The Teacher)" },
+        { "slug": "once-awake", "kind": "quest", "title": "각성의 순간 (Once Awake)" }
+      ]
+    },
+    {
+      "body": "Venus",
+      "objectives": [
+        { "slug": "vox-solaris", "kind": "quest", "title": "복스 솔라리스 (Vox Solaris)" },
+        {
+          "slug": "rhino-prep",
+          "kind": "preparation",
+          "title": "라이노 제작 시작",
+          "note": "수성 교차점 과제 — 금성 포사(Fossa)에서 부품을 얻는다"
+        }
+      ]
+    },
+    {
+      "body": "Mars",
+      "objectives": [
+        { "slug": "the-archwing", "kind": "quest", "title": "아크윙 (The Archwing)" }
+      ]
+    },
+    {
+      "body": "SolarMapDeimosName",
+      "objectives": [
+        { "slug": "heart-of-deimos", "kind": "quest", "title": "데이모스의 심장 (Heart of Deimos)" }
+      ]
+    },
+    {
+      "body": "Uranus",
+      "objectives": [
+        { "slug": "natah", "kind": "quest", "title": "나타 (Natah)" }
+      ]
+    },
+    {
+      "body": "Neptune",
+      "objectives": [
+        { "slug": "the-second-dream", "kind": "quest", "title": "두 번째 꿈 (The Second Dream)" }
+      ]
+    }
+  ]
+}

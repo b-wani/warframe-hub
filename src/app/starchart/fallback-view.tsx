@@ -19,7 +19,11 @@
  * 두 화면이 다른 답을 낼 자리가 없다(§4.2).
  */
 import { useMemo } from "react";
-import { starchartDataset, starchartProgressGraph } from "@/starchart/data";
+import {
+  starchartDataset,
+  starchartPlanetGuides,
+  starchartProgressGraph,
+} from "@/starchart/data";
 import { fallbackGroups } from "@/starchart/fallback";
 import {
   NODE_STATE_NAME,
@@ -29,6 +33,7 @@ import {
 } from "@/starchart/progress";
 import { BulkComplete } from "./bulk-complete";
 import styles from "./page.module.css";
+import { PlanetGuidePanel } from "./planet-guide-panel";
 
 const groups = fallbackGroups(starchartDataset);
 
@@ -85,6 +90,8 @@ function FallbackGroupSection({
   // 완료 여부는 세어서 판단하지 않는다 — 행성 완료는 3D 뷰의 완료 아이콘과 같은
   // 파생값이고, 두 화면이 다른 규칙으로 답하면 그게 곧 어긋남이다(§4.2)
   const complete = isGroupComplete(starchartProgressGraph, completedIds, group.id);
+  // 프록시마는 여기서 독립 항목이지만 가이드는 행성의 것이다 — 조회가 비면 없다
+  const guide = starchartPlanetGuides.get(group.id);
 
   return (
     <details
@@ -103,6 +110,19 @@ function FallbackGroupSection({
           </span>
         )}
       </summary>
+
+      {/*
+        행성 가이드도 여기 있다 — 비노드 목표가 3D 뷰에서만 체크된다면 폴백 뷰만
+        쓰는 사용자에게 그 목표는 영영 없는 것이 된다(스펙 §8)
+      */}
+      {guide && (
+        <PlanetGuidePanel
+          guide={guide}
+          completedIds={completedIds}
+          onToggle={onToggle}
+          className={styles.fallbackGuide}
+        />
+      )}
 
       {/*
         행성 전체 완료는 아코디언 안이다 — summary 안에 버튼을 두면 그 클릭이

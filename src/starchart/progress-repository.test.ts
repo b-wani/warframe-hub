@@ -87,4 +87,15 @@ describe("createLocalStorageProgressRepository", () => {
     expect(blocked.load().size).toBe(0);
     expect(() => blocked.save(new Set(["SolNode11"]))).not.toThrow();
   });
+
+  test("비노드 목표는 슬러그 그대로 기록·복원된다 — 노드와 한 집합이다", () => {
+    const repository = createLocalStorageProgressRepository();
+    repository.save(new Set(["SolNode27", "vors-prize", "rhino-prep"]));
+
+    expect([...repository.load()].sort()).toEqual([
+      "SolNode27",
+      "rhino-prep",
+      "vors-prize",
+    ]);
+  });
 });

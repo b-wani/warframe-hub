@@ -9,11 +9,13 @@
  * 데이터셋 자체의 무결성은 빌드 파이프라인(`scripts/build-starchart-*.mts`)과
  * CI 단위 테스트가 지킨다 — 런타임 검증을 여기서 또 하지 않는다.
  */
+import planetGuidesJson from "@/data/planet-guides.json";
 import starchartJson from "@/data/starchart.json";
 import layoutJson from "@/data/starchart-layout.json";
 import type { StarchartDataset } from "./dataset.ts";
 import { nodeNamesByEn } from "./fissures.ts";
 import type { StarchartLayout } from "./layout.ts";
+import { planetGuides } from "./planet-guide.ts";
 import { buildProgressGraph, progressNodeIds } from "./progress.ts";
 
 /** 정제 노드 데이터셋 — 앱이 임포트하는 유일한 스타차트 데이터. */
@@ -36,3 +38,12 @@ export const starchartNodeNames = nodeNamesByEn(starchartDataset);
 
 /** 가져오기가 아는 `Tag`의 기준 — 진행도 대상 노드 전부다(스펙 §5). */
 export const knownNodeIds = progressNodeIds(starchartProgressGraph);
+
+/**
+ * 행성 가이드 — 행성 뷰와 폴백 뷰가 같은 저작물을 읽는다. 잘못된 가이드는 여기서
+ * 조용히 빠지고(`issues`) CI 단위 테스트가 잡는다.
+ */
+export const starchartPlanetGuides = planetGuides(
+  starchartDataset,
+  planetGuidesJson,
+).guides;
