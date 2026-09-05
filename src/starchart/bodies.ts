@@ -21,6 +21,7 @@
  */
 import { isCelestialBodyGroup, type StarchartDataset } from "./dataset.ts";
 import type { StarchartLayout } from "./layout.ts";
+import { nearestSpacings } from "./tap-target.ts";
 import { type TextureFile } from "./textures.ts";
 
 /** 좌표 데이터셋의 픽셀을 3D 월드 단위로 옮기는 배율. */
@@ -211,6 +212,11 @@ export type SolarSystemBody = {
    * 아래쪽 끝이기도 해서, 카메라 프레이밍이 이 값을 여유로 쓴다.
    */
   labelY: number;
+  /**
+   * 가장 가까운 다른 천체까지의 거리. 탭 히트 영역을 얼마나 키울 수 있는지가
+   * 여기서 나온다 — 이웃의 중심까지 삼키면 그 이웃을 못 누른다(`tap-target.ts`).
+   */
+  spacing: number;
   texture: TextureFile;
   tint: string;
   atmosphere: string;
@@ -254,6 +260,8 @@ export function solarSystemBodies(
       radius: appearance.radius,
       shellRadius: appearance.radius * SHELL_SCALE,
       labelY: -(appearance.radius * SHELL_SCALE + LABEL_DROP),
+      // 아래에서 채운다
+      spacing: Infinity,
       texture: appearance.texture,
       tint: appearance.tint,
       atmosphere: appearance.atmosphere,
@@ -266,6 +274,12 @@ export function solarSystemBodies(
       }),
     });
   }
+
+  // 이웃은 천체가 다 모인 뒤에야 알 수 있다
+  const spacings = nearestSpacings(bodies.map((body) => body.position));
+  bodies.forEach((body, index) => {
+    body.spacing = spacings[index];
+  });
 
   for (const id of Object.keys(APPEARANCE)) {
     const group = dataset.groups[id];
