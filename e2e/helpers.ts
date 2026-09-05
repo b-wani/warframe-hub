@@ -20,9 +20,18 @@ export const nodeLabels = (page: Page) => page.locator("[data-node-id]");
 export const nodeLabel = (page: Page, id: string) =>
   page.locator(`[data-node-id="${id}"]`);
 
+/**
+ * 성계 뷰가 다 설 때까지 기다린다. 첫 진입은 3D 자산을 받아 오므로 느리다 —
+ * 그 대기를 여기 한 자리에 둔다. 주소로 바로 들어가지 않는 경로(홈의 링크)도
+ * 같은 대기를 쓴다.
+ */
+export async function waitForSystemView(page: Page) {
+  await expect(labels(page)).toHaveCount(BODY_COUNT, { timeout: 30_000 });
+}
+
 export async function openStarchart(page: Page) {
   await page.goto("/starchart");
-  await expect(labels(page)).toHaveCount(BODY_COUNT, { timeout: 30_000 });
+  await waitForSystemView(page);
 }
 
 export async function openEarth(page: Page) {
