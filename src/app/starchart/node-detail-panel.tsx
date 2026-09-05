@@ -97,12 +97,24 @@ function CurationOverlay({ overlay }: { overlay: NodeOverlay }) {
       <p className={styles.overlaySummary}>{overlay.summary}</p>
 
       {/* 목록은 있는 것만 — 빈 제목만 남은 칸을 세우지 않는다 */}
-      <OverlayList
-        label="준비물"
-        items={overlay.preparations.map(
-          (item) => `${item.name} ×${item.quantity} — ${item.source}`,
-        )}
-      />
+      {overlay.preparations.length > 0 && (
+        <>
+          <h3 className={styles.overlayListTitle}>준비물</h3>
+          <ul className={styles.overlayList}>
+            {overlay.preparations.map((item) => (
+              // 준비물은 이름·개수·출처 세 조각이다 — 한 문자열로 뭉치면 화면도
+              // 테스트도 그중 하나만 짚을 수 없다
+              <li key={item.name}>
+                <span className={styles.overlayPrepName}>{item.name}</span>
+                <span className={styles.overlayPrepQuantity}>
+                  ×{item.quantity}
+                </span>
+                <span className={styles.overlayPrepSource}>{item.source}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
       <OverlayList label="주의" items={overlay.cautions} />
       <OverlayList label="대표 드랍" items={overlay.drops ?? []} />
     </>
@@ -112,6 +124,7 @@ function CurationOverlay({ overlay }: { overlay: NodeOverlay }) {
     <section
       className={styles.overlay}
       data-node-overlay={overlay.spoiler ? "spoiler" : "open"}
+      aria-label="큐레이션 오버레이"
     >
       {overlay.spoiler ? (
         <details className={styles.overlaySpoiler}>
@@ -133,8 +146,9 @@ function OverlayList({ label, items }: { label: string; items: string[] }) {
     <>
       <h3 className={styles.overlayListTitle}>{label}</h3>
       <ul className={styles.overlayList}>
-        {items.map((item) => (
-          <li key={item}>{item}</li>
+        {items.map((item, index) => (
+          // 같은 문장이 두 번 실릴 수 있다 — 문장 자체는 키가 되지 못한다
+          <li key={`${label}-${index}`}>{item}</li>
         ))}
       </ul>
     </>

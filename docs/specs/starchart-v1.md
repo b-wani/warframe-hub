@@ -57,7 +57,7 @@
 - 정보 노출은 선택(탭/클릭) 기준 — 호버는 데스크톱 보조 수단이며 호버에만
   의존하는 정보가 있어서는 안 된다(§7).
 
-근거: [#21](https://github.com/b-wani/warframe-hub/issues/21), [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34), [#43 노드 3상태·상세·개별 체크](https://github.com/b-wani/warframe-hub/issues/43) (3상태 시각·교차점 구별·노드 상세 구현 완료), [#50](https://github.com/b-wani/warframe-hub/issues/50) (주요 노드의 큐레이션 오버레이가 노드 상세에 얹히는 경로 구현 완료 — 콘텐츠 저작은 §9)
+근거: [#21](https://github.com/b-wani/warframe-hub/issues/21), [#34 모바일 정책](https://github.com/b-wani/warframe-hub/issues/34), [#43 노드 3상태·상세·개별 체크](https://github.com/b-wani/warframe-hub/issues/43) (3상태 시각·교차점 구별·노드 상세 구현 완료), [#50](https://github.com/b-wani/warframe-hub/issues/50) (주요 노드의 큐레이션 오버레이가 노드 상세에 얹히는 경로 구현 완료 — 3D 뷰의 노드 상세에만 있다: 폴백 뷰에는 노드 상세 자체가 없다. 콘텐츠 저작은 §9)
 
 ## 3. 데이터 파이프라인
 
@@ -99,7 +99,9 @@
 
 ### 3.3 큐레이션 오버레이 (수동 저작)
 
-- 대상: 주요 노드 32개 = 교차점 12 + 보스 노드(MT_ASSASSINATION) 20.
+- 대상: 주요 노드 = 교차점 + 보스 노드(MT_ASSASSINATION). 데이터셋 기준 13 + 20
+  = **33개**다 — 여기 적혀 있던 "교차점 12·합 32"는 셈이 어긋난 것으로, 대상
+  판별은 손으로 적은 목록이 아니라 데이터셋에서 파생한다(#50).
 - 형태: `src/data/`에 커밋되는 노드 id 키 JSON — 자동 생성물인 starchart.json과
   분리(재생성 충돌 방지, diff 검수 용이).
 - 스키마: 옛 roadmap-nodes.json 스키마(summary, preparations, cautions, spoiler,
@@ -109,10 +111,8 @@
   이후 단계**이며 이 스펙의 범위 밖(§9).
 - 기준 패치는 파일이 아니라 노드마다 있다. 페이지의 **콘텐츠 기준 패치** 표기는
   그것들을 중복 없이 모은 값이다(CONTEXT "콘텐츠 기준 패치").
-- 대상 판별은 손으로 적은 목록이 아니라 데이터셋에서 파생한다 — 교차점은
-  데이터셋 기준 13개여서 위의 "12"와 어긋나며, 어긋나면 데이터셋이 사실이다.
 
-근거: [#30 큐레이션 범위](https://github.com/b-wani/warframe-hub/issues/30), [#50 큐레이션 오버레이 그릇](https://github.com/b-wani/warframe-hub/issues/50) (스키마·검증 로더·노드 상세 표시·콘텐츠 기준 패치 표기 구현 완료 — 샘플 2건까지, 32노드 저작은 §9)
+근거: [#30 큐레이션 범위](https://github.com/b-wani/warframe-hub/issues/30), [#50 큐레이션 오버레이 그릇](https://github.com/b-wani/warframe-hub/issues/50) (스키마·검증 로더·노드 상세 표시·콘텐츠 기준 패치 표기 구현 완료 — 샘플 2건까지, 33노드 저작은 §9)
 
 ## 4. 진행도 모델
 
@@ -226,11 +226,12 @@ v1 요구사항인 적응 규칙 4항목:
   재방문.
 - 침공·얼럿 등 추가 월드스테이트 오버레이.
 - 행성 가이드 저작 워크플로·범위, 비노드 목표 행성별 확정 재선정, 큐레이션
-  오버레이 32노드 저작 — 그릇(스키마·위치)은 확정, 저작은 스펙 이후 단계.
+  오버레이 주요 노드 33개 저작 — 그릇(스키마·위치)은 확정, 저작은 스펙 이후 단계.
   큐레이션 오버레이의 그릇은 [#50](https://github.com/b-wani/warframe-hub/issues/50)로
   섰다: `src/data/node-overlays.json`(커밋됨·수동 저작) + `src/starchart/node-overlay.ts`
   (스키마·로더). 실린 것은 로더와 표시 경로를 증명할 **샘플 2건**(금성 교차점 ·
-  포사)이며, 나머지 31건은 저작 단계가 채운다.
+  포사)이며, 나머지 31건은 저작 단계가 채운다. 스포일러 표기는 그릇에만 있다 —
+  접어 두는 화면 규칙은 세웠고, 무엇이 스포일러인가는 저작 단계가 정한다.
   행성 가이드의 그릇은 [#49](https://github.com/b-wani/warframe-hub/issues/49)로
   섰다: `src/data/planet-guides.json`(커밋됨·수동 저작) + `src/starchart/planet-guide.ts`
   (스키마·로더). 실린 비노드 목표는 옛 로드맵에서 옮겨 온 **잠정 9개**(퀘스트 8
