@@ -38,6 +38,7 @@ import {
   planetViewShot,
   solarViewShot,
 } from "@/starchart/camera";
+import { prefersReducedMotion } from "@/starchart/motion";
 import {
   starchartDataset,
   starchartLayout,
@@ -243,7 +244,10 @@ function CameraDirector({
       body && cloud
         ? planetViewShot(body, cloud, width / height)
         : solarViewShot(bodies, width / height);
-    controls.setLookAt(...shot.position, ...shot.target, flown.current);
+    // 첫 배치는 보간 없이 선다. 그 뒤는 연속 비행이 기본이지만, 모션 감소를 켠
+    // 사용자에게는 목적지에 바로 선다 — 도착지는 같고 가는 길만 다르다
+    const fly = flown.current && !prefersReducedMotion();
+    controls.setLookAt(...shot.position, ...shot.target, fly);
     flown.current = true;
   }, [controls, focus, cloud, moved, width, height]);
 

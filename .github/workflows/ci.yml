@@ -5,37 +5,63 @@ on:
     branches: [main]
   pull_request:
 
+# PR에서는 같은 브랜치의 이전 실행을 새 푸시가 대신한다 — 러너 분(개인 저장소 월
+# 2,000분)을 아낀다. main 푸시는 취소하지 않는다: 전체 e2e는 여기서만 돌기 때문이다.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  test:
+  # 빠른 게이트 — 몇 분 안에 끝나야 한다. 여기서 터지면 e2e는 돌지 않는다.
+  check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-
       - uses: pnpm/action-setup@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+  # PR은 @smoke만(다른 층에서 볼 수 없는 것 — WebGL 기동·폴백·연속 비행·브라우저 고유
+  # 동작), main 푸시는 전부. 표준 러너는 2 vCPU라 Playwright 워커가 1개다 —
+  # 테스트 수가 곧 시간이다.
+  e2e:
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
 
-      - name: Lint
-        run: pnpm lint
-
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Unit tests
-        run: pnpm test
-
-      - name: Install Playwright browsers
+      - name: Playwright 버전
+        id: playwright
+        run: echo "version=$(node -e "console.log(require('@playwright/test/package.json').version)")" >> "$GITHUB_OUTPUT"
+      - name: Playwright 브라우저 캐시
+        id: browser-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+      - name: Playwright 브라우저 설치
+        if: steps.browser-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install chromium --with-deps
+      - name: Playwright 시스템 의존성
+        if: steps.browser-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
 
-      - name: E2E tests
-        run: pnpm e2e
+      - name: E2E (PR은 smoke, main은 전체)
+        run: pnpm e2e ${{ github.event_name == 'pull_request' && '--grep @smoke' || '' }}
 
       - name: Upload Playwright report
         if: failure()

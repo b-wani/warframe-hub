@@ -6,7 +6,7 @@ import { labelPositions, labels, openStarchart } from "./helpers";
 // 서버 렌더에 3D가 안 들어가는가, 카메라 조작이 되는가.
 // 어떤 천체를 어디에 놓는지는 단위 테스트(src/starchart/bodies.test.ts)가 본다.
 
-test("성계 뷰에 행성/위성 17 + 특수 구역 5가 렌더된다", async ({ page }) => {
+test("성계 뷰에 행성/위성 17 + 특수 구역 5가 렌더된다", { tag: "@smoke" }, async ({ page }) => {
   await openStarchart(page);
   await expect(page.getByRole("heading", { level: 1, name: "스타차트" })).toBeVisible();
   await expect(page.locator("canvas")).toBeVisible();
@@ -28,7 +28,7 @@ test("릴레이와 프록시마는 지도에 없다", async ({ page }) => {
   expect(ids.filter((id) => id.endsWith("_SPACE"))).toEqual([]);
 });
 
-test("서버 렌더에 3D가 들어가지 않는다", async ({ page, baseURL }) => {
+test("서버 렌더에 3D가 들어가지 않는다", { tag: "@smoke" }, async ({ page, baseURL }) => {
   const html = await (await page.request.get(`${baseURL}/starchart`)).text();
   expect(html).not.toContain("<canvas");
   // 3D는 클라이언트에서만 붙으므로 서버가 보내는 것은 로딩 문구다
@@ -46,7 +46,7 @@ test("텍스처 출처 표기가 페이지에 있다", async ({ page }) => {
   );
 });
 
-test("카메라 궤도·줌이 동작한다", async ({ page }) => {
+test("카메라 궤도·줌이 동작한다", { tag: "@smoke" }, async ({ page }) => {
   await openStarchart(page);
   const canvas = page.locator("canvas");
   const box = (await canvas.boundingBox())!;

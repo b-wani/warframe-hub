@@ -42,7 +42,7 @@ async function openEarthAccordion(page: Page) {
   await earthAccordion(page).locator("summary").click();
 }
 
-test("WebGL을 못 쓰면 폴백 뷰가 자동으로 뜬다", async ({ page }) => {
+test("WebGL을 못 쓰면 폴백 뷰가 자동으로 뜬다", { tag: "@smoke" }, async ({ page }) => {
   await blockWebgl(page);
   await page.goto("/starchart");
 
@@ -58,7 +58,7 @@ test("WebGL을 못 쓰면 폴백 뷰가 자동으로 뜬다", async ({ page }) =
   ).toBeVisible();
 });
 
-test("3D 환경에서도 목록으로 수동 전환하고 되돌아올 수 있다", async ({ page }) => {
+test("3D 환경에서도 목록으로 수동 전환하고 되돌아올 수 있다", { tag: "@smoke" }, async ({ page }) => {
   await openStarchart(page);
 
   await page.getByRole("button", { name: "목록으로 보기" }).click();

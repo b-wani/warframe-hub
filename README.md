@@ -92,7 +92,19 @@ pnpm check:links --out=link-report.md # 리포트를 파일로
 
 ## CI
 
-`main` 푸시와 모든 PR에서 GitHub Actions(`.github/workflows/ci.yml`)가 lint → typecheck → 단위 테스트 → E2E를 실행한다. 하나라도 실패하면 워크플로가 실패한다.
+GitHub Actions(`.github/workflows/ci.yml`)가 두 잡으로 돈다. `check`(lint → typecheck →
+단위 테스트)가 먼저, 통과하면 `e2e`가 이어진다. PR에서는 `@smoke` 태그가 붙은 e2e만
+돌고(다른 층에서 볼 수 없는 것 — WebGL 기동·폴백 전환·카메라 연속 비행·마우스/키보드/
+뷰포트 같은 브라우저 고유 동작 — 의 최소 경로), `main` 푸시에서는 전부 돈다. 하나라도 실패하면 워크플로가 실패한다.
+
+e2e는 기본으로 모션 감소(`contextOptions.reducedMotion: "reduce"`) 상태에서 돈다 — 앱이
+`prefers-reduced-motion`을 따라 카메라 비행을 건너뛰므로 테스트가 비행이 멈추기를
+기다리지 않는다. 비행 자체를 검증하는 테스트만 `test.use({ contextOptions: { reducedMotion: "no-preference" } })`로
+되돌린다. 로컬에서 smoke만 돌리려면:
+
+```bash
+pnpm e2e --grep @smoke
+```
 
 ## 배포 (Vercel)
 
