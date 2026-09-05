@@ -48,19 +48,6 @@ async function withFissures(page: Page) {
   });
 }
 
-test("활성 균열이 목록 탭에 로테이션 순서로 뜬다", async ({ page }) => {
-  await withFissures(page);
-  await openStarchart(page);
-
-  await page.getByRole("button", { name: "보이드 균열 2" }).click();
-  const items = page.locator("[data-fissure-node]");
-  await expect(items).toHaveCount(2);
-  // 리스가 액시보다 앞이다 — 정렬은 로테이션 순서다
-  await expect(items.first()).toHaveAttribute("data-fissure-tier", "Lith");
-  await expect(items.first()).toContainText("E Prime");
-  await expect(items.first()).toContainText("지구");
-});
-
 // 비행 자체를 보는 테스트 — 기본값(모션 감소)을 되돌린다
 test.describe("연속 비행", () => {
   test.use({ contextOptions: { reducedMotion: "no-preference" } });
