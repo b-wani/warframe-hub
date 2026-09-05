@@ -22,10 +22,11 @@ describe("커밋된 큐레이션 오버레이", () => {
     expect(issues).toEqual([]);
   });
 
-  test("32노드 저작은 범위 밖이라 샘플만 실려 있다", () => {
-    // 그릇을 증명할 만큼만 — 본문 저작은 스펙 이후 단계다(스펙 §9)
-    expect(overlays.size).toBeGreaterThan(0);
-    expect(overlays.size).toBeLessThanOrEqual(2);
+  test("로더와 표시 경로를 증명할 샘플이 실려 있다", () => {
+    // 본문 저작은 스펙 이후 단계다(스펙 §9) — 여기서 세는 것은 개수가 아니라
+    // "그릇이 실제 저작물을 하나라도 통과시키는가"다. 저작이 늘어도 깨지지 않는다.
+    expect(overlays.get("EarthToVenusJunction")?.summary).toBeTruthy();
+    expect(overlays.get("SolNode104")?.drops?.length).toBeTruthy();
   });
 
   test("주요 노드에만 붙어 있다", () => {
@@ -42,9 +43,8 @@ describe("majorNodeIds", () => {
         /^MT_(JUNCTION|ASSASSINATION)$/,
       );
     }
-    // 스펙 §3.3은 32개(교차점 12 + 보스 20)라고 적지만 데이터셋의 교차점은 13개다.
-    // 판별은 데이터셋에서 파생하는 것이므로(AC2) 여기서 하나를 골라 버리지 않는다 —
-    // 스펙의 셈과 데이터셋이 갈리면 데이터셋이 사실이다.
+    // 스펙 §3.3에 적혀 있던 32개(교차점 12 + 보스 20)는 셈이 어긋난 것이다 —
+    // 데이터셋의 교차점은 13개이고, 판별은 데이터셋에서 파생한다(AC2).
     const junctions = [...ids].filter(
       (id) => dataset.nodes[id]?.missionType === "MT_JUNCTION",
     );

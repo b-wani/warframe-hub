@@ -13,5 +13,5 @@ import styles from "./page.module.css";
 
 export function PatchBaseline({ patches }: { patches: readonly string[] }) {
   if (patches.length === 0) return null;
-  return <p className={styles.credit}>콘텐츠 기준 패치 {patches.join(", ")}</p>;
+  return <p className={styles.baseline}>콘텐츠 기준 패치 {patches.join(", ")}</p>;
 }
