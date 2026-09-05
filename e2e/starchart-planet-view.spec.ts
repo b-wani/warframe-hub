@@ -15,7 +15,10 @@ import {
 // 무엇이 프레임에 들어오는지는 src/starchart/camera.test.ts가 본다. 여기서는
 // 브라우저에서만 확인되는 것 — 전환이 컷이 아니라 비행인가, 노드가 눌리는가.
 
-test("행성을 고르면 컷 없이 연속 비행으로 행성 뷰에 든다", async ({ page }) => {
+// 이 파일은 전환이 "컷이 아니라 비행"임을 보는 자리다 — 기본값(모션 감소)을 되돌린다
+test.use({ contextOptions: { reducedMotion: "no-preference" } });
+
+test("행성을 고르면 컷 없이 연속 비행으로 행성 뷰에 든다", { tag: "@smoke" }, async ({ page }) => {
   await openStarchart(page);
   await recordFrames(page, "Earth");
 
@@ -59,7 +62,7 @@ test("성계 뷰로 되돌아가는 것도 같은 연속 비행이다", async ({
   expect(await distinctFrames(page)).toBeGreaterThan(5);
 });
 
-test("ESC로 선택과 행성 뷰를 차례로 빠져나온다", async ({ page }) => {
+test("ESC로 선택과 행성 뷰를 차례로 빠져나온다", { tag: "@smoke" }, async ({ page }) => {
   await openEarth(page);
   await nodeLabel(page, "SolNode89").click();
   await expect(page.locator("[data-selected-node]")).toHaveCount(1);
