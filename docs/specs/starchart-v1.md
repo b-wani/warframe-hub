@@ -1,6 +1,6 @@
 # 스타차트 v1 스펙
 
-상태: v1 구현 완료 (§10.1 전수 점검, 실기기 스모크만 미실시)
+상태: 구현 완료 · v1 완료 선언 보류 (§10.1 — 기준 5의 실기기 스모크만 남았다)
 확정일: 2026-08-26
 근거: [웨이파인더 맵 #20](https://github.com/b-wani/warframe-hub/issues/20)의 결정 티켓 #21~#34.
 각 절 끝의 `근거:` 링크가 해당 결정의 상세(대안·기각 사유 포함)를 담은 원본이다.
@@ -266,13 +266,16 @@ CI에서 잡힌다는 뜻이다.
 | # | 결과 | 근거 |
 | --- | --- | --- |
 | 1 | 충족 | `e2e/starchart-planet-view.spec.ts`(연속 비행 진입·복귀), `e2e/starchart-proxima.spec.ts`(⚓ 토글 4건), `e2e/starchart-system-view.spec.ts`("릴레이와 프록시마는 지도에 없다") |
-| 2 | 충족 | `src/starchart/data.test.ts`(노드 354·그룹 30), `src/starchart/layout.test.ts`(좌표 대상 352·29 — 릴레이 제외), `src/starchart/progress.test.ts`(3상태 파생), `e2e/starchart-node-progress.spec.ts`(3상태 표시·자물쇠) |
+| 2 | 충족 (아래 단서) | 규모: `src/starchart/data.test.ts`(노드 354·그룹 30), `src/starchart/layout.test.ts`(좌표 대상 352·29). 닿는 자리: `src/starchart/data.test.ts`(폴백 352 / 3D 342 = 구름 307 + 고리 35 / 베일 10), `src/starchart/node-cloud.test.ts`(구름이 천체 그룹 노드를 하나도 안 빠뜨린다). 3상태: `src/starchart/progress.test.ts`(파생), `e2e/starchart-node-progress.spec.ts`(자물쇠·시각 규칙) |
 | 3 | 충족 | `e2e/starchart-node-progress.spec.ts`(개별 체크), `e2e/starchart-bulk-complete.spec.ts`(구간 일괄·행성 전체 완료), `e2e/starchart-import.spec.ts`(가져오기·전체 초기화) |
 | 4 | 충족 | `e2e/starchart-fissures.spec.ts`(목록 탭·노드 심볼·"월드스테이트가 죽어도 지도·진행도는 온전하고 균열만 빠진다") |
-| 5 | **부분 충족** | 적응 규칙 4항목은 충족 — 규칙 1 `e2e/mobile.spec.ts`(세로 프레이밍·회전), 규칙 2(호버 없이 탭), 규칙 3 `src/starchart/tap-target.test.ts`, 규칙 4(360·390·430px HUD 겹침 없음). **중급 안드로이드 실기기 스모크는 미실시** — 사람이 실기기로 해야 하는 확인이라 자동 검증으로 대체하지 않는다. |
+| 5 | **부분 충족** | 적응 규칙 1·2·4 충족 — `e2e/mobile.spec.ts`(세로 프레이밍·회전 / 호버 없이 탭 / 360·390·430px HUD 겹침 없음). 규칙 3은 **타협한 형태로** 충족 — `src/starchart/tap-target.test.ts`가 지키는 것은 "모든 노드가 44px"이 아니라 "이웃 중심을 삼키지 않는 선까지, 배치가 허락하면 44px"이다(#51, §8 근거 문장). 조밀한 구름(천왕성)은 44px 미만이 정상 경로다. **중급 안드로이드 실기기 스모크는 미실시** — 사람이 실기기로 해야 하는 확인이라 자동 검증으로 대체하지 않는다. |
 | 6 | 충족 | `e2e/starchart-fallback.spec.ts`(WebGL 불가 시 자동 표시·수동 전환·같은 완료 집합) |
 | 7 | 충족 | `e2e/starchart-system-view.spec.ts`("텍스처 출처 표기가 페이지에 있다") |
 | 8 | 충족 | `/roadmap` 라우트·전용 코드·사이트맵 항목 모두 없음(2026-08-26 제거). 내비게이션은 홈의 "스타차트 열기" 링크가 그 자리를 대신한다 — `src/app/page.test.tsx`, `e2e/home.spec.ts` |
 
-남은 것은 기준 5의 실기기 스모크 하나다. 미달이 확인되면 품질 조정(별 개수·DPR
-캡)으로 대응하며, 정책 재론 사유가 아니다(§8).
+남은 것은 기준 5의 실기기 스모크 하나다. 그래서 이 문서는 "구현 완료"까지만
+말하고 **v1 완료 선언은 보류한다** — §10 서문이 완료 조건으로 못박은 항목을
+자동 검증으로 대체하지 않는다. 스모크가 끝나면 이 표의 기준 5와 문서 상태만
+고쳐 선언한다. 미달이 확인되면 품질 조정(별 개수·DPR 캡)으로 대응하며, 정책
+재론 사유가 아니다(§8).

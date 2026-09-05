@@ -4,6 +4,8 @@
 
   --text-primary: #000;
   --text-secondary: #666;
+  --accent: #1a1a1a;
+  --accent-text: #fafafa;
 
   display: flex;
   flex: 1;
@@ -45,9 +47,6 @@
 }
 
 .cta {
-  --accent: #1a1a1a;
-  --accent-text: #fafafa;
-
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -62,6 +61,11 @@
 
 .cta:hover {
   opacity: 0.85;
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 @media (max-width: 600px) {
@@ -83,9 +87,6 @@
 
     --text-primary: #ededed;
     --text-secondary: #999;
-  }
-
-  .cta {
     --accent: #ededed;
     --accent-text: #0a0a0a;
   }
